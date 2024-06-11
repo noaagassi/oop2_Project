@@ -4,7 +4,7 @@ TextureHandler::TextureHandler()
 {
 	for (int i = 0; i < NUM_OF_TEXTURES; i++)
 	{
-		m_textures[i].loadFromFile(NAME_OF_PNG_FILES[i]);
+		m_textures[i].loadFromFile(NAME_OF_PNG_FILES[i]); 
 	}
 }
 

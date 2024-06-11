@@ -4,7 +4,6 @@
 class NewGameButton : public BaseButton
 {
 public:
-	NewGameButton();
-private:
-	
+    NewGameButton(const std::string& imagePath, float x, float y);
+    void onClick() override;
 };
