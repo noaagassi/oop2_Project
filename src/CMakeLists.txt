@@ -7,3 +7,4 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES} "screenFolder.c
  "../include/ExitButton.h" "ExitButton.cpp" "../include/InstructionsButton.h" 
 "InstructionsButton.cpp" "../include/Utilities.h" "../include/screenFolder.h/PausePage.h" "../src/screenFolder.cpp/PausePage.cpp" "../include/Controller.h" "Controller.cpp")
 
+target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES} "Menu.cpp"  "../include/Menu.h" "../include/BaseButton.h" "BaseButton.cpp" "../include/NewGameButton.h" "NewGameButton.cpp" "../include/TextureHandler.h" "TextureHandler.cpp" "../include/ExitButton.h" "ExitButton.cpp" "../include/InstructionsButton.h" "InstructionsButton.cpp" "../include/Utilities.h" "../include/BaseObject.h" "../include/PlayerObject.h" "PlayerObject.cpp" "../include/controller.h" "Controller.cpp")
