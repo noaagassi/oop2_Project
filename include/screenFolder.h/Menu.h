@@ -10,15 +10,12 @@ class Menu : public GameState
 {
 public:
     Menu();
-    void run();
-    void draw(sf::RenderWindow& window) override;
-    void update(sf::RenderWindow& window) override;
-    GameState* changeState(sf::RenderWindow& window) override;
+    //void run();
+    void draw() override;
+    void update() override;
+    GameState* isStateChanged() override;
 
 private:
-    void processEvents();
-    void update();
-    void render();
 
     sf::RenderWindow m_window;
     std::vector<BaseButton*> m_buttons;
