@@ -16,3 +16,4 @@ sf::Texture* TextureHandler::getObjTexture(int objnum) {
 	}
 	return nullptr; 
 }
+
