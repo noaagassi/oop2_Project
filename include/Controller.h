@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "PlayerObject.h"
+#include "screenFolder.h/GameState.h"
 
 class Controller {
 public:
@@ -10,6 +11,7 @@ public:
 private:
     sf::RenderWindow m_window;
     PlayerObject m_playerObject;
+    GameState* m_currentScreen;
 
     void handleEvents();
     void update(float deltaTime);
