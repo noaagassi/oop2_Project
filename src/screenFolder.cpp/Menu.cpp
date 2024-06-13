@@ -21,7 +21,7 @@ Menu::Menu()
     m_buttons.push_back(new ExitButton("exit.png", 100, 300));
     m_buttons.push_back(new InstructionsButton("instructions.png", 100, 400));
 }
-
+/*
 void Menu::run()
 {
     while (m_window.isOpen()) {
@@ -30,8 +30,9 @@ void Menu::run()
         render();
     }
 }
+*/
 
-GameState* Menu::changeState(sf::RenderWindow& window)
+GameState* Menu::isStateChanged()
 {
     sf::Event event;
     while (m_window.pollEvent(event)) {
@@ -50,30 +51,13 @@ GameState* Menu::changeState(sf::RenderWindow& window)
     }
 }
 
-void Menu::processEvents()
-{
-    sf::Event event;
-    while (m_window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed) {
-            m_window.close();
-        }
-        if (event.type == sf::Event::MouseButtonPressed) {
-            if (event.mouseButton.button == sf::Mouse::Left) {
-                for (auto& button : m_buttons) {
-                    if (button->isMouseOver(m_window)) {
-                        button->onClick();
-                    }
-                }
-            }
-        }
-    }
-}
+
 
 void Menu::update()
 {
 }
 
-void Menu::render()
+void Menu::draw()
 {
     m_window.clear();
     m_window.draw(m_backgroundSprite);
