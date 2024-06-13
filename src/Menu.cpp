@@ -11,10 +11,10 @@ Menu::Menu()
     sf::Vector2u windowSize = m_window.getSize();
     sf::Vector2u textureSize = m_backgroundTexture.getSize();
 
-    float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
-    float scaleY = static_cast<float>(windowSize.y) / textureSize.y;
+  //  float scaleX = static_cast<float>(windowSize.m_x) / textureSize.m_x;
+   // float scaleY = static_cast<float>(windowSize.m_y) / textureSize.m_y;
 
-    m_backgroundSprite.setScale(scaleX, scaleY);
+  //  m_backgroundSprite.setScale(scaleX, scaleY);
 
 
     m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
