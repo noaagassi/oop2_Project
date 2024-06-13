@@ -3,47 +3,47 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 800), "brawl stars");          //йцйшъ змеп бвегм 800*600
+	sf::RenderWindow window(sf::VideoMode(1000, 800), "brawl stars");          //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 800*600
 	
     
     
     
     
     sf::Texture exampleMapTexture;                          
-    if (!exampleMapTexture.loadFromFile("exampleMap.png"))  //йцйшъ ичсиешд мофд щъецв бзмеп
+    if (!exampleMapTexture.loadFromFile("exampleMap.png"))  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     {
         return -1;
     }
-    sf::Sprite mapSprite(exampleMapTexture);                   //йцйшъ сфшййи мофд тн дичсиешд щмд
+    sf::Sprite mapSprite(exampleMapTexture);                   //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ
     mapSprite.setScale(window.getSize().x / mapSprite.getLocalBounds().width,
-        window.getSize().y / mapSprite.getLocalBounds().height);             //дъаоъ дофд мвегм дзмеп
+        window.getSize().y / mapSprite.getLocalBounds().height);             //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     
 
-    sf::Texture examplePlayerTexture;       //ичсиешд мщзчп
+    sf::Texture examplePlayerTexture;       //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     if (!examplePlayerTexture.loadFromFile("examplePlayer.png"))
     {
         return -1;
     }
 
-    sf::Vector2f position(300.0f, 200.0f);  //ойчен мщзчп 
-    BaseObject myPlayer(examplePlayerTexture, position);      //брай щм дщзчп тм йгй ойчен еичсиешд
-    myPlayer.setSpriteScale(0.05f, 0.05f);    //чбйтъ вегм дсфшййи щм дщзчп
+    sf::Vector2f position(300.0f, 200.0f);  //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+    BaseObject myPlayer(examplePlayerTexture, position);      //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    myPlayer.setSpriteScale(0.05f, 0.05f);    //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-    sf::View view(sf::FloatRect(0, 0, 400, 300));           //йцйшъ ейе щйщощ аеъре мшаеъ шч змч чип одоск леме
-    view.setCenter(myPlayer.getSpriteLocation());         //дошлж щм дейе йдйд дщзчп лмеош дейе йъзйм осбйб дщзчп лащш деа бошлже
+    sf::View view(sf::FloatRect(0, 0, 400, 300));           //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+    view.setCenter(myPlayer.getSpriteLocation());         //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
 
 
-    while (window.isOpen())                         //мемаъ дзмеп щн ржйж аъ дейе тн дщзчп
+    while (window.isOpen())                         //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     {
-        sf::Event event;                                //йцйшъ айшет мбгйчъ ъжежд щм дщзчп 
-        while (window.pollEvent(event))             //бгйчъ дан йщ айшетйн
+        sf::Event event;                                //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ 
+        while (window.pollEvent(event))             //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         {
             if (event.type == sf::Event::Closed)
                 window.close();
         }
 
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))            //бгйчд айжд лфъеш рмзх мотмд моид ае мцггйн ебресу бгйчд щма йцаре овбемеъ дофд тм лм мзйцд
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))            //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         {
             if (myPlayer.getSprite().getGlobalBounds().left > mapSprite.getGlobalBounds().left)
                 myPlayer.move(-1, 0);
@@ -64,17 +64,15 @@ int main()
                 myPlayer.move(0, 1);
         }
 
-        view.setCenter(myPlayer.getSpriteLocation());           //ойчен дейе лм фтн лк щбошлже йдйд дщзчп
-        window.setView(view);           //лап аеошйн мзмеп щарзре осълмйн тмйе гшк дейе щйцшре 
+        view.setCenter(myPlayer.getSpriteLocation());           //пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        window.setView(view);           //пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 
 
        
         window.clear();             
-        window.draw(mapSprite);         //цйеш дофд
-        myPlayer.draw(window);       //цйеш дщзчп
-        window.display();       //дцвд тм дзмеп
+        window.draw(mapSprite);         //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+        myPlayer.draw(window);       //пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+        window.display();       //пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     }
 
-    return 0;
-}
 
 

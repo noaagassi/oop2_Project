@@ -1,5 +1,5 @@
 #pragma once
-//#include "Utilities.h"
+#include "Utilities.h"
 #include <SFML/Graphics.hpp>
 
 class TextureHandler
