@@ -1,5 +1,6 @@
 #include "NewGameButton.h"
-#include "GameState.h"
+#include "screenFolder.h/GameState.h"
+#include "screenFolder.h/Menu.h"
 #include <iostream>
 
 NewGameButton::NewGameButton(const std::string& imagePath, float x, float y)
@@ -10,5 +11,5 @@ NewGameButton::NewGameButton(const std::string& imagePath, float x, float y)
 GameState* NewGameButton::onClick()
 {
 	std::cout << "New Game button clicked!" << std::endl;
-	return GameState:: Play*;
+	return new Menu();
 }

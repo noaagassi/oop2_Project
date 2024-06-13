@@ -3,5 +3,5 @@
 class ExitButton : public BaseButton {
 public:
     ExitButton(const std::string& imagePath, float x, float y);
-    void onClick() override;
+    GameState* onClick() override;
 };

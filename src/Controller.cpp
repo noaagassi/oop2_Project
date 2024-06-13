@@ -5,7 +5,7 @@ Controller::Controller()
 	:m_window(sf::VideoMode(800,600), "Brawl Stars",
 		sf::Style::Close | sf::Style::Titlebar)
 {
-	m_currentScreen = GameState::Menu*;
+	m_currentScreen = new Menu();
 }
 
 void Controller::run() {

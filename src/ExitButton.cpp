@@ -6,7 +6,9 @@ ExitButton::ExitButton(const std::string& imagePath, float x, float y)
 {
 }
 
-void ExitButton::onClick()
+GameState* ExitButton::onClick()
 {
 	std::cout << "Exit button clicked!" << std::endl;
+	
+	return nullptr;
 }

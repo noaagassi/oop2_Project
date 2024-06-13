@@ -1,13 +1,14 @@
 #pragma once
 #include "Utilities.h"
 #include <SFML/Graphics.hpp>
+#include "screenFolder.h/GameState.h"
 
 class BaseButton {
 public:
     BaseButton(const std::string& imagePath, float x, float y);
     virtual ~BaseButton() = default;
 
-    virtual void onClick() = 0;
+    virtual GameState* onClick() = 0;
     void render(sf::RenderWindow& window);
     bool isMouseOver(sf::RenderWindow& window);
 
