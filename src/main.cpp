@@ -3,11 +3,11 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 800), "brawl stars");          //����� ���� ����� 800*600
-	
-    
-    
-    
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "brawl stars");          //����� ���� ����� 800*600
+
+
+
+        
     
     sf::Texture exampleMapTexture;                          
     if (!exampleMapTexture.loadFromFile("exampleMap.png"))  //����� ������� ���� ����� �����
@@ -75,4 +75,6 @@ int main()
     }
 
 
+
+}
 
