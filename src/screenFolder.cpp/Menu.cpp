@@ -1,4 +1,4 @@
-#include "Menu.h"
+#include "screenFolder.h/Menu.h"
 #include <iostream>
 Menu::Menu()
     : m_window(sf::VideoMode(1000, 600), "Game Menu") 
@@ -28,6 +28,25 @@ void Menu::run()
         processEvents();
         update();
         render();
+    }
+}
+
+GameState* Menu::changeState(sf::RenderWindow& window)
+{
+    sf::Event event;
+    while (m_window.pollEvent(event)) {
+        if (event.type == sf::Event::Closed) {
+            m_window.close();
+        }
+        if (event.type == sf::Event::MouseButtonPressed) {
+            if (event.mouseButton.button == sf::Mouse::Left) {
+                for (auto& button : m_buttons) {
+                    if (button->isMouseOver(m_window)) {
+                        return (button->onClick());
+                    }
+                }
+            }
+        }
     }
 }
 

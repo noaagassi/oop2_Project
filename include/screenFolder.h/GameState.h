@@ -7,7 +7,7 @@ public:
 
 	virtual void draw(sf::RenderWindow & window)=0;
 	virtual void update(sf::RenderWindow & window)=0;
-	virtual GameState* changeState(sf::RenderWindow& window) = 0;
+	virtual GameState* changeState() = 0;
 
 
 private:

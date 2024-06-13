@@ -1,15 +1,15 @@
 #include <SFML/Graphics.hpp>
 #include "BaseObject.h"
+#include "screenFolder.h/Menu.h"
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(1000, 800), "brawl stars");          //����� ���� ����� 800*600
-	
-    
-    
-    
-    
-    sf::Texture exampleMapTexture;                          
+    sf::RenderWindow window(sf::VideoMode(1000, 800), "brawl stars");          //����� ���� ����� 800*600
+
+    Menu menu;
+    menu.run();
+
+    sf::Texture exampleMapTexture;
     if (!exampleMapTexture.loadFromFile("exampleMap.png"))  //����� ������� ���� ����� �����
     {
         return -1;
@@ -17,7 +17,7 @@ int main()
     sf::Sprite mapSprite(exampleMapTexture);                   //����� ������ ���� �� �������� ���
     mapSprite.setScale(window.getSize().x / mapSprite.getLocalBounds().width,
         window.getSize().y / mapSprite.getLocalBounds().height);             //����� ���� ����� �����
-    
+
 
     sf::Texture examplePlayerTexture;       //������� �����
     if (!examplePlayerTexture.loadFromFile("examplePlayer.png"))
@@ -67,12 +67,12 @@ int main()
         view.setCenter(myPlayer.getSpriteLocation());           //����� ���� �� ��� �� ������� ���� �����
         window.setView(view);           //��� ������ ����� ������ ������� ���� ��� ���� ������ 
 
-       
-        window.clear();             
+
+        window.clear();
         window.draw(mapSprite);         //���� ����
         myPlayer.draw(window);       //���� �����
         window.display();       //���� �� �����
     }
-
+}
 
 
