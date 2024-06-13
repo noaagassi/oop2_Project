@@ -16,7 +16,7 @@ void Controller::run() {
 		m_window.display();
 		m_window.clear();
 
-		GameState* nextScreen = m_currentScreen->isStateChanged(m_window);
+		GameState* nextScreen = m_currentScreen->isStateChanged();
 		if (nextScreen)
 		{
 			m_currentScreen = nextScreen;
