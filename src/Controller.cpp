@@ -9,9 +9,11 @@ Controller::Controller()
 }
 
 void Controller::run() {
+    sf::Clock clock;
 
 	while (m_window.isOpen())
 	{
+        float deltaTime = clock.restart().asSeconds();
 		m_window.events();
 		m_window.display();
 		m_window.clear();
@@ -20,9 +22,17 @@ void Controller::run() {
 		if (nextScreen)
 		{
 			m_currentScreen = nextScreen;
-		}
+    }
 		m_currentScreen->update();
 		m_currentScreen->draw();
-	}
 }
 
+void Controller::update(float deltaTime) {
+    m_playerObject.update(deltaTime);
+}
+
+void Controller::render() {
+    m_window.clear();
+    m_playerObject.draw(m_window);
+    m_window.display();
+}

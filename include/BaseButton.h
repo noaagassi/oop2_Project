@@ -5,7 +5,7 @@
 
 class BaseButton {
 public:
-    BaseButton(const std::string& imagePath, float x, float y);
+    BaseButton(const std::string& imagePath, float m_x, float m_y);
     virtual ~BaseButton() = default;
 
     virtual GameState* onClick() = 0;

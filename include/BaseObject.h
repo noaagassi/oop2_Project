@@ -13,6 +13,9 @@ public:
 	void draw(sf::RenderWindow& window) const;
 	void setSpriteScale(float scaleX, float scaleY);
 	const sf::Sprite& getSprite() const;
+	//c-tor d-tor
+	BaseObject() {};
+	~BaseObject() {};
 
 private:
 	sf::Sprite m_objectSprite;
