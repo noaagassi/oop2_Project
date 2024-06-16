@@ -1,7 +1,7 @@
 #include "screenFolder.h/WinScreen.h"
 #include "screenFolder.h/Menu.h"
 #include <iostream>
-
+/*
 
 WinScreen::WinScreen(sf::RenderWindow& window)
     : m_window(window), m_stateChanged(false), m_nextState(nullptr) {
@@ -72,3 +72,4 @@ void WinScreen::loadTextures() {
         std::cerr << "Error al cargar la textura del botón Exit" << std::endl;
     }
 }
+*/

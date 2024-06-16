@@ -1,14 +1,21 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "screenFolder.h/GameState.h"
+#include "screenFolder.h/Instructions.h"
+
 class Instructions : public GameState
 {
 public:
-    Instructions(sf::RenderWindow& window);
+    Instructions();
     ~Instructions();
     void draw() override;
     void update() override;
     GameState* isStateChanged() override;
 private:
+    
+    
+    sf::RenderWindow m_window;
+
     enum class Page {
         Page1,
         Page2
@@ -17,7 +24,6 @@ private:
     void handleInput();
     void loadTextures();
 
-    sf::RenderWindow& m_window;
     Page m_currentPage;
 
     sf::Texture m_backgroundTexture;

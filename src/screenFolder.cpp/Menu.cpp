@@ -1,8 +1,13 @@
 #include "screenFolder.h/Menu.h"
 #include <iostream>
-Menu::Menu()
+Menu::Menu(PlayState* play, Instructions* instructions)
     : m_window(sf::VideoMode(1000, 600), "Game Menu") 
+       
 {
+    m_states[StateOptions::PlayScrn] = play;
+    m_states[StateOptions::InstructionsScrn] = instructions;
+    m_states[StateOptions::Exit] = nullptr;
+
     if (!m_backgroundTexture.loadFromFile("background.png")) 
     {
     }
@@ -11,26 +16,29 @@ Menu::Menu()
     sf::Vector2u windowSize = m_window.getSize();
     sf::Vector2u textureSize = m_backgroundTexture.getSize();
 
-  //  float scaleX = static_cast<float>(windowSize.m_x) / textureSize.m_x;
-   // float scaleY = static_cast<float>(windowSize.m_y) / textureSize.m_y;
+    float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
+    float scaleY = static_cast<float>(windowSize.y) / textureSize.y;
 
-  //  m_backgroundSprite.setScale(scaleX, scaleY);
+    m_backgroundSprite.setScale(scaleX, scaleY);
 
 
     m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
     m_buttons.push_back(new ExitButton("exit.png", 100, 300));
     m_buttons.push_back(new InstructionsButton("instructions.png", 100, 400));
 }
-/*
+
+Menu::~Menu()
+{
+}
+
 void Menu::run()
 {
     while (m_window.isOpen()) {
-        processEvents();
-        update();
-        render();
+        draw();
+        isStateChanged();
     }
 }
-*/
+
 
 GameState* Menu::isStateChanged()
 {
@@ -39,16 +47,23 @@ GameState* Menu::isStateChanged()
         if (event.type == sf::Event::Closed) {
             m_window.close();
         }
-        if (event.type == sf::Event::MouseButtonPressed) {
+        if (event.type == sf::Event::MouseButtonReleased) {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 for (auto& button : m_buttons) {
                     if (button->isMouseOver(m_window)) {
-                        return (button->onClick());
+                        StateOptions state = button->handleClick();
+                        if (state == StateOptions::Exit)
+                        {
+                            m_window.close();
+                           //check!!!!!!!!!!!!!!!!!!!!!
+                        }
+                        return m_states[state]; 
                     }
                 }
             }
         }
     }
+    return nullptr;
 }
 
 

@@ -8,6 +8,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES} "screenFolder.c
 "InstructionsButton.cpp" "../include/Utilities.h" "../include/screenFolder.h/PausePage.h" "../src/screenFolder.cpp/PausePage.cpp" "../include/Controller.h" "Controller.cpp"
  "../include/PlayerObject.h" "PlayerObject.cpp" 
  "../include/screenFolder.h/LooseScreen.h"
-"../include/screenFolder.h/WinScreen.h" "../include/screenFolder.h/Play.h"
+"../include/screenFolder.h/WinScreen.h" "../include/screenFolder.h/PlayState.h"
 "../include/screenFolder.h/Instructions.h"
- "screenFolder.cpp/Instructions.cpp" "screenFolder.cpp/LooseScreen.cpp" "screenFolder.cpp/Play.cpp" "screenFolder.cpp/WinScreen.cpp")
+ "screenFolder.cpp/Instructions.cpp" "screenFolder.cpp/LooseScreen.cpp" "screenFolder.cpp/PlayState.cpp" "screenFolder.cpp/WinScreen.cpp" "Controller.cpp")

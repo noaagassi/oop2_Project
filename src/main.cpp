@@ -1,9 +1,11 @@
 #include <SFML/Graphics.hpp>
 #include "BaseObject.h"
 #include "screenFolder.h/Menu.h"
+#include "Controller.h"
 
 int main()
 {
+    /*
     sf::RenderWindow window(sf::VideoMode(1000, 800), "brawl stars");          //����� ���� ����� 800*600
     
     sf::Texture exampleMapTexture;                          
@@ -70,12 +72,10 @@ int main()
         myPlayer.draw(window);       //���� �����
         window.display();       //���� �� �����
     }
+    */
+    Controller c;
+    c.run();
+   
+    return 0;
 }
 
-
-//    //Menu menu;
-//    //menu.run();
-//    Controller controller;
-//    controller.run();
-//    return 0;
-//}

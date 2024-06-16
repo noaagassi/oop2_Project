@@ -1,17 +1,19 @@
 #pragma once
+
 #include "screenFolder.h/Instructions.h"
 #include "screenFolder.h/Menu.h"
 #include <iostream>
-
-Instructions:: Instructions(sf::RenderWindow& window)
-: m_window(window), m_currentPage(Page::Page1), m_stateChanged(false), m_nextState(nullptr) {
+/*
+Instructions:: Instructions()
+    : m_window(sf::VideoMode(1000, 600), "Instructions") , 
+    m_currentPage(Page::Page1), m_stateChanged(false), m_nextState(nullptr) {
     loadTextures();
 
     // Configurar la textura de fondo
     m_backgroundSprite.setTexture(m_backgroundTexture);
     m_backgroundSprite.setScale(
-        static_cast<float>(window.getSize().x) / m_backgroundTexture.getSize().x,
-        static_cast<float>(window.getSize().y) / m_backgroundTexture.getSize().y);
+        static_cast<float>(m_window.getSize().x) / m_backgroundTexture.getSize().x,
+        static_cast<float>(m_window.getSize().y) / m_backgroundTexture.getSize().y);
 
     // Configurar el texto de instrucciones
     if (!m_font.loadFromFile("path/to/font.ttf")) {
@@ -23,13 +25,13 @@ Instructions:: Instructions(sf::RenderWindow& window)
 
     // Configurar los botones
     m_nextButtonSprite.setTexture(m_nextButtonTexture);
-    m_nextButtonSprite.setPosition(window.getSize().x - 150, window.getSize().y - 50);
+    m_nextButtonSprite.setPosition(m_window.getSize().x - 150, m_window.getSize().y - 50);
 
     m_playButtonSprite.setTexture(m_playButtonTexture);
-    m_playButtonSprite.setPosition(window.getSize().x - 150, window.getSize().y - 50);
+    m_playButtonSprite.setPosition(m_window.getSize().x - 150, m_window.getSize().y - 50);
 
     m_backButtonSprite.setTexture(m_backButtonTexture);
-    m_backButtonSprite.setPosition(50, window.getSize().y - 50);
+    m_backButtonSprite.setPosition(50, m_window.getSize().y - 50);
 }
 
 
@@ -106,3 +108,4 @@ void Instructions::loadTextures()
         std::cerr << "Error al cargar la textura del botón Back" << std::endl;
     }
 }
+*/

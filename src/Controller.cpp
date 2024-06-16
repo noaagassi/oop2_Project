@@ -1,12 +1,12 @@
-
 #include "Controller.h"
 #include "screenFolder.h/Menu.h"
 
 Controller::Controller()
-	:m_window(sf::VideoMode(800,600), "Brawl Stars",
+	:m_window(sf::VideoMode(800, 600), "Brawl Stars",
 		sf::Style::Close | sf::Style::Titlebar)
 {
-	m_currentScreen = new Menu();
+	PlayState 
+	m_currentScreen = m_menu(&m_playState, &m_instructions);
 }
 
 void Controller::run() {
@@ -29,13 +29,13 @@ void Controller::run() {
 	}
 }
 
-void Controller::update(float deltaTime) 
+void Controller::update(float deltaTime)
 {
-    m_playerObject.update(deltaTime);
+	m_playerObject.update(deltaTime);
 }
 
 void Controller::render() {
-    m_window.clear();
-    m_playerObject.draw(m_window);
-    m_window.display();
+	m_window.clear();
+	m_playerObject.draw(m_window);
+	m_window.display();
 }
