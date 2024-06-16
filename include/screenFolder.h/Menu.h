@@ -12,12 +12,13 @@
 class Menu : public GameState
 {
 public:
-    Menu(PlayState* play, Instructions* instructions);
+    Menu();
     ~Menu();
     void run();
     void draw() override;
     void update() override;
-    GameState* isStateChanged() override;
+    std::shared_ptr <GameState> isStateChanged() override;
+    //void initMap(GameState* state_ptr, StateOptions state_name);
     
 private:
 
@@ -28,5 +29,5 @@ private:
 
     
 
-    std::unordered_map<StateOptions, GameState*> m_states;
+    //std::unordered_map<StateOptions, GameState*> m_states;
 };

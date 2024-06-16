@@ -1,13 +1,14 @@
 #include "screenFolder.h/Menu.h"
 #include <iostream>
-Menu::Menu(PlayState* play, Instructions* instructions)
+Menu::Menu()
     : m_window(sf::VideoMode(1000, 600), "Game Menu") 
        
 {
+    /*
     m_states[StateOptions::PlayScrn] = play;
     m_states[StateOptions::InstructionsScrn] = instructions;
     m_states[StateOptions::Exit] = nullptr;
-
+    */
     if (!m_backgroundTexture.loadFromFile("background.png")) 
     {
     }
@@ -40,7 +41,7 @@ void Menu::run()
 }
 
 
-GameState* Menu::isStateChanged()
+std::shared_ptr <GameState> Menu::isStateChanged()
 {
     sf::Event event;
     while (m_window.pollEvent(event)) {
@@ -65,6 +66,8 @@ GameState* Menu::isStateChanged()
     }
     return nullptr;
 }
+
+
 
 
 

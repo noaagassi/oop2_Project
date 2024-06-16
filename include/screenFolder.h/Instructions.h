@@ -10,7 +10,7 @@ public:
     ~Instructions();
     void draw() override;
     void update() override;
-    GameState* isStateChanged() override;
+    std::shared_ptr <GameState> isStateChanged() override;
 private:
     
     
@@ -21,7 +21,7 @@ private:
         Page2
     };
 
-    void handleInput();
+    //void handleInput();
     void loadTextures();
 
     Page m_currentPage;

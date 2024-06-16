@@ -10,9 +10,10 @@ class PlayState : public GameState
 {
 public:
     PlayState();
+    ~PlayState();
     void draw() override;
     void update() override;
-    GameState* isStateChanged() override;
+    std::shared_ptr <GameState> isStateChanged() override;
 
 private:
 

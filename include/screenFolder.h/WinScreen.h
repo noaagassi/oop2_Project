@@ -9,7 +9,7 @@ public:
     ~WinScreen();
     void draw() override;
     void update() override;
-    GameState* isStateChanged() override;
+    std::shared_ptr <GameState> isStateChanged() override;
 
 private:
     void handleInput();

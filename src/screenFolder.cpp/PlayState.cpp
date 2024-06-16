@@ -11,8 +11,25 @@ PlayState::PlayState()
     m_backgroundSprite.setTexture(m_backgroundTexture);
 }
 
+PlayState::~PlayState()
+{
+}
+////////////////////////////////////////////////////////
+void PlayState::draw()
+{
+}
 
+void PlayState::update()
+{
+}
 
+std::shared_ptr<GameState> PlayState::isStateChanged()
+{
+    return std::shared_ptr<GameState>();
+}
+///////////////////////////////////////////////////////
+
+/*
 GameState* PlayState::isStateChanged()
 {
     sf::Event event;
@@ -35,4 +52,4 @@ GameState* PlayState::isStateChanged()
         }
     }
     return nullptr;
-}
+}*/

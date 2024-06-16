@@ -17,11 +17,11 @@ public:
 private:
     sf::RenderWindow m_window;
     PlayerObject m_playerObject;
-    GameState* m_currentScreen;
+    std::shared_ptr <GameState> m_currentScreen;
     
-    Menu m_menu;
-    Instructions m_instructions;
-    PlayState m_playState;
+    std::shared_ptr<Menu> m_menu;
+    std::shared_ptr<PlayState> m_playState;
+    std::shared_ptr<Instructions> m_instructions;
    // PauseState m_pauseState;
 
     void handleEvents();
