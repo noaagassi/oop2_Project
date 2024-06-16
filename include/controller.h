@@ -2,6 +2,12 @@
 #include <SFML/Graphics.hpp>
 #include "PlayerObject.h"
 #include "screenFolder.h/GameState.h"
+#include "screenFolder.h/Menu.h"
+#include "screenFolder.h/Instructions.h"
+#include "screenFolder.h/PlayState.h"
+//#include "screenFolder.h/PauseState.h"
+
+
 
 class Controller {
 public:
@@ -11,7 +17,12 @@ public:
 private:
     sf::RenderWindow m_window;
     PlayerObject m_playerObject;
-    GameState* m_currentScreen;
+    std::shared_ptr <GameState> m_currentScreen;
+    
+    std::shared_ptr<Menu> m_menu;
+    std::shared_ptr<PlayState> m_playState;
+    std::shared_ptr<Instructions> m_instructions;
+   // PauseState m_pauseState;
 
     void handleEvents();
     void update(float deltaTime);
