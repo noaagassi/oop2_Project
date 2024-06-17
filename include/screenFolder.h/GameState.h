@@ -2,9 +2,15 @@
 #include <SFML/Graphics.hpp>
 #include <unordered_map>
 #include "Utilities.h"
+#include "TextureHandler.h"
+
+
 class GameState {
 public:
 	GameState(sf::RenderWindow* window);
+	
+	void setObjTexture(int objNum);
+
 	virtual ~GameState();
 	virtual void draw()=0;
 	virtual void update()=0;
@@ -14,6 +20,8 @@ public:
 
 
 protected:
+	sf::Sprite m_backGroundSprite;
+
 	std::unordered_map<StateOptions, std::shared_ptr<GameState>> m_states;
 	sf::RenderWindow* m_window;
 };

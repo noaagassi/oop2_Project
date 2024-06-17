@@ -1,10 +1,17 @@
 #include "BaseObject.h"
 
-BaseObject::BaseObject(const sf::Texture& texture, const sf::Vector2f& position)
+BaseObject::BaseObject(const sf::Vector2f& position)
 {
 	m_objectSprite.setPosition(position);
-	m_objectSprite.setTexture(texture);
 }
+
+
+void BaseObject::setObjTexture(int objNum)
+{
+	sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(objNum);
+	m_objectSprite.setTexture(*texturePtr);
+}
+
 
 sf::Vector2f BaseObject::getSpriteLocation() const {
 	return m_objectSprite.getPosition();
