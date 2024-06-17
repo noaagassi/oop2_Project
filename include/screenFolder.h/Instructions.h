@@ -11,10 +11,8 @@ public:
     void draw() override;
     void update() override;
     std::shared_ptr <GameState> isStateChanged() override;
+
 private:
-    
-    
-    sf::RenderWindow m_window;
 
     enum class Page {
         Page1,

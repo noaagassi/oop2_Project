@@ -14,7 +14,6 @@ Controller::Controller()
 	m_playState->initMap(m_menu, StateOptions::MenuScrn);
 
 
-
 	m_currentScreen = m_menu;
 }
 
@@ -26,7 +25,7 @@ void Controller::run() {
 		float deltaTime = clock.restart().asSeconds();
 
 		m_currentScreen->draw();
-	
+		
 
 		std::shared_ptr <GameState> nextScreen = m_currentScreen->isStateChanged();
 		if (nextScreen)

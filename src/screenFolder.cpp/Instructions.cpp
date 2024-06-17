@@ -10,13 +10,13 @@ Instructions:: Instructions(sf::RenderWindow* window)
 {
     loadTextures();
 
-    // Configurar la textura de fondo
+    // background texture
     m_backgroundSprite.setTexture(m_backgroundTexture);
     m_backgroundSprite.setScale(
-        static_cast<float>(m_window.getSize().x) / m_backgroundTexture.getSize().x,
-        static_cast<float>(m_window.getSize().y) / m_backgroundTexture.getSize().y);
+        static_cast<float>(m_window->getSize().x) / m_backgroundTexture.getSize().x,
+        static_cast<float>(m_window->getSize().y) / m_backgroundTexture.getSize().y);
 
-    // Configurar el texto de instrucciones
+    // instructions texture
     if (!m_font.loadFromFile("path/to/font.ttf")) {
         std::cerr << "Error al cargar la fuente" << std::endl;
     }
@@ -24,24 +24,22 @@ Instructions:: Instructions(sf::RenderWindow* window)
     m_instructionsText.setCharacterSize(24);
     m_instructionsText.setFillColor(sf::Color::White);
 
-    // Configurar los botones
+    // buttons texture
     m_nextButtonSprite.setTexture(m_nextButtonTexture);
-    m_nextButtonSprite.setPosition(m_window.getSize().x - 150, m_window.getSize().y - 50);
+    m_nextButtonSprite.setPosition(m_window->getSize().x - 150, m_window->getSize().y - 50);
 
     m_playButtonSprite.setTexture(m_playButtonTexture);
-    m_playButtonSprite.setPosition(m_window.getSize().x - 150, m_window.getSize().y - 50);
+    m_playButtonSprite.setPosition(m_window->getSize().x - 150, m_window->getSize().y - 50);
 
     m_backButtonSprite.setTexture(m_backButtonTexture);
-    m_backButtonSprite.setPosition(50, m_window.getSize().y - 50);
+    m_backButtonSprite.setPosition(50, m_window->getSize().y - 50);
 }
 
 Instructions::~Instructions()
 {
 }
 /////////////////////////////////////////////////////////
-void Instructions::draw()
-{
-}
+
 
 void Instructions::update()
 {
@@ -52,27 +50,28 @@ std::shared_ptr<GameState> Instructions::isStateChanged()
     return std::shared_ptr<GameState>();
 }
 /////////////////////////////////////////////////////////////
-/*
+
 void Instructions::draw()
 {
-    m_window.clear();
-    m_window.draw(m_backgroundSprite);
+    m_window->setTitle("Instructions");
+    m_window->clear();
+    m_window->draw(m_backgroundSprite);
 
     if (m_currentPage == Page::Page1) {
         m_instructionsText.setString("Instructions Page 1:\n\n- Step 1\n- Step 2\n- Step 3");
-        m_window.draw(m_nextButtonSprite);
+        m_window->draw(m_nextButtonSprite);
     }
     else if (m_currentPage == Page::Page2) {
         m_instructionsText.setString("Instructions Page 2:\n\n- Step 4\n- Step 5\n- Step 6");
-        m_window.draw(m_playButtonSprite);
-        m_window.draw(m_backButtonSprite);
+        m_window->draw(m_playButtonSprite);
+        m_window->draw(m_backButtonSprite);
     }
 
     m_instructionsText.setPosition(50, 50);
-    m_window.draw(m_instructionsText);
-    m_window.display();
+    m_window->draw(m_instructionsText);
+    m_window->display();
 }
-
+/*
 void Instructions::update()
 {
     handleInput();

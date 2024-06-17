@@ -19,6 +19,8 @@ PlayState::~PlayState()
 void PlayState::draw()
 {
     m_window->setTitle("Brawl stars");
+    
+    
     m_window->setSize(sf::Vector2u(1000, 700));
     m_window->clear();
     m_window->draw(m_backgroundSprite);
