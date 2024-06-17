@@ -6,4 +6,4 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES} "screenFolder.c
 "../include/screenFolder.h/GameState.h" "../src/screenFolder.cpp/GameState.cpp"
  "../include/ExitButton.h" "ExitButton.cpp" "../include/InstructionsButton.h" 
 "InstructionsButton.cpp" "../include/Utilities.h" "../include/screenFolder.h/PausePage.h" "../src/screenFolder.cpp/PausePage.cpp" "../include/Controller.h" "Controller.cpp"
- "../include/PlayerObject.h" "PlayerObject.cpp")
+ "../include/PlayerObject.h" "PlayerObject.cpp" "../include/EnemyObject.h" "EnemyObject.cpp" "FactoryObject.h")

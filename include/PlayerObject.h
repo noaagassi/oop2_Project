@@ -9,6 +9,7 @@ public:
     void draw(sf::RenderWindow& m_window);
 
 private:
+    //member of the texture of the player
     sf::Texture m_texture;
     sf::Sprite m_sprite;
     float m_x, m_y;
