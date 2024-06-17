@@ -3,6 +3,7 @@
 PlayState::PlayState(sf::RenderWindow* window )
     :GameState(window), view(sf::FloatRect(0, 0, 400, 300))
 {
+
     //m_pauseButton = std::make_shared<PauseButton>(sf::Vector2f(50, 50), "Pause");
 
     if (!m_backgroundTexture.loadFromFile("playBackground.png"))
@@ -17,6 +18,12 @@ PlayState::~PlayState()
 ////////////////////////////////////////////////////////
 void PlayState::draw()
 {
+    m_window->setTitle("Brawl stars");
+    m_window->setSize(sf::Vector2u(1000, 700));
+    m_window->clear();
+    m_window->draw(m_backgroundSprite);
+
+    m_window->display();
 }
 
 void PlayState::update()

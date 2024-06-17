@@ -24,9 +24,9 @@ void Controller::run() {
 	while (m_window.isOpen())
 	{
 		float deltaTime = clock.restart().asSeconds();
-		//m_window.events();
-		m_window.display();
-		m_window.clear();
+
+		m_currentScreen->draw();
+	
 
 		std::shared_ptr <GameState> nextScreen = m_currentScreen->isStateChanged();
 		if (nextScreen)

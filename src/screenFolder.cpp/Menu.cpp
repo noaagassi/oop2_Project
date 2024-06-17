@@ -4,7 +4,6 @@ Menu::Menu(sf::RenderWindow* window)
     : GameState(window) 
        
 {
-    m_window->setTitle("Menu");
     /*
     m_states[StateOptions::PlayScrn] = play;
     m_states[StateOptions::InstructionsScrn] = instructions;
@@ -31,14 +30,6 @@ Menu::Menu(sf::RenderWindow* window)
 
 Menu::~Menu()
 {
-}
-
-void Menu::run()
-{
-    while (m_window->isOpen()) {
-        draw();
-        isStateChanged();
-    }
 }
 
 
@@ -78,6 +69,7 @@ void Menu::update()
 
 void Menu::draw()
 {
+    m_window->setTitle("Menu");
     m_window->clear();
     m_window->draw(m_backgroundSprite);
 

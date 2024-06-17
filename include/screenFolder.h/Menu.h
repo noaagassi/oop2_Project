@@ -14,7 +14,6 @@ class Menu : public GameState
 public:
     Menu(sf::RenderWindow* window);
     ~Menu();
-    void run();
     void draw() override;
     void update() override;
     std::shared_ptr <GameState> isStateChanged() override;
