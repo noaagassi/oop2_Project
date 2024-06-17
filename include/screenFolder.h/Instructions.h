@@ -6,7 +6,7 @@
 class Instructions : public GameState
 {
 public:
-    Instructions();
+    Instructions(sf::RenderWindow* window); 
     ~Instructions();
     void draw() override;
     void update() override;

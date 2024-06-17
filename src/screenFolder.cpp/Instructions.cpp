@@ -4,9 +4,10 @@
 #include "screenFolder.h/Menu.h"
 #include <iostream>
 
-Instructions:: Instructions()
-    : m_window(sf::VideoMode(1000, 600), "Instructions") , 
-    m_currentPage(Page::Page1), m_stateChanged(false), m_nextState(nullptr) {
+Instructions:: Instructions(sf::RenderWindow* window)
+    : GameState(window),
+    m_currentPage(Page::Page1), m_stateChanged(false), m_nextState(nullptr) 
+{
     loadTextures();
 
     // Configurar la textura de fondo

@@ -1,9 +1,10 @@
 #include "screenFolder.h/Menu.h"
 #include <iostream>
-Menu::Menu()
-    : m_window(sf::VideoMode(1000, 600), "Game Menu") 
+Menu::Menu(sf::RenderWindow* window)
+    : GameState(window) 
        
 {
+    m_window->setTitle("Menu");
     /*
     m_states[StateOptions::PlayScrn] = play;
     m_states[StateOptions::InstructionsScrn] = instructions;
@@ -14,7 +15,7 @@ Menu::Menu()
     }
     m_backgroundSprite.setTexture(m_backgroundTexture);
     
-    sf::Vector2u windowSize = m_window.getSize();
+    sf::Vector2u windowSize = m_window->getSize();
     sf::Vector2u textureSize = m_backgroundTexture.getSize();
 
     float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
@@ -34,7 +35,7 @@ Menu::~Menu()
 
 void Menu::run()
 {
-    while (m_window.isOpen()) {
+    while (m_window->isOpen()) {
         draw();
         isStateChanged();
     }
@@ -44,9 +45,9 @@ void Menu::run()
 std::shared_ptr <GameState> Menu::isStateChanged()
 {
     sf::Event event;
-    while (m_window.pollEvent(event)) {
+    while (m_window->pollEvent(event)) {
         if (event.type == sf::Event::Closed) {
-            m_window.close();
+            m_window->close();
         }
         if (event.type == sf::Event::MouseButtonReleased) {
             if (event.mouseButton.button == sf::Mouse::Left) {
@@ -55,7 +56,7 @@ std::shared_ptr <GameState> Menu::isStateChanged()
                         StateOptions state = button->handleClick();
                         if (state == StateOptions::Exit)
                         {
-                            m_window.close();
+                            m_window->close();
                            //check!!!!!!!!!!!!!!!!!!!!!
                         }
                         return m_states[state]; 
@@ -77,11 +78,11 @@ void Menu::update()
 
 void Menu::draw()
 {
-    m_window.clear();
-    m_window.draw(m_backgroundSprite);
+    m_window->clear();
+    m_window->draw(m_backgroundSprite);
 
     for (auto& button : m_buttons) {
         button->render(m_window);
     }
-    m_window.display();
+    m_window->display();
 }

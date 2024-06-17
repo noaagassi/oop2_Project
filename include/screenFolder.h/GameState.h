@@ -4,7 +4,7 @@
 #include "Utilities.h"
 class GameState {
 public:
-	GameState();
+	GameState(sf::RenderWindow* window);
 	virtual ~GameState();
 	virtual void draw()=0;
 	virtual void update()=0;
@@ -15,5 +15,5 @@ public:
 
 protected:
 	std::unordered_map<StateOptions, std::shared_ptr<GameState>> m_states;
-	
+	sf::RenderWindow* m_window;
 };

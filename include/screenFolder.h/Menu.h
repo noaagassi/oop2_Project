@@ -12,7 +12,7 @@
 class Menu : public GameState
 {
 public:
-    Menu();
+    Menu(sf::RenderWindow* window);
     ~Menu();
     void run();
     void draw() override;
@@ -22,7 +22,7 @@ public:
     
 private:
 
-    sf::RenderWindow m_window;
+   
     std::vector<BaseButton*> m_buttons; // [exit, play, inst]
     sf::Sprite m_backgroundSprite;
     sf::Texture m_backgroundTexture;

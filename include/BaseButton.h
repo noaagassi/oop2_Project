@@ -9,8 +9,8 @@ public:
     virtual ~BaseButton() = default;
 
     virtual StateOptions handleClick() = 0;
-    void render(sf::RenderWindow& window);
-    bool isMouseOver(sf::RenderWindow& window);
+    void render(sf::RenderWindow* window);
+    bool isMouseOver(sf::RenderWindow* window);
 
 protected:
     sf::Texture m_texture;

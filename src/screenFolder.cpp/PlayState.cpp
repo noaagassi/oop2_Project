@@ -1,7 +1,7 @@
 #include "screenFolder.h/PlayState.h"
 
-PlayState::PlayState()
-    :view(sf::FloatRect(0, 0, 400, 300))
+PlayState::PlayState(sf::RenderWindow* window )
+    :GameState(window), view(sf::FloatRect(0, 0, 400, 300))
 {
     //m_pauseButton = std::make_shared<PauseButton>(sf::Vector2f(50, 50), "Pause");
 

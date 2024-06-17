@@ -2,7 +2,17 @@
 
 
 
-GameState::GameState()
+
+
+
+
+
+
+
+
+
+GameState::GameState(sf::RenderWindow* window)
+    :m_window(window)
 {
   
 }

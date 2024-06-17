@@ -9,7 +9,7 @@
 class PlayState : public GameState
 {
 public:
-    PlayState();
+    PlayState(sf::RenderWindow* window);
     ~PlayState();
     void draw() override;
     void update() override;

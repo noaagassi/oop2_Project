@@ -12,14 +12,14 @@ BaseButton::BaseButton(const std::string& imagePath, float x, float y)
     m_sprite.setScale(textureSize.x / currentSize.x, textureSize.y / currentSize.y);
 }
 
-void BaseButton::render(sf::RenderWindow& m_window)
+void BaseButton::render(sf::RenderWindow* m_window)
 {
-    m_window.draw(m_sprite);
+    m_window->draw(m_sprite);
 }
 
-bool BaseButton::isMouseOver(sf::RenderWindow& m_window)
+bool BaseButton::isMouseOver(sf::RenderWindow* m_window)
 {
-    sf::Vector2i mousePos = sf::Mouse::getPosition(m_window);
+    sf::Vector2i mousePos = sf::Mouse::getPosition(*m_window);
     return m_sprite.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
    
 }
