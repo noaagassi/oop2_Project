@@ -18,7 +18,7 @@ Instructions:: Instructions(sf::RenderWindow* window)
 
     // instructions texture
     if (!m_font.loadFromFile("path/to/font.ttf")) {
-        std::cerr << "Error al cargar la fuente" << std::endl;
+        std::cerr << "Error loading font" << std::endl;
     }
     m_instructionsText.setFont(m_font);
     m_instructionsText.setCharacterSize(24);
@@ -115,16 +115,16 @@ void Instructions::handleInput()
 
 void Instructions::loadTextures()
 {
-    if (!m_backgroundTexture.loadFromFile("background.png")) {
-        std::cerr << "Error al cargar la textura de fondo" << std::endl;
+    if (!m_backgroundTexture.loadFromFile("instructions_background.png")) {
+        std::cerr << "Error loading background" << std::endl;
     }
     if (!m_nextButtonTexture.loadFromFile("next_button.png")) {
-        std::cerr << "Error al cargar la textura del botón Next" << std::endl;
+        std::cerr << "Error loading next button" << std::endl;
     }
     if (!m_playButtonTexture.loadFromFile("play_button.png")) {
-        std::cerr << "Error al cargar la textura del botón Play" << std::endl;
+        std::cerr << "Error loading play button" << std::endl;
     }
     if (!m_backButtonTexture.loadFromFile("back_button.png")) {
-        std::cerr << "Error al cargar la textura del botón Back" << std::endl;
+        std::cerr << "Error loading back button" << std::endl;
     }
 }
