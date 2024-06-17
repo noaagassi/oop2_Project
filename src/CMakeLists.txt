@@ -13,4 +13,4 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES} "screenFolder.c
 "../include/screenFolder.h/WinScreen.h" "../include/screenFolder.h/PlayState.h"
 "../include/screenFolder.h/Instructions.h"
  "screenFolder.cpp/Instructions.cpp" "screenFolder.cpp/LooseScreen.cpp" 
- "screenFolder.cpp/PlayState.cpp" "screenFolder.cpp/WinScreen.cpp" "Controller.cpp")
+ "screenFolder.cpp/PlayState.cpp" "screenFolder.cpp/WinScreen.cpp" "Controller.cpp" "../include/Objects.h/BaseEnemyObject.h" "../include/Objects.h/BigSlowEnemyObject.h" "../include/Objects.h/SmallFastEnemyObject.h" "../include/Objects.h/BaseGiftObject.h" "../include/Objects.h/FreezeGiftObject.h" "../include/Objects.h/LifeGiftObject.h" "../include/Objects.h/WeaponGiftObject.h" "../include/Objects.h/BaseWeaponObject.h" "../include/Objects.h/EnemyWeaponObject.h" "../include/Objects.h/PlayerWeaponObject.h" "../include/Objects.h/BallsWeaponObject.h" "../include/Objects.h/RocketWeaponObject.h" "../include/Objects.h/SpreadingLaserWeaponObject.h" "../include/Objects.h/SuperWeaponObject.h")
