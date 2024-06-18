@@ -1,16 +1,19 @@
 #pragma once
 #include "BaseObject.h"
+#include "FactoryObject.h"
 
 class PlayerObject : public BaseObject
 {
 public:
-    PlayerObject();
+    //c-tor
+    PlayerObject(const sf::Vector2f&);
+    
     void update(float deltaTime);
     void draw(sf::RenderWindow& m_window);
 
 private:
     //member of the texture of the player
-    sf::Texture m_texture;
+
     sf::Sprite m_sprite;
     float m_x, m_y;
     int spriteIndex;
@@ -29,5 +32,7 @@ private:
     void animate(float deltaTime);
     static bool m_registerit;
 };
-bool PlayerObject::m_registerit = FactoryObject::registerit(m_texture,
-    []() -> std::unique_ptr<BaseObject> { return std::make_unique<PlayerObject>(); });
+
+bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
+    [](const sf::Vector2f& position) -> std::unique_ptr<BaseObject> {
+        return std::make_unique<PlayerObject>(position);

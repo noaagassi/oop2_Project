@@ -1,21 +1,29 @@
 #include "FactoryObject.h"
+//----------------------------------------------------
 
-
-std::unique_ptr<BaseObject> FactoryObject::create(const sf::Texture& texture, const sf::Vector2f& position)
+std::unique_ptr<BaseObject> FactoryObject::create(const Object_ID ObjectName, const sf::Vector2f& position)
 {
+	auto iterator = getMap().find(ObjectName);
 
-	return std::unique_ptr<BaseObject>();
+	if (iterator == getMap().end())
+	{
+		return nullptr;
+	}
+
+	return iterator->second(position);
 }
 
-bool FactoryObject::regesterit(const sf::Texture& texture, const sf::Vector2f& position, std::unique_ptr<BaseObject>(*)())
+//----------------------------------------------------
+
+bool FactoryObject::regesterit(const Object_ID objectName, std::unique_ptr<BaseObject>(*f)())
 {
-	getVec().push_back(texture, position);
-	return false;
+	getMap().emplace(objectName, f);
+	return true;
 }
 
-myObjects& FactoryObject::getVec()
+//----------------------------------------------------
+myObjects& FactoryObject::getMap()
 {
-	static myObjects m_objects;
-
-	return m_objects;
+	static myObjects m_map;
+	return m_map;
 }
