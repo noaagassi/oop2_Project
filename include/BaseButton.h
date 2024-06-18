@@ -1,17 +1,21 @@
 #pragma once
 #include "Utilities.h"
 #include <SFML/Graphics.hpp>
+#include "screenFolder.h/GameState.h"
 
 class BaseButton {
 public:
-    BaseButton(const std::string& imagePath, float m_x, float m_y);
+    BaseButton(const std::string& imagePath, float x, float y);
     virtual ~BaseButton() = default;
+    
+    void setObjTexture(int objNum);
 
-    virtual void onClick() = 0;
-    void render(sf::RenderWindow& m_window);
-    bool isMouseOver(sf::RenderWindow& m_window);
+
+    virtual StateOptions handleClick() = 0;
+    void render(sf::RenderWindow* window);
+    bool isMouseOver(sf::RenderWindow* window);
 
 protected:
     sf::Texture m_texture;
-    sf::Sprite m_sprite;
+    sf::Sprite m_buttonSprite;
 };

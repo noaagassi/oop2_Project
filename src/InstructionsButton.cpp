@@ -1,12 +1,15 @@
 #include "InstructionsButton.h"
 #include <iostream>
+#include "screenFolder.h/Menu.h"
 
-InstructionsButton::InstructionsButton(const std::string& imagePath, float m_x, float m_y)
-	:BaseButton(imagePath,m_x,m_y)
+
+InstructionsButton::InstructionsButton(const std::string& imagePath, float x, float y)
+	:BaseButton(imagePath,x,y)
 {
 }
 
-void InstructionsButton::onClick()
+StateOptions InstructionsButton::handleClick()
 {
 	std::cout << "instructions button pressed" << std::endl;
+	return StateOptions::InstructionsScrn;
 }
