@@ -1,7 +1,7 @@
 #pragma once
-#include "BaseObject.h"
+#include "MovingObject.h"
 
-class PlayerObject : public BaseObject
+class PlayerObject : public MovingObject
 {
 public:
     PlayerObject();

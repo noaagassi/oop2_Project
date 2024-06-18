@@ -1,4 +1,4 @@
-#include "BaseObject.h"
+#include "Objects.h/BaseObject.h"
 
 BaseObject::BaseObject(const sf::Texture& texture, const sf::Vector2f& position)
 {

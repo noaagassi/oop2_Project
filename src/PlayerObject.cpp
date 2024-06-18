@@ -1,4 +1,5 @@
-#include "PlayerObject.h"
+#include "Objects.h/PlayerObject.h"
+
 //------------------------------------------------
 //constant ans enum
 const int PLAYER_SPRITE_WIDTH = 64;
