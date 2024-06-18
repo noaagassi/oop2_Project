@@ -1,5 +1,7 @@
 #include "BaseObject.h"
 
+
+
 BaseObject::BaseObject(const sf::Texture& texture, const sf::Vector2f& position)
 {
 	m_objectSprite.setPosition(position);

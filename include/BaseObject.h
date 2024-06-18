@@ -19,4 +19,5 @@ public:
 
 private:
 	sf::Sprite m_objectSprite;
+	sf::Vector2f m_location;
 };

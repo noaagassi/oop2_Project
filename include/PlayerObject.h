@@ -27,4 +27,7 @@ private:
     sf::IntRect getFrame(int row, int col);
     void handleInput();
     void animate(float deltaTime);
+    static bool m_registerit;
 };
+bool PlayerObject::m_registerit = FactoryObject::registerit(m_texture,
+    []() -> std::unique_ptr<BaseObject> { return std::make_unique<PlayerObject>(); });
