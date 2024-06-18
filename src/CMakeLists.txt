@@ -22,4 +22,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES} "screenFolder.c
  "../include/Objects.h/BallsWeaponObject.h" "../include/Objects.h/RocketWeaponObject.h" 
  "../include/Objects.h/SpreadingLaserWeaponObject.h" "../include/Objects.h/SuperWeaponObject.h" 
  "../include/Objects.h/PoisonObject.h" "../include/Objects.h/WallObject.h" 
- "../include/Objects.h/BushObject.h" "../include/Objects.h/PortalObject.h" "../include/Objects.h/MasiveLaserWeaponObject.h" "../include/Objects.h/RegularLaserWeapon.h" "../include/Objects.h/MovingObject.h" "../include/Objects.h/StaticObject.h")
+ "../include/Objects.h/BushObject.h" "../include/Objects.h/PortalObject.h" 
+ "../include/Objects.h/MasiveLaserWeaponObject.h" "../include/Objects.h/RegularLaserWeapon.h" 
+ "../include/Objects.h/MovingObject.h" "../include/Objects.h/StaticObject.h" )
