@@ -3,17 +3,14 @@
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-
 #include "TextureHandler.h"
 
 
 
 class BaseObject {
 public:
-	void setObjTexture(int objNum);
-
-
 	BaseObject(const sf::Vector2f& position) ;
+	void setObjTexture(Object_ID);
 	sf::Vector2f getSpriteLocation()const;
 	void move(float offsetX, float offsetY);
 	void draw(sf::RenderWindow& window) const;
@@ -23,6 +20,7 @@ public:
 	BaseObject() {};
 	~BaseObject() {};
 
-private:
+protected:
 	sf::Sprite m_objectSprite;
+	sf::Vector2f m_location;
 };
