@@ -11,6 +11,7 @@ const float PLAYER_MOVE_SPEED = 0.1f;
 //c-tor
 PlayerObject::PlayerObject()
 {
+    //setObjTexture(PLAYER_OBJ);
     if (!m_texture.loadFromFile("Player.png"))
     {
         // error loading message

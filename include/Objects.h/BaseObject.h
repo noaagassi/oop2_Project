@@ -4,10 +4,16 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+#include "TextureHandler.h"
+
+
 
 class BaseObject {
 public:
-	BaseObject(const sf::Texture& texture, const sf::Vector2f& position) ;
+	void setObjTexture(int objNum);
+
+
+	BaseObject(const sf::Vector2f& position) ;
 	sf::Vector2f getSpriteLocation()const;
 	void move(float offsetX, float offsetY);
 	void draw(sf::RenderWindow& window) const;

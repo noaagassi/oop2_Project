@@ -7,6 +7,9 @@ class BaseButton {
 public:
     BaseButton(const std::string& imagePath, float x, float y);
     virtual ~BaseButton() = default;
+    
+    void setObjTexture(int objNum);
+
 
     virtual StateOptions handleClick() = 0;
     void render(sf::RenderWindow* window);
@@ -14,5 +17,5 @@ public:
 
 protected:
     sf::Texture m_texture;
-    sf::Sprite m_sprite;
+    sf::Sprite m_buttonSprite;
 };

@@ -14,7 +14,12 @@
 GameState::GameState(sf::RenderWindow* window)
     :m_window(window)
 {
-  
+}
+
+void GameState::setObjTexture(int objNum)
+{
+    sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(objNum);
+    m_backGroundSprite.setTexture(*texturePtr);
 }
 
 GameState::~GameState()
