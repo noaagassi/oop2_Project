@@ -41,5 +41,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/PortalObject.h" 
  "../include/Objects.h/MasiveLaserWeaponObject.h"
  "../include/Objects.h/RegularLaserWeapon.h" 
- "../include/Objects.h/MovingObject.h"
- "../include/Objects.h/StaticObject.h"       )
+ "../include/Objects.h/MovingObject.h"				"Objects.cpp/MovingObject.cpp"
+ "../include/Objects.h/StaticObject.h"         
+ "../include/Objects.h/FactoryObject.h"				"Objects.cpp/FactoryObject.cpp")

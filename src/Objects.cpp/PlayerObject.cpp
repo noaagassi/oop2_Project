@@ -1,3 +1,4 @@
+
 #include "Objects.h/PlayerObject.h"
 
 //------------------------------------------------
@@ -9,16 +10,10 @@ const int PLAYER_SPRITES_PER_COLUMN = 4;
 const float PLAYER_MOVE_SPEED = 0.1f;
 //------------------------------------------------
 //c-tor
-PlayerObject::PlayerObject()
+PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 {
-    //setObjTexture(PLAYER_OBJ);
-    if (!m_texture.loadFromFile("Player.png"))
-    {
-        // error loading message
-    }
-
-    m_sprite.setTexture(m_texture);
-    m_sprite.setScale(1.0f, 1.0f);
+    setObjTexture(PLAYER_OBJ);
+    setSpriteScale(1.0f, 1.0f);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
@@ -28,34 +23,38 @@ PlayerObject::PlayerObject()
 
     currentFrames = &defaultFrames;
 
-    m_sprite.setTextureRect((*currentFrames)[0]);
+    m_objectSprite.setTextureRect((*currentFrames)[0]);   //check
+
     m_x = 100.f;
     m_y = 100.f;
+
     spriteIndex = 0;
     isMoving = false;
 }
 //------------------------------------------------
 
-
-void PlayerObject::update(float deltaTime) {
+void PlayerObject::update(float deltaTime)
+{
     handleInput();
     animate(deltaTime);
-    m_sprite.setPosition(m_x, m_y);
+    m_objectSprite.setPosition(m_x, m_y);
 }
 //------------------------------------------------
 
-
-void PlayerObject::draw(sf::RenderWindow& m_window) {
+void PlayerObject::draw(sf::RenderWindow& m_window)
+{
     m_window.draw(m_sprite);
 }
 //------------------------------------------------
 
-sf::IntRect PlayerObject::getFrame(int row, int col) {
+sf::IntRect PlayerObject::getFrame(int row, int col)
+{
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
 //------------------------------------------------
 
-void PlayerObject::handleInput() {
+void PlayerObject::handleInput()
+{
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {

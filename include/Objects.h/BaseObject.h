@@ -23,6 +23,6 @@ public:
 	BaseObject() {};
 	~BaseObject() {};
 
-private:
+protected:
 	sf::Sprite m_objectSprite;
 };
