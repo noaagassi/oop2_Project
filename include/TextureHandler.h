@@ -35,7 +35,7 @@ public:
 
     static TextureHandler& getInstance();
 
-    sf::Texture* getObjTexture(int objNum);
+    sf::Texture* getObjTexture(Object_ID name);
 
     //sf::Font getFont() const;
 

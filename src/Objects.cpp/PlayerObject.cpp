@@ -9,11 +9,18 @@ const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
 const float PLAYER_MOVE_SPEED = 0.1f;
 //------------------------------------------------
-//c-tor
+
+
+bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
+    [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
+
+
+
+
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 {
     setObjTexture(PLAYER_OBJ);
-    setSpriteScale(1.0f, 1.0f);
+    setScale(1.0f, 1.0f);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };

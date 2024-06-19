@@ -8,8 +8,8 @@
 class GameState {
 public:
 	GameState(sf::RenderWindow* window);
-	
-	void setObjTexture(int objNum);
+	void setScale();
+	void setObjTexture(Object_ID name);
 
 	virtual ~GameState();
 	virtual void draw()=0;

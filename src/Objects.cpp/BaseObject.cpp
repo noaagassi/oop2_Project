@@ -6,9 +6,9 @@ BaseObject::BaseObject(const sf::Vector2f& position)
 }
 
 
-void BaseObject::setObjTexture(int objNum)
+void BaseObject::setObjTexture(Object_ID name)
 {
-	sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(objNum);
+	sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(name);
 	m_objectSprite.setTexture(*texturePtr);
 }
 
@@ -28,7 +28,7 @@ void BaseObject::draw(sf::RenderWindow& window) const
 	window.draw(m_objectSprite);
 }
 
-void BaseObject:: setSpriteScale(float scaleX, float scaleY)
+void BaseObject:: setScale(float scaleX, float scaleY)
 {
 	m_objectSprite.setScale(scaleX, scaleY);
 }
