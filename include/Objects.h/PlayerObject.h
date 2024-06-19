@@ -7,8 +7,8 @@ class PlayerObject : public MovingObject
 {
 public:
     //c-tor
-    PlayerObject(const sf::Vector2f&);
-    
+    PlayerObject(const sf::Vector2f& pos);
+
     void update(float deltaTime);
     void draw(sf::RenderWindow& m_window);
 
@@ -33,7 +33,3 @@ private:
     void animate(float deltaTime);
     static bool m_registerit;
 };
-
-bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
-    [](const sf::Vector2f& position) -> std::unique_ptr<BaseObject> {
-        return std::make_unique<PlayerObject>(position); });

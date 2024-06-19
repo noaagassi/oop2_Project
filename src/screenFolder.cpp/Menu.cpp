@@ -1,5 +1,7 @@
 #include "screenFolder.h/Menu.h"
 #include <iostream>
+
+
 Menu::Menu(sf::RenderWindow* window)
     : GameState(window) 
        
@@ -9,18 +11,8 @@ Menu::Menu(sf::RenderWindow* window)
     m_states[StateOptions::InstructionsScrn] = instructions;
     m_states[StateOptions::Exit] = nullptr;
     */
-    if (!m_backgroundTexture.loadFromFile("background.png")) 
-    {
-    }
-    m_backgroundSprite.setTexture(m_backgroundTexture);
-    
-    sf::Vector2u windowSize = m_window->getSize();
-    sf::Vector2u textureSize = m_backgroundTexture.getSize();
-
-    float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
-    float scaleY = static_cast<float>(windowSize.y) / textureSize.y;
-
-    m_backgroundSprite.setScale(scaleX, scaleY);
+    setObjTexture(MENU_BACK_GROUND_OBJ);
+    setScale();
 
 
     m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
@@ -71,7 +63,7 @@ void Menu::draw()
 {
     m_window->setTitle("Menu");
     m_window->clear();
-    m_window->draw(m_backgroundSprite);
+    m_window->draw(m_backGroundSprite);
 
     for (auto& button : m_buttons) {
         button->render(m_window);

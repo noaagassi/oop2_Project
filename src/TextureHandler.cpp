@@ -21,9 +21,9 @@ TextureHandler& TextureHandler::getInstance()
 
 
 //returns the appropriate texture according to the nmber received
-sf::Texture* TextureHandler::getObjTexture(Object_ID objNum)
+sf::Texture* TextureHandler::getObjTexture(Object_ID name)
 {
-    return &m_textures[objNum];
+    return &m_textures[name];
 }
 
 //sf::Font TextureHandler::getFont() const { return m_font; }

@@ -8,7 +8,8 @@ public:
     BaseButton(const std::string& imagePath, float x, float y);
     virtual ~BaseButton() = default;
     
-    void setObjTexture(Object_ID objNum);
+    void setObjTexture(Object_ID name);
+    void setScale();
 
 
     virtual StateOptions handleClick() = 0;

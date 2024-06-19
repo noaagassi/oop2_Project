@@ -1,3 +1,4 @@
+
 #include "Objects.h/PlayerObject.h"
 
 //------------------------------------------------
@@ -8,11 +9,18 @@ const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
 const float PLAYER_MOVE_SPEED = 0.1f;
 //------------------------------------------------
-//c-tor
+
+
+bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
+    [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
+
+
+
+
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 {
     setObjTexture(PLAYER_OBJ);
-    setSpriteScale(1.0f, 1.0f);    
+    setScale(1.0f, 1.0f);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
@@ -21,7 +29,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     upFrames = { getFrame(3, 0), getFrame(3, 1), getFrame(3, 2), getFrame(3, 3) };
 
     currentFrames = &defaultFrames;
-    
+
     m_objectSprite.setTextureRect((*currentFrames)[0]);   //check
 
     m_x = 100.f;
@@ -32,7 +40,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 }
 //------------------------------------------------
 
-void PlayerObject::update(float deltaTime) 
+void PlayerObject::update(float deltaTime)
 {
     handleInput();
     animate(deltaTime);
@@ -40,19 +48,19 @@ void PlayerObject::update(float deltaTime)
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow& m_window) 
+void PlayerObject::draw(sf::RenderWindow& m_window)
 {
     m_window.draw(m_sprite);
 }
 //------------------------------------------------
 
-sf::IntRect PlayerObject::getFrame(int row, int col) 
+sf::IntRect PlayerObject::getFrame(int row, int col)
 {
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
 //------------------------------------------------
 
-void PlayerObject::handleInput() 
+void PlayerObject::handleInput()
 {
     isMoving = false;
 

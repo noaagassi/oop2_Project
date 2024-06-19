@@ -36,4 +36,3 @@ void Controller::run() {
 		m_currentScreen->draw();
 	}
 }
-

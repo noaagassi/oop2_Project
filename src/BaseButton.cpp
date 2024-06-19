@@ -7,15 +7,14 @@ BaseButton::BaseButton(const std::string& imagePath, float x, float y)
     }
     m_buttonSprite.setTexture(m_texture);
     m_buttonSprite.setPosition(x, y);
-
-    sf::Vector2f currentSize(m_buttonSprite.getTexture()->getSize());
-    m_buttonSprite.setScale(textureSize.x / currentSize.x, textureSize.y / currentSize.y);
+    setScale();
+    
 }
 
 
-void BaseButton::setObjTexture(Object_ID objNum)
+void BaseButton::setObjTexture(Object_ID name)
 {
-    sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(objNum);
+    sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(name);
     m_buttonSprite.setTexture(*texturePtr);
 }
 
@@ -30,4 +29,12 @@ bool BaseButton::isMouseOver(sf::RenderWindow* m_window)
     sf::Vector2i mousePos = sf::Mouse::getPosition(*m_window);
     return m_buttonSprite.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
    
+}
+
+
+void BaseButton::setScale()
+{
+
+    sf::Vector2f currentSize(m_buttonSprite.getTexture()->getSize());
+    m_buttonSprite.setScale(textureSize.x / currentSize.x, textureSize.y / currentSize.y);
 }

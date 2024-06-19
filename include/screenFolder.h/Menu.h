@@ -23,8 +23,7 @@ private:
 
    
     std::vector<BaseButton*> m_buttons; // [exit, play, inst]
-    sf::Sprite m_backgroundSprite;
-    sf::Texture m_backgroundTexture;
+    //sf::Sprite m_backGroundSprite;
 
     
 
