@@ -16,7 +16,6 @@ public:
 
 private:
     sf::RenderWindow m_window;
-    PlayerObject m_playerObject;
     std::shared_ptr <GameState> m_currentScreen;
     
     std::shared_ptr<Menu> m_menu;
@@ -24,7 +23,5 @@ private:
     std::shared_ptr<Instructions> m_instructions;
    // PauseState m_pauseState;
 
-    void handleEvents();
-    void update(float deltaTime);
-    void render();
+
 };
