@@ -1,4 +1,5 @@
-#include "FactoryObject.h"
+#include "Objects.h/FactoryObject.h"
+
 //----------------------------------------------------
 
 std::unique_ptr<BaseObject> FactoryObject::create(const Object_ID ObjectName, const sf::Vector2f& position)
@@ -9,13 +10,13 @@ std::unique_ptr<BaseObject> FactoryObject::create(const Object_ID ObjectName, co
 	{
 		return nullptr;
 	}
-
-	return iterator->second(position);
+	return iterator->second();
+	
 }
 
 //----------------------------------------------------
 
-bool FactoryObject::regesterit(const Object_ID objectName, std::unique_ptr<BaseObject>(*f)())
+bool FactoryObject::registerit(const Object_ID objectName, std::unique_ptr<BaseObject>(*f)(const sf::Vector2f&))
 {
 	getMap().emplace(objectName, f);
 	return true;

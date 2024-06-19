@@ -36,4 +36,4 @@ private:
 
 bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& position) -> std::unique_ptr<BaseObject> {
-        return std::make_unique<PlayerObject>(position);
+        return std::make_unique<PlayerObject>(position); });

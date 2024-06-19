@@ -37,13 +37,3 @@ void Controller::run() {
 	}
 }
 
-void Controller::update(float deltaTime)
-{
-	m_playerObject.update(deltaTime);
-}
-
-void Controller::render() {
-	m_window.clear();
-	m_playerObject.draw(m_window);
-	m_window.display();
-}

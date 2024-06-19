@@ -13,7 +13,7 @@ BaseButton::BaseButton(const std::string& imagePath, float x, float y)
 }
 
 
-void BaseButton::setObjTexture(int objNum)
+void BaseButton::setObjTexture(Object_ID objNum)
 {
     sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(objNum);
     m_buttonSprite.setTexture(*texturePtr);

@@ -16,7 +16,7 @@ GameState::GameState(sf::RenderWindow* window)
 {
 }
 
-void GameState::setObjTexture(int objNum)
+void GameState::setObjTexture(Object_ID objNum)
 {
     sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(objNum);
     m_backGroundSprite.setTexture(*texturePtr);
