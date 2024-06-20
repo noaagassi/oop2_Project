@@ -1,4 +1,3 @@
-
 configure_file ("exampleMap.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("examplePlayer.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("exit.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -7,3 +6,4 @@ configure_file ("new_game.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("menuBackGround.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("instructions_background.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)

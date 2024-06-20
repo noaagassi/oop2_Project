@@ -8,9 +8,8 @@
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-
 #include "TextureHandler.h"
-
+//#include "FactoryObject.h"
 
 
 class BaseObject {
@@ -19,6 +18,7 @@ public:
 
 
 	BaseObject(const sf::Vector2f& position) ;
+	//void setObjTexture(Object_ID);
 	sf::Vector2f getSpriteLocation()const;
 	void move(float offsetX, float offsetY);
 	void draw(sf::RenderWindow& window) const;
@@ -29,5 +29,7 @@ public:
 	~BaseObject() {};
 
 protected:
+	
 	sf::Sprite m_objectSprite;
+	sf::Vector2f m_location;
 };
