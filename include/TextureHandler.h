@@ -5,12 +5,15 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS = 18;
+const int NUMBER_OF_OBJECTS = 19;
 
 enum Object_ID {
     CLOCK_OBJ,
     INSTRUCTION_PAGE_1_OBJ,
     INSTRUCTION_PAGE_2_OBJ,
+    LOOSE_SCREEN_OBJ,
+    WEEN_SCREEN_OBJ,
+    PAUSE_SCREEN_OBJ,
     MENU_BACK_GROUND_OBJ,
     NEW_GAME_BUTTON_OBJ,
     EXIT_BUTTON_OBJ,
@@ -52,7 +55,7 @@ private:
 
     std::string m_imgNames[NUMBER_OF_OBJECTS] = {
         "clock.png",            "instruction1.png",  "instruction2.png",
-        "menuBackGround.png",   "newGameButon.png",  "exitButton.png",
+        "looseBackGround.png"   "weenBackGround.png" "pauseBackGround.png" "menuBackGround.png",   "newGameButon.png",  "exitButton.png",
         "instructionButton.png","pauseButton.png",   "brickWall.png",
         "bush.png",             "poison.png",        "player.png",
         "enemy1.png",           "enemy2.png",        "trees.png",

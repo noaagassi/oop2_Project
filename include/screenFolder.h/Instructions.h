@@ -1,3 +1,8 @@
+//to do:
+//check handle input func needed
+//check button need
+
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "screenFolder.h/GameState.h"
@@ -24,8 +29,7 @@ private:
 
     Page m_currentPage;
 
-    sf::Texture m_backgroundTexture;
-    sf::Sprite m_backgroundSprite;
+   
 
     sf::Texture m_nextButtonTexture;
     sf::Sprite m_nextButtonSprite;
