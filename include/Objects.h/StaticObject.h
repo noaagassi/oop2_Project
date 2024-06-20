@@ -1,12 +1,12 @@
-//#pragma once
-//#include "BaseObject.h"
-//
-//class StaticObject : public BaseObject
-//{
-//public:
-//    StaticObject();
-//
-//
-//private:
-//
-//};
+#pragma once
+#include "BaseObject.h"
+
+class StaticObject : public BaseObject
+{
+public:
+    StaticObject();
+
+
+private:
+
+};
