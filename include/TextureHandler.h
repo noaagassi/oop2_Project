@@ -19,6 +19,7 @@ enum Object_ID {
     BRICK_WALL_OBJ,
     BUSH_OBJ,
     POISON_OBJ,
+    PORTAL_OBJ,
     PLAYER_OBJ,
     ENEMY_1_OBJ,
     ENEMY_2_OBJ,
@@ -26,6 +27,12 @@ enum Object_ID {
     WEAPON_1_OBJ,
     WEAPON_2_OBJ,
     WEAPON_3_OBJ,
+    WEAPON_SUPER_OBJ,
+    WEAPON_ENEMY_1_OBJ,
+    WEAPON_ENEMY_2_OBJ,
+    FREZE_GIFT_OBJ,
+    LIFE_GIFT_OBJ,
+    WEAPON_GIFT_OBJ
 };
 
 class TextureHandler

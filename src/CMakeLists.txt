@@ -35,12 +35,13 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/RocketWeaponObject.h" 
  "../include/Objects.h/SpreadingLaserWeaponObject.h" 
  "../include/Objects.h/SuperWeaponObject.h" 
- "../include/Objects.h/PoisonObject.h" 
+ "../include/Objects.h/PoisonObject.h"				"Objects.cpp/PoisonObject.cpp"
  "../include/Objects.h/WallObject.h" 
  "../include/Objects.h/BushObject.h" 
- "../include/Objects.h/PortalObject.h" 
- "../include/Objects.h/MasiveLaserWeaponObject.h"
- "../include/Objects.h/RegularLaserWeapon.h" 
+ "../include/Objects.h/PortalObject.h"				"Objects.cpp/PortalObject.cpp"
+ "../include/Objects.h/MasiveLaserWeaponObject.h"	"Objects.cpp/MasiveLaserWeaponObject.cpp"
+ "../include/Objects.h/RegularLaserWeaponObject.h"		"Objects.cpp/RegularLaserWeaponObject.cpp"
  "../include/Objects.h/MovingObject.h"				"Objects.cpp/MovingObject.cpp"
  "../include/Objects.h/StaticObject.h"         
- "../include/Objects.h/FactoryObject.h"				"Objects.cpp/FactoryObject.cpp")
+ "../include/Objects.h/FactoryObject.h"				"Objects.cpp/FactoryObject.cpp" 
+   "Objects.cpp/RocketWeaponObject.cpp" "Objects.cpp/SpreadingLaserWeaponObject.cpp" "Objects.cpp/SuperWeaponObject.cpp" "Objects.cpp/WallObject.CPP")

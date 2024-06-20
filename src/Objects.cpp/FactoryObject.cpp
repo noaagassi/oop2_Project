@@ -13,3 +13,7 @@ std::unique_ptr<BaseObject> FactoryObject::create(const Object_ID ObjectName, co
 
 }
 bool FactoryObject::registerit(const Object_ID objectName, std::unique_ptr<BaseObject>(*func)(const sf::Vector2f&))
+{
+	getMap().emplace(objectName, func);
+	return true;
+}

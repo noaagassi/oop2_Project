@@ -1,6 +1,10 @@
 #include "Objects.h/MovingObject.h"
 
-MovingObject::MovingObject()
+MovingObject::MovingObject(const sf::Vector2f& initPosition)
 {
 
+}
+
+MovingObject::MovingObject()
+{
 }
