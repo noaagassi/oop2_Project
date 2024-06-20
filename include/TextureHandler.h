@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS = 19;
+const int NUMBER_OF_OBJECTS = 27;
 
 enum Object_ID {
     CLOCK_OBJ,
@@ -23,7 +23,6 @@ enum Object_ID {
     BUSH_OBJ,
     POISON_OBJ,
     PORTAL_OBJ,
-    PLAYER_OBJ,
     ENEMY_1_OBJ,
     ENEMY_2_OBJ,
     TREES_OBJ,
@@ -35,7 +34,8 @@ enum Object_ID {
     WEAPON_ENEMY_2_OBJ,
     FREZE_GIFT_OBJ,
     LIFE_GIFT_OBJ,
-    WEAPON_GIFT_OBJ
+    WEAPON_GIFT_OBJ,
+    PLAYER_OBJ
 };
 
 class TextureHandler
@@ -57,9 +57,12 @@ private:
         "clock.png",            "instruction1.png",  "instruction2.png",
         "looseBackGround.png"   "weenBackGround.png" "pauseBackGround.png" "menuBackGround.png",   "newGameButon.png",  "exitButton.png",
         "instructionButton.png","pauseButton.png",   "brickWall.png",
-        "bush.png",             "poison.png",        "player.png",
+        "bush.png",             "portal.png",        "poison.png",        
         "enemy1.png",           "enemy2.png",        "trees.png",
-        "weapon1.png",          "weapon2.png",       "weapon3.png" };
+        "weapon1.png",          "weapon2.png",       "weapon3.png" ,
+        "weaponSuper.png",      "weaponEnemy1.png",  "weaponEnemy2.png",
+        "freezeGift.png",       "lifeGift.png",      "weaponGift.png", 
+        "player.png" };
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];
     //sf::Font m_font;
