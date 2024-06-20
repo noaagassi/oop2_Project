@@ -1,3 +1,9 @@
+//to do:
+//need to handle 2 nd page of instructon
+//need to check the button texture here
+
+
+
 #pragma once
 
 #include "screenFolder.h/Instructions.h"
@@ -8,13 +14,10 @@ Instructions:: Instructions(sf::RenderWindow* window)
     : GameState(window),
     m_currentPage(Page::Page1), m_stateChanged(false), m_nextState(nullptr) 
 {
-    loadTextures();
+    loadTextures();///////////delete?
 
-    // background texture
-    m_backgroundSprite.setTexture(m_backgroundTexture);
-    m_backgroundSprite.setScale(
-        static_cast<float>(m_window->getSize().x) / m_backgroundTexture.getSize().x,
-        static_cast<float>(m_window->getSize().y) / m_backgroundTexture.getSize().y);
+    setObjTexture(INSTRUCTION_PAGE_1_OBJ);
+    setScale();
 
     // instructions texture
     if (!m_font.loadFromFile("path/to/font.ttf")) {
@@ -38,7 +41,6 @@ Instructions:: Instructions(sf::RenderWindow* window)
 Instructions::~Instructions()
 {
 }
-/////////////////////////////////////////////////////////
 
 
 void Instructions::update()
@@ -49,13 +51,14 @@ std::shared_ptr<GameState> Instructions::isStateChanged()
 {
     return std::shared_ptr<GameState>();
 }
-/////////////////////////////////////////////////////////////
+
+
 
 void Instructions::draw()
 {
     m_window->setTitle("Instructions");
     m_window->clear();
-    m_window->draw(m_backgroundSprite);
+    
 
     if (m_currentPage == Page::Page1) {
         m_instructionsText.setString("Instructions Page 1:\n\n- Step 1\n- Step 2\n- Step 3");
@@ -115,9 +118,7 @@ void Instructions::handleInput()
 
 void Instructions::loadTextures()
 {
-    if (!m_backgroundTexture.loadFromFile("instructions_background.png")) {
-        std::cerr << "Error loading background" << std::endl;
-    }
+    
     if (!m_nextButtonTexture.loadFromFile("next_button.png")) {
         std::cerr << "Error loading next button" << std::endl;
     }

@@ -1,3 +1,9 @@
+//to do:
+//check if vector buttons needed
+
+
+
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
@@ -17,15 +23,11 @@ public:
     void draw() override;
     void update() override;
     std::shared_ptr <GameState> isStateChanged() override;
-    //void initMap(GameState* state_ptr, StateOptions state_name);
+   
     
 private:
 
    
     std::vector<BaseButton*> m_buttons; // [exit, play, inst]
-    //sf::Sprite m_backGroundSprite;
-
-    
-
-    //std::unordered_map<StateOptions, GameState*> m_states;
+   
 };
