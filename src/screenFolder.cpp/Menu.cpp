@@ -19,11 +19,11 @@ Menu::Menu(sf::RenderWindow* window)
     m_states[StateOptions::Exit] = nullptr;
     */
     setObjTexture(MENU_BACK_GROUND_OBJ);
-    setScale();
+    setScale(MENU_BACK_GROUND_OBJ);
 
 
     m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
-    m_buttons.push_back(new ExitButton("exit.png", 100, 300));
+    m_buttons.push_back(new ExitButton("exit_button.png", 100, 300));
     m_buttons.push_back(new InstructionsButton("instructions.png", 100, 400));
 }
 

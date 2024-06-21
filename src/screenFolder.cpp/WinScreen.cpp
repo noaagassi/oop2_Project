@@ -5,7 +5,7 @@ WinScreen::WinScreen(sf::RenderWindow* window)
     : GameState(window)
 {
     setObjTexture(WEEN_SCREEN_OBJ);
-    setScale();
+    setScale(WEEN_SCREEN_OBJ);
 }
 
 WinScreen::~WinScreen()

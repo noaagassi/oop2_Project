@@ -22,7 +22,4 @@ private:
     sf::View view;
     //Board m_board;
 
-
-    sf::Sprite m_backgroundSprite;
-    sf::Texture m_backgroundTexture;
 };
