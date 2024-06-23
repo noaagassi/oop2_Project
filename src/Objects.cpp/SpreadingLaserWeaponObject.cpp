@@ -2,7 +2,7 @@
 
 
 
-bool SpreadingLaserWeaponObject::m_registerit = FactoryObject::registerit(WEAPON_3_OBJ,
+bool SpreadingLaserWeaponObject::m_registerit = FactoryObject::registerit(SPREADING_LASER,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<SpreadingLaserWeaponObject>(pos); });
 
 SpreadingLaserWeaponObject::SpreadingLaserWeaponObject(const sf::Vector2f& initPosition)

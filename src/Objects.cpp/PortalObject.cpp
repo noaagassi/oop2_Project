@@ -7,8 +7,10 @@ bool PortalObject::m_registerit = FactoryObject::registerit(PORTAL_OBJ,
 
 PortalObject::PortalObject(const sf::Vector2f& initPosition)
 {
+    setObjTexture(PORTAL_OBJ);
 }
 
 PortalObject::PortalObject()
 {
+    setObjTexture(PORTAL_OBJ);
 }

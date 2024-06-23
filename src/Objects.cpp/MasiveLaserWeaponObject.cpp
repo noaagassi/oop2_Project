@@ -8,8 +8,10 @@ bool MasiveLaserWeaponObject::m_registerit = FactoryObject::registerit(WEAPON_EN
 
 MasiveLaserWeaponObject::MasiveLaserWeaponObject(const sf::Vector2f& initPosition)
 {
+    setObjTexture(MASSIVE_LASER_WEAPON_3_OBJ);
 }
 
 MasiveLaserWeaponObject::MasiveLaserWeaponObject()
 {
+    setObjTexture(MASSIVE_LASER_WEAPON_3_OBJ);
 }

@@ -7,4 +7,10 @@ bool BushObject::m_registerit = FactoryObject::registerit(BUSH_OBJ,
 
 BushObject::BushObject(const sf::Vector2f& initPosition)
 {
+    setObjTexture(BUSH_OBJ);
+}
+
+BushObject::BushObject()
+{
+    setObjTexture(BUSH_OBJ);
 }

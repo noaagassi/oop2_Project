@@ -7,8 +7,10 @@ bool RegularLaserWeaponObject::m_registerit = FactoryObject::registerit(WEAPON_E
 
 RegularLaserWeaponObject::RegularLaserWeaponObject(const sf::Vector2f& initPosition)
 {
+    setObjTexture(REGULAR_LASER_WEAPON_1_OBJ);
 }
 
 RegularLaserWeaponObject::RegularLaserWeaponObject()
 {
+    setObjTexture(REGULAR_LASER_WEAPON_1_OBJ);
 }

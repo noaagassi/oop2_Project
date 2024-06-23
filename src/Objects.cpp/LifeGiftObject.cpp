@@ -7,8 +7,10 @@ bool LifeGiftObject::m_registerit = FactoryObject::registerit(LIFE_GIFT_OBJ,
 
 LifeGiftObject::LifeGiftObject(const sf::Vector2f& initPosition)
 {
+    setObjTexture(LIFE_GIFT_OBJ);
 }
 
 LifeGiftObject::LifeGiftObject()
 {
+    setObjTexture(LIFE_GIFT_OBJ);
 }
