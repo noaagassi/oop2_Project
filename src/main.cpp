@@ -79,6 +79,7 @@ int main()
     }
     */
     //////////////////////////flashlight/////////////////////////////
+    /*
      // Crear la ventana
     sf::RenderWindow window(sf::VideoMode(800, 600), "Linterna en la Mano");
     window.setFramerateLimit(60);
@@ -108,12 +109,13 @@ int main()
     }
 
     return 0;
+    */
     ////////////////////////////////////////////////
-    /*
+    
     Controller c;
     c.run();
    
     return 0;
-    */
+    
 }
 
