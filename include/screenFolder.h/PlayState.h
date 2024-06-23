@@ -21,6 +21,6 @@ private:
     //std::shared_ptr<PauseButton> m_pauseButton;
    
     sf::View view;
-    //Board m_board;
+    Board m_board;
 
 };

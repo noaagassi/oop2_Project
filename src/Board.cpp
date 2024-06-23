@@ -14,9 +14,8 @@ Board::~Board()
 void Board::readLevel()
 {
 	std::string fileName = updateNameLevel(m_levelNum);
-	readFile(fileName);
 
-	readObject();
+	readObject(fileName);
 	m_levelNum++;
 }
 //----------------------------------------
@@ -25,24 +24,14 @@ std::string Board::updateNameLevel(int number)
 	return "level" + std::to_string(number) + ".png";
 }
 //----------------------------------------
-void Board::readFile(std::string& fileName)
-{
-	m_file.open(fileName);
-
-	if (!m_file.is_open())
-	{
-		//handle 
-		std::cout << "handle" << std::endl;
-	}
-}
 
 //----------------------------------------
-void Board::readObject()
+void Board::readObject(std::string fileName)
 {
 	auto image = sf::Image();
 	float location_y = 500.f;
 
-	image.loadFromFile("level1.png");
+	image.loadFromFile(fileName);
 	sf::Sprite sprite;
 
 	for (int y = int(image.getSize().y) - 1; y >= 0; y--)
@@ -53,15 +42,15 @@ void Board::readObject()
 		{
 			sf::Color pixelColor = image.getPixel(x, y);
 
-			if (pixelColor == sf::Color(163, 73, 164))
+			if (pixelColor == sf::Color(163, 73, 164))   //purple color
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto player = FactoryObject::create(PLAYER_OBJ, position);
 			}
-			if (pixelColor == sf::Color(34, 177, 76))
+			if (pixelColor == sf::Color(34, 177, 76))      //green color
 			{
 				sf::Vector2f position(location_x, location_y);
-				auto player = FactoryObject::create(PLAYER_OBJ, position);
+				auto tree = FactoryObject::create(TREES_OBJ, position);
 			}
 		}
 		location_x += 10.f;

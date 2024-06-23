@@ -17,7 +17,7 @@ public:
 	void setObjTexture(Object_ID name);
 
 
-	BaseObject(const sf::Vector2f& position) ;
+	BaseObject(sf::Vector2f& position) ;
 	//void setObjTexture(Object_ID);
 	sf::Vector2f getSpriteLocation()const;
 	void move(float offsetX, float offsetY);
@@ -31,5 +31,4 @@ public:
 protected:
 	
 	sf::Sprite m_objectSprite;
-	sf::Vector2f m_location;
 };

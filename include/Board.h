@@ -1,8 +1,8 @@
 #pragma once
 #include "string"
 #include <SFML/Graphics.hpp>
-#include "BaseObject.h"
-#include "PlayerObject.h"
+#include "Objects.h/BaseObject.h"
+#include "Objects.h/PlayerObject.h"
 #include <vector>
 #include <memory>
 #include <iostream>
@@ -23,12 +23,11 @@ private:
 	//funcion for reading levels
 	void readLevel();
 	std::string updateNameLevel(int);
-	void readFile(std::string&);
 
 	//members for the object in the level
-	std::vector<std::unique_ptr<BaseObject>> m_movingObjects;
-	std::vector<std::unique_ptr<BaseObject>> m_staticObjects;
+	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
+	std::vector<std::unique_ptr<St>> m_staticObjects;
 
 	//function of the object
-	void readObject();
+	void readObject(std::string fileName);
 };
