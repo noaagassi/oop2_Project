@@ -7,7 +7,7 @@ bool PoisonObject::m_registerit = FactoryObject::registerit(POISON_OBJ,
 
 PoisonObject::PoisonObject(const sf::Vector2f& initPosition)
 {
-    setObjTexture(POISON_OBJ)
+    setObjTexture(POISON_OBJ);
 }
 
 PoisonObject::PoisonObject()

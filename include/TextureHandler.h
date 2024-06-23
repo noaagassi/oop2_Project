@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS = 27;
+const int NUMBER_OF_OBJECTS = 29;
 
 enum Object_ID {
     CLOCK_OBJ,
@@ -36,7 +36,8 @@ enum Object_ID {
     FREEZE_GIFT_OBJ,
     LIFE_GIFT_OBJ,
     WEAPON_GIFT_OBJ,
-    PLAYER_OBJ
+    PLAYER_OBJ,
+    SPREADING_LASER          //WITHOUT TEXTURE
 };
 
 class TextureHandler
@@ -56,13 +57,13 @@ private:
 
     std::string m_imgNames[NUMBER_OF_OBJECTS] = {
         "clock.png",              "instruction1.png",  "instruction2.png",
-        "looseBackGround.png"     "weenBackGround.png" "pauseBackGround.png"
-        "menuBackGround.png",     "newGameButon.png",  "exitButton.png",
+        "looseBackGround.png",     "weenBackGround.png", "pauseBackGround.png",
+        "menuBackGround.png",     "newGameButton.png",  "exitButton.png",
         "instructionButton.png",  "pauseButton.png",   "wall.png",
         "bush.png",               "portal.png",        "poison.png",        
         "enemy1.png",             "enemy2.png",        "trees.png",
         "regularLaserWeapon1.png","rocketWeapon2.png", "massiveLaserWeapon3.png" ,
-        "weaponSuper.png",        "weaponSuper.png",   "weaponEnemy1.png",  
+        "ballWeapon.png",        "weaponSuper.png",   "weaponEnemy1.png",  
         "weaponEnemy2.png",       "freezeGift.png",    "lifeGift.png",      
         "weaponGift.png",         "player.png" };
 
