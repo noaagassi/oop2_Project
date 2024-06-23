@@ -7,8 +7,10 @@ bool RocketWeaponObject::m_registerit = FactoryObject::registerit(WEAPON_2_OBJ,
 
 RocketWeaponObject::RocketWeaponObject(const sf::Vector2f& initPosition)
 {
+    setObjTexture(ROCKET_WEAPON_2_OBJ);
 }
 
 RocketWeaponObject::RocketWeaponObject()
 {
+    setObjTexture(ROCKET_WEAPON_2_OBJ);
 }

@@ -7,10 +7,10 @@ bool WeaponGiftObject::m_registerit = FactoryObject::registerit(WEAPON_GIFT_OBJ,
 
 WeaponGiftObject::WeaponGiftObject(const sf::Vector2f& initPosition)
 {
-    setObjTexture(WALL_OBJ);
+    setObjTexture(WEAPON_GIFT_OBJ);
 }
 
 WeaponGiftObject::WeaponGiftObject()
 {
-    setObjTexture(WALL_OBJ);
+    setObjTexture(WEAPON_GIFT_OBJ);
 }
