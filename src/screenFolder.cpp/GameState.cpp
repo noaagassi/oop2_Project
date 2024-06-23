@@ -5,11 +5,11 @@ GameState::GameState(sf::RenderWindow* window)
 {
 }
 
-void GameState::setScale()
+void GameState::setScale(Object_ID name)
 {
 
     sf::Vector2u windowSize = m_window->getSize();
-    sf::Vector2u textureSize = TextureHandler::getInstance().getObjTexture(MENU_BACK_GROUND_OBJ)->getSize();
+    sf::Vector2u textureSize = TextureHandler::getInstance().getObjTexture(name)->getSize();
 
     float scaleX = static_cast<float>(windowSize.x) / textureSize.x;
     float scaleY = static_cast<float>(windowSize.y) / textureSize.y;

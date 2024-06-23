@@ -17,7 +17,7 @@ Instructions:: Instructions(sf::RenderWindow* window)
     loadTextures();///////////delete?
 
     setObjTexture(INSTRUCTION_PAGE_1_OBJ);
-    setScale();
+    setScale(INSTRUCTION_PAGE_1_OBJ);
 
     // instructions texture
     if (!m_font.loadFromFile("path/to/font.ttf")) {
@@ -61,6 +61,7 @@ void Instructions::draw()
     
 
     if (m_currentPage == Page::Page1) {
+        m_window->draw(m_backGroundSprite);
         m_instructionsText.setString("Instructions Page 1:\n\n- Step 1\n- Step 2\n- Step 3");
         m_window->draw(m_nextButtonSprite);
     }

@@ -8,7 +8,7 @@ PausePage::PausePage(sf::RenderWindow* window)
 {
 
     setObjTexture(PAUSE_SCREEN_OBJ);
-    setScale();
+    setScale(PAUSE_SCREEN_OBJ);
 
 
     /*m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));

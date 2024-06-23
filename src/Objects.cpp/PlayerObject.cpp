@@ -40,17 +40,26 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 }
 //------------------------------------------------
 
-void PlayerObject::update(float deltaTime)
+void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
 {
     handleInput();
     animate(deltaTime);
     m_objectSprite.setPosition(m_x, m_y);
+
+
+    sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+    sf::Vector2f characterPosition = m_objectSprite.getPosition();
+    sf::Vector2f direction = sf::Vector2f(mousePosition) - characterPosition;
+    m_flashlight.update(characterPosition, direction);
+
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow& m_window)
+void PlayerObject::draw(sf::RenderWindow& window)
 {
-    m_window.draw(m_sprite);
+    window.draw(m_objectSprite);
+
+    m_flashlight.draw(window);
 }
 //------------------------------------------------
 
@@ -94,7 +103,7 @@ void PlayerObject::handleInput()
 void PlayerObject::animate(float deltaTime) {
     if (clock.getElapsedTime().asSeconds() > 0.1f) {
         spriteIndex = (spriteIndex + 1) % currentFrames->size();
-        m_sprite.setTextureRect((*currentFrames)[spriteIndex]);
+        m_objectSprite.setTextureRect((*currentFrames)[spriteIndex]);
         clock.restart();
     }
 }

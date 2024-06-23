@@ -8,7 +8,7 @@ LooseScreen::LooseScreen(sf::RenderWindow* window)
 {
     
     setObjTexture(LOOSE_SCREEN_OBJ);
-    setScale();
+    setScale(LOOSE_SCREEN_OBJ);
 
 
     /*m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));

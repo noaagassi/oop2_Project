@@ -6,10 +6,8 @@ PlayState::PlayState(sf::RenderWindow* window )
 
     //m_pauseButton = std::make_shared<PauseButton>(sf::Vector2f(50, 50), "Pause");
 
-    if (!m_backgroundTexture.loadFromFile("playBackground.png"))
-    {
-    }
-    m_backgroundSprite.setTexture(m_backgroundTexture);
+    setObjTexture(PLAY_SCREEN_OBJ);
+    setScale(PLAY_SCREEN_OBJ);
 }
 
 PlayState::~PlayState()
@@ -23,7 +21,7 @@ void PlayState::draw()
     
     m_window->setSize(sf::Vector2u(1000, 700));
     m_window->clear();
-    m_window->draw(m_backgroundSprite);
+    m_window->draw(m_backGroundSprite);
 
     m_window->display();
 }
