@@ -1,3 +1,8 @@
+//need to do:
+// add in the constractur of every onject a init to base constarctr
+
+
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <SFML/Network.hpp>

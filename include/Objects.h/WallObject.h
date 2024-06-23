@@ -5,6 +5,7 @@ class WallObject : public StaticObject
 {
 public:
     WallObject(const sf::Vector2f& initPosition);
+    WallObject();
 
 
 private:
