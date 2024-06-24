@@ -6,6 +6,7 @@ bool RegularLaserWeaponObject::m_registerit = FactoryObject::registerit(WEAPON_E
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<RegularLaserWeaponObject>(pos); });
 
 RegularLaserWeaponObject::RegularLaserWeaponObject(const sf::Vector2f& initPosition)
+    :EnemyWeaponObject(initPosition)
 {
     setObjTexture(REGULAR_LASER_WEAPON_1_OBJ);
 }

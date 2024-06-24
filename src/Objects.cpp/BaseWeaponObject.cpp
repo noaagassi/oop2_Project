@@ -4,6 +4,7 @@
 
 
 BaseWeaponObject::BaseWeaponObject(const sf::Vector2f& initPosition)
+	:StaticObject(initPosition)
 {
 }
 

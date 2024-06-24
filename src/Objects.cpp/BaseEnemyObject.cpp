@@ -4,6 +4,7 @@
 
 
 BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition)
+	:MovingObject(initPosition)
 {
 }
 

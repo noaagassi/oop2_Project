@@ -6,7 +6,7 @@
 class StaticObject : public BaseObject
 {
 public:
-    StaticObject(sf::Vector2f& initPosition);
+    StaticObject(const sf::Vector2f& initPosition);
     StaticObject();
 
 private:

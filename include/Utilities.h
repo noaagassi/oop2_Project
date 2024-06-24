@@ -28,7 +28,3 @@ enum StateOptions {
     Exit
 };
 
-
-enum class COLOR_OF_OBJECT {
-    green,
-};
