@@ -23,16 +23,14 @@ std::string Board::updateNameLevel(int number)
 {
 	return "level" + std::to_string(number) + ".png";
 }
-//----------------------------------------
 
 //----------------------------------------
 void Board::readObject(std::string fileName)
 {
 	auto image = sf::Image();
-	float location_y = 500.f;
-
+	float location_y = 700.f;
+	sf::Color pixelColor;
 	image.loadFromFile(fileName);
-	sf::Sprite sprite;
 
 	for (int y = int(image.getSize().y) - 1; y >= 0; y--)
 	{
@@ -40,32 +38,34 @@ void Board::readObject(std::string fileName)
 
 		for (int x = 0; x<int(image.getSize().x); x++)
 		{
-			sf::Color pixelColor = image.getPixel(x, y);
+			pixelColor = image.getPixel(x, y);
 
 			if (pixelColor == sf::Color(163, 73, 164))   //purple color
 			{
-				sf::Vector2f position(location_x, location_y);
+				sf::Vector2f position(location_x,location_y);
 				auto player = FactoryObject::create(PLAYER_OBJ, position);
+				m_movingObjects.push_back(std::unique_ptr<MovingObject>(static_cast<MovingObject*>(player.release())));
+				//m_movingObjects.push_back(player);
 			}
-			if (pixelColor == sf::Color(34, 177, 76))      //green color
+			/*if (pixelColor == sf::Color(34, 177, 76))      //green color
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto tree = FactoryObject::create(TREES_OBJ, position);
-			}
+			}*/
+			location_x += 40.f;
 		}
-		location_x += 10.f;
+		location_y -= 28.f;
 	}
-	location_y -= 90.f;
 }
 
 void Board::draw(sf::RenderWindow* window)
 {
-	for (const auto& currentObject : m_movingObjects )
-	{
-		currentObject->draw(window);
-	}
 	for (const auto& currentObject : m_movingObjects)
 	{
 		currentObject->draw(window);
 	}
+	/*for (const auto& currentObject : m_movingObjects)
+	{
+		currentObject->draw(window);
+	}*/
 }

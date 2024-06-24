@@ -14,8 +14,6 @@
 class BaseObject {
 public:
 	void setObjTexture(Object_ID name);
-
-
 	BaseObject(sf::Vector2f& position) ;
 	//void setObjTexture(Object_ID);
 	sf::Vector2f getSpriteLocation()const;
