@@ -4,6 +4,7 @@
 #include <vector>
 #include "screenFolder.h/PlayState.h"
 #include "Utilities.h"
+#include "Buttons.h/Button.h"
 
 class WinScreen : public GameState {
 public:
@@ -26,5 +27,5 @@ private:
     sf::Sprite m_exitButtonSprite;
 
 
-    std::vector<BaseButton*> m_buttons;
+    std::vector<std::unique_ptr<Button>> m_buttons;
 };

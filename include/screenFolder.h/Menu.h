@@ -7,12 +7,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "NewGameButton.h"
-#include "ExitButton.h"
-#include "InstructionsButton.h"
+//#include "NewGameButton.h"
+//#include "ExitButton.h"
+//#include "InstructionsButton.h"
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
 #include "screenFolder.h/Instructions.h"
+#include "Buttons.h/Button.h"
 #include "Utilities.h"
 
 class Menu : public GameState
@@ -27,7 +28,6 @@ public:
     
 private:
 
-   
-    std::vector<BaseButton*> m_buttons; // [exit, play, inst]
+    std::vector<std::unique_ptr<Button>> m_buttons; // [exit, play, inst]
    
 };
