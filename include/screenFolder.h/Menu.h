@@ -7,9 +7,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "NewGameButton.h"
-#include "ExitButton.h"
-#include "InstructionsButton.h"
+//#include "NewGameButton.h"
+//#include "ExitButton.h"
+//#include "InstructionsButton.h"
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
 #include "screenFolder.h/Instructions.h"
@@ -28,6 +28,6 @@ public:
     
 private:
 
-    std::vector<Button*> m_buttons; // [exit, play, inst]
+    std::vector<std::unique_ptr<Button>> m_buttons; // [exit, play, inst]
    
 };

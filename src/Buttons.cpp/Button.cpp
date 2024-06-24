@@ -1,7 +1,7 @@
 #include "Buttons.h/Button.h"
 
-Button::Button(CommandButton* cmd, Object_ID name, float x, float y)
-	: m_command(cmd) 
+Button::Button(std::unique_ptr<CommandButton> cmd, Object_ID name, float x, float y)
+	: m_command(std::move(cmd))
 {	
 
 	setTexture(name);
@@ -15,11 +15,20 @@ Button::Button()
 
 StateOptions Button::click()
 {
-	return m_command->execute();
+	if (m_command) 
+	{
+		return m_command->execute();
+	}
+	else
+	{
+		throw std::runtime_error("Command is null");
+	}
 }
 
 void Button::setScale(Object_ID name)
 {
+	sf::Vector2f currentSize(m_sprite.getTexture()->getSize());
+	m_sprite.setScale(textureSize.x / currentSize.x, textureSize.y / currentSize.y);
 }
 
 void Button::setTexture(Object_ID name)

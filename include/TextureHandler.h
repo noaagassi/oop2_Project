@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS =30;
+const int NUMBER_OF_OBJECTS =31;
 
 enum Object_ID {
     CLOCK_OBJ,
@@ -16,6 +16,7 @@ enum Object_ID {
     PAUSE_SCREEN_OBJ,
     MENU_BACK_GROUND_OBJ,
     NEW_GAME_BUTTON_OBJ,
+    RESUME_GAME_BUTTON_OBJ,
     EXIT_BUTTON_OBJ,
     INSTRUCTION_BUTTON_OBJ,
     PAUSE_BUTTON_OBJ, 
@@ -59,7 +60,7 @@ private:
     std::string m_imgNames[NUMBER_OF_OBJECTS] = {
         "clock.png",              "instruction1.png",  "instruction2.png",
         "looseBackGround.png",     "weenBackGround.png", "pauseBackGround.png",
-        "menuBackGround.png",     "newGameButton.png",  "exitButton.png",
+        "menuBackGround.png",     "newGameButton.png",  "resumeButton.png" , "exitButton.png",
         "instructionButton.png",  "pauseButton.png",   "wall.png",
         "bush.png",               "portal.png",        "poison.png",        
         "enemy1.png",             "enemy2.png",        "trees.png",
@@ -67,6 +68,7 @@ private:
         "ballWeapon.png",        "weaponSuper.png",    "weaponEnemy1.png",  
         "weaponEnemy2.png",       "freezeGift.png",    "lifeGift.png",      
         "weaponGift.png",         "player.png",        "playBackGround.png" };
+
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];
     //sf::Font m_font;

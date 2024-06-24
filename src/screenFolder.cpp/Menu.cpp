@@ -19,25 +19,15 @@ Menu::Menu(sf::RenderWindow* window)
     setObjTexture(MENU_BACK_GROUND_OBJ);
     setScale(MENU_BACK_GROUND_OBJ);
 
-    StartGameCommand startCmd;
-    InstructionsCommand instCmd;
-    ExitCommand exitCmd;
+    std::unique_ptr<CommandButton> startCmd = std::make_unique<StartGameCommand>();
+    std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();
+    std::unique_ptr<CommandButton> exitCmd = std::make_unique<ExitCommand>();
 
-    /* new?
-    m_startButton= Button(&startCmd, NEW_GAME_BUTTON_OBJ, 100, 200);
-    m_instructionsButton= Button(&instCmd,INSTRUCTION_BUTTON_OBJ, 100, 300);
-    m_exitButton= Button(&exitCmd, EXIT_BUTTON_OBJ, 100, 400);
-    */
 
-    m_buttons.push_back(new Button(&startCmd, NEW_GAME_BUTTON_OBJ, 100, 200));
-    m_buttons.push_back(new Button(&instCmd, INSTRUCTION_BUTTON_OBJ, 100, 300));
-    m_buttons.push_back(new Button(&exitCmd, EXIT_BUTTON_OBJ, 100, 400));
+    m_buttons.push_back(std::make_unique<Button>(std::move(startCmd), NEW_GAME_BUTTON_OBJ, 100, 200));
+    m_buttons.push_back(std::make_unique<Button>(std::move(instCmd), INSTRUCTION_BUTTON_OBJ, 100, 300));
+    m_buttons.push_back(std::make_unique<Button>(std::move(exitCmd), EXIT_BUTTON_OBJ, 100, 400));
     
-    /* old
-    m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
-    m_buttons.push_back(new ExitButton("exit_button.png", 100, 300));
-    m_buttons.push_back(new InstructionsButton("instructions.png", 100, 400));
-    */
 }
 
 Menu::~Menu()

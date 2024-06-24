@@ -7,7 +7,7 @@
 class Button {
 
 public:
-    Button(CommandButton* cmd, Object_ID name, float x, float y);
+    Button(std::unique_ptr<CommandButton> cmd, Object_ID name, float x, float y);
     Button();
      
 
@@ -20,6 +20,6 @@ public:
     bool isMouseOver(sf::RenderWindow* window);
 
 private:
-    CommandButton* m_command;
+    std::unique_ptr<CommandButton> m_command;
     sf::Sprite m_sprite;
 };
