@@ -1,6 +1,6 @@
 #include "Objects.h/BaseObject.h"
 
-BaseObject::BaseObject( sf::Vector2f& position)
+BaseObject::BaseObject(const sf::Vector2f& position)
 {
 	m_objectSprite.setPosition(position);
 }
@@ -31,6 +31,7 @@ void BaseObject::draw(sf::RenderWindow& window) const
 	window.draw(m_objectSprite);
 }
 
+//-------------------------------------------------------
 void BaseObject:: setScale(float scaleX, float scaleY)
 {
 	m_objectSprite.setScale(scaleX, scaleY);

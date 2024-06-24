@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include "Objects.h/BaseObject.h"
 #include "Objects.h/PlayerObject.h"
+#include "Objects.h/StaticObject.h"
 #include <vector>
 #include <memory>
 #include <iostream>
@@ -26,7 +27,7 @@ private:
 
 	//members for the object in the level
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
-	std::vector<std::unique_ptr<St>> m_staticObjects;
+	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 
 	//function of the object
 	void readObject(std::string fileName);
