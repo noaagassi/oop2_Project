@@ -47,7 +47,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
     animate(deltaTime);
     m_objectSprite.setPosition(m_x, m_y);
 
-
+    
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
     sf::Vector2f characterPosition = m_objectSprite.getPosition();
     sf::Vector2f direction = sf::Vector2f(mousePosition) - characterPosition;

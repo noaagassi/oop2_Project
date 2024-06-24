@@ -5,7 +5,7 @@
 #include "screenFolder.h/GameState.h"
 #include "Board.h"
 #include"BaseButton.h"
-//
+
 
 class PlayState : public GameState
 {
@@ -22,5 +22,5 @@ private:
    
     sf::View view;
     Board m_board;
-
+    
 };
