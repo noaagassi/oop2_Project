@@ -1,8 +1,9 @@
 #include "Objects.h/BaseObject.h"
 //---------------------------------------------------
-BaseObject::BaseObject( sf::Vector2f& position)
+BaseObject::BaseObject(const sf::Vector2f& position)
+	:m_position(position.x,position.y)
 {
-	m_objectSprite.setPosition(position);
+	m_objectSprite.setPosition(m_position.x,m_position.y);
 }
 
 //---------------------------------------------------

@@ -29,15 +29,15 @@ void Board::readObject(std::string fileName)
 {
 	auto image = sf::Image();
 	float location_y = 700.f;
+	float location_x = 0.f;
 	sf::Color pixelColor;
 	image.loadFromFile(fileName);
-
-	for (int y = int(image.getSize().y) - 1; y >= 0; y--)
+	for (int x = 0; x<int(image.getSize().x); x++)
 	{
-		float location_x = 0.f;
-
-		for (int x = 0; x<int(image.getSize().x); x++)
+		location_y = 700.f;
+		for (int y = int(image.getSize().y) - 1; y >= 0; y--)
 		{
+	
 			pixelColor = image.getPixel(x, y);
 
 			if (pixelColor == sf::Color(163, 73, 164))   //purple color
@@ -52,9 +52,9 @@ void Board::readObject(std::string fileName)
 				sf::Vector2f position(location_x, location_y);
 				auto tree = FactoryObject::create(TREES_OBJ, position);
 			}*/
-			location_x += 40.f;
+			location_y -= 28.f;
 		}
-		location_y -= 28.f;
+		location_x += 40.f;
 	}
 }
 
