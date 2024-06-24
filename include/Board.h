@@ -15,6 +15,8 @@ class Board
 public:
 	Board();
 	~Board();
+
+	void draw(sf::RenderWindow*);
 private:
 
 	//member for reading levels
@@ -28,6 +30,7 @@ private:
 	//members for the object in the level
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
+	//std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 
 	//function of the object
 	void readObject(std::string fileName);

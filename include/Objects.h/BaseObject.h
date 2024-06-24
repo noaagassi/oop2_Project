@@ -11,7 +11,6 @@
 #include "TextureHandler.h"
 //#include "FactoryObject.h"
 
-
 class BaseObject {
 public:
 	void setObjTexture(Object_ID name);
@@ -21,7 +20,7 @@ public:
 	//void setObjTexture(Object_ID);
 	sf::Vector2f getSpriteLocation()const;
 	void move(float offsetX, float offsetY);
-	void draw(sf::RenderWindow& window) const;
+	void draw(sf::RenderWindow* window) const;
 	void setScale(float scaleX, float scaleY);
 	const sf::Sprite& getSprite() const;
 	//c-tor d-tor
@@ -31,4 +30,5 @@ public:
 protected:
 	
 	sf::Sprite m_objectSprite;
+	sf::Vector2f m_position;
 };

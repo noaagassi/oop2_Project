@@ -1,6 +1,6 @@
 #include "screenFolder.h/PlayState.h"
 
-PlayState::PlayState(sf::RenderWindow* window )
+PlayState::PlayState(sf::RenderWindow* window)
     :GameState(window), view(sf::FloatRect(0, 0, 400, 300))
 {
 
@@ -18,11 +18,10 @@ void PlayState::draw()
 {
     m_window->setTitle("Brawl stars");
     
-    
     m_window->setSize(sf::Vector2u(1000, 700));
     m_window->clear();
     m_window->draw(m_backGroundSprite);
-
+    m_board.draw(m_window);
     m_window->display();
 }
 

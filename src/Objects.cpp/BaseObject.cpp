@@ -1,10 +1,12 @@
 #include "Objects.h/BaseObject.h"
-
+//---------------------------------------------------
 BaseObject::BaseObject(const sf::Vector2f& position)
+	:m_position(position.x,position.y)
 {
-	m_objectSprite.setPosition(position);
+	m_objectSprite.setPosition(m_position.x,m_position.y);
 }
 
+//---------------------------------------------------
 
 void BaseObject::setObjTexture(Object_ID name)
 {
@@ -12,7 +14,7 @@ void BaseObject::setObjTexture(Object_ID name)
 	m_objectSprite.setTexture(*texturePtr);
 }
 
-
+//---------------------------------------------------
 
 sf::Vector2f BaseObject::getSpriteLocation() const {
 	return m_objectSprite.getPosition();
@@ -26,10 +28,11 @@ void BaseObject::move(float offsetX, float offsetY)
 }
 
 //-------------------------------------------------------
-void BaseObject::draw(sf::RenderWindow& window) const
+void BaseObject::draw(sf::RenderWindow* window) const
 {
-	window.draw(m_objectSprite);
+	window->draw(m_objectSprite);
 }
+//-------------------------------------------------------
 
 //-------------------------------------------------------
 void BaseObject:: setScale(float scaleX, float scaleY)
