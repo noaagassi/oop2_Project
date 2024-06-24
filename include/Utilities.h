@@ -27,3 +27,8 @@ enum StateOptions {
     InstructionsScrn,
     Exit
 };
+
+
+enum class COLOR_OF_OBJECT {
+    green,
+};
