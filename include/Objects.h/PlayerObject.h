@@ -12,13 +12,12 @@ public:
 
     void update(float deltaTime, sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
+    virtual void move(float deltaTime);
 
 private:
     //member of the texture of the player
 
     float m_x, m_y;
-    int spriteIndex;
-    bool isMoving;
     sf::Clock clock;
     FlashlightObject m_flashlight;
 
@@ -29,8 +28,6 @@ private:
     std::vector<sf::IntRect> upFrames;
     std::vector<sf::IntRect>* currentFrames;
 
-    sf::IntRect getFrame(int row, int col);
     void handleInput();
-    void animate(float deltaTime);
     static bool m_registerit;
 };
