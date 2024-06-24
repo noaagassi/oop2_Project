@@ -4,6 +4,7 @@
 
 
 BaseGiftObject::BaseGiftObject(const sf::Vector2f& initPosition)
+	:StaticObject(initPosition)
 {
 }
 

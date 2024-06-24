@@ -49,9 +49,8 @@ void Board::readMap(std::string fileName)
 			if (pixelColor == sf::Color(163, 73, 164))   //purple color
 			{
 				sf::Vector2f position(location_x,location_y);
-				auto player = FactoryObject::create(PLAYER_OBJ, position);
-				m_movingObjects.push_back(std::unique_ptr<MovingObject>(static_cast<MovingObject*>(player.release())));
-				//m_movingObjects.push_back(player);
+				auto player = FactoryObject::createMoving(PLAYER_OBJ, position);
+				m_movingObjects.push_back(std::move(player));
 			}
 			/*if (pixelColor == sf::Color(34, 177, 76))      //green color
 			{

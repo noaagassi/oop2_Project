@@ -4,6 +4,7 @@
 
 
 EnemyWeaponObject::EnemyWeaponObject(const sf::Vector2f& initPosition)
+	:BaseWeaponObject(initPosition)
 {
 }
 

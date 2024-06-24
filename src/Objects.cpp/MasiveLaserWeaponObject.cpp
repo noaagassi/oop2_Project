@@ -7,6 +7,7 @@ bool MasiveLaserWeaponObject::m_registerit = FactoryObject::registerit(WEAPON_EN
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<MasiveLaserWeaponObject>(pos); });
 
 MasiveLaserWeaponObject::MasiveLaserWeaponObject(const sf::Vector2f& initPosition)
+    :EnemyWeaponObject(initPosition)
 {
     setObjTexture(MASSIVE_LASER_WEAPON_3_OBJ);
 }
