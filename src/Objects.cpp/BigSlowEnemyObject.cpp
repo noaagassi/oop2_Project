@@ -8,3 +8,11 @@ bool BigSlowEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_1_OBJ,
 BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
 {
 }
+
+void BigSlowEnemyObject::move(float deltaTime)
+{
+}
+
+void BigSlowEnemyObject::handleInput()
+{
+}

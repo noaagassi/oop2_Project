@@ -8,3 +8,11 @@ bool SmallFastEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_2_OBJ,
 SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
 {
 }
+
+void SmallFastEnemyObject::move(float deltaTime)
+{
+}
+
+void SmallFastEnemyObject::handleInput()
+{
+}

@@ -3,12 +3,9 @@
 
 //------------------------------------------------
 //constant ans enum
-const int PLAYER_SPRITE_WIDTH = 64;
-const int PLAYER_SPRITE_HEIGHT = 96;
-const int PLAYER_SPRITES_PER_ROW = 4;
-const int PLAYER_SPRITES_PER_COLUMN = 4;
 const float PLAYER_MOVE_SPEED = 0.1f;
 //------------------------------------------------
+
 
 
 bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
@@ -30,48 +27,35 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     upFrames = { getFrame(3, 0), getFrame(3, 1), getFrame(3, 2), getFrame(3, 3) };
 
     currentFrames = &defaultFrames;
-
-    m_objectSprite.setTextureRect((*currentFrames)[0]);   //check
+    m_objectSprite.setTextureRect((*currentFrames)[0]);
 
     m_x = 100.f;
     m_y = 100.f;
-
-    spriteIndex = 0;
-    isMoving = false;
 }
 //------------------------------------------------
 
-void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
-{
-    handleInput();
-    animate(deltaTime);
-    m_objectSprite.setPosition(m_x, m_y);
-
+void PlayerObject::update(float deltaTime, sf::RenderWindow& window) {
+    MovingObject::update(deltaTime, window);
 
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
     sf::Vector2f characterPosition = m_objectSprite.getPosition();
     sf::Vector2f direction = sf::Vector2f(mousePosition) - characterPosition;
     m_flashlight.update(characterPosition, direction);
-
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow& window)
-{
-    window.draw(m_objectSprite);
-
+void PlayerObject::draw(sf::RenderWindow& window) {
+    MovingObject::draw(window);
     m_flashlight.draw(window);
 }
-//------------------------------------------------
-
-sf::IntRect PlayerObject::getFrame(int row, int col)
+void PlayerObject::move(float deltaTime)
 {
-    return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
 //------------------------------------------------
 
-void PlayerObject::handleInput()
-{
+//------------------------------------------------
+
+void PlayerObject::handleInput() {
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
@@ -99,12 +83,7 @@ void PlayerObject::handleInput()
         currentFrames = &defaultFrames;
     }
 }
-//------------------------------------------------
 
-void PlayerObject::animate(float deltaTime) {
-    if (clock.getElapsedTime().asSeconds() > 0.1f) {
-        spriteIndex = (spriteIndex + 1) % currentFrames->size();
-        m_objectSprite.setTextureRect((*currentFrames)[spriteIndex]);
-        clock.restart();
-    }
-}
+
+
+
