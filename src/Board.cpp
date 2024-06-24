@@ -52,11 +52,11 @@ void Board::readMap(std::string fileName)
 				auto player = FactoryObject::createMoving(PLAYER_OBJ, position);
 				m_movingObjects.push_back(std::move(player));
 			}
-			/*if (pixelColor == sf::Color(34, 177, 76))      //green color
+			if (pixelColor == sf::Color(34, 177, 76))      //green color
 			{
 				sf::Vector2f position(location_x, location_y);
-				auto tree = FactoryObject::create(TREES_OBJ, position);
-			}*/
+				auto tree = FactoryObject::createStatic(TREES_OBJ, position);
+			}
 			location_y -= 28.f;
 		}
 		location_x += 40.f;
@@ -140,8 +140,8 @@ void Board::draw(sf::RenderWindow* window)
 	{
 		currentObject->draw(*window);
 	}
-	/*for (const auto& currentObject : m_movingObjects)
+	for (const auto& currentObject : m_staticObjects)
 	{
 		currentObject->draw(window);
-	}*/
+	}
 }
