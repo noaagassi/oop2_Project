@@ -57,3 +57,15 @@ void Board::readObject(std::string fileName)
 	}
 	location_y -= 90.f;
 }
+
+void Board::draw(sf::RenderWindow* window)
+{
+	for (const auto& currentObject : m_movingObjects )
+	{
+		currentObject->draw(window);
+	}
+	for (const auto& currentObject : m_movingObjects)
+	{
+		currentObject->draw(window);
+	}
+}

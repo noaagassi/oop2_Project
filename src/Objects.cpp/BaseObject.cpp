@@ -26,10 +26,11 @@ void BaseObject::move(float offsetX, float offsetY)
 }
 
 //-------------------------------------------------------
-void BaseObject::draw(sf::RenderWindow& window) const
+void BaseObject::draw(sf::RenderWindow* window) const
 {
-	window.draw(m_objectSprite);
+	window->draw(m_objectSprite);
 }
+//-------------------------------------------------------
 
 void BaseObject:: setScale(float scaleX, float scaleY)
 {
