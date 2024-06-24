@@ -2,8 +2,8 @@
 #include "string"
 #include <SFML/Graphics.hpp>
 #include "Objects.h/BaseObject.h"
-#include "Objects.h/PlayerObject.h"
 #include "Objects.h/StaticObject.h"
+#include "Objects.h/MovingObject.h"
 #include <vector>
 #include <memory>
 #include <iostream>

@@ -26,7 +26,7 @@ public:
 	const sf::Sprite& getSprite() const;
 	//c-tor d-tor
 	BaseObject() {};
-	~BaseObject() {};
+	virtual ~BaseObject()= default;
 
 protected:
 	
