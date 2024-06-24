@@ -13,6 +13,7 @@
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
 #include "screenFolder.h/Instructions.h"
+#include "Buttons.h/Button.h"
 #include "Utilities.h"
 
 class Menu : public GameState
@@ -27,7 +28,6 @@ public:
     
 private:
 
-   
-    std::vector<BaseButton*> m_buttons; // [exit, play, inst]
+    std::vector<Button*> m_buttons; // [exit, play, inst]
    
 };

@@ -5,8 +5,9 @@
 enum class TextureID {
     NewGame,
     Exit,
-    Help,
-    Player
+    Instructions,
+    Pause,
+    Resume
 };
 const std::string NAME_OF_PNG_FILES[] = {
     "new_game.png", // TextureID::NewGame
@@ -21,9 +22,11 @@ const sf::Vector2f textureSize(200.0f, 100.0f);
 
 
 enum StateOptions {
+    Null,
     PlayScrn,
     MenuScrn,
     PauseScrn,
     InstructionsScrn,
+    ResumeScrn,
     Exit
 };
