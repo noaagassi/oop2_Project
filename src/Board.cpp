@@ -138,7 +138,7 @@ void Board::draw(sf::RenderWindow* window)
 {
 	for (const auto& currentObject : m_movingObjects)
 	{
-		currentObject->draw(*window);
+		currentObject->draw(window);
 	}
 	for (const auto& currentObject : m_staticObjects)
 	{

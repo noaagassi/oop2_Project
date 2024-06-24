@@ -57,6 +57,7 @@ void PlayerObject::draw(sf::RenderWindow& window)
 
     m_flashlight.draw(window);
 }
+
 //------------------------------------------------
 
 //------------------------------------------------
@@ -97,4 +98,10 @@ void PlayerObject::handleInput()
 
 
 
-
+void PlayerObject ::animate(float deltaTime) {
+    if (clock.getElapsedTime().asSeconds() > 0.1f) {
+        spriteIndex = (spriteIndex + 1) % currentFrames->size();
+        m_objectSprite.setTextureRect((*currentFrames)[spriteIndex]);
+        clock.restart();
+    }
+}
