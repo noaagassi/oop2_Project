@@ -5,10 +5,12 @@
 #include "Objects.h/StaticObject.h"
 #include "Objects.h/MovingObject.h"
 #include <vector>
+#include <unordered_map>
 #include <memory>
 #include <iostream>
 #include <fstream>
 #include "Utilities.h"
+#include "Objects.h/FactoryObject.h"
 
 class Board
 {
@@ -30,8 +32,10 @@ private:
 	//members for the object in the level
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
-	//std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 
 	//function of the object
-	void readObject(std::string fileName);
+	void readMap(std::string fileName);
+
+
+	//std::unordered_map <sf::Color, COLOR_OF_OBJECT> m_colorsCodes;
 };

@@ -1,6 +1,6 @@
+#pragma once
 #include <string>
 #include <SFML/Graphics.hpp>
-#pragma once
 
 enum class TextureID {
     NewGame,
@@ -29,6 +29,11 @@ enum StateOptions {
 };
 
 
-enum class COLOR_OF_OBJECT {
-    green,
-};
+//enum class COLOR_OF_OBJECT {
+//    GREEN,              //TREE
+//    LIGHT_GREEN,        //BUSH
+//    PURPLE,             //PLAYER 
+//    BROWN,              //WALL
+//    BLUE               //PORTAL
+//    
+//};
