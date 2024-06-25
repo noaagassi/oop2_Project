@@ -25,7 +25,11 @@ void PlayState::draw()
     m_window->display();
 }
 
-void PlayState::update()
+void PlayState::update(float deltatime)
+{
+}
+
+void PlayState::handleEvent(sf::Event event)
 {
 }
 

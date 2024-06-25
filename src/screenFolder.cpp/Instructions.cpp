@@ -43,7 +43,11 @@ Instructions::~Instructions()
 }
 
 
-void Instructions::update()
+void Instructions::update(float deltatime)
+{
+}
+
+void Instructions::handleEvent(sf::Event event)
 {
 }
 
