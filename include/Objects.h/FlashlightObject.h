@@ -7,7 +7,7 @@ public:
 
     void update(const sf::Vector2f& position, const sf::Vector2f& direction);
 
-    void draw(sf::RenderWindow* window);
+    void draw(sf::RenderWindow& window);
 
 private:
     sf::ConvexShape m_flashlightCone;
