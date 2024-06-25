@@ -1,4 +1,4 @@
-//need to do:
+﻿//need to do:
 // add in the constractur of every onject a init to base constarctr
 
 
@@ -9,7 +9,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "TextureHandler.h"
-//#include "FactoryObject.h"
+
 
 class BaseObject 
 {
@@ -19,13 +19,13 @@ public:
 	BaseObject(const sf::Vector2f& position);
 	virtual ~BaseObject() = default;
 
-	void setObjTexture(Object_ID name);    //abstract, private
+	void setObjTexture(Object_ID name);         //צריך להיות ב-private
 	
-	sf::Vector2f getSpriteLocation()const; 
-	//void move(float offsetX, float offsetY);
+	sf::Vector2f getSpriteLocation()const;     
 	void draw(sf::RenderWindow* window) const;  //virtual??
 	void setScale(float scaleX, float scaleY);  
-	const sf::Sprite& getSprite() const;        
+	const sf::Sprite& getSprite() const;      
+
 protected:
 	
 	sf::Sprite m_objectSprite;

@@ -10,7 +10,7 @@ const int PLAYER_SPRITES_PER_COLUMN = 4;
 
 MovingObject::MovingObject(const sf::Vector2f& initPosition)
 	: spriteIndex(0), isMoving(false), currentFrames(&defaultFrames), BaseObject(initPosition)
-{ }
+{}
 
 MovingObject::MovingObject()
 {
