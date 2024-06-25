@@ -1,9 +1,9 @@
 #pragma once
-#include "InstructionsButton.h"
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
 #include "screenFolder.h/Instructions.h"
 #include "Utilities.h"
+#include "Buttons.h/Button.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -20,7 +20,7 @@ public:
 private:
 
 
-    std::vector<BaseButton*> m_buttons; // []
+    std::vector<std::unique_ptr<Button>> m_buttons;  // []
 
 
 

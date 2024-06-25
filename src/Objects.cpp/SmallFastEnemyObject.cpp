@@ -9,3 +9,11 @@ SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
     :BaseEnemyObject(initPosition)
 {
 }
+
+void SmallFastEnemyObject::move(float deltaTime)
+{
+}
+
+void SmallFastEnemyObject::handleInput()
+{
+}

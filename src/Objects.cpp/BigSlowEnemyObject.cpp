@@ -9,3 +9,11 @@ BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
     :BaseEnemyObject(initPosition)
 {
 }
+
+void BigSlowEnemyObject::move(float deltaTime)
+{
+}
+
+void BigSlowEnemyObject::handleInput()
+{
+}

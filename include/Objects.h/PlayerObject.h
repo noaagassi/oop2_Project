@@ -12,13 +12,12 @@ public:
 
     void update(float deltaTime, sf::RenderWindow& window);
     void draw(sf::RenderWindow& window);
+    virtual void move(float deltaTime);
 
 private:
     //member of the texture of the player
 
     float m_x, m_y;
-    int spriteIndex;
-    bool isMoving;
     sf::Clock clock;
     FlashlightObject m_flashlight;
 

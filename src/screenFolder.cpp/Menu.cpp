@@ -3,7 +3,10 @@
 
 
 
-
+#include "Buttons.h/StartGameCommand.h"
+#include "Buttons.h/InstructionsCommand.h"
+#include "Buttons.h/ExitCommand.h"
+#include "Buttons.h/Button.h"
 
 #include "screenFolder.h/Menu.h"
 #include <iostream>
@@ -13,18 +16,18 @@ Menu::Menu(sf::RenderWindow* window)
     : GameState(window) 
        
 {
-    /*
-    m_states[StateOptions::PlayScrn] = play;
-    m_states[StateOptions::InstructionsScrn] = instructions;
-    m_states[StateOptions::Exit] = nullptr;
-    */
     setObjTexture(MENU_BACK_GROUND_OBJ);
     setScale(MENU_BACK_GROUND_OBJ);
 
+    std::unique_ptr<CommandButton> startCmd = std::make_unique<StartGameCommand>();
+    std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();
+    std::unique_ptr<CommandButton> exitCmd = std::make_unique<ExitCommand>();
 
-    m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
-    m_buttons.push_back(new ExitButton("exitButton.png", 100, 300));
-    m_buttons.push_back(new InstructionsButton("instructions.png", 100, 400));
+
+    m_buttons.push_back(std::make_unique<Button>(std::move(startCmd), NEW_GAME_BUTTON_OBJ, 100, 200));
+    m_buttons.push_back(std::make_unique<Button>(std::move(instCmd), INSTRUCTION_BUTTON_OBJ, 100, 300));
+    m_buttons.push_back(std::make_unique<Button>(std::move(exitCmd), EXIT_BUTTON_OBJ, 100, 400));
+    
 }
 
 Menu::~Menu()
@@ -42,11 +45,10 @@ std::shared_ptr <GameState> Menu::isStateChanged(sf::Event event)
             if (event.mouseButton.button == sf::Mouse::Left) {
                 for (auto& button : m_buttons) {
                     if (button->isMouseOver(m_window)) {
-                        StateOptions state = button->handleClick();
+                        StateOptions state = button->click();
                         if (state == StateOptions::Exit)
                         {
                             m_window->close();
-                           //check!!!!!!!!!!!!!!!!!!!!!
                         }
                         return m_states[state]; 
                     }
@@ -72,7 +74,7 @@ void Menu::draw()
     m_window->draw(m_backGroundSprite);
 
     for (auto& button : m_buttons) {
-        button->render(m_window);
+        button->draw(m_window);
     }
     m_window->display();
 }
