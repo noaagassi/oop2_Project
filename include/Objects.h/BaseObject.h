@@ -27,6 +27,9 @@ public:
 	BaseObject() {};
 	virtual ~BaseObject() = default;
 
+	bool isCollidingWith(const BaseObject& other) const;
+	
+
 protected:
 	
 	sf::Sprite m_objectSprite;

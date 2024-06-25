@@ -42,4 +42,4 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/FactoryObject.h"				"Objects.cpp/FactoryObject.cpp" 
  "Objects.cpp/FlashlightObject.cpp" 
  
- "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp")
+ "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" "../include/CollisionHandling.h" "CollisionHandling.cpp")

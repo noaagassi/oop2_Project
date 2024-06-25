@@ -20,6 +20,8 @@ public:
 	~Board();
 	void handleKeyPress(sf::Keyboard::Key key);
 	void draw(sf::RenderWindow*);
+	void checkCollisions();
+	void update(float deltaTime);
 private:
 
 	//member for reading levels

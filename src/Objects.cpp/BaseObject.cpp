@@ -40,3 +40,8 @@ const sf::Sprite& BaseObject::getSprite() const
 {
 	return m_objectSprite;
 }
+//--------------------------------------------------------
+bool BaseObject::isCollidingWith(const BaseObject& other) const
+{
+	return getSprite().getGlobalBounds().intersects(other.getSprite().getGlobalBounds());
+}
