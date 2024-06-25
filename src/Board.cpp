@@ -132,7 +132,13 @@ void Board::readMap(std::string fileName)
 
 
 
-
+void Board::update(float deltatime, sf::RenderWindow* window)
+{
+	for (auto &currentObj : m_movingObjects)
+	{
+		currentObj->update(deltatime, window);
+	}
+}
 
 void Board::draw(sf::RenderWindow* window)
 {

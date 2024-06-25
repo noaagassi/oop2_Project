@@ -11,6 +11,7 @@ class MovingObject : public BaseObject
 public:
     MovingObject(const sf::Vector2f& initPosition);
     MovingObject();
+    virtual void update(float deltatime, sf::RenderWindow* window) = 0;
     
 
 protected:

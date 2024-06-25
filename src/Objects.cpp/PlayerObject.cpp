@@ -1,5 +1,6 @@
-
+#pragma once
 #include "Objects.h/PlayerObject.h"
+#include <SFML/Graphics.hpp>
 
 //------------------------------------------------
 //constant ans enum
@@ -37,14 +38,14 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 }
 //------------------------------------------------
 
-void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
+void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
     handleInput();
     animate(deltaTime);
     m_objectSprite.setPosition(m_x, m_y);
 
     
-    sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+    sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
     sf::Vector2f characterPosition = m_objectSprite.getPosition();
     sf::Vector2f direction = sf::Vector2f(mousePosition) - characterPosition;
     m_flashlight.update(characterPosition, direction);

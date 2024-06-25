@@ -18,6 +18,7 @@ public:
 	Board();
 	~Board();
 
+	void update(float deltatime, sf::RenderWindow* window);
 	void draw(sf::RenderWindow*);
 private:
 

@@ -27,6 +27,7 @@ void PlayState::draw()
 
 void PlayState::update(float deltatime)
 {
+    m_board.update(deltatime,m_window);
 }
 
 void PlayState::handleEvent(sf::Event event)
