@@ -1,4 +1,3 @@
-
 #include "Objects.h/PlayerObject.h"
 
 //------------------------------------------------
@@ -13,6 +12,7 @@ const float PLAYER_MOVE_SPEED = 0.1f;
 
 bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
+
 
 
 
@@ -38,10 +38,10 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 
 void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
 {
+    handleInput();
     animate(deltaTime);
     m_objectSprite.setPosition(m_x, m_y);
-//void PlayerObject::update(float deltaTime, sf::RenderWindow& window) {
-//    MovingObject::update(deltaTime, window);
+
 
     sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
     sf::Vector2f characterPosition = m_objectSprite.getPosition();
@@ -50,8 +50,10 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow *window) {
-    MovingObject::draw(window);
+void PlayerObject::draw(sf::RenderWindow& window)
+{
+    window.draw(m_objectSprite);
+
     m_flashlight.draw(window);
 }
 
@@ -63,26 +65,26 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
 
-void PlayerObject::handleInput(sf::Keyboard::Key key)
+void PlayerObject::handleInput()
 {
     isMoving = false;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         m_x -= PLAYER_MOVE_SPEED;
         currentFrames = &leftFrames;
         isMoving = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         m_x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
         m_y -= PLAYER_MOVE_SPEED;
         currentFrames = &upFrames;
         isMoving = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
         m_y += PLAYER_MOVE_SPEED;
         currentFrames = &downFrames;
         isMoving = true;
@@ -95,7 +97,7 @@ void PlayerObject::handleInput(sf::Keyboard::Key key)
 
 
 
-void PlayerObject ::animate(float deltaTime) {
+void PlayerObject::animate(float deltaTime) {
     if (clock.getElapsedTime().asSeconds() > 0.1f) {
         spriteIndex = (spriteIndex + 1) % currentFrames->size();
         m_objectSprite.setTextureRect((*currentFrames)[spriteIndex]);

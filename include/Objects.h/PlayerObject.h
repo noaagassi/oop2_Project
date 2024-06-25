@@ -11,8 +11,7 @@ public:
     PlayerObject(const sf::Vector2f& pos);
 
     void update(float deltaTime, sf::RenderWindow& window);
-    void draw(sf::RenderWindow* window);
-    void move(float deltaTime);
+    void draw(sf::RenderWindow& window);
 
 
 private:
@@ -31,8 +30,9 @@ private:
     std::vector<sf::IntRect> upFrames;
     std::vector<sf::IntRect>* currentFrames;
 
-    //sf::IntRect getFrame(int row, int col);
-    void handleInput(sf::Keyboard::Key key);
-   // void animate(float deltaTime);
+
+    sf::IntRect getFrame(int row, int col);
+    void handleInput();
+    void animate(float deltaTime);
     static bool m_registerit;
 };
