@@ -14,19 +14,10 @@
 class BaseObject 
 {
 public:
-	void setObjTexture(Object_ID name);
-
-
-	BaseObject(const sf::Vector2f& position) ;
-	//void setObjTexture(Object_ID);
-	sf::Vector2f getSpriteLocation()const;
-	void move(float offsetX, float offsetY);
-	void draw(sf::RenderWindow* window) const;
-	void setScale(float scaleX, float scaleY);
-	const sf::Sprite& getSprite() const;
 	//c-tor d-tor
 	BaseObject() {};
-	virtual ~BaseObject()= default;
+	BaseObject(const sf::Vector2f& position);
+	virtual ~BaseObject() = default;
 
 protected:
 	

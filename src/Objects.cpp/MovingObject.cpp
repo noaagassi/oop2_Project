@@ -15,6 +15,3 @@ MovingObject::MovingObject(const sf::Vector2f& initPosition)
 MovingObject::MovingObject()
 {
 }
-
-
-

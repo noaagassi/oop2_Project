@@ -17,29 +17,63 @@ Controller::Controller()
 	m_currentScreen = m_menu;
 }
 
+//void Controller::run() {
+//	sf::Clock clock;
+//	
+//
+//	while (m_window.isOpen())
+//	{
+//		float deltaTime = clock.restart().asSeconds();
+//
+//		m_currentScreen->draw();
+//		
+//
+//		std::shared_ptr <GameState> nextScreen = m_currentScreen->isStateChanged();
+//		if (nextScreen)
+//		{
+//			m_currentScreen = nextScreen;
+//		}
+//		m_currentScreen->update(deltaTime);
+//		m_window.clear();
+//		m_currentScreen->draw();
+//	}
+//}
+
+
+
+
 void Controller::run() {
-	sf::Clock clock;
+    sf::Clock clock;
 
-	while (m_window.isOpen())
-	{
-		float deltaTime = clock.restart().asSeconds();
+    while (m_window.isOpen()) {
+        float deltaTime = clock.restart().asSeconds();
+        m_currentScreen->draw();
+        // ניהול אירועים
+        sf::Event event;
+        while (m_window.pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                m_window.close();
+            }
 
-		m_currentScreen->draw();
-		
-		sf::Event event;
+            // בדיקה אם יש שינוי מצב
+            std::shared_ptr<GameState> nextScreen = m_currentScreen->isStateChanged(event);
+            bool screenChanged = (nextScreen != nullptr);
+            if (screenChanged) {
+                m_currentScreen = nextScreen;
+            }
 
-		m_window.pollEvent(event);
+            // העברת האירועים למצב הנוכחי רק אם המסך לא השתנה
+            if (!screenChanged) {
+                m_currentScreen->handleEvent(event);
+            }
+            //// עדכון מצב נוכחי
+            m_currentScreen->update(deltaTime);
 
-		std::shared_ptr <GameState> nextScreen = m_currentScreen->isStateChanged(event);
-		if (nextScreen)
-		{
-			m_currentScreen = nextScreen;
-		}
-		else
-		{
+            // ציור מצב נוכחי
+            m_window.clear();
+            m_currentScreen->draw();
+            m_window.display();
+        }
 
-			m_currentScreen->update();
-			m_currentScreen->draw();
-		}
-	}
+    }
 }
