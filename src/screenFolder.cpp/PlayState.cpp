@@ -22,14 +22,25 @@ void PlayState::draw()
     m_window->clear();
     m_window->draw(m_backGroundSprite);
     m_board.draw(m_window);
+   
     m_window->display();
 }
 
 void PlayState::update()
 {
+    sf::Event event;
+    while (m_window->pollEvent(event))
+    {
+        switch (event.type)
+        {
+            case sf::Event::KeyPressed:
+            m_board.handleKeyPress(event.key.code);
+            break; 
+        }
+    }
 }
 
-std::shared_ptr<GameState> PlayState::isStateChanged()
+std::shared_ptr<GameState> PlayState::isStateChanged(sf::Event event)
 {
     return std::shared_ptr<GameState>();
 }

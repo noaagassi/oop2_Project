@@ -26,6 +26,6 @@ void WinScreen::update() {
 }
 
 
-std::shared_ptr <GameState> WinScreen::isStateChanged() {
+std::shared_ptr <GameState> WinScreen::isStateChanged(sf::Event event) {
     return nullptr;         /////to change!!!!!
 }

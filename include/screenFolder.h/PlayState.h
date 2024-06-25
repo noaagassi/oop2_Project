@@ -14,12 +14,12 @@ public:
     ~PlayState();
     void draw() override;
     void update() override;
-    std::shared_ptr <GameState> isStateChanged() override;
+    std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
 
 private:
-
+    
     //std::shared_ptr<PauseButton> m_pauseButton;
-   
+    
     sf::View view;
     Board m_board;
     

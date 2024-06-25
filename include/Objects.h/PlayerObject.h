@@ -30,7 +30,7 @@ private:
     std::vector<sf::IntRect>* currentFrames;
 
     sf::IntRect getFrame(int row, int col);
-    void handleInput();
+    void handleInput(sf::Keyboard::Key key);
     void animate(float deltaTime);
     static bool m_registerit;
 };

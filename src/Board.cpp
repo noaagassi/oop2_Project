@@ -10,6 +10,17 @@ Board::~Board()
 {
 }
 //----------------------------------------
+void Board::handleKeyPress(sf::Keyboard::Key key)
+{
+	for (const auto& currentObject : m_movingObjects) 
+	{
+		if (auto player = dynamic_cast<PlayerObject*>(currentObject.get())) 
+		{
+			//player->handleInput(key);
+		}
+	}
+}
+//----------------------------------------
 
 void Board::readLevel()
 {

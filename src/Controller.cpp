@@ -26,13 +26,20 @@ void Controller::run() {
 
 		m_currentScreen->draw();
 		
+		sf::Event event;
 
-		std::shared_ptr <GameState> nextScreen = m_currentScreen->isStateChanged();
+		m_window.pollEvent(event);
+
+		std::shared_ptr <GameState> nextScreen = m_currentScreen->isStateChanged(event);
 		if (nextScreen)
 		{
 			m_currentScreen = nextScreen;
 		}
-		m_currentScreen->update();
-		m_currentScreen->draw();
+		else
+		{
+
+			m_currentScreen->update();
+			m_currentScreen->draw();
+		}
 	}
 }

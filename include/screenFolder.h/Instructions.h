@@ -15,7 +15,7 @@ public:
     ~Instructions();
     void draw() override;
     void update() override;
-    std::shared_ptr <GameState> isStateChanged() override;
+    std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
 
 private:
 

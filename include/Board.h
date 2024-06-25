@@ -15,7 +15,7 @@ class Board
 public:
 	Board();
 	~Board();
-
+	void handleKeyPress(sf::Keyboard::Key key);
 	void draw(sf::RenderWindow*);
 private:
 

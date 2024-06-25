@@ -28,7 +28,7 @@ void PausePage::update()
 {
 }
 
-std::shared_ptr<GameState> PausePage::isStateChanged()
+std::shared_ptr<GameState> PausePage::isStateChanged(sf::Event event)
 {
     return std::shared_ptr<GameState>();
 }
