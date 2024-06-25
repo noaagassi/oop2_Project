@@ -46,7 +46,11 @@ void PausePage::draw()
     m_window->display();
 }
 
-void PausePage::update()
+void PausePage::update(float deltatime)
+{
+}
+
+void PausePage::handleEvent(sf::Event event)
 {
 }
 

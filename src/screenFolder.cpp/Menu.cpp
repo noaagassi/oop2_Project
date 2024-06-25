@@ -88,7 +88,11 @@ std::shared_ptr <GameState> Menu::isStateChanged(sf::Event event)
 
 
 
-void Menu::update()
+void Menu::update(float deltatime)
+{
+}
+
+void Menu::handleEvent(sf::Event event)
 {
 }
 

@@ -24,7 +24,10 @@ void LooseScreen::draw()
 {
 }
 
-void LooseScreen::update()
+void LooseScreen::update(float deltatime)
+{
+}
+void LooseScreen::handleEvent(sf::Event event)
 {
 }
 //

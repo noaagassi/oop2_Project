@@ -13,7 +13,9 @@ public:
     PlayState(sf::RenderWindow* window);
     ~PlayState();
     void draw() override;
-    void update() override;
+    void update(float deltatime) override;
+    void handleEvent(sf::Event event);
+    //std::shared_ptr <GameState> isStateChanged() override;
     std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
 
 private:

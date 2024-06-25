@@ -22,7 +22,11 @@ void WinScreen::draw() {
     m_window.display();*/
 }
 
-void WinScreen::update() {
+void WinScreen::update(float deltatime) {
+}
+
+void WinScreen::handleEvent(sf::Event event)
+{
 }
 
 //
