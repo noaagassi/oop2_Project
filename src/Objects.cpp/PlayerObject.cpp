@@ -8,7 +8,7 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED = 0.1f;
+const float PLAYER_MOVE_SPEED =1.9f;
 //------------------------------------------------
 
 
@@ -52,10 +52,10 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow& window)
+void PlayerObject::draw(sf::RenderWindow* window)
 {
-    window.draw(m_objectSprite);
-
+    window->draw(m_objectSprite);
+    //window->draw(m_flashlight.getShape());
     m_flashlight.draw(window);
 }
 
@@ -71,22 +71,22 @@ void PlayerObject::handleInput()
 {
     isMoving = false;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
         m_x -= PLAYER_MOVE_SPEED;
         currentFrames = &leftFrames;
         isMoving = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
         m_x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         m_y -= PLAYER_MOVE_SPEED;
         currentFrames = &upFrames;
         isMoving = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         m_y += PLAYER_MOVE_SPEED;
         currentFrames = &downFrames;
         isMoving = true;

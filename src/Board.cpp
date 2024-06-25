@@ -56,6 +56,13 @@ void Board::readMap(std::string fileName)
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto tree = FactoryObject::createStatic(TREES_OBJ, position);
+				m_staticObjects.push_back(std::move(tree));
+			}
+			if (pixelColor == sf::Color(185,122, 87))      //brown color
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto wall = FactoryObject::createStatic(WALL_OBJ, position);
+				m_staticObjects.push_back(std::move(wall));
 			}
 			location_y -= 28.f;
 		}

@@ -15,8 +15,13 @@ void FlashlightObject::update(const sf::Vector2f& position, const sf::Vector2f& 
     m_flashlightCone.setPoint(2, position + sf::Vector2f(cos((angle + 20) * 3.14159265 / 180) * 150, sin((angle + 20) * 3.14159265 / 180) * 150));
 }
 
-void FlashlightObject::draw(sf::RenderWindow& window)
+sf::ConvexShape FlashlightObject::getShape()
 {
-    window.draw(m_flashlightCone);
+    return m_flashlightCone;
+}
+
+void FlashlightObject::draw(sf::RenderWindow* window)
+{
+    window->draw(m_flashlightCone);
 }
 

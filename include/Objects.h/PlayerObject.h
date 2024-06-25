@@ -11,7 +11,7 @@ public:
     PlayerObject(const sf::Vector2f& pos);
 
     void update(float deltaTime, sf::RenderWindow* window);
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow* window);
 
 
 private:
