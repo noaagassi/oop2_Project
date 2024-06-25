@@ -32,7 +32,6 @@ void PlayState::update(float deltatime)
 
 void PlayState::handleEvent(sf::Event event)
 {
-    sf::Event event;
     while (m_window->pollEvent(event))
     {
         switch (event.type)

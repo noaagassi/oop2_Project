@@ -16,6 +16,10 @@ Board::~Board()
 {
 }
 
+void Board::handleKeyPress(sf::Keyboard::Key key)
+{
+}
+
 //----------------------------------------
 
 void Board::readLevel()

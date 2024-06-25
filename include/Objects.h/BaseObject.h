@@ -25,7 +25,6 @@ public:
 	const sf::Sprite& getSprite() const;
 	//c-tor d-tor
 	BaseObject() {};
-	BaseObject(const sf::Vector2f& position);
 	virtual ~BaseObject() = default;
 
 protected:
