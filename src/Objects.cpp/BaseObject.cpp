@@ -16,17 +16,19 @@ void BaseObject::setObjTexture(Object_ID name)
 
 //---------------------------------------------------
 
-sf::Vector2f BaseObject::getSpriteLocation() const {
+sf::Vector2f BaseObject::getSpriteLocation() const 
+{
 	return m_objectSprite.getPosition();
 }
 
 //-------------------------------------------------------
 //move to the moveing object
+/*
 void BaseObject::move(float offsetX, float offsetY)
 {
 	m_objectSprite.move(offsetX, offsetY);
 }
-
+*/
 //-------------------------------------------------------
 void BaseObject::draw(sf::RenderWindow* window) const
 {

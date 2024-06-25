@@ -12,17 +12,15 @@ public:
     MovingObject(const sf::Vector2f& initPosition);
     MovingObject();
     virtual ~MovingObject() = default;
-
     void setObjTexture(Object_ID id);
     void setScale(float x, float y);
     sf::IntRect getFrame(int row, int col);
-    void update(float deltaTime, sf::RenderWindow& window);
-    void draw(sf::RenderWindow& window);
+    void update(float deltaTime, sf::RenderWindow* window);
+    void draw(sf::RenderWindow* window);
     virtual void move(float deltaTime) = 0;
 
 protected:
     void animate(float deltaTime);
-    virtual void handleInput() = 0;
 
     sf::Sprite m_objectSprite;
     std::vector<sf::IntRect> defaultFrames;
@@ -33,6 +31,5 @@ protected:
     std::vector<sf::IntRect>* currentFrames;
     int spriteIndex;
     bool isMoving;
-    float m_x, m_y;
     sf::Clock clock;
 };

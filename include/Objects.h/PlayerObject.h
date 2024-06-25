@@ -11,8 +11,8 @@ public:
     PlayerObject(const sf::Vector2f& pos);
 
     void update(float deltaTime, sf::RenderWindow& window);
-    void draw(sf::RenderWindow& window);
-    virtual void move(float deltaTime);
+    void draw(sf::RenderWindow* window);
+    void move(float deltaTime);
 
 private:
     //member of the texture of the player
@@ -28,8 +28,8 @@ private:
     std::vector<sf::IntRect> upFrames;
     std::vector<sf::IntRect>* currentFrames;
 
-    sf::IntRect getFrame(int row, int col);
+    //sf::IntRect getFrame(int row, int col);
     void handleInput(sf::Keyboard::Key key);
-    void animate(float deltaTime);
+   // void animate(float deltaTime);
     static bool m_registerit;
 };

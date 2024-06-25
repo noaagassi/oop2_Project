@@ -11,20 +11,21 @@
 #include "TextureHandler.h"
 //#include "FactoryObject.h"
 
-class BaseObject {
+class BaseObject 
+{
 public:
-	void setObjTexture(Object_ID name);
-	BaseObject(const sf::Vector2f& position) ;
-	//void setObjTexture(Object_ID);
-	sf::Vector2f getSpriteLocation()const;
-	void move(float offsetX, float offsetY);
-	void draw(sf::RenderWindow* window) const;
-	void setScale(float scaleX, float scaleY);
-	const sf::Sprite& getSprite() const;
 	//c-tor d-tor
 	BaseObject() {};
-	virtual ~BaseObject() = default; 
+	BaseObject(const sf::Vector2f& position);
+	virtual ~BaseObject() = default;
 
+	void setObjTexture(Object_ID name);    //abstract, private
+	
+	sf::Vector2f getSpriteLocation()const; 
+	//void move(float offsetX, float offsetY);
+	void draw(sf::RenderWindow* window) const;  //virtual??
+	void setScale(float scaleX, float scaleY);  
+	const sf::Sprite& getSprite() const;        
 protected:
 	
 	sf::Sprite m_objectSprite;

@@ -47,7 +47,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow& window) {
+void PlayerObject::draw(sf::RenderWindow *window) {
     MovingObject::draw(window);
     m_flashlight.draw(window);
 }
