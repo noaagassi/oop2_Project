@@ -47,7 +47,12 @@ void Instructions::update()
 {
 }
 
-std::shared_ptr<GameState> Instructions::isStateChanged()
+//std::shared_ptr<GameState> Instructions::isStateChanged()
+//{
+//    return std::shared_ptr<GameState>();
+//}
+
+std::shared_ptr<GameState> Instructions::isStateChanged(sf::Event event)
 {
     return std::shared_ptr<GameState>();
 }

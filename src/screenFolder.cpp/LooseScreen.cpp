@@ -27,8 +27,13 @@ void LooseScreen::draw()
 void LooseScreen::update()
 {
 }
+//
+//std::shared_ptr<GameState> LooseScreen::isStateChanged()
+//{
+//    return std::shared_ptr<GameState>();
+//}
 
-std::shared_ptr<GameState> LooseScreen::isStateChanged()
+std::shared_ptr<GameState> LooseScreen::isStateChanged(sf::Event event)
 {
     return std::shared_ptr<GameState>();
 }
