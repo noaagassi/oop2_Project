@@ -40,7 +40,11 @@ void PlayState::update()
     }
 }
 
-std::shared_ptr<GameState> PlayState::isStateChanged(sf::Event event)
+//std::shared_ptr<GameState> PlayState::isStateChanged()
+//{
+//    return std::shared_ptr<GameState>();
+//}
+std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 {
     return std::shared_ptr<GameState>();
 }

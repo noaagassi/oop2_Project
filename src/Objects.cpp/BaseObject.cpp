@@ -36,6 +36,7 @@ void BaseObject::draw(sf::RenderWindow* window) const
 }
 //-------------------------------------------------------
 
+//-------------------------------------------------------
 void BaseObject:: setScale(float scaleX, float scaleY)
 {
 	m_objectSprite.setScale(scaleX, scaleY);

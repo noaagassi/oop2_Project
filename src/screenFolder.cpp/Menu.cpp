@@ -35,9 +35,35 @@ Menu::~Menu()
 }
 
 
+//std::shared_ptr <GameState> Menu::isStateChanged()
+//{
+//    sf::Event event;
+//    while (m_window->pollEvent(event)) {
+//        if (event.type == sf::Event::Closed) {
+//            m_window->close();
+//        }
+//        if (event.type == sf::Event::MouseButtonReleased) {
+//            if (event.mouseButton.button == sf::Mouse::Left) {
+//                for (auto& button : m_buttons) {
+//                    if (button->isMouseOver(m_window)) {
+//                        StateOptions state = button->click();
+//                        if (state == StateOptions::Exit)
+//                        {
+//                            m_window->close();
+//                        }
+//                        return m_states[state]; 
+//                    }
+//                }
+//            }
+//        }
+//    }
+//    return nullptr;
+//}
+
+
 std::shared_ptr <GameState> Menu::isStateChanged(sf::Event event)
 {
-    while (m_window->pollEvent(event)) {
+
         if (event.type == sf::Event::Closed) {
             m_window->close();
         }
@@ -55,10 +81,9 @@ std::shared_ptr <GameState> Menu::isStateChanged(sf::Event event)
                 }
             }
         }
-    }
+    
     return nullptr;
 }
-
 
 
 

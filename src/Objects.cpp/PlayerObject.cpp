@@ -3,9 +3,12 @@
 
 //------------------------------------------------
 //constant ans enum
+const int PLAYER_SPRITE_WIDTH = 64;
+const int PLAYER_SPRITE_HEIGHT = 96;
+const int PLAYER_SPRITES_PER_ROW = 4;
+const int PLAYER_SPRITES_PER_COLUMN = 4;
 const float PLAYER_MOVE_SPEED = 0.1f;
 //------------------------------------------------
-
 
 
 bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
@@ -51,12 +54,14 @@ void PlayerObject::draw(sf::RenderWindow *window) {
     MovingObject::draw(window);
     m_flashlight.draw(window);
 }
-void PlayerObject::move(float deltaTime)
-{
-}
+
 //------------------------------------------------
 
 //------------------------------------------------
+sf::IntRect PlayerObject::getFrame(int row, int col)
+{
+    return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
+}
 
 void PlayerObject::handleInput(sf::Keyboard::Key key)
 {
@@ -90,4 +95,10 @@ void PlayerObject::handleInput(sf::Keyboard::Key key)
 
 
 
-
+void PlayerObject ::animate(float deltaTime) {
+    if (clock.getElapsedTime().asSeconds() > 0.1f) {
+        spriteIndex = (spriteIndex + 1) % currentFrames->size();
+        m_objectSprite.setTextureRect((*currentFrames)[spriteIndex]);
+        clock.restart();
+    }
+}

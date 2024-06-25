@@ -25,9 +25,6 @@ void MovingObject::setObjTexture(Object_ID id) {
     }
 }
 
-void MovingObject::setScale(float x, float y) {
-    m_objectSprite.setScale(x, y);
-}
 
 sf::IntRect MovingObject::getFrame(int row, int col) {
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);

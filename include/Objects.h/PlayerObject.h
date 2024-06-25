@@ -14,8 +14,11 @@ public:
     void draw(sf::RenderWindow* window);
     void move(float deltaTime);
 
+
 private:
     //member of the texture of the player
+    int spriteIndex;
+    bool isMoving;
 
     float m_x, m_y;
     sf::Clock clock;
