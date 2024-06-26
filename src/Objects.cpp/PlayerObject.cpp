@@ -33,8 +33,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
-    m_x = 100.f;
-    m_y = 100.f;
+    
 }
 //------------------------------------------------
 
@@ -42,7 +41,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
     handleInput();
     animate(deltaTime);
-    m_objectSprite.setPosition(m_x, m_y);
+    m_objectSprite.setPosition(m_position);
 
     
     sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
@@ -72,22 +71,23 @@ void PlayerObject::handleInput()
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
-        m_x -= PLAYER_MOVE_SPEED;
+        m_position.x -= PLAYER_MOVE_SPEED;
         currentFrames = &leftFrames;
         isMoving = true;
+        //goLeft();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      //right
-        m_x += PLAYER_MOVE_SPEED;
+        m_position.x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
-        m_y -= PLAYER_MOVE_SPEED;
+        m_position.y -= PLAYER_MOVE_SPEED;
         currentFrames = &upFrames;
         isMoving = true;
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
-        m_y += PLAYER_MOVE_SPEED;
+        m_position.y += PLAYER_MOVE_SPEED;
         currentFrames = &downFrames;
         isMoving = true;
     }
