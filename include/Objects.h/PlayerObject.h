@@ -11,18 +11,18 @@ class PlayerObject : public MovingObject
 public:
     //c-tor
     PlayerObject(const sf::Vector2f& pos);
-    
-    void update(sf::Time delta);
+    sf::Vector2u getSpriteSheetDivision();
+    //void update(sf::Time delta);
     void draw(sf::RenderWindow* window);
-    void direction(sf::Keyboard::Key key);
-    //void move(float deltaTime);
+    //void direction(sf::Keyboard::Key key);
+    void move(float deltaTime) override;
 
 private:
+    //Animation m_animation;
+    //AnimationData initAnimationData();
 
-    AnimationData initAnimationData();
-
-    Direction m_dir = Direction::Stay;
-    Animation m_animation;
+    //Direction m_dir = Direction::Stay;
+    //Animation m_animation;
 
     static bool m_registerit;
     //member of the texture of the player

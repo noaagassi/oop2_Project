@@ -24,6 +24,16 @@ std::unique_ptr<StaticObject> FactoryObject::createStatic(const Object_ID Object
 	}
 	return std::unique_ptr<StaticObject>(dynamic_cast<StaticObject*>(mapIterator->second(position).release()));
 }
+std::unique_ptr<ExpandObject> FactoryObject::createExpand(const Object_ID ObjectName, const sf::Vector2f& position)
+{
+	auto mapIterator = getMap().find(ObjectName);
+
+	if (mapIterator == getMap().end())
+	{
+		return nullptr;
+	}
+	return std::unique_ptr<ExpandObject>(dynamic_cast<ExpandObject*>(mapIterator->second(position).release()));
+}
 //----------------------------------------------------
 bool FactoryObject::registerit(const Object_ID objectName, std::unique_ptr<BaseObject>(*func)(const sf::Vector2f&))
 {

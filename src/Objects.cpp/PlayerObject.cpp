@@ -1,63 +1,117 @@
-#include "Objects.h/PlayerObject.h"
+﻿#include "Objects.h/PlayerObject.h"
 
 //------------------------------------------------
 //constant ans enum
 const float PLAYER_MOVE_SPEED = 0.1f;
 //------------------------------------------------
 
-
-
 bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
 
-
-
+//-------------------------------------------------
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    :MovingObject(initPosition),m_animation()
+    :MovingObject(initPosition)
 {
     setObjTexture(PLAYER_OBJ);
+    //Animation a(initAnimationData(), Direction::Stay,&m_objectSprite);
+    //m_animation = a;
+    
 
-
-
-
-
-
-
-
-
-
-
-
-  /*  setScale(1.0f, 1.0f);
-
-    defaultFrames = { getFrame(0, 0) };
-    leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
-    rightFrames = { getFrame(2, 0), getFrame(2, 1), getFrame(2, 2), getFrame(2, 3) };
-    downFrames = { getFrame(0, 0), getFrame(0, 1), getFrame(0, 2), getFrame(0, 3) };
-    upFrames = { getFrame(3, 0), getFrame(3, 1), getFrame(3, 2), getFrame(3, 3) };
-
-    currentFrames = &defaultFrames;
-    m_objectSprite.setTextureRect((*currentFrames)[0]);
-
-    m_x = 100.f;
-    m_y = 100.f;*/
 }
+sf::Vector2u PlayerObject::getSpriteSheetDivision()
+{
+    sf::Vector2u sizeOfSprite = m_objectSprite.getTexture()->getSize();
+    sizeOfSprite.x /= 4;
+    sizeOfSprite.y /= 4;
+
+    return sizeOfSprite;
+}
+/*
 void PlayerObject::update(sf::Time delta)
 {
-    
-}
-AnimationData PlayerObject::initAnimationData()
+    if (m_dir == Direction::Stay)
+    {
+        return;
+    }
+    m_objectSprite.move(toVector(m_dir) * delta.asSeconds() * PLAYER_MOVE_SPEED);
+    m_animation.update(delta);
+}*/
+//-------------------------------------------------
+void PlayerObject::draw(sf::RenderWindow* window)
 {
-    const auto size = sf::Vector2i(40, 40);
-    const auto initSpace = sf::Vector2i(851, 2);
-    const auto middleSpace = sf::Vector2i(0, 10);
-
-    auto player = AnimationData{};
-    auto currentStart = initSpace;
-
-
-
+    window->draw(m_objectSprite);
 }
+
+void PlayerObject::move(float deltaTime)
+{
+}
+//-------------------------------------------------
+//void PlayerObject::direction(sf::Keyboard::Key key)
+//{
+//    if (key == sf::Keyboard::W)
+//    {
+//        m_animation.direction(Direction::Forward);
+//    }
+//    else if (key == sf::Keyboard::A)
+//    {
+//        m_animation.direction(Direction::Left);
+//    }
+//    else if (key == sf::Keyboard::S)
+//    {
+//        m_animation.direction(Direction::Backward);
+//    }
+//    else if (key == sf::Keyboard::D)
+//    {
+//        m_animation.direction(Direction::Right);
+//    }
+//}
+//void PlayerObject::move(float deltaTime)
+//{
+//}
+////-------------------------------------------------
+//AnimationData PlayerObject::initAnimationData()
+//{
+//    const auto size = sf::Vector2i(64, 96); 
+//    const auto initSpace = sf::Vector2i(0, 0); 
+//
+//    auto player = AnimationData{};
+//    auto currentStart = initSpace;
+//
+//    auto nextStart = [&](int row) {
+//        currentStart.x = 0;
+//        currentStart.y = row * size.y;
+//        return currentStart;
+//        };
+//
+//    for (int row = 0; row < 4; ++row)
+//    {
+//        for (int col = 0; col < 4; ++col)
+//        {
+//            auto rect = sf::IntRect(currentStart.x + col * size.x,
+//                currentStart.y,
+//                size.x,
+//                size.y);
+//            switch (row) 
+//            {
+//            case 0:
+//                player.m_data[Direction::Forward].emplace_back(rect);
+//                break;
+//            case 1:
+//                player.m_data[Direction::Left].emplace_back(rect);
+//                break;
+//            case 2:
+//                player.m_data[Direction::Right].emplace_back(rect);
+//                break;
+//            case 3:
+//                player.m_data[Direction::Backward].emplace_back(rect);
+//                break;
+//            }
+//        }
+//        nextStart(row + 1);
+//    }
+//
+//    return player;
+//}
 //------------------------------------------------
 //
 //void PlayerObject::update(float deltaTime, sf::RenderWindow& window)

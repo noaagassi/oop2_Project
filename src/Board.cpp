@@ -21,7 +21,6 @@ void Board::handleKeyPress(sf::Keyboard::Key key)
 	}
 }
 //----------------------------------------
-
 void Board::readLevel()
 {
 	std::string fileName = updateNameLevel(m_levelNum);
@@ -48,9 +47,8 @@ void Board::readObject(std::string fileName)
 		location_y = 700.f;
 		for (int y = int(image.getSize().y) - 1; y >= 0; y--)
 		{
-	
 			pixelColor = image.getPixel(x, y);
-
+			
 			if (pixelColor == sf::Color(163, 73, 164))   //purple color
 			{
 				sf::Vector2f position(location_x,location_y);
@@ -62,12 +60,18 @@ void Board::readObject(std::string fileName)
 				sf::Vector2f position(location_x, location_y);
 				auto tree = FactoryObject::createStatic(TREES_OBJ, position);
 			}
+			if (x == 0 || x == (int(image.getSize().x) - 1) || y == 0 || y == (int(image.getSize().y) - 1))
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto posion = FactoryObject::createExpand(POISON_OBJ, position);
+			}
 			location_y -= 28.f;
 		}
 		location_x += 40.f;
 	}
 }
 
+//----------------------------------------
 void Board::draw(sf::RenderWindow* window)
 {
 	for (const auto& currentObject : m_movingObjects)
