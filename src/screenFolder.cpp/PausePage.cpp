@@ -13,7 +13,6 @@ PausePage::PausePage(sf::RenderWindow* window)
     : GameState(window)
 
 {
-
     setObjTexture(PAUSE_SCREEN_OBJ);
     setScale(PAUSE_SCREEN_OBJ);
 

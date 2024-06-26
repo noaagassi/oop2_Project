@@ -30,6 +30,7 @@ void PlayState::draw()
     m_window->setTitle("Brawl stars");
     
     m_window->setSize(sf::Vector2u(1300, 900));         //original- 1000,700
+    m_window->clear();
     m_window->draw(m_backGroundSprite);
     m_board.draw(m_window);
     for (auto& button : m_buttons) {
@@ -45,13 +46,7 @@ void PlayState::update(float deltatime)
 }
 
 
-        case sf::Event::MouseButtonPressed:         //for start shooting
-                m_board.handleMousePressed(event);
-                break;
-        }
-    }
-}
-
+       
 std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 {
     if (event.type == sf::Event::Closed) {

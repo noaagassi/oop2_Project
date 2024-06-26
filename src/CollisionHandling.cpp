@@ -10,7 +10,7 @@
 #include "Objects.h/BushObject.h"
 #include "Objects.h/WallObject.h"
 #include "Objects.h/PortalObject.h"
-//#include "Objects.h/TreeObject.h"
+#include "Objects.h/TreeObject.h"
 
 
 
@@ -34,16 +34,35 @@ namespace // anonymous namespace — the standard way to make function "static"
         WallObject& real_wall = dynamic_cast<WallObject&>(wall);
 
         std::cout << "player and wall collision!\n";
+
+       
     }
-    /*
+    
     void playerTree(BaseObject& player, BaseObject& tree)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
 
         std::cout << "Player and Tree collision!\n";
+        /*
+        if (real_player.getSpriteLocation().x < real_tree.getSpriteLocation().x) {
+            // El jugador está a la izquierda del árbol
+            real_player.set(treeX - playerWidth);
+        }
+        else if (playerX + playerWidth > treeX + treeWidth) {
+            // El jugador está a la derecha del árbol
+            real_player.setX(treeX + treeWidth);
+        }
+        else if (playerY < treeY) {
+            // El jugador está arriba del árbol
+            real_player.setY(treeY - playerHeight);
+        }
+        else if (playerY + playerHeight > treeY + treeHeight) {
+            // El jugador está abajo del árbol
+            real_player.setY(treeY + treeHeight);
+        }*/
     }
-    */
+    
     void playerPortal(BaseObject& player, BaseObject& portal)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
@@ -79,8 +98,8 @@ namespace // anonymous namespace — the standard way to make function "static"
         HitMap phm;
         phm[Key(typeid(PlayerObject), typeid(BushObject))] = &playerBush;
         phm[Key(typeid(PlayerObject), typeid(WallObject))] = &playerWall;
-      //  phm[Key(typeid(PlayerObject), typeid(BushObject))] = &playerTree;
-        phm[Key(typeid(PlayerObject), typeid(WallObject))] = &playerPortal;
+        phm[Key(typeid(PlayerObject), typeid(TreeObject))] = &playerTree;
+        phm[Key(typeid(PlayerObject), typeid(PortalObject))] = &playerPortal;
 
         phm[Key(typeid(BushObject), typeid(PlayerObject))] = &bushPlayer;
         phm[Key(typeid(WallObject), typeid(PlayerObject))] = &WallPlayer;
