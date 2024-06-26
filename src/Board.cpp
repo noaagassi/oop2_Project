@@ -46,23 +46,71 @@ void Board::readMap(std::string fileName)
 	
 			pixelColor = image.getPixel(x, y);
 
-			if (pixelColor == sf::Color(163, 73, 164))   //purple color
+			if (pixelColor == sf::Color(163, 73, 164))   //purple color	player
 			{
 				sf::Vector2f position(location_x,location_y);
 				auto player = FactoryObject::createMoving(PLAYER_OBJ, position);
 				m_movingObjects.push_back(std::move(player));
 			}
-			if (pixelColor == sf::Color(34, 177, 76))      //green color
+			else if (pixelColor == sf::Color(34, 177, 76))      //green color trees
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto tree = FactoryObject::createStatic(TREES_OBJ, position);
 				m_staticObjects.push_back(std::move(tree));
 			}
-			if (pixelColor == sf::Color(185,122, 87))      //brown color
+			else if (pixelColor == sf::Color(185,122, 87))      //brown color for wall
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto wall = FactoryObject::createStatic(WALL_OBJ, position);
 				m_staticObjects.push_back(std::move(wall));
+			}
+			else if (pixelColor == sf::Color(0, 162,232))      //blue color for portal
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto portal = FactoryObject::createStatic(PORTAL_OBJ, position);
+				m_staticObjects.push_back(std::move(portal));
+			}
+			else if (pixelColor == sf::Color(181, 230, 29))      //light green color for bush
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto bush = FactoryObject::createStatic(BUSH_OBJ, position);
+				m_staticObjects.push_back(std::move(bush));
+			}
+			else if (pixelColor == sf::Color(237, 28, 36))      //red color for life gift
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto lifeGift = FactoryObject::createStatic(LIFE_GIFT_OBJ, position);
+				m_staticObjects.push_back(std::move(lifeGift));
+			}
+			else if (pixelColor == sf::Color(153, 217, 234))      //light blue color for freeze gift
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto freezeGift = FactoryObject::createStatic(FREEZE_GIFT_OBJ, position);
+				m_staticObjects.push_back(std::move(freezeGift));
+			}
+			else if (pixelColor == sf::Color(127, 127, 127))      //dark grey color for weapon gift
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto weaponGift = FactoryObject::createStatic(WEAPON_GIFT_OBJ, position);
+				m_staticObjects.push_back(std::move(weaponGift));
+			}
+			else if (pixelColor == sf::Color(255, 242, 0))      //dark yellow color for small fast enemy
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto smallFastEnemy = FactoryObject::createMoving(ENEMY_1_OBJ, position);
+				m_movingObjects.push_back(std::move(smallFastEnemy));
+			}
+			else if (pixelColor == sf::Color(255, 127, 39))      //dark orange color for big slow enemy 
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto bigSlowEnemy= FactoryObject::createMoving(ENEMY_2_OBJ, position);
+				m_movingObjects.push_back(std::move(bigSlowEnemy));
+			}
+			else if (pixelColor == sf::Color(0, 0, 0))      //black color for poison
+			{
+				sf::Vector2f position(location_x, location_y);
+				auto poison = FactoryObject::createStatic(POISON_OBJ, position);
+				m_staticObjects.push_back(std::move(poison));
 			}
 			location_y -= 28.f;
 		}

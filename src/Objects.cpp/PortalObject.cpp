@@ -9,6 +9,7 @@ PortalObject::PortalObject(const sf::Vector2f& initPosition)
     :StaticObject(initPosition)
 {
     setObjTexture(PORTAL_OBJ);
+    setScale(0.05f, 0.05f);
 }
 
 PortalObject::PortalObject()
