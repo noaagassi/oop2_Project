@@ -22,7 +22,6 @@ public:
 	void update(float deltatime, sf::RenderWindow* window);
 	void draw(sf::RenderWindow*);
 	void checkCollisions();
-	void update(float deltaTime);
 private:
 
 	//member for reading levels
