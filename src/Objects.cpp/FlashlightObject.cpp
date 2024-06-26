@@ -20,7 +20,7 @@ sf::ConvexShape FlashlightObject::getShape()
     return m_flashlightCone;
 }
 
-void FlashlightObject::draw(sf::RenderWindow* window)
+void FlashlightObject::draw(sf::RenderWindow* window) const
 {
     window->draw(m_flashlightCone);
 }

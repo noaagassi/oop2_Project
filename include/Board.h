@@ -19,9 +19,9 @@ public:
 	Board();
 	~Board();
 
-	void handleEvent(sf::Event event);
+	void handleInput();
 	void update(float deltatime, sf::RenderWindow* window);
-	void draw(sf::RenderWindow*);
+	void draw(sf::RenderWindow* window);
 	void checkCollisions();
 	
 	void handleMousePressed(sf::Event event);
