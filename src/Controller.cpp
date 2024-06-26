@@ -48,28 +48,29 @@ void Controller::run() {
     while (m_window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
-        // ניהול אירועים
+        m_currentScreen->update(deltaTime);
         sf::Event event;
-        while (m_window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+        while (m_window.pollEvent(event)) 
+        {
+            if (event.type == sf::Event::Closed) 
+            {
                 m_window.close();
             }
 
-            // בדיקה אם יש שינוי מצב
             std::shared_ptr<GameState> nextScreen = m_currentScreen->isStateChanged(event);
             bool screenChanged = (nextScreen != nullptr);
-            if (screenChanged) {
+            if (screenChanged) 
+            {
                 m_currentScreen = nextScreen;
             }
 
-            // העברת האירועים למצב הנוכחי רק אם המסך לא השתנה
-            if (!screenChanged) {
+            if (!screenChanged) 
+            {
                 m_currentScreen->handleEvent(event);
             }
-            //// עדכון מצב נוכחי
+
             m_currentScreen->update(deltaTime);
 
-            // ציור מצב נוכחי
             m_window.clear();
             m_currentScreen->draw();
             m_window.display();

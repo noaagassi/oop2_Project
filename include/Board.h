@@ -12,6 +12,7 @@
 #include <fstream>
 #include "Utilities.h"
 #include "Objects.h/FactoryObject.h"
+#include "Objects.h/CloudPoisonObject.h"
 
 class Board
 {
@@ -39,7 +40,7 @@ private:
 	//members for the object in the level
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
-		
+	CloudPoisonObject m_cloud;
 	//function of the object
 	void readMap(std::string fileName);
 

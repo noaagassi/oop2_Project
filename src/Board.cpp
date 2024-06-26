@@ -14,16 +14,16 @@ Board::~Board()
 
 
 //----------------------------------------
-void Board::handleKeyPress(sf::Keyboard::Key key)
-{
-	for (const auto& currentObject : m_movingObjects) 
-	{
-		if (auto player = dynamic_cast<PlayerObject*>(currentObject.get())) 
-		{
-			//player->handleInput(key);
-		}
-	}
-}
+//void Board::handleKeyPress(sf::Keyboard::Key key)
+//{
+//	for (const auto& currentObject : m_movingObjects) 
+//	{
+//		if (auto player = dynamic_cast<PlayerObject*>(currentObject.get())) 
+//		{
+//			//player->handleInput(key);
+//		}
+//	}
+//}
 //----------------------------------------
 
 void Board::readLevel()
@@ -194,13 +194,9 @@ void Board::readMap(std::string fileName)
 //}
 
 
-
-void Board::handleEvent(sf::Event event)
-{
-}
-
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
+	m_cloud.update(deltatime, window);
 	for (auto &currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
@@ -211,6 +207,7 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 //----------------------------------------
 void Board::draw(sf::RenderWindow* window)
 {
+	m_cloud.draw(window);
 	for (const auto& currentObject : m_movingObjects)
 	{
 		currentObject->draw(window);
