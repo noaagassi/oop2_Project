@@ -11,7 +11,8 @@
 #include "TextureHandler.h"
 //#include "FactoryObject.h"
 
-class BaseObject {
+class BaseObject 
+{
 public:
 	void setObjTexture(Object_ID name);
 
@@ -24,7 +25,10 @@ public:
 	const sf::Sprite& getSprite() const;
 	//c-tor d-tor
 	BaseObject() {};
-	virtual ~BaseObject()= default;
+	virtual ~BaseObject() = default;
+
+	bool isCollidingWith(const BaseObject& other) const;
+	
 
 protected:
 	

@@ -16,7 +16,8 @@ void BaseObject::setObjTexture(Object_ID name)
 
 //---------------------------------------------------
 
-sf::Vector2f BaseObject::getSpriteLocation() const {
+sf::Vector2f BaseObject::getSpriteLocation() const 
+{
 	return m_objectSprite.getPosition();
 }
 
@@ -38,4 +39,9 @@ void BaseObject:: setScale(float scaleX, float scaleY)
 const sf::Sprite& BaseObject::getSprite() const
 {
 	return m_objectSprite;
+}
+//--------------------------------------------------------
+bool BaseObject::isCollidingWith(const BaseObject& other) const
+{
+	return getSprite().getGlobalBounds().intersects(other.getSprite().getGlobalBounds());
 }

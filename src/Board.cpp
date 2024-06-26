@@ -1,4 +1,5 @@
 #include "Board.h"
+#include "CollisionHandling.h"
 //----------------------------------------
 Board::Board()
 	:m_levelNum(1)
@@ -15,6 +16,11 @@ Board::Board()
 Board::~Board()
 {
 }
+
+void Board::handleKeyPress(sf::Keyboard::Key key)
+{
+}
+
 //----------------------------------------
 
 void Board::readLevel()
@@ -205,4 +211,54 @@ void Board::draw(sf::RenderWindow* window)
 	{
 		currentObject->draw(window);
 	}
+}
+
+void Board::checkCollisions()
+{
+	for (auto& moving : m_movingObjects)
+	{
+		for (auto& staticObj : m_staticObjects)
+		{
+			if (moving->isCollidingWith(*staticObj))
+			{
+				try
+				{
+					processCollision(*moving, *staticObj);
+				}
+				catch (const UnknownCollision& e)
+				{
+					std::cerr << e.what() << std::endl;
+				}
+			}
+		}
+	}
+
+	// Verificar colisiones entre los propios objetos móviles
+	for (size_t i = 0; i < m_movingObjects.size(); ++i)
+	{
+		for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
+		{
+			if (m_movingObjects[i]->isCollidingWith(*m_movingObjects[j]))
+			{
+				try
+				{
+					processCollision(*m_movingObjects[i], *m_movingObjects[j]);
+				}
+				catch (const UnknownCollision& e)
+				{
+					std::cerr << e.what() << std::endl;
+				}
+			}
+		}
+	}
+}
+
+void Board::update(float deltaTime)
+{
+	for (auto& obj : m_movingObjects)
+	{
+		//obj->update(deltaTime);
+
+	}
+	checkCollisions();
 }

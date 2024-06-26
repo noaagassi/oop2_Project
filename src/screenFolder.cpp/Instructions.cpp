@@ -51,11 +51,6 @@ void Instructions::handleEvent(sf::Event event)
 {
 }
 
-//std::shared_ptr<GameState> Instructions::isStateChanged()
-//{
-//    return std::shared_ptr<GameState>();
-//}
-
 std::shared_ptr<GameState> Instructions::isStateChanged(sf::Event event)
 {
     return std::shared_ptr<GameState>();

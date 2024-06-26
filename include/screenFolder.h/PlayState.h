@@ -17,10 +17,11 @@ public:
     void handleEvent(sf::Event event);
     //std::shared_ptr <GameState> isStateChanged() override;
     std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
-private:
 
+private:
+    
     //std::shared_ptr<PauseButton> m_pauseButton;
-   
+    
     sf::View view;
     Board m_board;
     
