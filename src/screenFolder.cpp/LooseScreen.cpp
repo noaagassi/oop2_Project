@@ -24,9 +24,17 @@ void LooseScreen::draw()
 {
 }
 
-void LooseScreen::update()
+void LooseScreen::update(float deltatime)
 {
 }
+void LooseScreen::handleEvent(sf::Event event)
+{
+}
+//
+//std::shared_ptr<GameState> LooseScreen::isStateChanged()
+//{
+//    return std::shared_ptr<GameState>();
+//}
 
 std::shared_ptr<GameState> LooseScreen::isStateChanged(sf::Event event)
 {

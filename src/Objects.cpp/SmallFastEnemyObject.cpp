@@ -14,6 +14,7 @@ void SmallFastEnemyObject::move(float deltaTime)
 {
 }
 
+
 void SmallFastEnemyObject::handleInput()
 {
 }

@@ -11,11 +11,11 @@ class PlayerObject : public MovingObject
 public:
     //c-tor
     PlayerObject(const sf::Vector2f& pos);
-    sf::Vector2u getSpriteSheetDivision();
-    //void update(sf::Time delta);
+
+    void update(float deltaTime, sf::RenderWindow* window);
     void draw(sf::RenderWindow* window);
-    //void direction(sf::Keyboard::Key key);
-    void move(float deltaTime) override;
+    void move(float deltaTime);
+
 
 private:
     //Animation m_animation;
@@ -26,18 +26,20 @@ private:
 
     static bool m_registerit;
     //member of the texture of the player
+    int spriteIndex;
+    bool isMoving;
 
-    //FlashlightObject m_flashlight;
+    sf::Clock clock;
+    FlashlightObject m_flashlight;
 
     /*std::vector<sf::IntRect> defaultFrames;
     std::vector<sf::IntRect> leftFrames;
     std::vector<sf::IntRect> rightFrames;
     std::vector<sf::IntRect> downFrames;
     std::vector<sf::IntRect> upFrames;
-    std::vector<sf::IntRect>* currentFrames;*/
+    std::vector<sf::IntRect>* currentFrames;
 
-    //sf::IntRect getFrame(int row, int col);
-    //void handleInput(sf::Keyboard::Key key);
-   // void animate(float deltaTime);
-    
-};
+    sf::IntRect getFrame(int row, int col);
+    void handleInput();
+    void animate(float deltaTime);
+    };

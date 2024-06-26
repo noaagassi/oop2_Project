@@ -18,7 +18,7 @@ void PlayState::draw()
 {
     m_window->setTitle("Brawl stars");
     
-    m_window->setSize(sf::Vector2u(1000, 700));
+    m_window->setSize(sf::Vector2u(1300, 900));         //original- 1000,700
     m_window->clear();
     m_window->draw(m_backGroundSprite);
     m_board.draw(m_window);
@@ -26,21 +26,33 @@ void PlayState::draw()
     m_window->display();
 }
 
-void PlayState::update()
+void PlayState::update(float deltatime)
 {
-    sf::Event event;
+    m_board.update(deltatime,m_window);
+}
+
+void PlayState::handleEvent(sf::Event event)
+{
     while (m_window->pollEvent(event))
     {
         switch (event.type)
         {
-            case sf::Event::KeyPressed:
+        case sf::Event::KeyPressed:
             m_board.handleKeyPress(event.key.code);
-            break; 
+            break;
+
+        case sf::Event::MouseButtonPressed:         //for start shooting
+                m_board.handleMousePressed(event);
+                break;
         }
     }
 }
 
-std::shared_ptr<GameState> PlayState::isStateChanged(sf::Event event)
+//std::shared_ptr<GameState> PlayState::isStateChanged()
+//{
+//    return std::shared_ptr<GameState>();
+//}
+std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 {
     return std::shared_ptr<GameState>();
 }

@@ -14,6 +14,7 @@ void BigSlowEnemyObject::move(float deltaTime)
 {
 }
 
+
 void BigSlowEnemyObject::handleInput()
 {
 }
