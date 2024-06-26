@@ -11,7 +11,6 @@ Controller::Controller()
 {
 	m_menu->initMap(m_playState, StateOptions::PlayScrn);
 	m_menu->initMap(m_instructions, StateOptions::InstructionsScrn);
-
 	m_playState->initMap(m_menu, StateOptions::MenuScrn);
     m_playState->initMap(m_pause, StateOptions::PauseScrn);
 
@@ -23,27 +22,6 @@ Controller::Controller()
 	m_currentScreen = m_menu;
 }
 
-//void Controller::run() {
-//	sf::Clock clock;
-//	
-//
-//	while (m_window.isOpen())
-//	{
-//		float deltaTime = clock.restart().asSeconds();
-//
-//		m_currentScreen->draw();
-//		
-//
-//		std::shared_ptr <GameState> nextScreen = m_currentScreen->isStateChanged();
-//		if (nextScreen)
-//		{
-//			m_currentScreen = nextScreen;
-//		}
-//		m_currentScreen->update(deltaTime);
-//		m_window.clear();
-//		m_currentScreen->draw();
-//	}
-//}
 
 
 
@@ -68,10 +46,10 @@ void Controller::run() {
                 m_currentScreen = nextScreen;
             }
 
-            // העברת האירועים למצב הנוכחי רק אם המסך לא השתנה
-            if (!screenChanged) {
-                m_currentScreen->handleEvent(event);
-            }
+            //// העברת האירועים למצב הנוכחי רק אם המסך לא השתנה
+            //if (!screenChanged) {
+            //    m_currentScreen->handleEvent();
+            //}
             //// עדכון מצב נוכחי
             m_currentScreen->update(deltaTime);
 

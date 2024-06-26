@@ -19,8 +19,9 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 
 
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    :MovingObject(initPosition)
+    : MovingObject(initPosition)
 {
+    m_speed = PLAYER_MOVE_SPEED;
     setObjTexture(PLAYER_OBJ);
     setScale(1.0f, 1.0f);
 
@@ -39,22 +40,20 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
+
     handleInput();
     animate(deltaTime);
-    m_objectSprite.setPosition(m_position);
 
+    m_position += m_direction * m_speed * deltaTime;
+    m_objectSprite.setPosition(m_position);
     
-    sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
-    sf::Vector2f characterPosition = m_objectSprite.getPosition();
-    sf::Vector2f direction = sf::Vector2f(mousePosition) - characterPosition;
-    m_flashlight.update(characterPosition, direction);
+    updateFlashlight(window);
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow* window)
+void PlayerObject::draw(sf::RenderWindow* window) const
 {
-    window->draw(m_objectSprite);
-    //window->draw(m_flashlight.getShape());
+    BaseObject::draw(window); // ציור הספרייט של השחקן
     m_flashlight.draw(window);
 }
 
@@ -68,6 +67,7 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
 
 void PlayerObject::handleInput()
 {
+    sf::Event event;
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -94,6 +94,17 @@ void PlayerObject::handleInput()
         isMoving = true;
         
     }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
+
+
+    }
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
+        
+    }
+
+
+
+
 
     if (!isMoving) {
         currentFrames = &defaultFrames;
@@ -108,4 +119,14 @@ void PlayerObject::animate(float deltaTime) {
         m_objectSprite.setTextureRect((*currentFrames)[spriteIndex]);
         clock.restart();
     }
+}
+
+
+ 
+void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
+{
+    sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
+    sf::Vector2f direction = sf::Vector2f(mousePosition) - m_position;
+    m_flashlight.update(m_position, direction);
+
 }
