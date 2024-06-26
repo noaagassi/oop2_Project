@@ -17,7 +17,7 @@ public:
 private:
     //member of the texture of the player
     int spriteIndex;
-    bool isMoving;
+    bool isMoving,movingLeft,movingRight,movingUp,movingDown;
 
     float m_x, m_y;
     sf::Clock clock;

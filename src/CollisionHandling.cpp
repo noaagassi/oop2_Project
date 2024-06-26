@@ -20,6 +20,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         BushObject&  real_bush  = dynamic_cast<BushObject&>(bush);
 
+
         std::cout << "Player and Bush collision!\n";
     }
 
@@ -27,6 +28,7 @@ namespace // anonymous namespace — the standard way to make function "static"
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         WallObject& real_wall = dynamic_cast<WallObject&>(wall);
+
         std::cout << "player and wall collision!\n";
     }
 
@@ -40,8 +42,8 @@ namespace // anonymous namespace — the standard way to make function "static"
     {
         playerBush(player, bush);
     }
-    void WallPlayer(BaseObject& wall,
-        BaseObject& player)
+
+    void WallPlayer(BaseObject& wall, BaseObject& player)
     {
         playerWall(player, wall);
     }
