@@ -37,9 +37,13 @@ void PlayState::handleEvent(sf::Event event)
     {
         switch (event.type)
         {
-            case sf::Event::KeyPressed:
+        case sf::Event::KeyPressed:
             m_board.handleKeyPress(event.key.code);
-            break; 
+            break;
+
+        case sf::Event::MouseButtonPressed:         //for start shooting
+                m_board.handleMousePressed(event);
+                break;
         }
     }
 }

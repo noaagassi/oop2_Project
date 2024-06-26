@@ -19,9 +19,13 @@ public:
 	Board();
 	~Board();
 
+	void handleEvent(sf::Event event);
 	void update(float deltatime, sf::RenderWindow* window);
 	void draw(sf::RenderWindow*);
 	void checkCollisions();
+	
+	void handleMousePressed(sf::Event event);
+	void handleKeyPress(sf::Keyboard::Key key); 
 private:
 
 	//member for reading levels

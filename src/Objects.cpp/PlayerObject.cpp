@@ -76,7 +76,7 @@ void PlayerObject::handleInput()
         currentFrames = &leftFrames;
         isMoving = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      //right
         m_x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;

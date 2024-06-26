@@ -17,9 +17,7 @@ Board::~Board()
 {
 }
 
-void Board::handleKeyPress(sf::Keyboard::Key key)
-{
-}
+
 
 //----------------------------------------
 
@@ -193,12 +191,17 @@ void Board::readMap(std::string fileName)
 
 
 
+void Board::handleEvent(sf::Event event)
+{
+}
+
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
 	for (auto &currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
 	}
+	checkCollisions();
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -253,12 +256,11 @@ void Board::checkCollisions()
 	}
 }
 
-void Board::update(float deltaTime)
+void Board::handleMousePressed(sf::Event event)
 {
-	for (auto& obj : m_movingObjects)
-	{
-		//obj->update(deltaTime);
-
-	}
-	checkCollisions();
 }
+
+void Board::handleKeyPress(sf::Keyboard::Key key)
+{
+}
+
