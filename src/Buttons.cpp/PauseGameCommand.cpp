@@ -6,3 +6,4 @@ StateOptions PauseGameCommand::execute()
 	std::cout << "Pause button clicked!" << std::endl;
 	return PauseScrn;
 }
+ 

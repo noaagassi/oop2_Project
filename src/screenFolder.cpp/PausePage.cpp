@@ -52,13 +52,28 @@ void PausePage::update(float deltatime)
 
 void PausePage::handleEvent(sf::Event event)
 {
+
 }
 
-//std::shared_ptr<GameState> PausePage::isStateChanged()
-//{
-//    return std::shared_ptr<GameState>();
-//}
 std::shared_ptr<GameState> PausePage::isStateChanged(sf:: Event event)
 {
-    return std::shared_ptr<GameState>();
+    if (event.type == sf::Event::Closed) {
+        m_window->close();
+    }
+    if (event.type == sf::Event::MouseButtonReleased) {
+        if (event.mouseButton.button == sf::Mouse::Left) {
+            for (auto& button : m_buttons) {
+                if (button->isMouseOver(m_window)) {
+                    StateOptions state = button->click();
+                    if (state == StateOptions::Exit)
+                    {
+                        m_window->close();
+                    }
+                    return m_states[state];
+                }
+            }
+        }
+    }
+
+    return nullptr;
 }

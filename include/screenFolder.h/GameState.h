@@ -17,7 +17,7 @@ public:
 	virtual void handleEvent(sf::Event event) = 0;
 
 	
-	//virtual std::shared_ptr <GameState> isStateChanged()=0;
+	
 	virtual std::shared_ptr <GameState> isStateChanged(sf::Event event)=0;
 	void initMap(std::shared_ptr<GameState> state_ptr, StateOptions state_name);
 

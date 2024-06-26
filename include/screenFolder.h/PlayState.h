@@ -1,8 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
-//#include "PauseButton.h"
 #include "screenFolder.h/GameState.h"
+#include "Buttons.h/Button.h"
+
 #include "Board.h"
 
 
@@ -15,12 +16,11 @@ public:
     void draw() override;
     void update(float deltatime) override;
     void handleEvent(sf::Event event);
-    //std::shared_ptr <GameState> isStateChanged() override;
     std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
 
 private:
     
-    //std::shared_ptr<PauseButton> m_pauseButton;
+    std::vector<std::unique_ptr<Button>> m_buttons; // [pause]
     
     sf::View view;
     Board m_board;

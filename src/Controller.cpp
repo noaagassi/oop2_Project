@@ -6,13 +6,19 @@ Controller::Controller()
 	sf::Style::Close | sf::Style::Titlebar),
 	m_menu(std::make_shared<Menu>(&m_window)),
 	m_playState(std::make_shared<PlayState>(&m_window)),
-	m_instructions(std::make_shared<Instructions>(&m_window))
+	m_instructions(std::make_shared<Instructions>(&m_window)),
+    m_pause(std::make_shared<PausePage>(&m_window))
 {
 	m_menu->initMap(m_playState, StateOptions::PlayScrn);
 	m_menu->initMap(m_instructions, StateOptions::InstructionsScrn);
 
 	m_playState->initMap(m_menu, StateOptions::MenuScrn);
+    m_playState->initMap(m_pause, StateOptions::PauseScrn);
 
+
+    m_pause->initMap(m_playState, StateOptions::PlayScrn);
+    m_pause->initMap(m_instructions, StateOptions::InstructionsScrn);
+   
 
 	m_currentScreen = m_menu;
 }
