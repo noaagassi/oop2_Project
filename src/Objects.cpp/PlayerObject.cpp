@@ -121,12 +121,12 @@ void PlayerObject::animate(float deltaTime) {
     }
 }
 
+
  
 void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
 {
     sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
-    sf::Vector2f characterPosition = m_objectSprite.getPosition();
-    sf::Vector2f direction = sf::Vector2f(mousePosition) - characterPosition;
-    m_flashlight.update(characterPosition, direction);
+    sf::Vector2f direction = sf::Vector2f(mousePosition) - m_position;
+    m_flashlight.update(m_position, direction);
 
 }
