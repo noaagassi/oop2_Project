@@ -17,7 +17,7 @@ public:
 private:
     //member of the texture of the player
     int spriteIndex;
-    bool isMoving,movingLeft,movingRight,movingUp,movingDown;
+    bool isMoving;
 
     sf::Clock clock;
     FlashlightObject m_flashlight;

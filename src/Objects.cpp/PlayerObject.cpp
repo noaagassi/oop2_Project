@@ -74,25 +74,25 @@ void PlayerObject::handleInput()
         m_position.x -= PLAYER_MOVE_SPEED;
         currentFrames = &leftFrames;
         isMoving = true;
-        //goLeft();
+        
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      //right
         m_position.x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
-        movingRight = true;
+       
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         m_position.y -= PLAYER_MOVE_SPEED;
         currentFrames = &upFrames;
         isMoving = true;
-        movingUp = true;
+        
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         m_position.y += PLAYER_MOVE_SPEED;
         currentFrames = &downFrames;
         isMoving = true;
-        movingDown = true;
+        
     }
 
     if (!isMoving) {

@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "screenFolder.h/GameState.h"
+#include "screenFolder.h/GameState.h"  
 #include "Buttons.h/Button.h"
 
 #include "Board.h"
