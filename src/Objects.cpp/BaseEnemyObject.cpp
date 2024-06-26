@@ -11,3 +11,8 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition)
 BaseEnemyObject::BaseEnemyObject()
 {
 }
+
+void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
+{
+
+}

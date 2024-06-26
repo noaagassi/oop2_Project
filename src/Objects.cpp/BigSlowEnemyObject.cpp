@@ -10,6 +10,10 @@ BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
 {
 }
 
+void BigSlowEnemyObject::move(float deltaTime)
+{
+}
+
 
 void BigSlowEnemyObject::handleInput()
 {

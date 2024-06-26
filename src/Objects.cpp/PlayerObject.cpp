@@ -1,4 +1,6 @@
+#pragma once
 #include "Objects.h/PlayerObject.h"
+#include <SFML/Graphics.hpp>
 
 //------------------------------------------------
 //constant ans enum
@@ -6,7 +8,7 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED = 0.1f;
+const float PLAYER_MOVE_SPEED =1.9f;
 //------------------------------------------------
 
 
@@ -31,29 +33,28 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
-    m_x = 100.f;
-    m_y = 100.f;
+    
 }
 //------------------------------------------------
 
-void PlayerObject::update(float deltaTime, sf::RenderWindow& window)
+void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
     handleInput();
     animate(deltaTime);
-    m_objectSprite.setPosition(m_x, m_y);
+    m_objectSprite.setPosition(m_position);
 
     
-    sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
+    sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
     sf::Vector2f characterPosition = m_objectSprite.getPosition();
     sf::Vector2f direction = sf::Vector2f(mousePosition) - characterPosition;
     m_flashlight.update(characterPosition, direction);
 }
 //------------------------------------------------
 
-void PlayerObject::draw(sf::RenderWindow& window)
+void PlayerObject::draw(sf::RenderWindow* window)
 {
-    window.draw(m_objectSprite);
-
+    window->draw(m_objectSprite);
+    //window->draw(m_flashlight.getShape());
     m_flashlight.draw(window);
 }
 
@@ -69,26 +70,26 @@ void PlayerObject::handleInput()
 {
     isMoving = false;
 
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-        m_x -= PLAYER_MOVE_SPEED;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
+        m_position.x -= PLAYER_MOVE_SPEED;
         currentFrames = &leftFrames;
         isMoving = true;
-        movingLeft = true;
+        //goLeft();
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-        m_x += PLAYER_MOVE_SPEED;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      //right
+        m_position.x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
         movingRight = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-        m_y -= PLAYER_MOVE_SPEED;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+        m_position.y -= PLAYER_MOVE_SPEED;
         currentFrames = &upFrames;
         isMoving = true;
         movingUp = true;
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-        m_y += PLAYER_MOVE_SPEED;
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+        m_position.y += PLAYER_MOVE_SPEED;
         currentFrames = &downFrames;
         isMoving = true;
         movingDown = true;
