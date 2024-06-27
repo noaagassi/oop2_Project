@@ -8,8 +8,8 @@ bool PortalObject::m_registerit = FactoryObject::registerit(PORTAL_OBJ,
 PortalObject::PortalObject(const sf::Vector2f& initPosition)
     :StaticObject(initPosition) , m_ptr2portals(nullptr)
 {
+    setTheScale(PORTAL_OBJ);
     setObjTexture(PORTAL_OBJ);
-    setScale(0.05f, 0.05f);
 }
 
 PortalObject::PortalObject()

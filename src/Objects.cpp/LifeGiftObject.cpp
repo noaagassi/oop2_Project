@@ -8,6 +8,7 @@ bool LifeGiftObject::m_registerit = FactoryObject::registerit(LIFE_GIFT_OBJ,
 LifeGiftObject::LifeGiftObject(const sf::Vector2f& initPosition)
     :BaseGiftObject(initPosition)
 {
+    setTheScale(LIFE_GIFT_OBJ);
     setObjTexture(LIFE_GIFT_OBJ);
 }
 

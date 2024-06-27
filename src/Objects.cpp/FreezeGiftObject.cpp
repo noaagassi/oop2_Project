@@ -8,6 +8,7 @@ bool FreezeGiftObject::m_registerit = FactoryObject::registerit(FREEZE_GIFT_OBJ,
 FreezeGiftObject::FreezeGiftObject(const sf::Vector2f& initPosition)
     :BaseGiftObject(initPosition)
 {
+    setTheScale(FREEZE_GIFT_OBJ);
     setObjTexture(FREEZE_GIFT_OBJ);
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include "Objects.h/MovingObject.h"
 #include "FactoryObject.h"
 #include "FlashlightObject.h"
@@ -14,6 +15,9 @@ public:
     void draw(sf::RenderWindow* window) const override;
     void handleInput();
     void updateFlashlight(sf::RenderWindow* window);
+    
+
+
 
 
 private:

@@ -38,13 +38,13 @@ std::string Board::updateNameLevel(int number)
 void Board::readMap(std::string fileName)
 {
 	auto image = sf::Image();
-	float location_y = 700.f;
+	float location_y = PLAY_WINDOW_HEIGHT;
 	float location_x = 0.f;
 	sf::Color pixelColor;
 	image.loadFromFile(fileName);
 	for (int x = 0; x<int(image.getSize().x); x++)
 	{
-		location_y = 700.f;
+		location_y = PLAY_WINDOW_HEIGHT;
 		for (int y = int(image.getSize().y) - 1; y >= 0; y--)
 		{
 	
@@ -127,9 +127,9 @@ void Board::readMap(std::string fileName)
 				auto poison = FactoryObject::createStatic(POISON_OBJ, position);
 				m_staticObjects.push_back(std::move(poison));
 			}
-			location_y -= 28.f;
+			location_y -= PLAY_WINDOW_HEIGHT/MAP_HEIGHT;
 		}
-		location_x += 40.f;
+		location_x += PLAY_WINDOW_WIDTH/MAP_WIDTH;
 	}
 }
 
@@ -200,6 +200,32 @@ void Board::checkCollisions()
 					std::cerr << e.what() << std::endl;
 				}
 			}
+		}
+	}
+}
+
+sf::FloatRect Board::getPlayerBounds() const
+{
+	for (const auto& obj : m_movingObjects)
+	{
+		PlayerObject* player = dynamic_cast<PlayerObject*>(obj.get());
+
+		if (player)
+		{
+			return player->getSpriteBounds();
+		}
+	}
+}
+
+sf::Vector2f Board::getPlayrLocation() const
+{
+	for (const auto& obj : m_movingObjects)
+	{
+		PlayerObject* player = dynamic_cast<PlayerObject*>(obj.get());
+
+		if (player)
+		{
+			return player->getSpriteLocation();
 		}
 	}
 }

@@ -4,10 +4,11 @@
 #include "Buttons.h/Button.h"
 
 PlayState::PlayState(sf::RenderWindow* window)
-    :GameState(window), view(sf::FloatRect(0, 0, 400, 300))
+    :GameState(window,PLAY_WINDOW_WIDTH,PLAY_WINDOW_HEIGHT)
 {
-
-   
+    
+    
+ //   m_backGroundSprite.setScale(textureSize)
     setObjTexture(PLAY_SCREEN_OBJ);
     setScale(PLAY_SCREEN_OBJ);
 
@@ -23,14 +24,21 @@ PlayState::~PlayState()
 {
 }
 
+sf::Vector2f PlayState::getPlayerLocation() const
+{
+    return m_board.getPlayrLocation();
+}
+
+sf::FloatRect PlayState:: getPlayerBounds() const
+{
+    return m_board.getPlayerBounds();
+}
 
 
 void PlayState::draw()
 {
     m_window->setTitle("Brawl stars");
-    
-    m_window->setSize(sf::Vector2u(1300, 900));         //original- 1000,700
-    m_window->clear();
+    m_window->setSize(m_windowSize);
     m_window->draw(m_backGroundSprite);
     m_board.draw(m_window);
     for (auto& button : m_buttons) {

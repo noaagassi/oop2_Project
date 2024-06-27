@@ -2,8 +2,9 @@
 #include "screenFolder.h/Menu.h"
 
 Controller::Controller()
-	:m_window(sf::VideoMode(800, 600), "Brawl Stars",
-     sf::Style::Close | sf::Style::Titlebar),
+	:m_view(sf::FloatRect(0,0,400,300)),
+    m_window(sf::VideoMode(800, 600), "Brawl Stars",
+	sf::Style::Close | sf::Style::Titlebar),
 	m_menu(std::make_shared<Menu>(&m_window)),
 	m_playState(std::make_shared<PlayState>(&m_window)),
 	m_instructions(std::make_shared<Instructions>(&m_window)),
@@ -28,7 +29,7 @@ Controller::Controller()
 
 void Controller::run() {
     sf::Clock clock;
-
+        
     while (m_window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
@@ -45,11 +46,43 @@ void Controller::run() {
             }
 
             m_currentScreen->update(deltaTime);
+/*
+            if (std::dynamic_pointer_cast<PlayState>(m_currentScreen)) {
 
+                m_view.setCenter(m_currentScreen.getPlayerLoction());
+            }*/
+            if (auto playState = std::dynamic_pointer_cast<PlayState>(m_currentScreen))
+            {
+                handleView(playState);
+            }
+
+            // ציור מצב נוכחי
             m_window.clear();
             m_currentScreen->draw();
             m_window.display();
         }
 
     }
+}
+
+
+
+void Controller::handleView(std::shared_ptr<PlayState> playState)
+{
+    m_view.setCenter(playState->getPlayerLocation());
+    m_view.setSize(VIEW_WIDTH, VIEW_HEIGHT);
+    m_window.setView(m_view);
+
+
+    sf::FloatRect playerBounds = m_playState->getPlayerBounds();
+    sf::FloatRect mapBounds;    
+    mapBounds.left = 0.0f;      
+    mapBounds.top = 0.0f;      
+    mapBounds.width = MAP_WIDTH; 
+    mapBounds.height = MAP_HEIGHT;
+
+    bool nearTop = playerBounds.top < mapBounds.top + mapBounds.height / 2;
+    bool nearBottom = playerBounds.top + playerBounds.height > mapBounds.top + mapBounds.height / 2;
+    bool nearLeft = playerBounds.left < mapBounds.left + mapBounds.width / 2;
+    bool nearRight = playerBounds.left + playerBounds.width > mapBounds.left + mapBounds.width / 2;
 }

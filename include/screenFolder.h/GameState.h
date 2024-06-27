@@ -7,7 +7,7 @@
 
 class GameState {
 public:
-	GameState(sf::RenderWindow* window);
+	GameState(sf::RenderWindow* window,unsigned int widh, unsigned int height);
 	void setScale(Object_ID name);
 	void setObjTexture(Object_ID name);
 
@@ -27,4 +27,5 @@ protected:
 
 	std::unordered_map<StateOptions, std::shared_ptr<GameState>> m_states;
 	sf::RenderWindow* m_window;
+	sf::Vector2u m_windowSize;
 };

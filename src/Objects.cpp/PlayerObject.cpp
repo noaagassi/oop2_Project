@@ -8,7 +8,7 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED =0.5f;
+const float PLAYER_MOVE_SPEED =1.5f;
 //------------------------------------------------
 
 
@@ -21,8 +21,9 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition)
 {
+    //m_speed = PLAYER_MOVE_SPEED;
     setObjTexture(PLAYER_OBJ);
-    setScale(1.0f, 1.0f);
+    setTheScale(1.0f, 1.0f);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
@@ -43,6 +44,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     handleInput();
     animate(deltaTime);
 
+    //m_position += m_direction * m_speed * deltaTime;
     m_objectSprite.setPosition(m_position);
     
     updateFlashlight(window);
@@ -65,6 +67,7 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
 
 void PlayerObject::handleInput()
 {
+
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -101,7 +104,7 @@ void PlayerObject::handleInput()
 
 
 
-
+  
 
     if (!isMoving) {
         currentFrames = &defaultFrames;
@@ -127,3 +130,4 @@ void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
     m_flashlight.update(m_position, direction);
 
 }
+

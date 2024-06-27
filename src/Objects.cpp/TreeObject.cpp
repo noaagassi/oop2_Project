@@ -9,7 +9,8 @@ TreeObject::TreeObject(const sf::Vector2f& initPosition)
     :StaticObject(initPosition)
 {
     setObjTexture(TREES_OBJ);
-    setScale(0.005f, 0.005f);
+    //setTheScale(0.005f, 0.005f);
+    setTheScale(TREES_OBJ);
 }
 
 TreeObject::TreeObject()

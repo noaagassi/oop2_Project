@@ -11,13 +11,13 @@
 #include <iostream>
 
 Instructions:: Instructions(sf::RenderWindow* window)
-    : GameState(window),
+    : GameState(window,1000,500),
     m_currentPage(Page::Page1), m_stateChanged(false), m_nextState(nullptr) 
 {
     loadTextures();///////////delete?
 
-    setObjTexture(INSTRUCTION_PAGE_1_OBJ);
     setScale(INSTRUCTION_PAGE_1_OBJ);
+    setObjTexture(INSTRUCTION_PAGE_1_OBJ);
 
     // instructions texture
     if (!m_font.loadFromFile("path/to/font.ttf")) {
@@ -61,6 +61,7 @@ std::shared_ptr<GameState> Instructions::isStateChanged(sf::Event event)
 void Instructions::draw()
 {
     m_window->setTitle("Instructions");
+    m_window->setSize(m_windowSize);
     m_window->clear();
     
 
