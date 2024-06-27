@@ -21,7 +21,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition)
 {
-    m_speed = PLAYER_MOVE_SPEED;
+    //m_speed = PLAYER_MOVE_SPEED;
     setObjTexture(PLAYER_OBJ);
     setScale(1.0f, 1.0f);
 
@@ -44,7 +44,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     handleInput();
     animate(deltaTime);
 
-    m_position += m_direction * m_speed * deltaTime;
+    //m_position += m_direction * m_speed * deltaTime;
     m_objectSprite.setPosition(m_position);
     
     updateFlashlight(window);
@@ -67,7 +67,7 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
 
 void PlayerObject::handleInput()
 {
-    sf::Event event;
+    //sf::Event event;
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
