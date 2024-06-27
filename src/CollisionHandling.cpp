@@ -99,10 +99,18 @@ namespace // anonymous namespace — the standard way to make function "static"
         PortalObject& real_portal = dynamic_cast<PortalObject&>(portal);
 
         std::cout << "Player and Portal collision!\n";
-
+        /*
         PortalObject& target_portal = real_portal.getRandomPortal();
+        std::cout << "tengo un  potal";
         sf::Vector2f target_position = target_portal.getSprite().getPosition();
         real_player.setPosition(target_position);
+
+        sf::FloatRect playerBounds = real_player.getSprite().getGlobalBounds();
+        sf::FloatRect portalBounds = real_portal.getSprite().getGlobalBounds();
+
+        stopAdvance(playerBounds, portalBounds, real_player);
+        std::cout << "cambie de lugar"; 
+        */
     }
 
     //...
@@ -118,6 +126,10 @@ namespace // anonymous namespace — the standard way to make function "static"
     void WallPlayer(BaseObject& wall, BaseObject& player)
     {
         playerWall(player, wall);
+    }
+    void portalPlayer(BaseObject& wall, BaseObject& player)
+    {
+        playerPortal(player, wall);
     }
     //...
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -137,6 +149,8 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         phm[Key(typeid(BushObject), typeid(PlayerObject))] = &bushPlayer;
         phm[Key(typeid(WallObject), typeid(PlayerObject))] = &WallPlayer;
+        phm[Key(typeid(PortalObject), typeid(PlayerObject))] = &portalPlayer;
+
        
         //...
         return phm;
