@@ -16,8 +16,8 @@ Menu::Menu(sf::RenderWindow* window)
     : GameState(window,800,600) 
        
 {
-    setScale(MENU_BACK_GROUND_OBJ);
     setObjTexture(MENU_BACK_GROUND_OBJ);
+    setScale(MENU_BACK_GROUND_OBJ);
 
     std::unique_ptr<CommandButton> startCmd = std::make_unique<StartGameCommand>();
     std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();

@@ -16,6 +16,7 @@ void GameState::setScale(Object_ID name)
     m_backGroundSprite.setScale(scaleX, scaleY);
 }
 
+
 void GameState::setObjTexture(Object_ID name)
 {
     sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(name);

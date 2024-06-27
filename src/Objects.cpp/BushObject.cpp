@@ -9,6 +9,7 @@ BushObject::BushObject(const sf::Vector2f& initPosition)
     :StaticObject(initPosition)
 {
     setObjTexture(BUSH_OBJ);
+    setTheScale(BUSH_OBJ);
 }
 
 BushObject::BushObject()

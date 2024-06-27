@@ -71,13 +71,13 @@ void Controller::run() {
 
 void Controller::handleView(std::shared_ptr<PlayState> playState)
 {
-    /*m_view.setCenter(playState->getPlayerLocation());
+    m_view.setCenter(playState->getPlayerLocation());
     m_view.setSize(VIEW_WIDTH, VIEW_HEIGHT);
     m_window.setView(m_view);
 
 
     sf::FloatRect playerBounds = m_playState->getPlayerBounds();
-    sf::FloatRect mapBounds;
+    sf::FloatRect mapBounds;    
     mapBounds.left = 0.0f;      
     mapBounds.top = 0.0f;      
     mapBounds.width = MAP_WIDTH; 
@@ -86,5 +86,5 @@ void Controller::handleView(std::shared_ptr<PlayState> playState)
     bool nearTop = playerBounds.top < mapBounds.top + mapBounds.height / 2;
     bool nearBottom = playerBounds.top + playerBounds.height > mapBounds.top + mapBounds.height / 2;
     bool nearLeft = playerBounds.left < mapBounds.left + mapBounds.width / 2;
-    bool nearRight = playerBounds.left + playerBounds.width > mapBounds.left + mapBounds.width / 2;*/
+    bool nearRight = playerBounds.left + playerBounds.width > mapBounds.left + mapBounds.width / 2;
 }

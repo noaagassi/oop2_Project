@@ -38,13 +38,13 @@ std::string Board::updateNameLevel(int number)
 void Board::readMap(std::string fileName)
 {
 	auto image = sf::Image();
-	float location_y = 700.f;
+	float location_y = PLAY_WINDOW_HEIGHT;
 	float location_x = 0.f;
 	sf::Color pixelColor;
 	image.loadFromFile(fileName);
 	for (int x = 0; x<int(image.getSize().x); x++)
 	{
-		location_y = 700.f;
+		location_y = PLAY_WINDOW_HEIGHT;
 		for (int y = int(image.getSize().y) - 1; y >= 0; y--)
 		{
 	
@@ -116,9 +116,9 @@ void Board::readMap(std::string fileName)
 				auto poison = FactoryObject::createStatic(POISON_OBJ, position);
 				m_staticObjects.push_back(std::move(poison));
 			}
-			location_y -= 28.f;
+			location_y -= PLAY_WINDOW_HEIGHT/MAP_HEIGHT;
 		}
-		location_x += 40.f;
+		location_x += PLAY_WINDOW_WIDTH/MAP_WIDTH;
 	}
 }
 

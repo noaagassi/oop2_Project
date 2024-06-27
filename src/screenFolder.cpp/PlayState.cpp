@@ -4,9 +4,10 @@ PlayState::PlayState(sf::RenderWindow* window)
     :GameState(window,PLAY_WINDOW_WIDTH,PLAY_WINDOW_HEIGHT)
 {
     
-       
-    setScale(PLAY_SCREEN_OBJ);
+    
+ //   m_backGroundSprite.setScale(textureSize)
     setObjTexture(PLAY_SCREEN_OBJ);
+    setScale(PLAY_SCREEN_OBJ);
 
 }
 

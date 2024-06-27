@@ -8,7 +8,7 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED =0.5f;
+const float PLAYER_MOVE_SPEED =1.5f;
 //------------------------------------------------
 
 
