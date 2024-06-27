@@ -8,7 +8,7 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED =1.9f;
+const float PLAYER_MOVE_SPEED =0.5f;
 //------------------------------------------------
 
 
@@ -44,7 +44,6 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     handleInput();
     animate(deltaTime);
 
-    //m_position += m_direction * m_speed * deltaTime;
     m_objectSprite.setPosition(m_position);
     
     updateFlashlight(window);
@@ -53,7 +52,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 
 void PlayerObject::draw(sf::RenderWindow* window) const
 {
-    BaseObject::draw(window); // ציור הספרייט של השחקן
+    BaseObject::draw(window); 
     m_flashlight.draw(window);
 }
 
@@ -67,7 +66,6 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
 
 void PlayerObject::handleInput()
 {
-    //sf::Event event;
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -76,7 +74,7 @@ void PlayerObject::handleInput()
         isMoving = true;
         
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      //right
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      
         m_position.x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
