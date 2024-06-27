@@ -4,6 +4,7 @@
 //#include "PauseButton.h"
 #include "screenFolder.h/GameState.h"
 #include "Board.h"
+#include "Utilities.h"
 
 
 
@@ -13,6 +14,8 @@ public:
     PlayState(sf::RenderWindow* window);
     ~PlayState();
 
+    sf::Vector2f getPlayerLocation();
+
     void draw() override;
     void update(float deltatime) override;
     //std::shared_ptr <GameState> isStateChanged() override;
@@ -20,9 +23,7 @@ public:
 
 private:
     
-    
-    
-    sf::View view;
+
     Board m_board;
     
 };

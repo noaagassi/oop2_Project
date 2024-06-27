@@ -76,42 +76,7 @@ int main()
         window.draw(mapSprite);         //���� ����
         myPlayer.draw(window);       //���� �����
         window.display();       //���� �� �����
-    }
-    */
-    //////////////////////////flashlight/////////////////////////////
-    
-     // Crear la ventana
-    /*sf::RenderWindow window(sf::VideoMode(800, 600), "Linterna en la Mano");
-    window.setFramerateLimit(60);
-
-    // Crear una instancia de PlayerObject
-    PlayerObject player(sf::Vector2f(400, 300));  // Posición inicial del jugador en el centro de la ventana
-
-    while (window.isOpen()) {
-        // Procesar eventos
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        // Actualizar la posición del jugador y la linterna
-        player.update(1.0f / 60.0f, window);  // Pasar el tiempo delta y la ventana
-
-        // Limpiar la ventana
-        window.clear();
-
-        // Dibujar el jugador y la linterna
-        player.draw(window);
-
-        // Mostrar la ventana
-        window.display();
-    }
-    return 0;
-    */
-    
-    ////////////////////////////////////////////////
-   
+    }*/
     Controller c;
     c.run();
    

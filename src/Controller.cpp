@@ -2,7 +2,8 @@
 #include "screenFolder.h/Menu.h"
 
 Controller::Controller()
-	:m_window(sf::VideoMode(800, 600), "Brawl Stars",
+	:m_view(sf::FloatRect(0,0,400,300)),
+    m_window(sf::VideoMode(800, 600), "Brawl Stars",
 	sf::Style::Close | sf::Style::Titlebar),
 	m_menu(std::make_shared<Menu>(&m_window)),
 	m_playState(std::make_shared<PlayState>(&m_window)),
@@ -26,7 +27,7 @@ void Controller::run() {
     while (m_window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
-        m_currentScreen->update(deltaTime);
+        //m_currentScreen->update(deltaTime);////////////////////////////////////////////////
         // ניהול אירועים
         sf::Event event;
         while (m_window.pollEvent(event)) {
@@ -47,6 +48,17 @@ void Controller::run() {
             //}
             //// עדכון מצב נוכחי
             m_currentScreen->update(deltaTime);
+/*
+            if (std::dynamic_pointer_cast<PlayState>(m_currentScreen)) {
+
+                m_view.setCenter(m_currentScreen.getPlayerLoction());
+            }*/
+            if (auto playState = std::dynamic_pointer_cast<PlayState>(m_currentScreen))
+            {
+                m_view.setCenter(playState->getPlayerLocation());
+                m_view.setSize(VIEW_WIDTH, VIEW_HEIGHT);
+                m_window.setView(m_view);
+            }
 
             // ציור מצב נוכחי
             m_window.clear();

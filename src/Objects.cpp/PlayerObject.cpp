@@ -130,3 +130,4 @@ void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
     m_flashlight.update(m_position, direction);
 
 }
+

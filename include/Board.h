@@ -23,6 +23,8 @@ public:
 	void update(float deltatime, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 	void checkCollisions();
+
+	sf::Vector2f getPlayrLocation();
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 

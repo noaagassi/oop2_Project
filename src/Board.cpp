@@ -191,6 +191,19 @@ void Board::checkCollisions()
 	}
 }
 
+sf::Vector2f Board::getPlayrLocation()
+{
+	for (const auto& obj : m_movingObjects)
+	{
+		PlayerObject* player = dynamic_cast<PlayerObject*>(obj.get());
+
+		if (player)
+		{
+			return player->getSpriteLocation();
+		}
+	}
+}
+
 void Board::handleMousePressed(sf::Event event)
 {
 }

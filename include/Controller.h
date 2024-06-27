@@ -5,6 +5,8 @@
 #include "screenFolder.h/Menu.h"
 #include "screenFolder.h/Instructions.h"
 #include "screenFolder.h/PlayState.h"
+#include "Utilities.h"
+
 //#include "screenFolder.h/PauseState.h"
 
 
@@ -21,6 +23,7 @@ private:
     std::shared_ptr<Menu> m_menu;
     std::shared_ptr<PlayState> m_playState;
     std::shared_ptr<Instructions> m_instructions;
+    sf::View m_view;
    // PauseState m_pauseState;
 
 
