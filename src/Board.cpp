@@ -72,10 +72,11 @@ void Board::readMap(std::string fileName)
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto portal = FactoryObject::createStatic(PORTAL_OBJ, position);
-				m_staticObjects.push_back(std::move(portal));
+				
 				
 
 				auto sharedPortal = std::shared_ptr<PortalObject>(dynamic_cast<PortalObject*>(portal.get()));
+				m_staticObjects.push_back(std::move(portal));
 				m_portals.push_back(sharedPortal);
 
 				// Configurar el puntero al vector de portales en PortalObject

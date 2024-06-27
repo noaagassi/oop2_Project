@@ -99,9 +99,11 @@ namespace // anonymous namespace — the standard way to make function "static"
         PortalObject& real_portal = dynamic_cast<PortalObject&>(portal);
 
         std::cout << "Player and Portal collision!\n";
-
+        
         PortalObject& target_portal = real_portal.getRandomPortal();
         sf::Vector2f target_position = target_portal.getSprite().getPosition();
+        sf::Vector2f offset(100.f, 0.f);
+        target_position += offset;
         real_player.setPosition(target_position);
     }
 

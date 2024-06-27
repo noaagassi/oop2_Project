@@ -27,14 +27,27 @@ PortalObject& PortalObject::getRandomPortal()
 {
     if (m_ptr2portals && !m_ptr2portals->empty())
     {
-        
-        size_t random_index = rand() % m_ptr2portals->size();
-
-        if ((*m_ptr2portals)[random_index].get() == this)
+        // Obtener un índice aleatorio dentro del rango válido
+        size_t current_index = 0;
+        for (size_t i = 0; i < m_ptr2portals->size(); ++i)
         {
-            random_index = (random_index + 1) % m_ptr2portals->size();
+            if ((*m_ptr2portals)[i].get() == this)
+            {
+                current_index = i;
+                break;
+            }
         }
+
+        size_t random_index = current_index;
+        do {
+            random_index = (random_index + 1) % m_ptr2portals->size();
+        } while (random_index == current_index);
 
         return dynamic_cast<PortalObject&>(*(*m_ptr2portals)[random_index]);
     }
+
+    // En caso de que m_ptr2portals no esté inicializado o esté vacío,
+    // deberías manejar esta situación según lo que sea apropiado para tu juego.
+    // Puedes lanzar una excepción, retornar un portal por defecto, etc.
+    throw std::logic_error("m_ptr2portals is not initialized or empty.");
 }
