@@ -26,6 +26,7 @@ void Controller::run() {
     while (m_window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
+        m_currentScreen->update(deltaTime);
         // ניהול אירועים
         sf::Event event;
         while (m_window.pollEvent(event)) {
