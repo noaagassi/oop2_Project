@@ -9,7 +9,6 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 #include "TextureHandler.h"
-//#include "FactoryObject.h"
 
 class BaseObject 
 {
@@ -21,7 +20,8 @@ public:
 	BaseObject(const sf::Vector2f& position) ;
 
 	void setObjTexture(Object_ID name);
-	sf::Vector2f getSpriteLocation()const;
+	sf::Vector2f getPosition()const;
+	void setPosition(sf::Vector2f);
 	virtual void draw(sf::RenderWindow* window) const;
 	void setScale(float scaleX, float scaleY);
 	const sf::Sprite& getSprite() const;

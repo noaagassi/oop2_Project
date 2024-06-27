@@ -21,7 +21,6 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition)
 {
-    //m_speed = PLAYER_MOVE_SPEED;
     setObjTexture(PLAYER_OBJ);
     setScale(1.0f, 1.0f);
 

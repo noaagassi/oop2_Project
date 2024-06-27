@@ -5,6 +5,7 @@
 #include "Objects.h/StaticObject.h"
 #include "Objects.h/MovingObject.h"
 #include "Objects.h/PlayerObject.h"
+#include "Objects.h/PortalObject.h"
 #include <vector>
 #include <unordered_map>
 #include <memory>
@@ -19,13 +20,15 @@ public:
 	Board();
 	~Board();
 
-	void handleInput();
+	//void handleInput();
 	void update(float deltatime, sf::RenderWindow* window);
 	void draw(sf::RenderWindow* window);
 	void checkCollisions();
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
+
+
 private:
 
 	//member for reading levels
@@ -40,9 +43,9 @@ private:
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 
+	std::vector<std::shared_ptr<PortalObject>> m_portals;
+
 	//function of the object
 	void readMap(std::string fileName);
 
-
-	//std::unordered_map <sf::Color, COLOR_OF_OBJECT> m_colorsCodes;
 };

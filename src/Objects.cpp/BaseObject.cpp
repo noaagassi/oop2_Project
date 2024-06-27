@@ -16,9 +16,14 @@ void BaseObject::setObjTexture(Object_ID name)
 
 //---------------------------------------------------
 
-sf::Vector2f BaseObject::getSpriteLocation() const 
+sf::Vector2f BaseObject::getPosition() const
 {
-	return m_objectSprite.getPosition();
+	return m_position;
+}
+
+void BaseObject::setPosition(sf::Vector2f pos)
+{
+	m_position = pos;
 }
 
 

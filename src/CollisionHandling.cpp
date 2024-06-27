@@ -17,7 +17,45 @@
 
 namespace // anonymous namespace — the standard way to make function "static"
 {
+    void stopAdvance(sf::FloatRect& subjectBounds, const sf::FloatRect& objectBounds, MovingObject& subject)
+    {
+        float overlapLeft = subjectBounds.left + subjectBounds.width - objectBounds.left;
+        float overlapRight = objectBounds.left + objectBounds.width - subjectBounds.left;
+        float overlapTop = subjectBounds.top + subjectBounds.height - objectBounds.top;
+        float overlapBottom = objectBounds.top + objectBounds.height - subjectBounds.top;
 
+        bool moveLeft = overlapLeft < overlapRight;
+        bool moveUp = overlapTop < overlapBottom;
+
+        float minOverlapX = moveLeft ? overlapLeft : overlapRight;
+        float minOverlapY = moveUp ? overlapTop : overlapBottom;
+
+        sf::Vector2f newPosition = subject.getSprite().getPosition();
+
+        if (minOverlapX < minOverlapY) {
+            newPosition.x = moveLeft ? objectBounds.left - subjectBounds.width : objectBounds.left + objectBounds.width;
+        }
+        else {
+            newPosition.y = moveUp ? objectBounds.top - subjectBounds.height : objectBounds.top + objectBounds.height;
+        }
+
+        subject.setPosition(newPosition);
+    }
+
+
+    PortalObject& getRandomPortal(const PortalObject& currentPortal, const std::vector<std::unique_ptr<StaticObject>>& portals)
+    {
+        std::srand(static_cast<unsigned int>(std::time(0))); 
+        PortalObject* randomPortal = nullptr;
+        do {
+            int randomIndex = std::rand() % portals.size();
+            randomPortal = dynamic_cast<PortalObject*>(portals[randomIndex].get());
+        } while (randomPortal == &currentPortal || randomPortal == nullptr);
+
+        return *randomPortal;
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////
     // primary collision-processing functions
     void playerBush (BaseObject& player, BaseObject& bush)
     {
@@ -35,8 +73,12 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         std::cout << "player and wall collision!\n";
 
-       
+        sf::FloatRect playerBounds = real_player.getSprite().getGlobalBounds();
+        sf::FloatRect wallBounds = real_wall.getSprite().getGlobalBounds();
+
+        stopAdvance(playerBounds, wallBounds, real_player);
     }
+    
     
     void playerTree(BaseObject& player, BaseObject& tree)
     {
@@ -44,31 +86,23 @@ namespace // anonymous namespace — the standard way to make function "static"
         TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
 
         std::cout << "Player and Tree collision!\n";
-        /*
-        if (real_player.getSpriteLocation().x < real_tree.getSpriteLocation().x) {
-            // El jugador está a la izquierda del árbol
-            real_player.set(treeX - playerWidth);
-        }
-        else if (playerX + playerWidth > treeX + treeWidth) {
-            // El jugador está a la derecha del árbol
-            real_player.setX(treeX + treeWidth);
-        }
-        else if (playerY < treeY) {
-            // El jugador está arriba del árbol
-            real_player.setY(treeY - playerHeight);
-        }
-        else if (playerY + playerHeight > treeY + treeHeight) {
-            // El jugador está abajo del árbol
-            real_player.setY(treeY + treeHeight);
-        }*/
+
+        sf::FloatRect playerBounds = real_player.getSprite().getGlobalBounds();
+        sf::FloatRect treeBounds = real_tree.getSprite().getGlobalBounds();
+
+        stopAdvance(playerBounds, treeBounds, real_player);
     }
-    
+
     void playerPortal(BaseObject& player, BaseObject& portal)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         PortalObject& real_portal = dynamic_cast<PortalObject&>(portal);
 
         std::cout << "Player and Portal collision!\n";
+
+        PortalObject& target_portal = real_portal.getRandomPortal();
+        sf::Vector2f target_position = target_portal.getSprite().getPosition();
+        real_player.setPosition(target_position);
     }
 
     //...
@@ -86,7 +120,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         playerWall(player, wall);
     }
     //...
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     using HitFunctionPtr = void (*)(BaseObject&, BaseObject&);
    
     using Key = std::pair<std::type_index, std::type_index>;
