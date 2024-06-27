@@ -3,12 +3,12 @@
 
 
 LooseScreen::LooseScreen(sf::RenderWindow* window)
-    : GameState(window)
+    : GameState(window,800,600)
 
 {
     
-    setObjTexture(LOOSE_SCREEN_OBJ);
     setScale(LOOSE_SCREEN_OBJ);
+    setObjTexture(LOOSE_SCREEN_OBJ);
 
 
     /*m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
@@ -22,6 +22,7 @@ LooseScreen::~LooseScreen()
 
 void LooseScreen::draw()
 {
+    m_window->setSize(m_windowSize);
 }
 
 void LooseScreen::update(float deltatime)

@@ -191,7 +191,20 @@ void Board::checkCollisions()
 	}
 }
 
-sf::Vector2f Board::getPlayrLocation()
+sf::FloatRect Board::getPlayerBounds() const
+{
+	for (const auto& obj : m_movingObjects)
+	{
+		PlayerObject* player = dynamic_cast<PlayerObject*>(obj.get());
+
+		if (player)
+		{
+			return player->getSpriteBounds();
+		}
+	}
+}
+
+sf::Vector2f Board::getPlayrLocation() const
 {
 	for (const auto& obj : m_movingObjects)
 	{

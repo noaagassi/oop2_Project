@@ -21,6 +21,11 @@ sf::Vector2f BaseObject::getSpriteLocation() const
 	return m_objectSprite.getPosition();
 }
 
+sf::FloatRect BaseObject::  getSpriteBounds() const
+{
+	return m_objectSprite.getGlobalBounds();
+}
+
 
 //-------------------------------------------------------
 void BaseObject::draw(sf::RenderWindow* window) const
@@ -30,9 +35,30 @@ void BaseObject::draw(sf::RenderWindow* window) const
 //-------------------------------------------------------
 
 //-------------------------------------------------------
-void BaseObject:: setScale(float scaleX, float scaleY)
+void BaseObject:: setTheScale(float scaleX, float scaleY)
 {
 	m_objectSprite.setScale(scaleX, scaleY);
+
+}
+void BaseObject::setTheScale(Object_ID name)
+{
+    ///*m_objectSprite.setScale(scaleX, scaleY);*/
+
+
+    sf::Vector2u theTextureSize = TextureHandler::getInstance().getObjTexture(name)->getSize();
+
+    //// גודלי החלון שלך
+    //float windowWidth = m_window->getSize().x;
+    //float windowHeight = m_window->getSize().y;
+
+    // חישוב ה-scale המתאים
+    float scaleX = PLAY_WINDOW_WIDTH / (MAP_WIDTH * theTextureSize.x);
+    float scaleY = PLAY_WINDOW_HEIGHT / (MAP_HEIGHT * theTextureSize.y);
+
+    // קביעת ה-scale לספרייט של הרקע
+	
+	m_objectSprite.setScale(scaleX, scaleY);
+
 }
 
 //-------------------------------------------------------

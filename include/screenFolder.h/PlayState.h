@@ -14,7 +14,8 @@ public:
     PlayState(sf::RenderWindow* window);
     ~PlayState();
 
-    sf::Vector2f getPlayerLocation();
+    sf::Vector2f getPlayerLocation() const;
+    sf::FloatRect getPlayerBounds() const;
 
     void draw() override;
     void update(float deltatime) override;

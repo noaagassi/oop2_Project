@@ -23,7 +23,7 @@ Controller::Controller()
 
 void Controller::run() {
     sf::Clock clock;
-
+        
     while (m_window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
@@ -55,9 +55,7 @@ void Controller::run() {
             }*/
             if (auto playState = std::dynamic_pointer_cast<PlayState>(m_currentScreen))
             {
-                m_view.setCenter(playState->getPlayerLocation());
-                m_view.setSize(VIEW_WIDTH, VIEW_HEIGHT);
-                m_window.setView(m_view);
+                handleView(playState);
             }
 
             // ציור מצב נוכחי
@@ -67,4 +65,26 @@ void Controller::run() {
         }
 
     }
+}
+
+
+
+void Controller::handleView(std::shared_ptr<PlayState> playState)
+{
+    /*m_view.setCenter(playState->getPlayerLocation());
+    m_view.setSize(VIEW_WIDTH, VIEW_HEIGHT);
+    m_window.setView(m_view);
+
+
+    sf::FloatRect playerBounds = m_playState->getPlayerBounds();
+    sf::FloatRect mapBounds;
+    mapBounds.left = 0.0f;      
+    mapBounds.top = 0.0f;      
+    mapBounds.width = MAP_WIDTH; 
+    mapBounds.height = MAP_HEIGHT;
+
+    bool nearTop = playerBounds.top < mapBounds.top + mapBounds.height / 2;
+    bool nearBottom = playerBounds.top + playerBounds.height > mapBounds.top + mapBounds.height / 2;
+    bool nearLeft = playerBounds.left < mapBounds.left + mapBounds.width / 2;
+    bool nearRight = playerBounds.left + playerBounds.width > mapBounds.left + mapBounds.width / 2;*/
 }

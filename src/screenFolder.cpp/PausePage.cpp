@@ -10,12 +10,12 @@
 
 
 PausePage::PausePage(sf::RenderWindow* window)
-    : GameState(window)
+    : GameState(window,800,600)
 
 {
 
-    setObjTexture(PAUSE_SCREEN_OBJ);
     setScale(PAUSE_SCREEN_OBJ);
+    setObjTexture(PAUSE_SCREEN_OBJ);
 
     std::unique_ptr<CommandButton> startCmd = std::make_unique<StartGameCommand>();
     std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();
@@ -37,6 +37,7 @@ void PausePage::draw()
 {
     // to do on top of the window, and save the game that was runing
     m_window->setTitle("Pause");
+    m_window->setSize(m_windowSize);
     m_window->clear();
     m_window->draw(m_backGroundSprite);
 

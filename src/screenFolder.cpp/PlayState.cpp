@@ -1,30 +1,34 @@
 #include "screenFolder.h/PlayState.h"
 
 PlayState::PlayState(sf::RenderWindow* window)
-    :GameState(window)
+    :GameState(window,PLAY_WINDOW_WIDTH,PLAY_WINDOW_HEIGHT)
 {
-
-   
-    setObjTexture(PLAY_SCREEN_OBJ);
+    
+       
     setScale(PLAY_SCREEN_OBJ);
+    setObjTexture(PLAY_SCREEN_OBJ);
+
 }
 
 PlayState::~PlayState()
 {
 }
 
-sf::Vector2f PlayState::getPlayerLocation()
+sf::Vector2f PlayState::getPlayerLocation() const
 {
     return m_board.getPlayrLocation();
 }
 
+sf::FloatRect PlayState:: getPlayerBounds() const
+{
+    return m_board.getPlayerBounds();
+}
 
 
 void PlayState::draw()
 {
     m_window->setTitle("Brawl stars");
-    
-    m_window->setSize(sf::Vector2u(WINDOW_WIDTH, WINDOW_HEIGHT));         //original- 1000,700
+    m_window->setSize(m_windowSize);
     m_window->draw(m_backGroundSprite);
     m_board.draw(m_window);
 }

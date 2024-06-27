@@ -13,11 +13,11 @@
 
 
 Menu::Menu(sf::RenderWindow* window)
-    : GameState(window) 
+    : GameState(window,800,600) 
        
 {
-    setObjTexture(MENU_BACK_GROUND_OBJ);
     setScale(MENU_BACK_GROUND_OBJ);
+    setObjTexture(MENU_BACK_GROUND_OBJ);
 
     std::unique_ptr<CommandButton> startCmd = std::make_unique<StartGameCommand>();
     std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();
@@ -98,7 +98,8 @@ void Menu::handleEvent(sf::Event event)
 
 void Menu::draw()
 {
-    m_window->setTitle("Menu");
+    m_window->setTitle("Menu");         
+    m_window->setSize(m_windowSize);
     m_window->clear();
     m_window->draw(m_backGroundSprite);
 

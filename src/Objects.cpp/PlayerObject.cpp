@@ -23,7 +23,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 {
     //m_speed = PLAYER_MOVE_SPEED;
     setObjTexture(PLAYER_OBJ);
-    setScale(1.0f, 1.0f);
+    setTheScale(1.0f, 1.0f);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };

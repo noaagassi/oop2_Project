@@ -9,7 +9,7 @@ WallObject::WallObject(const sf::Vector2f& initPosition)
     :StaticObject(initPosition)
 {
     setObjTexture(WALL_OBJ);
-    setScale(0.05f, 0.05f);
+    setTheScale(0.05f, 0.05f);
 
 }
 

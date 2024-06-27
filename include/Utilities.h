@@ -20,8 +20,8 @@ const int NUM_OF_TEXTURES = sizeof(NAME_OF_PNG_FILES) / sizeof(NAME_OF_PNG_FILES
 
 const sf::Vector2f textureSize(200.0f, 100.0f);
 
-const float WINDOW_HEIGHT = 1000;
-const float WINDOW_WIDTH = 1500;
+const unsigned int PLAY_WINDOW_HEIGHT = 850;
+const unsigned int PLAY_WINDOW_WIDTH = 1000;
 const float VIEW_HEIGHT = 400;
 const float VIEW_WIDTH = 600;
 const float MAP_HEIGHT = 60;
@@ -48,3 +48,6 @@ enum StateOptions {
 //    BLUE               //PORTAL
 //    
 //};
+
+
+

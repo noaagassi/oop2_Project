@@ -16,6 +16,8 @@ public:
     Controller();
     void run();
 
+    void handleView(std::shared_ptr<PlayState> playState);
+
 private:
     sf::RenderWindow m_window;
     std::shared_ptr <GameState> m_currentScreen;
