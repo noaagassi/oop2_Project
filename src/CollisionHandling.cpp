@@ -44,7 +44,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
 
         std::cout << "Player and Tree collision!\n";
-        /*
+        
         if (real_player.getSpriteLocation().x < real_tree.getSpriteLocation().x) {
             // El jugador está a la izquierda del árbol
             real_player.set(treeX - playerWidth);
@@ -60,7 +60,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         else if (playerY + playerHeight > treeY + treeHeight) {
             // El jugador está abajo del árbol
             real_player.setY(treeY + treeHeight);
-        }*/
+        }
     }
     
     void playerPortal(BaseObject& player, BaseObject& portal)

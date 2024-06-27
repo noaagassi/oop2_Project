@@ -14,18 +14,17 @@
 class BaseObject 
 {
 public:
-	void setObjTexture(Object_ID name);
 
-
+	//c-tor d-tor
+	BaseObject() {};
+	virtual ~BaseObject() = default;
 	BaseObject(const sf::Vector2f& position) ;
-	//void setObjTexture(Object_ID);
+
+	void setObjTexture(Object_ID name);
 	sf::Vector2f getSpriteLocation()const;
 	virtual void draw(sf::RenderWindow* window) const;
 	void setScale(float scaleX, float scaleY);
 	const sf::Sprite& getSprite() const;
-	//c-tor d-tor
-	BaseObject() {};
-	virtual ~BaseObject() = default;
 
 	bool isCollidingWith(const BaseObject& other) const;
 	
