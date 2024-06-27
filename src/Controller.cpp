@@ -32,7 +32,7 @@ void Controller::run() {
     while (m_window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
-
+        m_currentScreen->update(deltaTime);
         sf::Event event;
         while (m_window.pollEvent(event)) {
             if (event.type == sf::Event::Closed) {
