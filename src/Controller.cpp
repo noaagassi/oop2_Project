@@ -3,7 +3,7 @@
 
 Controller::Controller()
 	:m_window(sf::VideoMode(800, 600), "Brawl Stars",
-	sf::Style::Close | sf::Style::Titlebar),
+     sf::Style::Close | sf::Style::Titlebar),
 	m_menu(std::make_shared<Menu>(&m_window)),
 	m_playState(std::make_shared<PlayState>(&m_window)),
 	m_instructions(std::make_shared<Instructions>(&m_window)),

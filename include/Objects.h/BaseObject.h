@@ -24,9 +24,9 @@ public:
 	void setPosition(sf::Vector2f);
 	virtual void draw(sf::RenderWindow* window) const;
 	void setScale(float scaleX, float scaleY);
-	const sf::Sprite& getSprite() const;
+	sf::Sprite& getSprite() ;
 
-	bool isCollidingWith(const BaseObject& other) const;
+	bool isCollidingWith( BaseObject& other) ;
 	
 
 protected:

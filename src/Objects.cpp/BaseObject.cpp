@@ -41,12 +41,12 @@ void BaseObject:: setScale(float scaleX, float scaleY)
 }
 
 //-------------------------------------------------------
-const sf::Sprite& BaseObject::getSprite() const
+sf::Sprite& BaseObject::getSprite() 
 {
 	return m_objectSprite;
 }
 //--------------------------------------------------------
-bool BaseObject::isCollidingWith(const BaseObject& other) const
+bool BaseObject::isCollidingWith( BaseObject& other) 
 {
-	return getSprite().getGlobalBounds().intersects(other.getSprite().getGlobalBounds());
+	 return  getSprite().getGlobalBounds().intersects(other.getSprite().getGlobalBounds());
 }

@@ -64,6 +64,10 @@ namespace // anonymous namespace — the standard way to make function "static"
 
 
         std::cout << "Player and Bush collision!\n";
+
+        sf::Color bushColor = real_bush.getSprite().getColor();
+        bushColor.a = 128; 
+        real_bush.getSprite().setColor(bushColor);
     }
 
     void playerWall (BaseObject& player, BaseObject& wall)

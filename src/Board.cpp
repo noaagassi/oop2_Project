@@ -142,7 +142,9 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	{
 		currentObj->update(deltatime, window);
 	}
+
 	checkCollisions();
+
 }
 
 
