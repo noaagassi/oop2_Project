@@ -34,9 +34,7 @@ public:
 	void setTheScale(float scaleX, float scaleY);
 	void setTheScale(Object_ID name);
 	const sf::Sprite& getSprite() const;
-	//c-tor d-tor
-	BaseObject() {};
-	virtual ~BaseObject() = default;
+	
 
 	bool isCollidingWith( BaseObject& other) ;
 	

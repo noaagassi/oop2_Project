@@ -225,7 +225,7 @@ sf::Vector2f Board::getPlayrLocation() const
 
 		if (player)
 		{
-			return player->getSpriteLocation();
+			return player->getPosition();
 		}
 	}
 }

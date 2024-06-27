@@ -67,7 +67,7 @@ void BaseObject::setTheScale(Object_ID name)
 }
 
 //-------------------------------------------------------
-sf::Sprite& BaseObject::getSprite() 
+const sf::Sprite& BaseObject::getSprite() const
 {
 	return m_objectSprite;
 }
