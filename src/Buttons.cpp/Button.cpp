@@ -16,6 +16,7 @@ Button::Button()
 
 StateOptions Button::click()
 {
+	std::cout << "on click";
 	if (m_command) 
 	{
 		return m_command->execute();
