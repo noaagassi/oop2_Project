@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Objects.h/PlayerObject.h"
 #include <SFML/Graphics.hpp>
 
@@ -21,7 +21,6 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition)
 {
-    //m_speed = PLAYER_MOVE_SPEED;
     setObjTexture(PLAYER_OBJ);
     setTheScale(1.0f, 1.0f);
 
@@ -34,7 +33,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
-    
+
 }
 //------------------------------------------------
 
@@ -43,8 +42,6 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 
     handleInput();
     animate(deltaTime);
-
-    //m_position += m_direction * m_speed * deltaTime;
     m_objectSprite.setPosition(m_position);
     
     updateFlashlight(window);

@@ -1,17 +1,13 @@
 #include "Objects.h/PoisonObject.h"
 
-
-
-bool PoisonObject::m_registerit = FactoryObject::registerit(POISON_OBJ,
-    [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PoisonObject>(pos); });
-
 PoisonObject::PoisonObject(const sf::Vector2f& initPosition)
-    :StaticObject(initPosition)
+	:BaseObject(initPosition)
 {
-    setObjTexture(POISON_OBJ);
+	setObjTexture(POISON_OBJ);
+	setScale(0.04f, 0.04f);
 }
 
-PoisonObject::PoisonObject()
+void PoisonObject::draw(sf::RenderWindow* window)
 {
-    setObjTexture(POISON_OBJ);
+	window->draw(m_objectSprite);
 }

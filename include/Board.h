@@ -13,6 +13,7 @@
 #include <fstream>
 #include "Utilities.h"
 #include "Objects.h/FactoryObject.h"
+#include "Objects.h/CloudPoisonObject.h"
 
 class Board
 {
@@ -34,7 +35,7 @@ public:
 
 
 private:
-
+	
 	//member for reading levels
 	int m_levelNum;
 	std::ifstream m_file;
@@ -46,6 +47,7 @@ private:
 	//members for the object in the level
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
+	CloudPoisonObject m_cloud;
 
 	std::vector<std::shared_ptr<PortalObject>> m_portals;
 

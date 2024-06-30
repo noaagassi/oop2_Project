@@ -27,6 +27,8 @@ const float VIEW_WIDTH = 600;
 const float MAP_HEIGHT = 60;
 const float MAP_WIDTH = 60;
 
+const float WIDTH = 3000,
+            HEIGHT = 3000;
 
 
 

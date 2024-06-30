@@ -34,23 +34,28 @@ void Controller::run() {
         m_currentScreen->draw();
         m_currentScreen->update(deltaTime);
         sf::Event event;
-        while (m_window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) {
+        while (m_window.pollEvent(event)) 
+        {
+            if (event.type == sf::Event::Closed) 
+            {
                 m_window.close();
             }
+
+            // בדיקה אם יש שינוי מצב
             std::shared_ptr<GameState> nextScreen = m_currentScreen->isStateChanged(event);
             bool screenChanged = (nextScreen != nullptr);
-            if (screenChanged) {
+            if (screenChanged) 
+            {
                 m_currentScreen = nextScreen;
             }
-        }
-        
-        m_currentScreen->update(deltaTime);
 
-        m_window.clear();
-        m_currentScreen->draw();   
-        m_window.display();
-        
+            m_currentScreen->update(deltaTime);
+
+            // ציור מצב נוכחי
+            m_window.clear();
+            m_currentScreen->draw();
+            m_window.display();
+        }
 
     }
 }
