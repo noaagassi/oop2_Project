@@ -1,6 +1,7 @@
 #include "Board.h"
 #include "CollisionHandling.h"
 #include "Objects.h/BushObject.h"
+#include "Objects.h/BaseGiftObject.h"
 //----------------------------------------
 Board::Board()
 	:m_levelNum(1)
@@ -153,19 +154,35 @@ void Board::checkCollisions()
 	for (auto& moving : m_movingObjects)
 	{
 		
-		for (auto& staticObj : m_staticObjects)
+		for (auto staticObj = m_staticObjects.begin(); staticObj != m_staticObjects.end(); )
 		{
-			if (moving->isCollidingWith(*staticObj))
+			if (moving->isCollidingWith(**staticObj))
 			{
 				try
 				{
-					processCollision(*moving, *staticObj);
+					processCollision(*moving, **staticObj);
 				}
 				catch (const UnknownCollision& e)
 				{
 					std::cerr << e.what() << std::endl;
 				}
+
+				BaseGiftObject* gift = dynamic_cast<BaseGiftObject*>((*staticObj).get());
+
+				if (gift && gift->toDelete())
+				{
+					staticObj = m_staticObjects.erase(staticObj);
+				}
+				else
+				{
+					++staticObj;
+				}
 			}
+			else
+			{
+				++staticObj;
+			}
+			
 		}
 	}
 
