@@ -43,17 +43,7 @@ namespace // anonymous namespace — the standard way to make function "static"
     }
 
 
-    PortalObject& getRandomPortal(const PortalObject& currentPortal, const std::vector<std::unique_ptr<StaticObject>>& portals)
-    {
-        std::srand(static_cast<unsigned int>(std::time(0))); 
-        PortalObject* randomPortal = nullptr;
-        do {
-            int randomIndex = std::rand() % portals.size();
-            randomPortal = dynamic_cast<PortalObject*>(portals[randomIndex].get());
-        } while (randomPortal == &currentPortal || randomPortal == nullptr);
-
-        return *randomPortal;
-    }
+    
 
     ////////////////////////////////////////////////////////////////////////////////////
     // primary collision-processing functions
@@ -65,9 +55,8 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         std::cout << "Player and Bush collision!\n";
 
-        //sf::Color bushColor = real_bush.getSprite().getColor();
-        //bushColor.a = 128; 
-        //real_bush.getSprite().setColor(bushColor);
+        real_bush.makeTranslucent();
+        real_player.setInBush(true);
     }
 
     void playerWall (BaseObject& player, BaseObject& wall)
@@ -104,9 +93,9 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         std::cout << "Player and Portal collision!\n";
         
-        PortalObject& target_portal = real_portal.getRandomPortal();
-        sf::Vector2f target_position = target_portal.getSprite().getPosition();
-        sf::Vector2f offset(100.f, 0.f);
+        PortalObject* target_portal = real_portal.getRandomPortal();
+        sf::Vector2f target_position = target_portal->getSprite().getPosition();
+        sf::Vector2f offset(0.f, 40.f);
         target_position += offset;
         real_player.setPosition(target_position);
     }

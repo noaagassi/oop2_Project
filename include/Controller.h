@@ -7,7 +7,6 @@
 #include "screenFolder.h/PlayState.h"
 #include "Utilities.h"
 
-//#include "screenFolder.h/PauseState.h"
 #include "screenFolder.h/PausePage.h"
 
 
@@ -17,7 +16,6 @@ public:
     Controller();
     void run();
 
-    //void handleView(std::shared_ptr<PlayState> playState);
 
 private:
     sf::RenderWindow m_window;
@@ -27,10 +25,5 @@ private:
     std::shared_ptr<PlayState> m_playState;
     std::shared_ptr<Instructions> m_instructions;
     std::shared_ptr<PausePage> m_pause;
-
-    //sf::View m_view;
-    sf::View m_uiView;
-
-
 
 };

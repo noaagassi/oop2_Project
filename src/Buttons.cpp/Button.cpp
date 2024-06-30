@@ -16,7 +16,6 @@ Button::Button()
 
 StateOptions Button::click()
 {
-	std::cout << "on click";
 	if (m_command) 
 	{
 		return m_command->execute();
@@ -46,7 +45,6 @@ void Button::draw(sf::RenderWindow* window)
 
 bool Button::isMouseOver(sf::RenderWindow* window)
 {
-	std::cout << "checking..." << std::endl;
 	sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 	return m_sprite.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 

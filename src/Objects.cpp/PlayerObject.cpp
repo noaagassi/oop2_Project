@@ -73,19 +73,19 @@ void PlayerObject::handleInput()
         isMoving = true;
         
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      
         m_position.x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
        
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         m_position.y -= PLAYER_MOVE_SPEED;
         currentFrames = &upFrames;
         isMoving = true;
         
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         m_position.y += PLAYER_MOVE_SPEED;
         currentFrames = &downFrames;
         isMoving = true;
@@ -126,5 +126,15 @@ void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
     sf::Vector2f direction = sf::Vector2f(mousePosition) - m_position;
     m_flashlight.update(m_position, direction);
 
+}
+
+bool PlayerObject::isInBush()
+{
+    return m_inBush;
+}
+
+void PlayerObject::setInBush(bool inBush)
+{
+    m_inBush = inBush;
 }
 

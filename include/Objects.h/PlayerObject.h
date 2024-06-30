@@ -15,7 +15,8 @@ public:
     void draw(sf::RenderWindow* window) const override;
     void handleInput();
     void updateFlashlight(sf::RenderWindow* window);
-    
+    bool isInBush();
+    void setInBush(bool);
 
 
 
@@ -24,6 +25,7 @@ private:
     //member of the texture of the player
     int spriteIndex;
     bool isMoving;
+    bool m_inBush;
 
     sf::Clock clock;
     FlashlightObject m_flashlight;

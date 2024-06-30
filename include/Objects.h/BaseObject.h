@@ -1,7 +1,4 @@
-﻿//need to do:
-// add in the constractur of every onject a init to base constarctr
-
-
+﻿
 
 #pragma once
 #include <SFML/Graphics.hpp>
@@ -10,20 +7,17 @@
 #include <SFML/Window.hpp>
 #include "TextureHandler.h"
 #include "Utilities.h"
-//#include "FactoryObject.h"
 
 class BaseObject 
 {
 public:
 
-	//c-tor d-tor
 	BaseObject() {};
 	virtual ~BaseObject() = default;
 	void setObjTexture(Object_ID name);
 
 	BaseObject(const sf::Vector2f& position) ;
-	//void setObjTexture(Object_ID);
-	sf::Vector2f getSpriteLocation()const;
+	//sf::Vector2f getSpriteLocation()const;
 	sf::FloatRect getSpriteBounds() const;
 
 
@@ -34,7 +28,7 @@ public:
 	void setTheScale(float scaleX, float scaleY);
 	void setTheScale(Object_ID name);
 	const sf::Sprite& getSprite() const;
-	
+	void setSpriteColor(const sf::Color& color);
 
 	bool isCollidingWith( BaseObject& other) ;
 	
