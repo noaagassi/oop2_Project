@@ -13,7 +13,6 @@ public:
     ~PausePage();
     void draw() override;
     void update(float deltatime) override;
-    void handleEvent(sf::Event event);
     std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
 
 private:

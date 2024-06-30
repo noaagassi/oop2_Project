@@ -195,9 +195,6 @@ void Board::readMap(std::string fileName)
 
 
 
-void Board::handleEvent(sf::Event event)
-{
-}
 
 void Board::update(float deltatime, sf::RenderWindow* window)
 {

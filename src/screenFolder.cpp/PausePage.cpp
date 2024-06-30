@@ -51,10 +51,6 @@ void PausePage::update(float deltatime)
 {
 }
 
-void PausePage::handleEvent(sf::Event event)
-{
-
-}
 
 std::shared_ptr<GameState> PausePage::isStateChanged(sf:: Event event)
 {
