@@ -4,6 +4,7 @@
 #include "Objects.h/MovingObject.h"
 #include "FactoryObject.h"
 #include "FlashlightObject.h"
+#include "BaseWeaponObject.h"
 
 class PlayerObject : public MovingObject
 {
@@ -17,7 +18,7 @@ public:
     void updateFlashlight(sf::RenderWindow* window);
     bool isInBush();
     void setInBush(bool);
-
+    void shoot();
 
 
 
@@ -29,6 +30,7 @@ private:
 
     sf::Clock clock;
     FlashlightObject m_flashlight;
+    std::unique_ptr<BaseWeaponObject> currentWeapon;
 
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);

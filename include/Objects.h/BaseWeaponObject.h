@@ -7,6 +7,8 @@ public:
     BaseWeaponObject(const sf::Vector2f& initPosition);
     BaseWeaponObject();
 
-private:
-
+    virtual void shoot() = 0;
+    void setFireRate(float rate);
+protected:
+    float m_fireRate;
 };

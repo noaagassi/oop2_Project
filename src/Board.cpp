@@ -236,12 +236,6 @@ void Board::handleMousePressed(sf::Event event)
 
 void Board::handleKeyPress(sf::Keyboard::Key key)
 {
-	switch (key){
-	case sf::Keyboard::D:
-		
-		break;
-	default:
-		break;
-	}
 }
+
 

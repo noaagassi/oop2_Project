@@ -95,8 +95,9 @@ void PlayerObject::handleInput()
 
 
     }
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left)){
-        
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    {
+        shoot();
     }
 
 
@@ -136,5 +137,9 @@ bool PlayerObject::isInBush()
 void PlayerObject::setInBush(bool inBush)
 {
     m_inBush = inBush;
+}
+
+void PlayerObject::shoot()
+{
 }
 
