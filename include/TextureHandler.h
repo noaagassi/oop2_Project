@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS =31;
+const int NUMBER_OF_OBJECTS =32;
 
 enum Object_ID {
     CLOCK_OBJ,
@@ -39,7 +39,8 @@ enum Object_ID {
     WEAPON_GIFT_OBJ,
     PLAYER_OBJ,
     PLAY_SCREEN_OBJ,
-    SPREADING_LASER          //WITHOUT TEXTURE
+    SPREADING_LASER,
+    HEARTS_PLAYER_OBJ                   //WITHOUT TEXTURE
 };
 
 class TextureHandler
@@ -67,7 +68,8 @@ private:
         "regularLaserWeapon1.png","rocketWeapon2.png", "massiveLaserWeapon3.png" ,
         "ballWeapon.png",        "weaponSuper.png",    "weaponEnemy1.png",  
         "weaponEnemy2.png",       "freezeGift.png",    "lifeGift.png",      
-        "weaponGift.png",         "player.png",        "playBackGround.png" };
+        "weaponGift.png",         "player.png",        "playBackGround.png" ,
+        "heartsplayer.png" };
 
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];

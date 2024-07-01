@@ -14,7 +14,7 @@
 
 
 Menu::Menu(sf::RenderWindow* window)
-    : GameState(window,800,600) 
+    : GameState(window, PLAY_WINDOW_HEIGHT, PLAY_WINDOW_WIDTH)
        
 {
     setObjTexture(MENU_BACK_GROUND_OBJ);

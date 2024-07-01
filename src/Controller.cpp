@@ -2,7 +2,7 @@
 #include "screenFolder.h/Menu.h"
 
 Controller::Controller()
-	: m_window(sf::VideoMode(800, 600), "Brawl Stars",
+	: m_window(sf::VideoMode(PLAY_WINDOW_HEIGHT, PLAY_WINDOW_WIDTH), "Brawl Stars",
 	sf::Style::Close | sf::Style::Titlebar),
 	m_menu(std::make_shared<Menu>(&m_window)),
 	m_playState(std::make_shared<PlayState>(&m_window)),

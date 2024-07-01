@@ -42,4 +42,4 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/FactoryObject.h"				"Objects.cpp/FactoryObject.cpp" 
  "../include/Objects.h/FlashlightObject.h"			"Objects.cpp/FlashlightObject.cpp" 
  "../include/Objects.h/TreeObject.h"				"Objects.cpp/TreeObject.cpp" 
- "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" "../include/Objects.h/CloudPoisonObject.h" "Objects.cpp/CloudPoisonObject.cpp")
+ "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" "../include/Objects.h/CloudPoisonObject.h" "Objects.cpp/CloudPoisonObject.cpp" "../include/Objects.h/PlayerLives.h" "Objects.cpp/PlayerLives.cpp")

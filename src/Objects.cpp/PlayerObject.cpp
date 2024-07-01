@@ -33,17 +33,32 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
-
+    m_numberForHeart = 0;
+    m_lifeTexture.setSize(sf::Vector2f(65.0f, 20.0f));
+    m_lifeTexture.setFillColor(sf::Color::Yellow);
+    m_lifeTexture.setScale(1.0f, 0.2f);
+    m_lifeTexture.setPosition(initPosition.x, initPosition.y + 40);
+    sf::Vector2f pos4Live(initPosition.x, initPosition.y + 40);
+    //m_lives.setPosition(pos4Live);
 }
 //------------------------------------------------
 
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
-
+    m_numberForHeart++;
+    if (m_numberForHeart % 10 == 0 && m_numberForHeart != 100)
+    {
+        changeHeart(false);
+    }
+    if (m_numberForHeart == 100)
+    {
+        changeHeart(true);
+    }
+    if(m_numberForHeart)
     handleInput();
     animate(deltaTime);
     m_objectSprite.setPosition(m_position);
-    
+    m_lifeTexture.setPosition(m_position.x, m_position.y + 40);
     updateFlashlight(window);
 }
 //------------------------------------------------
@@ -52,9 +67,23 @@ void PlayerObject::draw(sf::RenderWindow* window) const
 {
     BaseObject::draw(window); 
     m_flashlight.draw(window);
+    window->draw(m_lifeTexture);
+    //m_lives.draw(window);
 }
 
 //------------------------------------------------
+
+void PlayerObject::changeHeart(bool updateLifes)
+{
+    if (updateLifes == LESS)
+    {
+        m_lifeTexture.setFillColor(sf::Color::Red);
+    }
+    else
+    {
+        m_lifeTexture.setFillColor(sf::Color::Blue);
+    }
+}
 
 //------------------------------------------------
 sf::IntRect PlayerObject::getFrame(int row, int col)
@@ -73,19 +102,19 @@ void PlayerObject::handleInput()
         isMoving = true;
         
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D)) {      
         m_position.x += PLAYER_MOVE_SPEED;
         currentFrames = &rightFrames;
         isMoving = true;
        
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)) {
         m_position.y -= PLAYER_MOVE_SPEED;
         currentFrames = &upFrames;
         isMoving = true;
         
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
+    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::S)) {
         m_position.y += PLAYER_MOVE_SPEED;
         currentFrames = &downFrames;
         isMoving = true;
@@ -125,6 +154,5 @@ void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
     sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
     sf::Vector2f direction = sf::Vector2f(mousePosition) - m_position;
     m_flashlight.update(m_position, direction);
-
 }
 
