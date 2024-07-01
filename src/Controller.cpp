@@ -17,7 +17,8 @@ Controller::Controller()
     m_pause->initMap(m_playState, StateOptions::PlayScrn);
     m_pause->initMap(m_instructions, StateOptions::InstructionsScrn);
     m_pause->initMap(m_menu, StateOptions::MenuScrn);
-   
+
+//    m_loose->initMap(m_menu, StateOptions::MenuScrn);
 
 	m_currentScreen = m_menu;
 }

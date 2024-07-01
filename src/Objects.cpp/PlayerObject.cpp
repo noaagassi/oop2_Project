@@ -19,7 +19,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 
 
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition)
+    : MovingObject(initPosition),m_lives(initPosition.x,initPosition.y+40)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(1.0f, 1.0f);
@@ -29,17 +29,15 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     rightFrames = { getFrame(2, 0), getFrame(2, 1), getFrame(2, 2), getFrame(2, 3) };
     downFrames = { getFrame(0, 0), getFrame(0, 1), getFrame(0, 2), getFrame(0, 3) };
     upFrames = { getFrame(3, 0), getFrame(3, 1), getFrame(3, 2), getFrame(3, 3) };
-
+    
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
-
-    m_numberForHeart = 0;
+    /*
     m_lifeTexture.setSize(sf::Vector2f(65.0f, 20.0f));
     m_lifeTexture.setFillColor(sf::Color::Yellow);
     m_lifeTexture.setScale(1.0f, 0.2f);
     m_lifeTexture.setPosition(initPosition.x, initPosition.y + 40);
-    sf::Vector2f pos4Live(initPosition.x, initPosition.y + 40);
-    m_lives.setPosition(pos4Live);
+    sf::Vector2f pos4Live(initPosition.x-20, initPosition.y + 60);*/
 }
 //------------------------------------------------
 
@@ -48,18 +46,15 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     m_numberForHeart++;
     if (m_numberForHeart % 10 == 0 && m_numberForHeart != 100)
     {
-        changeHeart(false);
+        m_lives.looseLive();
     }
-    if (m_numberForHeart == 100)
-    {
-        changeHeart(true);
-    }
-    if(m_numberForHeart)
     handleInput();
     animate(deltaTime);
     m_objectSprite.setPosition(m_position);
     m_lifeTexture.setPosition(m_position.x, m_position.y + 40);
     updateFlashlight(window);
+    sf::Vector2f pos4lives(m_position.x, m_position.y + 40);
+    m_lives.update(pos4lives);
 }
 //------------------------------------------------
 
@@ -67,8 +62,7 @@ void PlayerObject::draw(sf::RenderWindow* window) const
 {
     BaseObject::draw(window); 
     m_flashlight.draw(window);
-    window->draw(m_lifeTexture);
-    //m_lives.draw(window);
+    m_lives.draw(window);
 }
 
 //------------------------------------------------

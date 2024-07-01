@@ -2,12 +2,13 @@
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
 #include "screenFolder.h/Instructions.h"
+#include "screenFolder.h/Menu.h"
 #include "Utilities.h"
 #include "Buttons.h/Button.h"
 #include <SFML/Graphics.hpp>
 
 
-
+/*
 class LooseScreen : public GameState
 {
 public:
@@ -16,7 +17,6 @@ public:
     void draw() override;
     void update(float deltatime) override;
     void handleEvent(sf::Event event);
-//    std::shared_ptr <GameState> isStateChanged() override;
     std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
 
 private:
@@ -28,4 +28,4 @@ private:
 
 
   
-};
+};*/

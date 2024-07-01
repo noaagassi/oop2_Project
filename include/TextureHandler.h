@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS =32;
+const int NUMBER_OF_OBJECTS =33;
 
 enum Object_ID {
     CLOCK_OBJ,
@@ -66,10 +66,10 @@ private:
         "bush.png",               "portal.png",        "poison.png",        
         "enemy1.png",             "enemy2.png",        "trees.png",
         "regularLaserWeapon1.png","rocketWeapon2.png", "massiveLaserWeapon3.png" ,
-        "ballWeapon.png",        "weaponSuper.png",    "weaponEnemy1.png",  
+        "ballWeapon.png",         "weaponSuper.png",   "weaponEnemy1.png",  
         "weaponEnemy2.png",       "freezeGift.png",    "lifeGift.png",      
         "weaponGift.png",         "player.png",        "playBackGround.png" ,
-        "heartsplayer.png" };
+        "heartplayer.png" };
 
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];
