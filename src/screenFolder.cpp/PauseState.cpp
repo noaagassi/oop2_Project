@@ -5,7 +5,7 @@
 #include "Buttons.h/ResumeGameCommand.h"
 #include "Buttons.h/Button.h"
 
-#include "screenFolder.h/PausePage.h"
+#include "screenFolder.h/PauseState.h"
 #include <iostream>
 
 
@@ -14,15 +14,13 @@ PausePage::PausePage(sf::RenderWindow* window)
 
 {
 
-    setScale(PAUSE_SCREEN_OBJ);
     setObjTexture(PAUSE_SCREEN_OBJ);
+    setScale(PAUSE_SCREEN_OBJ);
 
-    std::unique_ptr<CommandButton> startCmd = std::make_unique<StartGameCommand>();
     std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();
     std::unique_ptr<CommandButton> exitCmd = std::make_unique<ExitCommand>();
     std::unique_ptr<CommandButton> resumeCmd = std::make_unique<ResumeGameCommand>();
 
-    m_buttons.push_back(std::make_unique<Button>(std::move(startCmd), NEW_GAME_BUTTON_OBJ, 300, 100));
     m_buttons.push_back(std::make_unique<Button>(std::move(instCmd), INSTRUCTION_BUTTON_OBJ, 300, 200));
     m_buttons.push_back(std::make_unique<Button>(std::move(exitCmd), EXIT_BUTTON_OBJ, 300, 300));
     m_buttons.push_back(std::make_unique<Button>(std::move(resumeCmd), RESUME_GAME_BUTTON_OBJ, 300, 100));
@@ -38,13 +36,13 @@ void PausePage::draw()
     // to do on top of the window, and save the game that was runing
     m_window->setTitle("Pause");
     m_window->setSize(m_windowSize);
-    m_window->clear();
+    //m_window->clear();
     m_window->draw(m_backGroundSprite);
 
     for (auto& button : m_buttons) {
         button->draw(m_window);
     }
-    m_window->display();
+    //m_window->display();
 }
 
 void PausePage::update(float deltatime)

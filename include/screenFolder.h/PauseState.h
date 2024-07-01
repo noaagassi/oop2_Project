@@ -1,7 +1,7 @@
 #pragma once
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
-#include "screenFolder.h/Instructions.h"
+#include "screenFolder.h/InstructionsState.h"
 #include "Utilities.h"
 #include "Buttons.h/Button.h"
 #include <SFML/Graphics.hpp>
@@ -17,7 +17,7 @@ public:
 
 private:
 
-    std::vector<std::unique_ptr<Button>> m_buttons; // [resume, restart, exit, instructions]
+    std::vector<std::unique_ptr<Button>> m_buttons; // [resume,  exit, instructions]
 
 
 

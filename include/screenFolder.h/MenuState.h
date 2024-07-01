@@ -9,7 +9,7 @@
 #include <vector>
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
-#include "screenFolder.h/Instructions.h"
+#include "screenFolder.h/InstructionsState.h"
 #include "Buttons.h/Button.h"
 #include "Utilities.h"
 

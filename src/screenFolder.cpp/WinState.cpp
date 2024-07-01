@@ -1,4 +1,4 @@
-#include "screenFolder.h/WinScreen.h"
+#include "screenFolder.h/WinState.h"
 #include <iostream>
 
 WinScreen::WinScreen(sf::RenderWindow* window)

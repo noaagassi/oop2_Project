@@ -6,7 +6,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "screenFolder.h/GameState.h"
-#include "screenFolder.h/Instructions.h"
+#include "screenFolder.h/InstructionsState.h"
+#include "Buttons.h/Button.h"
+
 
 class Instructions : public GameState
 {
@@ -26,25 +28,13 @@ private:
         Page2
     };
 
-    //void handleInput();
-    void loadTextures();
-
     Page m_currentPage;
 
-   
+    std::vector<std::unique_ptr<Button>> m_buttons; // [next page,  prious page, back to pause, back to menu]
 
-    sf::Texture m_nextButtonTexture;
-    sf::Sprite m_nextButtonSprite;
+    //****************************nned to handle the buttons***************************************************
+    //****************************nned to handle the buttons***************************************************
 
-    sf::Texture m_playButtonTexture;
-    sf::Sprite m_playButtonSprite;
 
-    sf::Texture m_backButtonTexture;
-    sf::Sprite m_backButtonSprite;
 
-    sf::Font m_font;
-    sf::Text m_instructionsText;
-
-    bool m_stateChanged;
-    GameState* m_nextState;
 };
