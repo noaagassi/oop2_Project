@@ -207,7 +207,7 @@ void Board::checkCollisions()
 }
 
 
-PlayerObject Board::getPlayer() const
+PlayerObject* Board::getPlayer() const
 {
 	for (const auto& obj : m_movingObjects)
 	{
@@ -215,19 +215,19 @@ PlayerObject Board::getPlayer() const
 
 		if (player)
 		{
-			return *player;
+			return player;
 		}
 	}
 }
 
 sf::FloatRect Board::getPlayerBounds() const
 {
-	return getPlayer().getSpriteBounds();
+	return getPlayer()->getSpriteBounds();
 }
 
 sf::Vector2f Board::getPlayrLocation() const
 {
-	return getPlayer().getPosition();
+	return getPlayer()->getPosition();
 }
 
 void Board::handleMousePressed(sf::Event event)

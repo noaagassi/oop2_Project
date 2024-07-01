@@ -8,42 +8,22 @@ FlashlightObject::FlashlightObject()
 
 void FlashlightObject::update(const sf::Vector2f& position, const sf::Vector2f& direction)
 {
-    
-    //// חישוב הזווית לפי הכיוון לעכבר
-    //float angle = atan2(direction.y - position.y, direction.x - position.x) * 180 / 3.14159265;
-    //// עדכון מיקום הנקודות של האור של הפנס
-    //m_flashlightCone.setPoint(0, position);
-    //m_flashlightCone.setPoint(1, position + sf::Vector2f(cos(angle * 3.14159265 / 180) * 150, sin(angle * 3.14159265 / 180) * 150));
-    //m_flashlightCone.setPoint(2, position + sf::Vector2f(cos((angle + 20) * 3.14159265 / 180) * 150, sin((angle + 20) * 3.14159265 / 180) * 150));
-    //
+   
+    // חישוב מרכז הספרייט
+    sf::Vector2f spriteCenter = position + sf::Vector2f(15, 28);//(PLAYER_WIDTH / 2.0f, PLAYER_HEIGHT / 2.0f);
 
+    // חישוב זווית הפנס
     float angle = atan2(direction.y, direction.x) * 180 / 3.14159265;
     float spreadAngle = 30.0f; // הזווית שתתווסף לכל צד (15 מעלות לכל צד)
-    
-    m_flashlightCone.setPoint(0, position);
-    m_flashlightCone.setPoint(1, position + sf::Vector2f(cos((angle-spreadAngle /2) * 3.14159265 / 180) * 150, sin((angle - spreadAngle / 2) * 3.14159265 / 180) * 150));
-    m_flashlightCone.setPoint(2, position + sf::Vector2f(cos((angle + spreadAngle / 2) * 3.14159265 / 180) * 150, sin((angle + spreadAngle / 2) * 3.14159265 / 180) * 150));
-    m_flashlightCone.setPoint(3, position);
+
+    // קביעת נקודות הפנס עם מרכז הספרייט כנקודה 0
+    m_flashlightCone.setPoint(0, spriteCenter);
+    m_flashlightCone.setPoint(1, spriteCenter + sf::Vector2f(cos((angle - spreadAngle / 2) * 3.14159265 / 180) * 150, sin((angle - spreadAngle / 2) * 3.14159265 / 180) * 100));
+    m_flashlightCone.setPoint(2, spriteCenter + sf::Vector2f(cos((angle + spreadAngle / 2) * 3.14159265 / 180) * 150, sin((angle + spreadAngle / 2) * 3.14159265 / 180) * 100));
+    m_flashlightCone.setPoint(3, spriteCenter);
+
 }
-//
-//void FlashlightObject::update(const sf::Vector2f& position, const sf::Vector2f& direction)
-//{
-//    float angle = atan2(direction.y, direction.x) * 180 / 3.14159265;
-//
-//    // מגדיר את הפנס עם 4 נקודות ליצירת אלומה רחבה יותר
-//    m_flashlightCone.setPointCount(4);
-//
-//    // נקודת ההתחלה היא מיקום השחקן
-//    m_flashlightCone.setPoint(0, position);
-//
-//    // מציאת כיוון מרוחק יותר מעבר לעכבר
-//    sf::Vector2f extendedDirection = direction * 5.0f; // מכפילים את הכיוון כדי להרחיק את הפנס
-//
-//    // הגדרת נקודות הפנס ליצירת אלומה רחבה יותר
-//    m_flashlightCone.setPoint(1, position + sf::Vector2f(cos((angle - 15) * 3.14159265 / 180) * 150, sin((angle - 15) * 3.14159265 / 180) * 150));
-//    m_flashlightCone.setPoint(2, position + extendedDirection);
-//    m_flashlightCone.setPoint(3, position + sf::Vector2f(cos((angle + 15) * 3.14159265 / 180) * 150, sin((angle + 15) * 3.14159265 / 180) * 150));
-//}
+
 
 
 sf::ConvexShape FlashlightObject::getShape()

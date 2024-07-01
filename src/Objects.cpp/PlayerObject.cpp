@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "Objects.h/PlayerObject.h"
 #include <SFML/Graphics.hpp>
+#include "Utilities.h"
 
 //------------------------------------------------
 //constant ans enum
@@ -8,7 +9,7 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED =1.5f;
+const float PLAYER_MOVE_SPEED =0.5f;
 //------------------------------------------------
 
 
@@ -22,7 +23,9 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition)
 {
     setObjTexture(PLAYER_OBJ);
-    setTheScale(1.0f, 1.0f);
+    setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
+    //sf::IntRect textureRect(0.5f,0.5f)
+    //setTheScale(PLAYER_OBJ);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
@@ -32,6 +35,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
+    
 
 
 }
