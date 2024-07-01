@@ -27,7 +27,7 @@ private:
     //memebrs for accessories
     sf::RectangleShape m_lifeTexture;
     FlashlightObject m_flashlight;
-    //PlayerLives m_lives;
+    PlayerLives m_lives;
     //function for the hearts
     void changeHeart(bool);
     int m_numberForHeart;

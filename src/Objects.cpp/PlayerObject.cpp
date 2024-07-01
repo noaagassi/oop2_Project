@@ -39,7 +39,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     m_lifeTexture.setScale(1.0f, 0.2f);
     m_lifeTexture.setPosition(initPosition.x, initPosition.y + 40);
     sf::Vector2f pos4Live(initPosition.x, initPosition.y + 40);
-    //m_lives.setPosition(pos4Live);
+    m_lives.setPosition(pos4Live);
 }
 //------------------------------------------------
 

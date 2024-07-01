@@ -1,50 +1,25 @@
 #include "Objects.h/PlayerLives.h"
 PlayerLives::PlayerLives()
-	:m_livesAMount(LIVEAMOUNT)
+	:m_livesAmount(LIVEAMOUNT)
 {
-	setTexture(HEARTS_PLAYER_OBJ);
-	setScale();
-}
-//--------------------------------
-void PlayerLives::setPosition(sf::Vector2f pos)
-{
-	m_position.x = pos.x;
-	m_position.y = pos.y;
-	m_sprite.setPosition(m_position);
-}
-//--------------------------------
-void PlayerLives::update()
-{
-	m_currentFrame = LIVEAMOUNT - m_livesAMount;
-	m_sprite.setTextureRect(sf::IntRect(0, m_currentFrame * (m_texture.getSize().y / LIVEAMOUNT),
-		m_texture.getSize().x, m_texture.getSize().y / LIVEAMOUNT));
-}
-//--------------------------------
-void PlayerLives::draw(sf::RenderWindow* window) const
-{
-	window->draw(m_sprite);
-}
-//--------------------------------
-void PlayerLives::setScale()
-{
-	float x = (float)(FRAMEWIDTH / m_texture.getSize().x);
-	float y = (float)(FRAMEHEIGHT / m_texture.getSize().y);
-
-	m_sprite.setScale(x, y);
-
-	update();
-	
-}
-//--------------------------------
-void PlayerLives::setTexture(Object_ID name)
-{
-	sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(name);
-	m_texture = (*texturePtr);
-	m_sprite.setTexture(*texturePtr);
+	setTextureAndSprite(HEARTS_PLAYER_OBJ);
 }
 //--------------------------------
 PlayerLives::~PlayerLives()
 {
+}
+//--------------------------------
+void PlayerLives::setPosition(sf::Vector2f pos)
+{
+	m_livesSprite.setPosition(pos);
+}
+//--------------------------------
+void PlayerLives::setTextureAndSprite(Object_ID name)
+{
+	sf::Texture* texturePtr = TextureHandler::getInstance().getObjTexture(name);
+	m_livesTexture = (*texturePtr);
+	m_livesSprite.setTexture(*texturePtr);
+	std::cout << "ok" << std::endl;
 }
 //--------------------------------
 
