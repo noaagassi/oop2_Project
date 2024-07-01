@@ -109,11 +109,6 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
             }
         }
     }
-    
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-    {
-        //shoot();
-    }
 
 
 
@@ -158,7 +153,7 @@ void PlayerObject::setInBush(bool inBush)
 
 void PlayerObject::shoot()
 {
-    sf::Vector2f start = m_flashlight.getShape().getPoint(1);
+    sf::Vector2f start = m_flashlight.getShape().getPoint(0);
     sf::Vector2f end = m_flashlight.getShape().getPoint(2);
 
 
