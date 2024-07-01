@@ -6,7 +6,7 @@ bool BulletObject::m_registerit = FactoryObject::registerit(BULLET_OBJ,
 
 
 BulletObject::BulletObject(const sf::Vector2f& position)
-    : MovingObject(position)
+    : MovingObject(position),m_toDelete(false)
 {
         m_shape.setRadius(5.f); 
         m_shape.setPosition(m_position);
@@ -22,10 +22,9 @@ void BulletObject::update(float deltaTime, sf::RenderWindow* window)
     m_position += m_direction * m_speed * deltaTime;
     m_shape.setPosition(m_position);
 
-    if (sqrt((m_position.x - m_target.x) * (m_position.x - m_target.x) +
-        (m_position.y - m_target.y) * (m_position.y - m_target.y)) < m_speed * deltaTime) 
+    if (m_position == m_target)
     {
-        m_position = m_target;
+        m_toDelete = true;
     }
 }
 
@@ -40,6 +39,11 @@ sf::FloatRect BulletObject::getBounds() const
     return m_shape.getGlobalBounds();
 }
 
+bool BulletObject::toDelete()
+{
+    return m_toDelete;
+}
+
 void BulletObject::setTarget(const sf::Vector2f& target)
 {
     m_target = target;
@@ -49,6 +53,7 @@ void BulletObject::setTarget(const sf::Vector2f& target)
     if (length != 0) {
         m_direction = direction / length;
     }
+    std::cout << "direccion "<<m_direction.x << " " << m_direction.y << std::endl;
 }
 
 

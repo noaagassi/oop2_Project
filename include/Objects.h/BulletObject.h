@@ -7,7 +7,7 @@ public:
     void update(float deltatime, sf::RenderWindow* window) override;
     void draw(sf::RenderWindow* window) const override;
     sf::FloatRect getBounds() const ;
-   
+    bool toDelete();
     void setTarget(const sf::Vector2f& target);
 
 private:
@@ -17,4 +17,5 @@ private:
     sf::Vector2f m_direction;
     float m_speed = 300.f;
     sf::CircleShape m_shape;
+    bool m_toDelete;
 };

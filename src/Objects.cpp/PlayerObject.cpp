@@ -154,13 +154,14 @@ void PlayerObject::setInBush(bool inBush)
 void PlayerObject::shoot()
 {
     sf::Vector2f start = m_flashlight.getShape().getPoint(0);
-    sf::Vector2f end = m_flashlight.getShape().getPoint(2);
+    sf::Vector2f vertex1 = m_flashlight.getShape().getPoint(1);
+    sf::Vector2f vertex2 = m_flashlight.getShape().getPoint(2);
 
-
+    std::cout << start.x<<" "<<start.y << std::endl;
     for (int i = 0; i < 5; ++i) {
         float t = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-        sf::Vector2f randomPoint = start + t * (end - start);
-
+        sf::Vector2f randomPoint = vertex1 + t * (vertex2 - vertex1);
+        std::cout << "randomPoint: " << randomPoint.x << " " << randomPoint.y << std::endl;
         auto bullet = std::make_unique<BulletObject>(start);
         bullet->setTarget(randomPoint);
         m_bullets.push_back(std::move(bullet));

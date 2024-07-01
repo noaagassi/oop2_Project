@@ -2,6 +2,7 @@
 #include "CollisionHandling.h"
 #include "Objects.h/BushObject.h"
 #include "Objects.h/BaseGiftObject.h"
+#include "Objects.h/BulletObject.h"
 //----------------------------------------
 Board::Board()
 	:m_levelNum(1)
@@ -154,16 +155,16 @@ void Board::draw(sf::RenderWindow* window)
 
 void Board::checkCollisions()
 {
-	for (auto& moving : m_movingObjects)
+	for (auto moving = m_movingObjects.begin(); moving != m_movingObjects.end();)
 	{
 		
 		for (auto staticObj = m_staticObjects.begin(); staticObj != m_staticObjects.end(); )
 		{
-			if (moving->isCollidingWith(**staticObj))
+			if ((*moving)->isCollidingWith(**staticObj))
 			{
 				try
 				{
-					processCollision(*moving, **staticObj);
+					processCollision(**moving, **staticObj);
 				}
 				catch (const UnknownCollision& e)
 				{
@@ -187,6 +188,18 @@ void Board::checkCollisions()
 			}
 			
 		}
+
+		BulletObject* bullet = dynamic_cast<BulletObject*>((*moving).get());
+
+		if (bullet && bullet->toDelete())
+		{
+			moving = m_movingObjects.erase(moving);
+		}
+		else
+		{
+			++moving;
+		}
+
 	}
 
 
