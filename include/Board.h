@@ -28,7 +28,7 @@ public:
 
 	sf::Vector2f getPlayrLocation() const;
 	sf::FloatRect getPlayerBounds() const;
-	PlayerObject getPlayer() const;
+	PlayerObject* getPlayer() const;
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 

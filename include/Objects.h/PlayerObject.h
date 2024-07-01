@@ -19,7 +19,7 @@ public:
     bool isInBush();
     void setInBush(bool);
     void shoot();
-
+    void changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon);
 
 
 private:
@@ -30,7 +30,7 @@ private:
 
     sf::Clock clock;
     FlashlightObject m_flashlight;
-    std::unique_ptr<BaseWeaponObject> currentWeapon;
+    std::unique_ptr<BaseWeaponObject> m_currentWeapon;
 
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);

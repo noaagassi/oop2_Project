@@ -207,27 +207,28 @@ void Board::checkCollisions()
 }
 
 
-PlayerObject Board::getPlayer() const
+PlayerObject* Board::getPlayer() const
 {
 	for (const auto& obj : m_movingObjects)
 	{
 		PlayerObject* player = dynamic_cast<PlayerObject*>(obj.get());
 
-		if (player)
+		if (player != nullptr)
 		{
-			return *player;
+			return player;
 		}
 	}
+	return nullptr;
 }
 
 sf::FloatRect Board::getPlayerBounds() const
 {
-	return getPlayer().getSpriteBounds();
+	return getPlayer()->getSpriteBounds();
 }
 
 sf::Vector2f Board::getPlayrLocation() const
 {
-	return getPlayer().getPosition();
+	return getPlayer()->getPosition();
 }
 
 void Board::handleMousePressed(sf::Event event)

@@ -45,6 +45,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     m_objectSprite.setPosition(m_position);
     
     updateFlashlight(window);
+    m_currentWeapon->update(deltaTime);
 }
 //------------------------------------------------
 
@@ -141,5 +142,10 @@ void PlayerObject::setInBush(bool inBush)
 
 void PlayerObject::shoot()
 {
+}
+
+void PlayerObject::changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon)
+{
+    m_currentWeapon = std::move(newWeapon);
 }
 
