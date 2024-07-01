@@ -15,6 +15,7 @@
 #include "Objects.h/FreezeGiftObject.h"
 #include"Objects.h/PoisonObject.h"
 #include"Objects.h/WeaponGiftObject.h"
+#include "Objects.h/BulletObject.h"
 
 
 
@@ -149,8 +150,21 @@ namespace // anonymous namespace — the standard way to make function "static"
        
 
     }
+    /*
+    void playerBullet(BaseObject& player, BaseObject& bullet)
+    {
+        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
 
-    
+        std::cout << "Player and Bullet collision!\n";
+
+    }
+
+    void bulletPlayer(BaseObject& bullet, BaseObject& player)
+    {
+        playerBullet(player, bullet);
+    }
+    */
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     using HitFunctionPtr = void (*)(BaseObject&, BaseObject&);
    
@@ -169,6 +183,8 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(FreezeGiftObject))] = &playerFreeze;
         phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
         phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
+        //phm[Key(typeid(PlayerObject), typeid(BulletObject))] = &playerBullet;
+        //phm[Key(typeid(BulletObject), typeid(PlayerObject))] = &bulletPlayer;
 
        
         //...

@@ -15,6 +15,6 @@ void BigSlowEnemyObject::move(float deltaTime)
 }
 
 
-void BigSlowEnemyObject::handleInput()
+void BigSlowEnemyObject::handleInput(sf::RenderWindow window)
 {
 }

@@ -1,6 +1,8 @@
 ﻿#pragma once
 #include "Objects.h/PlayerObject.h"
+#include "Objects.h/BulletObject.h"
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 //------------------------------------------------
 //constant ans enum
@@ -40,7 +42,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
 
-    handleInput();
+    handleInput(window);
     animate(deltaTime);
     m_objectSprite.setPosition(m_position);
     
@@ -63,7 +65,7 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
 
-void PlayerObject::handleInput()
+void PlayerObject::handleInput(sf::RenderWindow* window)
 {
 
     isMoving = false;
@@ -96,9 +98,21 @@ void PlayerObject::handleInput()
 
 
     }
+    sf::Event event;
+    while (window->pollEvent(event)) {
+        if (event.type == sf::Event::Closed)
+            window->close();
+
+        if (event.type == sf::Event::MouseButtonReleased) {
+            if (event.mouseButton.button == sf::Mouse::Left) {
+                shoot();
+            }
+        }
+    }
+    
     if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-        shoot();
+        //shoot();
     }
 
 
@@ -112,8 +126,10 @@ void PlayerObject::handleInput()
 
 
 
-void PlayerObject::animate(float deltaTime) {
-    if (clock.getElapsedTime().asSeconds() > 0.1f) {
+void PlayerObject::animate(float deltaTime) 
+{
+    if (clock.getElapsedTime().asSeconds() > 0.1f) 
+    {
         spriteIndex = (spriteIndex + 1) % currentFrames->size();
         m_objectSprite.setTextureRect((*currentFrames)[spriteIndex]);
         clock.restart();
@@ -142,10 +158,32 @@ void PlayerObject::setInBush(bool inBush)
 
 void PlayerObject::shoot()
 {
+    sf::Vector2f start = m_flashlight.getShape().getPoint(1);
+    sf::Vector2f end = m_flashlight.getShape().getPoint(2);
+
+
+    for (int i = 0; i < 5; ++i) {
+        float t = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+        sf::Vector2f randomPoint = start + t * (end - start);
+
+        auto bullet = std::make_unique<BulletObject>(start);
+        bullet->setTarget(randomPoint);
+        m_bullets.push_back(std::move(bullet));
+       
+    } 
 }
+
 
 void PlayerObject::changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon)
 {
     m_currentWeapon = std::move(newWeapon);
+}
+
+
+std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
+{
+    std::vector<std::unique_ptr<MovingObject>> bullets;
+    bullets.swap(m_bullets); 
+    return bullets;
 }
 

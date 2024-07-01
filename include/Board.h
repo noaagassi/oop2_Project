@@ -33,6 +33,7 @@ public:
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
 
+	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
 private:
 	

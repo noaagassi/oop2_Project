@@ -130,7 +130,10 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	for (auto &currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
+
 	}
+	auto playerBullets = getPlayer()->retrieveBullets();
+	addBullets(std::move(playerBullets));
 
 	checkCollisions();
 
@@ -237,6 +240,13 @@ void Board::handleMousePressed(sf::Event event)
 
 void Board::handleKeyPress(sf::Keyboard::Key key)
 {
+}
+
+void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
+{
+	for (auto& bullet : bullets) {
+		m_movingObjects.push_back(std::move(bullet));
+	}
 }
 
 
