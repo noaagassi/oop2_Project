@@ -21,6 +21,7 @@ public:
 	void draw(sf::RenderWindow*) const;
 	void update(sf::Vector2f);
 
+	void addLive();
 	void looseLive();
 	bool stillAlive();
 private:

@@ -21,7 +21,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 
 
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition),m_lives(initPosition.x,initPosition.y+40)
+    : MovingObject(initPosition),m_lives(initPosition.x,initPosition.y+40), m_eatLifeGift(false)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(1.0f, 1.0f);
@@ -42,10 +42,11 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
     m_numberForHeart++;
-    if (m_numberForHeart % 10 == 0 && m_numberForHeart != 100)
+    if (m_numberForHeart % 100 == 0)
     {
-        m_lives.looseLive();
+        //m_lives.looseLive();
     }
+    isAteLiveGift();
     handleInput(window);
     animate(deltaTime);
     m_objectSprite.setPosition(m_position);
@@ -77,7 +78,15 @@ void PlayerObject::changeHeart(bool updateLifes)
         m_lifeTexture.setFillColor(sf::Color::Blue);
     }
 }
-
+//------------------------------------------------
+void PlayerObject::isAteLiveGift()
+{
+    if (m_eatLifeGift)
+    {
+        m_lives.addLive();
+        m_eatLifeGift = false;
+    }
+}
 //------------------------------------------------
 sf::IntRect PlayerObject::getFrame(int row, int col)
 {
@@ -128,17 +137,12 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
             }
         }
     }
-
-
-
-  
-
     if (!isMoving) {
         currentFrames = &defaultFrames;
     }
 }
 
-
+//------------------------------------------------
 
 void PlayerObject::animate(float deltaTime) 
 {
@@ -150,7 +154,7 @@ void PlayerObject::animate(float deltaTime)
     }
 }
 
-
+//------------------------------------------------
  
 void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
 {
@@ -159,17 +163,17 @@ void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
     m_flashlight.update(m_position, direction);
 
 }
-
+//------------------------------------------------
 bool PlayerObject::isInBush()
 {
     return m_inBush;
 }
-
+//------------------------------------------------
 void PlayerObject::setInBush(bool inBush)
 {
     m_inBush = inBush;
 }
-
+//------------------------------------------------
 void PlayerObject::shoot()
 {
     sf::Vector2f start = m_flashlight.getShape().getPoint(0);
@@ -187,17 +191,22 @@ void PlayerObject::shoot()
     } 
 }
 
-
+//------------------------------------------------
 void PlayerObject::changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon)
 {
     m_currentWeapon = std::move(newWeapon);
 }
-
+//------------------------------------------------
 
 std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
 {
     std::vector<std::unique_ptr<MovingObject>> bullets;
     bullets.swap(m_bullets); 
     return bullets;
+}
+//------------------------------------------------
+void PlayerObject::ateLiveGift()
+{
+    m_eatLifeGift = true;
 }
 

@@ -28,9 +28,4 @@ private:
     std::shared_ptr<PausePage> m_pause;
 //    std::shared_ptr<LooseScreen> m_loose;
 
-    //sf::View m_view;
-    sf::View m_uiView;
-
-
-
 };

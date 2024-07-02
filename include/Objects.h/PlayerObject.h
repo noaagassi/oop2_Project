@@ -23,6 +23,9 @@ public:
     void changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
 
+
+    //
+    void ateLiveGift();
 private:
     //member of the texture of the player
     int spriteIndex;
@@ -41,6 +44,9 @@ private:
     //function for the hearts
     void changeHeart(bool);
     int m_numberForHeart;
+    void isAteLiveGift();
+    bool m_eatLifeGift;
+
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);
     static bool m_registerit;

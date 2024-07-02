@@ -23,13 +23,22 @@ void PlayerLives::update(sf::Vector2f newPosition)
 	setPosition(newPosition);
 }
 //---------------------------------
+void PlayerLives::addLive()
+{
+	m_lifesRectangle.setSize({ m_lifesRectangle.getSize().x + 15, m_lifesRectangle.getSize().y });
+
+	if (m_lifesRectangle.getSize().x > LIVES_RECTANGLE_SIZE.x)
+	{
+		m_lifesRectangle.setSize({ LIVES_RECTANGLE_SIZE.x, m_lifesRectangle.getSize().y });
+	}
+}
+//---------------------------------
 void PlayerLives::looseLive()
 {
 	if (m_lifesRectangle.getSize().x >= 3)
 	{
-		sf::Vector2f currSize = m_lifesRectangle.getSize();
-		currSize.x -= 3;
-		m_lifesRectangle.setSize(currSize);
+		m_lifesRectangle.setSize({ m_lifesRectangle.getSize().x - 3, m_lifesRectangle.getSize().y });
+
 	}
 	else
 	{
