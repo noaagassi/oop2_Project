@@ -187,7 +187,7 @@ void Board::checkCollisions()
 			}
 			else
 			{
-				if (auto player = dynamic_cast<PlayerObject*>(moving.get()))
+				if (auto player = dynamic_cast<PlayerObject*>((*moving).get()))
 				{
 					if (auto bush = dynamic_cast<BushObject*>((*staticObj).get()))
 					{
