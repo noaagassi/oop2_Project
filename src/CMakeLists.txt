@@ -4,6 +4,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
 "../include/Board.h"								"Board.cpp" 
 "../include/Utilities.h" 
 "../include/Controller.h"							"Controller.cpp" 
+"../include/SoundsHandler.h"						"SoundsHandler.cpp"
 
 #screens:
 "../include/screenFolder.h/MenuState.h"				"screenFolder.cpp/MenuState.cpp" 
@@ -43,4 +44,4 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/FlashlightObject.h"			"Objects.cpp/FlashlightObject.cpp" 
  "../include/Objects.h/TreeObject.h"				"Objects.cpp/TreeObject.cpp" 
  "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" 
- "../include/Objects.h/CloudPoisonObject.h"			"Objects.cpp/CloudPoisonObject.cpp")
+ "../include/Objects.h/CloudPoisonObject.h"			"Objects.cpp/CloudPoisonObject.cpp"  )
