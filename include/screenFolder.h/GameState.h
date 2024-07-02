@@ -3,6 +3,7 @@
 #include <unordered_map>
 #include "Utilities.h"
 #include "TextureHandler.h"
+#include "Buttons.h/Button.h"
 
 
 class GameState {
@@ -18,7 +19,7 @@ public:
 
 	
 	
-	virtual std::shared_ptr <GameState> isStateChanged(sf::Event event)=0;
+	std::shared_ptr <GameState> isStateChanged(sf::Event event);
 	void initMap(std::shared_ptr<GameState> state_ptr, StateOptions state_name);
 
 
@@ -28,4 +29,6 @@ protected:
 	std::unordered_map<StateOptions, std::shared_ptr<GameState>> m_states;
 	sf::RenderWindow* m_window;
 	sf::Vector2u m_windowSize;
+
+	std::vector<std::unique_ptr<Button>> m_buttons;
 };

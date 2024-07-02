@@ -36,7 +36,7 @@ Menu::~Menu()
 
 
 
-
+/*
 std::shared_ptr <GameState> Menu::isStateChanged(sf::Event event)
 {
 
@@ -60,6 +60,7 @@ std::shared_ptr <GameState> Menu::isStateChanged(sf::Event event)
     
     return nullptr;
 }
+*/
 
 
 

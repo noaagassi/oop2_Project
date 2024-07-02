@@ -7,16 +7,12 @@ PlayState::PlayState(sf::RenderWindow* window)
     :GameState(window,PLAY_WINDOW_WIDTH,PLAY_WINDOW_HEIGHT)
 {
     
-    
- //   m_backGroundSprite.setScale(textureSize)
     setObjTexture(PLAY_SCREEN_OBJ);
     setScale(PLAY_SCREEN_OBJ);
 
     std::unique_ptr<CommandButton> pauseCmd = std::make_unique<PauseGameCommand>();
    
-
-
-    m_buttons.push_back(std::make_unique<Button>(std::move(pauseCmd), PAUSE_BUTTON_OBJ, 580, 20));
+    m_buttons.push_back(std::make_unique<Button>(std::move(pauseCmd), PAUSE_BUTTON_OBJ, 100, 200));
    
 }
 
@@ -50,11 +46,11 @@ void PlayState::draw()
 
 void PlayState::update(float deltatime)
 {
-    m_board.update(deltatime,m_window);
+    //m_board.update(deltatime,m_window);
 }
 
 
-       
+  /*
 std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 {
     if (event.type == sf::Event::Closed) {
@@ -77,4 +73,4 @@ std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 
     return nullptr;
 }
- 
+ */

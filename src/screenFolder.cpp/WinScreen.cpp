@@ -31,11 +31,8 @@ void WinScreen::handleEvent(sf::Event event)
 {
 }
 
-//
-//std::shared_ptr <GameState> WinScreen::isStateChanged() {
-//    return nullptr;         /////to change!!!!!
-//}
-
+/*
 std::shared_ptr <GameState> WinScreen::isStateChanged(sf::Event event) {
     return nullptr;         /////to change!!!!!
 }
+*/

@@ -50,12 +50,12 @@ void Instructions::update(float deltatime)
 void Instructions::handleEvent(sf::Event event)
 {
 }
-
+/*
 std::shared_ptr<GameState> Instructions::isStateChanged(sf::Event event)
 {
     return std::shared_ptr<GameState>();
 }
-
+*/
 
 
 void Instructions::draw()

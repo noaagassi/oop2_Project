@@ -12,13 +12,13 @@ Controller::Controller()
 {
 	m_menu->initMap(m_playState, StateOptions::PlayScrn);
 	m_menu->initMap(m_instructions, StateOptions::InstructionsScrn);
-	m_playState->initMap(m_menu, StateOptions::MenuScrn);
+
     m_playState->initMap(m_pause, StateOptions::PauseScrn);
 
 
     m_pause->initMap(m_playState, StateOptions::PlayScrn);
     m_pause->initMap(m_instructions, StateOptions::InstructionsScrn);
-   
+    m_pause->initMap(m_menu, StateOptions::MenuScrn);
 
 	m_currentScreen = m_menu;
 }
@@ -40,8 +40,8 @@ void Controller::run() {
                 m_window.close();
             }
             std::shared_ptr<GameState> nextScreen = m_currentScreen->isStateChanged(event);
-            bool screenChanged = (nextScreen != nullptr);
-            if (screenChanged) {
+            
+            if (nextScreen) {
                 m_currentScreen = nextScreen;
             }
 

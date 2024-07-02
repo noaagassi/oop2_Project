@@ -55,7 +55,7 @@ void PausePage::handleEvent(sf::Event event)
 {
 
 }
-
+/*
 std::shared_ptr<GameState> PausePage::isStateChanged(sf:: Event event)
 {
     if (event.type == sf::Event::Closed) {
@@ -78,3 +78,4 @@ std::shared_ptr<GameState> PausePage::isStateChanged(sf:: Event event)
 
     return nullptr;
 }
+*/
