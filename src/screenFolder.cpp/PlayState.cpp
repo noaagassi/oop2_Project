@@ -5,7 +5,7 @@
 
 PlayState::PlayState(sf::RenderWindow* window)
     :GameState(window,PLAY_WINDOW_WIDTH,PLAY_WINDOW_HEIGHT),
-    m_view(sf::FloatRect(0, 0, 400, 300)),
+    m_view(sf::FloatRect(0, 0, VIEW_WIDTH, VIEW_HEIGHT)),
     m_uiView(sf::FloatRect(0, 0, PLAY_WINDOW_WIDTH, PLAY_WINDOW_HEIGHT))
 {
     

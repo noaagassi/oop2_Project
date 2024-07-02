@@ -11,3 +11,12 @@ BaseWeaponObject::BaseWeaponObject(const sf::Vector2f& initPosition)
 BaseWeaponObject::BaseWeaponObject()
 {
 }
+
+void BaseWeaponObject::setFireRate(float rate)
+{
+	m_fireRate = rate;
+}
+
+void BaseWeaponObject::update(float deltaTime)
+{
+}

@@ -47,21 +47,11 @@ void BaseObject:: setTheScale(float scaleX, float scaleY)
 }
 void BaseObject::setTheScale(Object_ID name)
 {
-    ///*m_objectSprite.setScale(scaleX, scaleY);*/
-
 
     sf::Vector2u theTextureSize = TextureHandler::getInstance().getObjTexture(name)->getSize();
-
-    //// גודלי החלון שלך
-    //float windowWidth = m_window->getSize().x;
-    //float windowHeight = m_window->getSize().y;
-
-    // חישוב ה-scale המתאים
     float scaleX = PLAY_WINDOW_WIDTH / (MAP_WIDTH * theTextureSize.x);
     float scaleY = PLAY_WINDOW_HEIGHT / (MAP_HEIGHT * theTextureSize.y);
 
-    // קביעת ה-scale לספרייט של הרקע
-	
 	m_objectSprite.setScale(scaleX, scaleY);
 
 }
@@ -75,4 +65,9 @@ const sf::Sprite& BaseObject::getSprite() const
 bool BaseObject::isCollidingWith( BaseObject& other) 
 {
 	 return  getSprite().getGlobalBounds().intersects(other.getSprite().getGlobalBounds());
+}
+
+void BaseObject::setSpriteColor(const sf::Color& color)
+{
+	m_objectSprite.setColor(color);
 }

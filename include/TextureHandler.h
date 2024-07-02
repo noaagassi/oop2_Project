@@ -40,7 +40,7 @@ enum Object_ID {
     PLAYER_OBJ,
     PLAY_SCREEN_OBJ,
     SPREADING_LASER,
-    HEARTS_PLAYER_OBJ                   //WITHOUT TEXTURE
+    BULLET_OBJ
 };
 
 class TextureHandler

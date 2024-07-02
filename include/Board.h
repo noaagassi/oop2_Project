@@ -28,11 +28,12 @@ public:
 
 	sf::Vector2f getPlayrLocation() const;
 	sf::FloatRect getPlayerBounds() const;
-
+	PlayerObject* getPlayer() const;
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
 
+	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
 private:
 	
@@ -49,7 +50,8 @@ private:
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 	CloudPoisonObject m_cloud;
 
-	std::vector<std::shared_ptr<PortalObject>> m_portals;
+
+	std::unique_ptr<PlayerObject> m_player;
 
 	//function of the object
 	void readMap(std::string fileName);

@@ -1,5 +1,4 @@
 #include "Controller.h"
-#include "screenFolder.h/Menu.h"
 
 Controller::Controller()
 	: m_window(sf::VideoMode(PLAY_WINDOW_HEIGHT, PLAY_WINDOW_WIDTH), "Brawl Stars",
@@ -42,7 +41,7 @@ void Controller::run() {
                 m_window.close();
             }
 
-            // בדיקה אם יש שינוי מצב
+            
             std::shared_ptr<GameState> nextScreen = m_currentScreen->isStateChanged(event);
             bool screenChanged = (nextScreen != nullptr);
             if (screenChanged)
@@ -53,7 +52,7 @@ void Controller::run() {
 
             m_currentScreen->update(deltaTime);
 
-            // ציור מצב נוכחי
+            
             m_window.clear();
             m_currentScreen->draw();
             m_window.display();

@@ -15,3 +15,7 @@ RegularLaserWeaponObject::RegularLaserWeaponObject()
 {
     setObjTexture(REGULAR_LASER_WEAPON_1_OBJ);
 }
+
+void RegularLaserWeaponObject::shoot()
+{
+}
