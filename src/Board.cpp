@@ -131,10 +131,13 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	for (auto &currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
-
+		
 	}
+
 	auto playerBullets = getPlayer()->retrieveBullets();
 	addBullets(std::move(playerBullets));
+	
+	std::cout << m_movingObjects.size() << std::endl;
 
 	checkCollisions();
 

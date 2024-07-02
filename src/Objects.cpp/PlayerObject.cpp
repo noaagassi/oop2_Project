@@ -10,7 +10,7 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED =1.5f;
+const float PLAYER_MOVE_SPEED =5.0f;
 //------------------------------------------------
 
 
@@ -157,11 +157,9 @@ void PlayerObject::shoot()
     sf::Vector2f vertex1 = m_flashlight.getShape().getPoint(1);
     sf::Vector2f vertex2 = m_flashlight.getShape().getPoint(2);
 
-    std::cout << start.x<<" "<<start.y << std::endl;
     for (int i = 0; i < 5; ++i) {
         float t = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
         sf::Vector2f randomPoint = vertex1 + t * (vertex2 - vertex1);
-        std::cout << "randomPoint: " << randomPoint.x << " " << randomPoint.y << std::endl;
         auto bullet = std::make_unique<BulletObject>(start);
         bullet->setTarget(randomPoint);
         m_bullets.push_back(std::move(bullet));

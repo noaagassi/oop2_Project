@@ -11,7 +11,6 @@ BulletObject::BulletObject(const sf::Vector2f& position)
         m_shape.setRadius(5.f); 
         m_shape.setPosition(m_position);
         m_shape.setFillColor(sf::Color::Red);
-        std::cout << "new bullet" << std::endl;
 
         
 }
@@ -22,10 +21,16 @@ void BulletObject::update(float deltaTime, sf::RenderWindow* window)
     m_position += m_direction * m_speed * deltaTime;
     m_shape.setPosition(m_position);
 
-    if (m_position == m_target)
+
+    if( (m_target.x-m_position.x) <= 5
+        && (m_target.x - m_position.x) >= -5
+        && (m_target.y - m_position.y) <= 5
+        && (m_target.y - m_position.y) >= -5 )
     {
+        std::cout << "deleted" << std::endl;
         m_toDelete = true;
     }
+
 }
 
 void BulletObject::draw(sf::RenderWindow* window) const
@@ -43,6 +48,12 @@ bool BulletObject::toDelete()
 {
     return m_toDelete;
 }
+
+void BulletObject::toDelete(bool x)
+{
+    m_toDelete = x;
+}
+
 
 void BulletObject::setTarget(const sf::Vector2f& target)
 {
