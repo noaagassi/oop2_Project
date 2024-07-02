@@ -12,8 +12,8 @@
 #include "screenFolder.h/PausePage.h"
 
 
-
-class Controller {
+class Controller 
+{
 public:
     Controller();
     void run();
@@ -32,7 +32,4 @@ private:
 
     //sf::View m_view;
     sf::View m_uiView;
-
-
-
 };
