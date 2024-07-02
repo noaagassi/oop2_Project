@@ -1,5 +1,8 @@
+#pragma once
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include "Utilities.h"
+
 
 class FlashlightObject {
 public:

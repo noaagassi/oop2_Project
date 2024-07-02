@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Objects.h/BaseObject.h"
-#include "screenFolder.h/Menu.h"
+#include "screenFolder.h/MenuState.h"
 #include "Controller.h"
 
 

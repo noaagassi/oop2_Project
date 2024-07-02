@@ -187,6 +187,13 @@ void Board::checkCollisions()
 			}
 			else
 			{
+				if (auto player = dynamic_cast<PlayerObject*>(moving.get()))
+				{
+					if (auto bush = dynamic_cast<BushObject*>((*staticObj).get()))
+					{
+						bush->resetColor();
+					}
+				}
 				++staticObj;
 			}
 			
@@ -205,7 +212,7 @@ void Board::checkCollisions()
 
 	}
 
-
+	//moving with moving
 	for (size_t i = 0; i < m_movingObjects.size(); ++i)
 	{
 		for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
