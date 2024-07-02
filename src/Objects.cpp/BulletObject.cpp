@@ -6,12 +6,11 @@ bool BulletObject::m_registerit = FactoryObject::registerit(BULLET_OBJ,
 
 
 BulletObject::BulletObject(const sf::Vector2f& position)
-    : MovingObject(position)
+    : MovingObject(position),m_toDelete(false)
 {
         m_shape.setRadius(5.f); 
         m_shape.setPosition(m_position);
         m_shape.setFillColor(sf::Color::Red);
-        std::cout << "new bullet" << std::endl;
 
         
 }
@@ -22,11 +21,16 @@ void BulletObject::update(float deltaTime, sf::RenderWindow* window)
     m_position += m_direction * m_speed * deltaTime;
     m_shape.setPosition(m_position);
 
-    if (sqrt((m_position.x - m_target.x) * (m_position.x - m_target.x) +
-        (m_position.y - m_target.y) * (m_position.y - m_target.y)) < m_speed * deltaTime) 
+
+    if( (m_target.x-m_position.x) <= 5
+        && (m_target.x - m_position.x) >= -5
+        && (m_target.y - m_position.y) <= 5
+        && (m_target.y - m_position.y) >= -5 )
     {
-        m_position = m_target;
+        std::cout << "deleted" << std::endl;
+        m_toDelete = true;
     }
+
 }
 
 void BulletObject::draw(sf::RenderWindow* window) const
@@ -40,6 +44,17 @@ sf::FloatRect BulletObject::getBounds() const
     return m_shape.getGlobalBounds();
 }
 
+bool BulletObject::toDelete()
+{
+    return m_toDelete;
+}
+
+void BulletObject::toDelete(bool x)
+{
+    m_toDelete = x;
+}
+
+
 void BulletObject::setTarget(const sf::Vector2f& target)
 {
     m_target = target;
@@ -49,6 +64,7 @@ void BulletObject::setTarget(const sf::Vector2f& target)
     if (length != 0) {
         m_direction = direction / length;
     }
+    std::cout << "direccion "<<m_direction.x << " " << m_direction.y << std::endl;
 }
 
 

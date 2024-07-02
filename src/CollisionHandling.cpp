@@ -150,21 +150,28 @@ namespace // anonymous namespace — the standard way to make function "static"
        
 
     }
-    /*
-    void playerBullet(BaseObject& player, BaseObject& bullet)
+    void bulletWall(BaseObject& bullet, BaseObject& wall)
     {
-        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+        
         BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+        WallObject& real_wall = dynamic_cast<WallObject&>(wall);
 
-        std::cout << "Player and Bullet collision!\n";
+        std::cout << "Bullet and Wall collision!\n";
+        real_bullet.toDelete(true);
 
     }
-
-    void bulletPlayer(BaseObject& bullet, BaseObject& player)
+    void bulletTree(BaseObject& bullet, BaseObject& tree)
     {
-        playerBullet(player, bullet);
+
+        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+        TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
+
+        std::cout << "Bullet and Tree collision!\n";
+        real_bullet.toDelete(true);
+
     }
-    */
+
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     using HitFunctionPtr = void (*)(BaseObject&, BaseObject&);
    
@@ -183,8 +190,8 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(FreezeGiftObject))] = &playerFreeze;
         phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
         phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
-        //phm[Key(typeid(PlayerObject), typeid(BulletObject))] = &playerBullet;
-        //phm[Key(typeid(BulletObject), typeid(PlayerObject))] = &bulletPlayer;
+        phm[Key(typeid(BulletObject), typeid(WallObject))] = &bulletWall;
+        phm[Key(typeid(BulletObject), typeid(TreeObject))] = &bulletTree;
 
        
         //...

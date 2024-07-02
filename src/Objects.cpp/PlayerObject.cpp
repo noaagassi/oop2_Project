@@ -2,15 +2,11 @@
 #include "Objects.h/PlayerObject.h"
 #include "Objects.h/BulletObject.h"
 #include <SFML/Graphics.hpp>
+#include "Utilities.h"
 #include <iostream>
 
 //------------------------------------------------
-//constant ans enum
-const int PLAYER_SPRITE_WIDTH = 64;
-const int PLAYER_SPRITE_HEIGHT = 96;
-const int PLAYER_SPRITES_PER_ROW = 4;
-const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED =1.5f;
+
 //------------------------------------------------
 
 
@@ -24,7 +20,9 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition),m_lives(initPosition.x,initPosition.y+40), m_eatLifeGift(false)
 {
     setObjTexture(PLAYER_OBJ);
-    setTheScale(1.0f, 1.0f);
+    setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
+    //sf::IntRect textureRect(0.5f,0.5f)
+    //setTheScale(PLAYER_OBJ);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
@@ -34,6 +32,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
+    
 
 
 }
@@ -177,13 +176,12 @@ void PlayerObject::setInBush(bool inBush)
 void PlayerObject::shoot()
 {
     sf::Vector2f start = m_flashlight.getShape().getPoint(0);
-    sf::Vector2f end = m_flashlight.getShape().getPoint(2);
-
+    sf::Vector2f vertex1 = m_flashlight.getShape().getPoint(1);
+    sf::Vector2f vertex2 = m_flashlight.getShape().getPoint(2);
 
     for (int i = 0; i < 5; ++i) {
         float t = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-        sf::Vector2f randomPoint = start + t * (end - start);
-
+        sf::Vector2f randomPoint = vertex1 + t * (vertex2 - vertex1);
         auto bullet = std::make_unique<BulletObject>(start);
         bullet->setTarget(randomPoint);
         m_bullets.push_back(std::move(bullet));

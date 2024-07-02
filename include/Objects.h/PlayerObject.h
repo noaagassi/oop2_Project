@@ -13,6 +13,7 @@ public:
     //c-tor
     PlayerObject(const sf::Vector2f& pos);
 
+
     void update(float deltaTime, sf::RenderWindow* window);
     void draw(sf::RenderWindow* window) const override;
     void handleInput(sf::RenderWindow*);

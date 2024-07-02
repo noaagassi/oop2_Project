@@ -1,15 +1,15 @@
 #include "Objects.h/MovingObject.h"
 
 //------------------------------------------------
-//constant ans enum
-const int PLAYER_SPRITE_WIDTH = 64;
-const int PLAYER_SPRITE_HEIGHT = 96;
-const int PLAYER_SPRITES_PER_ROW = 4;
-const int PLAYER_SPRITES_PER_COLUMN = 4;
+////constant ans enum
+//const int PLAYER_SPRITE_WIDTH = 64;
+//const int PLAYER_SPRITE_HEIGHT = 96;
+//const int PLAYER_SPRITES_PER_ROW = 4;
+//const int PLAYER_SPRITES_PER_COLUMN = 4;
 //------------------------------------------------
 
 MovingObject::MovingObject(const sf::Vector2f& initPosition)
-	:m_direction(0,0), BaseObject(initPosition)
+	:BaseObject(initPosition)
 { }
 
 MovingObject::MovingObject()

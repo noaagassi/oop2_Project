@@ -28,7 +28,8 @@ Controller::Controller()
 
 void Controller::run() {
     sf::Clock clock;
-        
+    sf::View originView = m_window.getDefaultView();
+
     while (m_window.isOpen()) {
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
@@ -48,7 +49,13 @@ void Controller::run() {
             {
                 m_currentScreen = nextScreen;
             }
+            if (dynamic_cast<PlayState*>(m_currentScreen.get()) == nullptr)
+            {
+                m_window.setView(originView);
+            }
+            
         }
+        
 
             m_currentScreen->update(deltaTime);
 

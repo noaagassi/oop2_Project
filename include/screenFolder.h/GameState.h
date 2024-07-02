@@ -28,4 +28,5 @@ protected:
 	std::unordered_map<StateOptions, std::shared_ptr<GameState>> m_states;
 	sf::RenderWindow* m_window;
 	sf::Vector2u m_windowSize;
+	
 };
