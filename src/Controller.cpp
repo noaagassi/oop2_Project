@@ -1,5 +1,6 @@
 #include "Controller.h"
 
+//------------------------------------------------------
 Controller::Controller()
 	: m_window(sf::VideoMode(PLAY_WINDOW_HEIGHT, PLAY_WINDOW_WIDTH), "Brawl Stars",
 	sf::Style::Close | sf::Style::Titlebar),
@@ -23,11 +24,7 @@ Controller::Controller()
 
     SoundsHandler::getInstance().playMusic();
 }
-
-
-
-
-
+//------------------------------------------------------
 void Controller::run() {
     sf::Clock clock;
     sf::View originView = m_window.getDefaultView();
@@ -65,8 +62,6 @@ void Controller::run() {
             //m_window.clear();
             m_currentScreen->draw();
             m_window.display();
-        
-
     }
 }
 

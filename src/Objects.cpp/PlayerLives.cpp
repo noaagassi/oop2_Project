@@ -74,7 +74,7 @@ void PlayerLives::setSize()
 //---------------------------------
 void PlayerLives::setColor()
 {
-	m_backproundRctangle.setFillColor(sf::Color::Black);
+	m_backproundRctangle.setFillColor(sf::Color::White);
 	m_lifesRectangle.setFillColor(sf::Color::Red);
 }
 //---------------------------------
@@ -90,15 +90,15 @@ void PlayerLives::setPosition(sf::Vector2f position)
 {
 	m_backproundRctangle.setPosition(position);
 	calculateNewPos(position);
-	m_heartSprite.setPosition(position.x - 10, position.y);
+	m_heartSprite.setPosition(position.x, position.y);
 }
 //---------------------------------
 
 void PlayerLives::calculateNewPos(sf::Vector2f backgroundPosition)
 {
 	sf::Vector2f newPos(backgroundPosition.x + RATIO_4_WIDTH,
-						backgroundPosition.y + 2);
-
+						backgroundPosition.y +RATIO_4_HEIGHT);
+	//std::cout << "the Ratio is " << RATIO_4_HEIGHT << std::endl;
 	m_lifesRectangle.setPosition(newPos);
 }
 //---------------------------------
