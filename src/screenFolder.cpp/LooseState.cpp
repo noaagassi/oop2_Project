@@ -1,8 +1,9 @@
+/*
 #include "screenFolder.h/LooseState.h"
 
 #include "Buttons.h/MenuCommand.h"
 #include <iostream>
-/*
+
 
 LooseScreen::LooseScreen(sf::RenderWindow* window)
     : GameState(window,800,600)
@@ -15,7 +16,7 @@ LooseScreen::LooseScreen(sf::RenderWindow* window)
 
     //m_buttons.push_back(new NewGameButton("new_game.png", 100, 200));
     //m_buttons.push_back(new ExitButton("exit.png", 100, 300));
-    /m_buttons.push_back(new InstructionsButton("instructions.png", 100, 400));
+    //m_buttons.push_back(new InstructionsButton("instructions.png", 100, 400));
 }
 
 LooseScreen::~LooseScreen()

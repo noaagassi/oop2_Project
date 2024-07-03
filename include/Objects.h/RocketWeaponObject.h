@@ -5,7 +5,7 @@ class RocketWeaponObject : public PlayerWeaponObject
 {
 public:
     RocketWeaponObject();
-    void shoot(FlashlightObject flashlight) override;
+    void shoot(FlashlightObject flashight) override;
 
 private:
     static bool m_registerit;

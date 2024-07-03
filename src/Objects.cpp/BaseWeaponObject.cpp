@@ -3,8 +3,8 @@
 
 
 
+
 BaseWeaponObject::BaseWeaponObject()
-	
 {
 }
 

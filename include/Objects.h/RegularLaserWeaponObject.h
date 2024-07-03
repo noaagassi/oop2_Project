@@ -5,7 +5,7 @@ class RegularLaserWeaponObject : public EnemyWeaponObject
 {
 public:
     RegularLaserWeaponObject();
-    void shoot(FlashlightObject flashlight) override;
+    void shoot(FlashlightObject flashight) override;
 private:
     static bool m_registerit;
 };

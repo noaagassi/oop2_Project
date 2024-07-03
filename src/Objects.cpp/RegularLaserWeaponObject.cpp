@@ -3,9 +3,11 @@
 
 
 RegularLaserWeaponObject::RegularLaserWeaponObject()
+    :EnemyWeaponObject()
 {
-   
 }
-void RegularLaserWeaponObject::shoot(FlashlightObject flashlight)
+
+
+void RegularLaserWeaponObject::shoot(FlashlightObject flashight)
 {
 }

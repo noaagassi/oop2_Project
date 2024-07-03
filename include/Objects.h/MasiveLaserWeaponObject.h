@@ -5,7 +5,7 @@ class MasiveLaserWeaponObject : public EnemyWeaponObject
 {
 public:
     MasiveLaserWeaponObject();
-    void shoot(FlashlightObject flashlight) override;
+    void shoot(FlashlightObject flashight) override ;
 private:
     static bool m_registerit;
 };

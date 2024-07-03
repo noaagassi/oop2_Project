@@ -1,15 +1,14 @@
 #pragma once
 #include "PlayerWeaponObject.h"
 #include "FlashlightObject.h"
+#include "BulletObject.h" 
 
 class BallsWeaponObject : public PlayerWeaponObject
 {
 public:
-    BallsWeaponObject(const sf::Vector2f& initPosition);
     BallsWeaponObject();
-    void shoot(FlashlightObject flashlight) override;
-
+    void shoot(FlashlightObject flashight) override;
+    void addBall();
 private:
-    static bool m_registerit;
     int m_numOfBalls;
 };

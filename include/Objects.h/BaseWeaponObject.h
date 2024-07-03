@@ -1,6 +1,6 @@
 #pragma once
-#include "StaticObject.h"
 #include "FlashlightObject.h"
+#include "MovingObject.h"
 
 class BaseWeaponObject 
 {
@@ -12,7 +12,8 @@ public:
     void update(float deltaTime);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
 
+
 protected:
     float m_fireRate;
-    std::vector<std::unique_ptr<MovingObject>> m_bullets;
+    std::vector<std::unique_ptr<MovingObject>> m_bullets; 
 };

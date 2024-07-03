@@ -31,8 +31,12 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
     
-    BallsWeaponObject ballsWeapon;
-    m_currentWeapon = ballsWeapon;
+    m_weapons.push_back(std::make_unique<BallsWeaponObject>()); //index 0
+    m_weapons.push_back(std::make_unique<RocketWeaponObject>()); //index 1
+    m_weapons.push_back(std::make_unique<SuperWeaponObject>()); //index 2
+
+
+    m_currentWeapon = m_weapons[0].get();
 
 }
 //------------------------------------------------
@@ -90,7 +94,7 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
 {
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
-
+//-------------------------------------------------
 void PlayerObject::handleInput(sf::RenderWindow* window)
 {
 
@@ -177,13 +181,12 @@ void PlayerObject::setInBush(bool inBush)
 void PlayerObject::shoot()
 {
     m_currentWeapon->shoot(m_flashlight);
-    
 }
 
 //------------------------------------------------
-void PlayerObject::changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon)
+void PlayerObject::changeWeapon(int index)
 {
-    m_currentWeapon = std::move(newWeapon);
+    m_currentWeapon = m_weapons[index].get();
 }
 //------------------------------------------------
 
@@ -191,10 +194,6 @@ std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
 {
     return m_currentWeapon->retrieveBullets();
     
-}
-FlashlightObject PlayerObject::getFlashlight()
-{
-    return m_flashlight;
 }
 //------------------------------------------------
 void PlayerObject::ateLiveGift()

@@ -9,6 +9,7 @@ MasiveLaserWeaponObject::MasiveLaserWeaponObject()
    
 }
 
-void MasiveLaserWeaponObject::shoot(FlashlightObject flashlight)
+
+void MasiveLaserWeaponObject::shoot(FlashlightObject flashight)
 {
 }

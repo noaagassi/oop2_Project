@@ -2,19 +2,13 @@
 #include "Objects.h/BallsWeaponObject.h"
 #include "Objects.h/BulletObject.h"
 
-
-
-BallsWeaponObject::BallsWeaponObject(const sf::Vector2f& initPosition)
+BallsWeaponObject::BallsWeaponObject()
 {
     m_numOfBalls = 5;
     m_fireRate = 1.0f;
-    //setObjTexture(WALL_OBJ);
+    m_numOfBalls = 2;
 }
 
-BallsWeaponObject::BallsWeaponObject()
-{
-    //setObjTexture(WALL_OBJ);
-}
 
 void BallsWeaponObject::shoot(FlashlightObject flashlight)
 {
@@ -31,3 +25,9 @@ void BallsWeaponObject::shoot(FlashlightObject flashlight)
 
     }
 }
+
+void BallsWeaponObject::addBall()
+{
+    m_numOfBalls++;
+}
+

@@ -5,8 +5,7 @@ class SpreadingLaserWeaponObject : public PlayerWeaponObject
 {
 public:
     SpreadingLaserWeaponObject();
-    void shoot(FlashlightObject flashlight) override;
+    void shoot(FlashlightObject flashight) override;
 
 private:
-    static bool m_registerit;
 };

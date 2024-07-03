@@ -5,8 +5,7 @@ class SuperWeaponObject : public PlayerWeaponObject
 {
 public:
     SuperWeaponObject();
-    void shoot(FlashlightObject flashlight) override;
+    void shoot(FlashlightObject flashight) override;
 
 private:
-    static bool m_registerit;
 };
