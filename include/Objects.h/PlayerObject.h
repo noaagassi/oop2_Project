@@ -42,7 +42,7 @@ private:
     FlashlightObject m_flashlight;
     PlayerWeaponObject* m_currentWeapon;
     std::vector<std::unique_ptr<PlayerWeaponObject>> m_weapons;
-
+    SuperWeaponObject m_superWeapon;
     
 
     PlayerLives m_lives;
@@ -51,6 +51,10 @@ private:
     int m_numberForHeart;
     void isAteLiveGift();
     bool m_eatLifeGift;
+
+
+    bool m_rocketAviable = true;
+    bool m_rocketFired = false;
 
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);

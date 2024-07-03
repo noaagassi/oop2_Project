@@ -124,9 +124,15 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
         isMoving = true;
         
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-
-
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        if (m_rocketAviable  && !m_rocketFired) {
+            changeWeapon(2); // Cambia al RocketWeaponObject
+            shoot();
+            m_rocketFired = true;
+        }
+    }
+    else {
+        m_rocketFired = false; // Reinicia la bandera cuando se suelta la tecla Space
     }
     sf::Event event;
     while (window->pollEvent(event)) {
@@ -139,6 +145,7 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
             }
         }
     }
+
     if (!isMoving) {
         currentFrames = &defaultFrames;
     }

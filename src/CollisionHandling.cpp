@@ -172,6 +172,40 @@ namespace // anonymous namespace — the standard way to make function "static"
 
     }
 
+    void treeBullet(BaseObject& tree, BaseObject& bullet)
+    {
+
+        bulletTree(bullet, tree);
+
+        std::cout << "Bullet and Tree collision!\n";
+       
+
+    }
+
+    void wallBullet(BaseObject& wall, BaseObject& bullet)
+    {
+
+        bulletTree(bullet, wall);
+
+        std::cout << "Bullet and Wall collision!\n";
+
+
+    }
+
+    void bulletLife(BaseObject& bullet, BaseObject& life)
+    {
+
+    }
+
+    void bulletFreeze(BaseObject& bullet, BaseObject& freeze)
+    {
+
+    }
+
+    void bulletWeapon(BaseObject& player, BaseObject& weapon)
+    {
+
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     using HitFunctionPtr = void (*)(BaseObject&, BaseObject&);
@@ -193,7 +227,9 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
         phm[Key(typeid(BulletObject), typeid(WallObject))] = &bulletWall;
         phm[Key(typeid(BulletObject), typeid(TreeObject))] = &bulletTree;
-
+        phm[Key(typeid(BulletObject), typeid(LifeGiftObject))] = &bulletLife;
+        phm[Key(typeid(BulletObject), typeid(FreezeGiftObject))] = &bulletFreeze;
+        phm[Key(typeid(BulletObject), typeid(WeaponGiftObject))] = &bulletWeapon;
        
         //...
         return phm;

@@ -10,5 +10,5 @@ PlayerWeaponObject::PlayerWeaponObject()
 
 void PlayerWeaponObject::addBall()
 {
-	m_numOfBalls++;
+	m_numOfBalls+=2;
 }
