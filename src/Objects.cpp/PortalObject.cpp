@@ -1,5 +1,5 @@
 ﻿#include "Objects.h/PortalObject.h"
-
+#include <iostream>
 
 
 bool PortalObject::m_registerit = FactoryObject::registerit(PORTAL_OBJ,

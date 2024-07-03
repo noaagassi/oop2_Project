@@ -39,6 +39,6 @@ void SmallFastEnemyObject::move(float deltaTime)
 }
 
 
-void SmallFastEnemyObject::handleInput()
+void SmallFastEnemyObject::handleInput(sf::RenderWindow window)
 {
 }

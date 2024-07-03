@@ -2,6 +2,8 @@
 #include "CollisionHandling.h"
 #include "Objects.h/BushObject.h"
 #include "Objects.h/BaseGiftObject.h"
+#include "Objects.h/BulletObject.h"
+#include "Objects.h/TreeObject.h"
 //----------------------------------------
 Board::Board()
 	:m_levelNum(1)
@@ -68,6 +70,8 @@ void Board::readMap(std::string fileName)
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto portal = FactoryObject::createStatic(PORTAL_OBJ, position);
+				
+				
 				m_staticObjects.push_back(std::move(portal));
 				
 			}
@@ -130,7 +134,11 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	for (auto &currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
+		
 	}
+
+	auto playerBullets = getPlayer()->retrieveBullets();
+	addBullets(std::move(playerBullets));
 
 	checkCollisions();
 
@@ -151,16 +159,16 @@ void Board::draw(sf::RenderWindow* window)
 
 void Board::checkCollisions()
 {
-	for (auto& moving : m_movingObjects)
+	for (auto moving = m_movingObjects.begin(); moving != m_movingObjects.end();)
 	{
 		
 		for (auto staticObj = m_staticObjects.begin(); staticObj != m_staticObjects.end(); )
 		{
-			if (moving->isCollidingWith(**staticObj))
+			if ((*moving)->isCollidingWith(**staticObj))
 			{
 				try
 				{
-					processCollision(*moving, **staticObj);
+					processCollision(**moving, **staticObj);
 				}
 				catch (const UnknownCollision& e)
 				{
@@ -180,7 +188,7 @@ void Board::checkCollisions()
 			}
 			else
 			{
-				if (auto player = dynamic_cast<PlayerObject*>(moving.get()))
+				if (auto player = dynamic_cast<PlayerObject*>((*moving).get()))
 				{
 					if (auto bush = dynamic_cast<BushObject*>((*staticObj).get()))
 					{
@@ -191,6 +199,18 @@ void Board::checkCollisions()
 			}
 			
 		}
+
+		BulletObject* bullet = dynamic_cast<BulletObject*>((*moving).get());
+
+		if (bullet && bullet->toDelete())
+		{
+			moving = m_movingObjects.erase(moving);
+		}
+		else
+		{
+			++moving;
+		}
+
 	}
 
 	//moving with moving
@@ -220,7 +240,7 @@ PlayerObject* Board::getPlayer() const
 	{
 		PlayerObject* player = dynamic_cast<PlayerObject*>(obj.get());
 
-		if (player)
+		if (player != nullptr)
 		{
 			return player;
 		}
@@ -244,6 +264,13 @@ void Board::handleMousePressed(sf::Event event)
 
 void Board::handleKeyPress(sf::Keyboard::Key key)
 {
+}
+
+void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
+{
+	for (auto& bullet : bullets) {
+		m_movingObjects.push_back(std::move(bullet));
+	}
 }
 
 

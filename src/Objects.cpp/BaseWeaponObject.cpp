@@ -16,3 +16,7 @@ void BaseWeaponObject::setFireRate(float rate)
 {
 	m_fireRate = rate;
 }
+
+void BaseWeaponObject::update(float deltaTime)
+{
+}

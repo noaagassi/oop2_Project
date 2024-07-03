@@ -15,6 +15,7 @@
 #include "Objects.h/FreezeGiftObject.h"
 #include"Objects.h/PoisonObject.h"
 #include"Objects.h/WeaponGiftObject.h"
+#include "Objects.h/BulletObject.h"
 
 
 
@@ -110,7 +111,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         LifeGiftObject& real_life = dynamic_cast<LifeGiftObject&>(life);
 
-        std::cout << "Player and Life Gift collision!\n";
+        real_player.ateLiveGift();
 
         real_life.toDelete(true);
 
@@ -149,6 +150,26 @@ namespace // anonymous namespace — the standard way to make function "static"
        
 
     }
+    void bulletWall(BaseObject& bullet, BaseObject& wall)
+    {
+        
+        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+        WallObject& real_wall = dynamic_cast<WallObject&>(wall);
+
+        std::cout << "Bullet and Wall collision!\n";
+        real_bullet.toDelete(true);
+
+    }
+    void bulletTree(BaseObject& bullet, BaseObject& tree)
+    {
+
+        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+        TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
+
+        std::cout << "Bullet and Tree collision!\n";
+        real_bullet.toDelete(true);
+
+    }
 
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -169,6 +190,8 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(FreezeGiftObject))] = &playerFreeze;
         phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
         phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
+        phm[Key(typeid(BulletObject), typeid(WallObject))] = &bulletWall;
+        phm[Key(typeid(BulletObject), typeid(TreeObject))] = &bulletTree;
 
        
         //...

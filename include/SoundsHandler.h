@@ -17,7 +17,7 @@ enum Sound_Id {
     LASER_SHOOT,
     LASER_HIT,
     ROCKET_SHOOT,
-    ROCKET_HEAT,
+    ROCKET_HIT,
     BALL_SHOOT,
     BALL_HIT,
     FREEZE,
@@ -27,9 +27,12 @@ enum Sound_Id {
 
 
 };
+/*
+class SoundsHandler
+{
 
-class SoundsHandler {
 public:
+
     SoundsHandler();
     ~SoundsHandler();
     static SoundsHandler& getInstance();

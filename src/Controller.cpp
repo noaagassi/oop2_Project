@@ -1,7 +1,7 @@
 #include "Controller.h"
 
 Controller::Controller()
-	: m_window(sf::VideoMode(800, 600), "Brawl Stars",
+	: m_window(sf::VideoMode(PLAY_WINDOW_HEIGHT, PLAY_WINDOW_WIDTH), "Brawl Stars",
 	sf::Style::Close | sf::Style::Titlebar),
 	m_menu(std::make_shared<Menu>(&m_window)),
 	m_playState(std::make_shared<PlayState>(&m_window)),
@@ -16,7 +16,8 @@ Controller::Controller()
     m_pause->initMap(m_playState, StateOptions::PlayScrn);
     m_pause->initMap(m_instructions, StateOptions::InstructionsScrn);
     m_pause->initMap(m_menu, StateOptions::MenuScrn);
-   
+
+//    m_loose->initMap(m_menu, StateOptions::MenuScrn);
 
 	m_currentScreen = m_menu;
 }
@@ -59,7 +60,7 @@ void Controller::run() {
             m_currentScreen->update(deltaTime);
 
             
-            m_window.clear();
+            //m_window.clear();
             m_currentScreen->draw();
             m_window.display();
         

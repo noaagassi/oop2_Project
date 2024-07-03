@@ -20,7 +20,7 @@ const int NUM_OF_TEXTURES = sizeof(NAME_OF_PNG_FILES) / sizeof(NAME_OF_PNG_FILES
 
 const sf::Vector2f textureSize(100.0f, 100.0f);
 
-const unsigned int PLAY_WINDOW_HEIGHT = 720;
+const unsigned int PLAY_WINDOW_HEIGHT = 1000;
 const unsigned int PLAY_WINDOW_WIDTH = 1080;
 const float VIEW_HEIGHT = 200;
 const float VIEW_WIDTH = 400;
@@ -34,7 +34,8 @@ const float PLAYER_HEIGHT = 0.4F;
 const float WIDTH = 3000,
             HEIGHT = 3000;
 
-
+const bool LESS = false,
+           MORE = true;
 
 
 enum StateOptions {
@@ -64,4 +65,4 @@ const int PLAYER_SPRITE_WIDTH = 64;
 const int PLAYER_SPRITE_HEIGHT = 96;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED = 0.5f;
+const float PLAYER_MOVE_SPEED = 3.5f;

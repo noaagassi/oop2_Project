@@ -1,11 +1,9 @@
 
 #include "SoundsHandler.h"
 
-SoundsHandler::~SoundsHandler() {}
-
-
-
+/*
 // loadds the sounds into the buffer array
+
 SoundsHandler::SoundsHandler()
 {
     for (int i = 0; i < SOUND_NUM; i++)
@@ -19,7 +17,10 @@ SoundsHandler::SoundsHandler()
         m_sounds[i].setBuffer(m_buffers[i]);
     }
 }
- 
+
+SoundsHandler::~SoundsHandler() {}
+
+
  
 SoundsHandler& SoundsHandler::getInstance()
 {

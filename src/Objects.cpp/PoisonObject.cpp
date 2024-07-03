@@ -7,7 +7,8 @@ PoisonObject::PoisonObject(const sf::Vector2f& initPosition)
 	setTheScale(0.04f, 0.04f);
 }
 
-void PoisonObject::draw(sf::RenderWindow* window)
+void PoisonObject::draw(sf::RenderWindow* window) const
 {
 	window->draw(m_objectSprite);
 }
+

@@ -15,6 +15,12 @@ void BigSlowEnemyObject::move(float deltaTime)
 }
 
 
-void BigSlowEnemyObject::handleInput()
+void BigSlowEnemyObject::handleInput(sf::RenderWindow window)
 {
+}
+
+void BigSlowEnemyObject::draw(sf::RenderWindow* window) const
+{
+    BaseObject::draw(window);
+    m_lives.draw(window);
 }

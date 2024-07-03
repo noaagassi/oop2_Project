@@ -9,7 +9,7 @@
 //------------------------------------------------
 
 MovingObject::MovingObject(const sf::Vector2f& initPosition)
-	:m_direction(0,0), BaseObject(initPosition)
+	:BaseObject(initPosition)
 { }
 
 MovingObject::MovingObject()
