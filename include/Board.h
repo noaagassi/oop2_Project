@@ -29,6 +29,8 @@ public:
 	sf::Vector2f getPlayrLocation() const;
 	sf::FloatRect getPlayerBounds() const;
 	PlayerObject* getPlayer() const;
+
+	bool isPlayerInPoison(sf::Vector2f playerPosition, std::vector<sf::Vector2f> poisonPoints);
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 

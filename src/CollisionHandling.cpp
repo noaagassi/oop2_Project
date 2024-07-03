@@ -150,7 +150,7 @@ namespace // anonymous namespace — the standard way to make function "static"
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
-        SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+        //SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
 
         std::cout << "Player and Poison collision!\n";
 
