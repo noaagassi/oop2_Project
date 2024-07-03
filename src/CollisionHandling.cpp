@@ -6,6 +6,8 @@
 #include <typeinfo>
 #include <typeindex>
 
+#include "SoundsHandler.h"
+
 #include "Objects.h/PlayerObject.h"
 #include "Objects.h/BushObject.h"
 #include "Objects.h/WallObject.h"
@@ -97,7 +99,9 @@ namespace // anonymous namespace — the standard way to make function "static"
         PortalObject& real_portal = dynamic_cast<PortalObject&>(portal);
 
         std::cout << "Player and Portal collision!\n";
-        
+        SoundsHandler::getInstance().playSound(Sound_Id::PORTAL_ENTER);
+
+
         PortalObject* target_portal = real_portal.getRandomPortal();
         sf::Vector2f target_position = target_portal->getSprite().getPosition();
         sf::Vector2f offset(0.f, 40.f);
@@ -110,6 +114,7 @@ namespace // anonymous namespace — the standard way to make function "static"
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         LifeGiftObject& real_life = dynamic_cast<LifeGiftObject&>(life);
+        SoundsHandler::getInstance().playSound(Sound_Id::EXTRA_LIFE);
 
         real_player.ateLiveGift();
 
@@ -125,6 +130,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         std::cout << "Player and Freeze Gift collision!\n";
 
         real_freeze.toDelete(true);
+        SoundsHandler::getInstance().playSound(Sound_Id::FREEZE);
 
 
     }
@@ -137,13 +143,14 @@ namespace // anonymous namespace — the standard way to make function "static"
         std::cout << "Player and Weapon Gift collision!\n";
 
         real_weapon.toDelete(true);
-       
+        SoundsHandler::getInstance().playSound(Sound_Id::WEAPON_GIFT);
     }
 
     void playerPoison(BaseObject& player, BaseObject& poison)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
+        SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
 
         std::cout << "Player and Poison collision!\n";
 
@@ -155,7 +162,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         
         BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
         WallObject& real_wall = dynamic_cast<WallObject&>(wall);
-
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
         std::cout << "Bullet and Wall collision!\n";
         real_bullet.toDelete(true);
 
@@ -165,7 +172,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
         TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
-
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
         std::cout << "Bullet and Tree collision!\n";
         real_bullet.toDelete(true);
 

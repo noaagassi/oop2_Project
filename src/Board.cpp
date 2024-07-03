@@ -159,6 +159,8 @@ void Board::draw(sf::RenderWindow* window)
 
 void Board::checkCollisions()
 {
+	const auto& PoisonVec = m_cloud.getPoisonVec();
+
 	for (auto moving = m_movingObjects.begin(); moving != m_movingObjects.end();)
 	{
 		
@@ -211,11 +213,43 @@ void Board::checkCollisions()
 			++moving;
 		}
 
+		/*
+		for (auto poisonObj = PoisonVec.begin(); poisonObj != PoisonVec.end(); )
+		{
+			if ((*moving)->isCollidingWith(**poisonObj))
+			{
+				try
+				{
+					processCollision(**moving, **poisonObj);
+				}
+				catch (const UnknownCollision& e)
+				{
+					std::cerr << e.what() << std::endl;
+				}
+			}
+		}*/
+		//for (auto poisonObj = PoisonVec.begin(); poisonObj != PoisonVec.end(); )
+		//{
+		//	if ((*moving)->isCollidingWith(**poisonObj))
+		//	{
+		//		try
+		//		{
+		//			processCollision(**moving, **poisonObj);
+		//		}
+		//		catch (const UnknownCollision& e)
+		//		{
+		//			std::cerr << e.what() << std::endl;
+		//		}
+		//	}
+		//	++poisonObj; // התקדמות לאובייקט הרעל הבא
+		//}
+
 	}
 
-	//moving with moving
+	
 	for (size_t i = 0; i < m_movingObjects.size(); ++i)
 	{
+		//moving with moving
 		for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
 		{
 			if (m_movingObjects[i]->isCollidingWith(*m_movingObjects[j]))
@@ -230,7 +264,24 @@ void Board::checkCollisions()
 				}
 			}
 		}
+		//moving with poison
+		for (size_t k = 0; k < PoisonVec.size(); k++)
+		{
+			if (m_movingObjects[i]->isCollidingWith(*PoisonVec[k]))
+			{
+				try
+				{
+					processCollision(*m_movingObjects[i], *PoisonVec[k]);
+				}
+				catch (const UnknownCollision& e)
+				{
+					std::cerr << e.what() << std::endl;
+				}
+			}
+		}
 	}
+
+
 }
 
 

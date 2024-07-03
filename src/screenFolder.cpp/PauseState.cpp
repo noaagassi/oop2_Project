@@ -4,13 +4,14 @@
 #include "Buttons.h/ExitCommand.h"
 #include "Buttons.h/ResumeGameCommand.h"
 #include "Buttons.h/Button.h"
+#include"Utilities.h"
 
 #include "screenFolder.h/PauseState.h"
 #include <iostream>
 
 
 PausePage::PausePage(sf::RenderWindow* window)
-    : GameState(window,800,600)
+    : GameState(window, PLAY_WINDOW_WIDTH, PLAY_WINDOW_HEIGHT)
 
 {
 
@@ -21,9 +22,9 @@ PausePage::PausePage(sf::RenderWindow* window)
     std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();
     std::unique_ptr<CommandButton> exitCmd = std::make_unique<ExitCommand>();
 
-    m_buttons.push_back(std::make_unique<Button>(std::move(resumeCmd), NEW_GAME_BUTTON_OBJ, 300, 100));
-    m_buttons.push_back(std::make_unique<Button>(std::move(instCmd), INSTRUCTION_BUTTON_OBJ, 300, 200));
-    m_buttons.push_back(std::make_unique<Button>(std::move(exitCmd), EXIT_BUTTON_OBJ, 300, 300));
+    m_buttons.push_back(std::make_unique<Button>(std::move(resumeCmd), NEW_GAME_BUTTON_OBJ,500, 300));
+    m_buttons.push_back(std::make_unique<Button>(std::move(instCmd), INSTRUCTION_BUTTON_OBJ, 500, 400));
+    m_buttons.push_back(std::make_unique<Button>(std::move(exitCmd), EXIT_BUTTON_OBJ, 500, 500));
 
 }
 

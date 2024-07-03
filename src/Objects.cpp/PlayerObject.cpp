@@ -185,6 +185,7 @@ void PlayerObject::shoot()
         auto bullet = std::make_unique<BulletObject>(start);
         bullet->setTarget(randomPoint);
         m_bullets.push_back(std::move(bullet));
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_SHOOT );
        
     } 
 }

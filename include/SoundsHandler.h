@@ -6,7 +6,7 @@
 #include <SFML/Window.hpp>
 
 
-const int SOUND_NUM = 13;
+const int SOUND_NUM = 15;
 
 enum Sound_Id {
     LOOSE,
@@ -21,8 +21,9 @@ enum Sound_Id {
     FREEZE,
     UN_FREEZE,
     WEAPON_GIFT,
-    EXTRA_LIFE
-
+    EXTRA_LIFE,
+    POISON_HIT,
+    PORTAL_ENTER
 
 };
 
@@ -41,17 +42,11 @@ public:
 private:
 
     const std::string m_soundNames[SOUND_NUM] = {
-        "loose1.wav",
-        "win2.wav",        
-        "poison2.wav",    
-        "laser_shoot.wav",
-        
-        "laser_hit.wav",   
-        "rocket_shoot.wav",
-        "rocket_hit.wav",
-        "ball_shoot1.wav", 
-        "ball_pop.wav"     ,"freeze_start.wav",
-        "freeze_end.wav",  "take_weapon.wav"  ,"extra_life.wav" };
+        "loose1.wav",       "win2.wav",       "poison2.wav",    
+        "laser_shoot.wav",  "laser_hit.wav",  "rocket_shoot.wav",
+        "rocket_hit.wav",   "ball_shoot1.wav","ball_pop.wav",
+        "freeze_start.wav", "freeze_end.wav", "take_weapon.wav",
+        "extra_life.wav",   "poison_hit.wav", "portal_enter.wav"};
 
     sf::Music m_music;
     sf::Sound m_sound;
