@@ -60,7 +60,7 @@ void Controller::run() {
             m_currentScreen->update(deltaTime);
 
             
-            //m_window.clear();
+            m_window.clear();
             m_currentScreen->draw();
             m_window.display();
         

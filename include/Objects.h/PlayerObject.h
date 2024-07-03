@@ -5,7 +5,10 @@
 #include "FactoryObject.h"
 #include "FlashlightObject.h"
 #include "PlayerLives.h"
-#include "BaseWeaponObject.h"
+#include "PlayerWeaponObject.h"
+#include "BallsWeaponObject.h"
+#include "RocketWeaponObject.h"
+#include "SuperWeaponObject.h"
 
 class PlayerObject : public MovingObject
 {
@@ -21,7 +24,7 @@ public:
     bool isInBush();
     void setInBush(bool);
     void shoot();
-    void changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon);
+    void changeWeapon(int index);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
 
 
@@ -38,8 +41,10 @@ private:
     //memebrs for accessories
     sf::RectangleShape m_lifeTexture;
     FlashlightObject m_flashlight;
-    std::unique_ptr<BaseWeaponObject> m_currentWeapon;
-    std::vector<std::unique_ptr<MovingObject>> m_bullets;
+    PlayerWeaponObject* m_currentWeapon;
+    std::vector<std::unique_ptr<PlayerWeaponObject>> m_weapons;
+
+    
 
     PlayerLives m_lives;
     //function for the hearts
