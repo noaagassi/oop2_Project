@@ -32,7 +32,7 @@ public:
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
-	bool playerIsHittingPoison(sf::Vector2f playerPosition);
+
 	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
 private:

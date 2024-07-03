@@ -15,6 +15,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 
 
 
+
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y+10), m_eatLifeGift(false)
 {

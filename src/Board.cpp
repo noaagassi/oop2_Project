@@ -213,52 +213,73 @@ void Board::checkCollisions()
 			++moving;
 		}
 
-		//check if the player is in the poison area
-		if (auto player= dynamic_cast<PlayerObject*>((*moving).get()))
+		/*
+		for (auto poisonObj = PoisonVec.begin(); poisonObj != PoisonVec.end(); )
 		{
-			if (playerIsHittingPoison(player->getPosition()))
+			if ((*moving)->isCollidingWith(**poisonObj))
 			{
-				SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+				try
+				{
+					processCollision(**moving, **poisonObj);
+				}
+				catch (const UnknownCollision& e)
+				{
+					std::cerr << e.what() << std::endl;
+				}
 			}
-		}
-
+		}*/
+		//for (auto poisonObj = PoisonVec.begin(); poisonObj != PoisonVec.end(); )
+		//{
+		//	if ((*moving)->isCollidingWith(**poisonObj))
+		//	{
+		//		try
+		//		{
+		//			processCollision(**moving, **poisonObj);
+		//		}
+		//		catch (const UnknownCollision& e)
+		//		{
+		//			std::cerr << e.what() << std::endl;
+		//		}
+		//	}
+		//	++poisonObj; // התקדמות לאובייקט הרעל הבא
+		//}
 
 	}
 
 	
-	//for (size_t i = 0; i < m_movingObjects.size(); ++i)
-	//{
-	//	//moving with moving
-	//	for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
-	//	{
-	//		if (m_movingObjects[i]->isCollidingWith(*m_movingObjects[j]))
-	//		{
-	//			try
-	//			{
-	//				processCollision(*m_movingObjects[i], *m_movingObjects[j]);
-	//			}
-	//			catch (const UnknownCollision& e)
-	//			{
-	//				std::cerr << e.what() << std::endl;
-	//			}
-	//		}
-	//	}
-	//	//moving with poison
-	//	for (size_t k = 0; k < PoisonVec.size(); k++)
-	//	{
-	//		if (m_movingObjects[i]->isCollidingWith(*PoisonVec[k]))
-	//		{
-	//			try
-	//			{
-	//				processCollision(*m_movingObjects[i], *PoisonVec[k]);
-	//			}
-	//			catch (const UnknownCollision& e)
-	//			{
-	//				std::cerr << e.what() << std::endl;
-	//			}
-	//		}
-	//	}
-	//}
+	for (size_t i = 0; i < m_movingObjects.size(); ++i)
+	{
+		//moving with moving
+		for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
+		{
+			if (m_movingObjects[i]->isCollidingWith(*m_movingObjects[j]))
+			{
+				try
+				{
+					processCollision(*m_movingObjects[i], *m_movingObjects[j]);
+				}
+				catch (const UnknownCollision& e)
+				{
+					std::cerr << e.what() << std::endl;
+				}
+			}
+		}
+		//moving with poison
+		for (size_t k = 0; k < PoisonVec.size(); k++)
+		{
+			if (m_movingObjects[i]->isCollidingWith(*PoisonVec[k]))
+			{
+				try
+				{
+					processCollision(*m_movingObjects[i], *PoisonVec[k]);
+				}
+				catch (const UnknownCollision& e)
+				{
+					std::cerr << e.what() << std::endl;
+				}
+			}
+		}
+	}
 
 
 }
@@ -296,23 +317,11 @@ void Board::handleKeyPress(sf::Keyboard::Key key)
 {
 }
 
-bool Board::playerIsHittingPoison(sf::Vector2f playerPosition)
-{
-	
-	/*if (playerPosition.x > BOTTOM_RIGHT_POISON.x ||
-		playerPosition.x < TOP_LEFT_POISON.x ||
-		playerPosition.y >BOTTOM_RIGHT_POISON.y ||
-		playerPosition.y < TOP_LEFT_POISON.y)
-	{
-		return true;
-	}*/
-	return false;
-}
-
 void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
 {
 	for (auto& bullet : bullets) {
 		m_movingObjects.push_back(std::move(bullet));
 	}
 }
+
 

@@ -38,13 +38,6 @@ const bool LESS = false,
            MORE = true;
 
 
-const int PLAYER_SPRITE_WIDTH = 64;
-const int PLAYER_SPRITE_HEIGHT = 96;
-const int PLAYER_SPRITES_PER_ROW = 4;
-const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED = 1.5f;
-
-
 enum StateOptions {
     Null,
     PlayScrn,
@@ -68,3 +61,8 @@ enum StateOptions {
 
 /// for the frames of the player and enemyies
 //constant ans enum
+const int PLAYER_SPRITE_WIDTH = 64;
+const int PLAYER_SPRITE_HEIGHT = 96;
+const int PLAYER_SPRITES_PER_ROW = 4;
+const int PLAYER_SPRITES_PER_COLUMN = 4;
+const float PLAYER_MOVE_SPEED = 1.5f;
