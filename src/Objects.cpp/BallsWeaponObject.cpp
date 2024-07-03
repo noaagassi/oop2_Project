@@ -5,7 +5,7 @@
 BallsWeaponObject::BallsWeaponObject()
     :PlayerWeaponObject()
 {
-    m_numOfBalls = 2;
+    m_numOfBalls = 4;
     m_fireRate = 1.0f;
     
 }

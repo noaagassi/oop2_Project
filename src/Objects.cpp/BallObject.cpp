@@ -10,7 +10,7 @@ BallObject::BallObject(const sf::Vector2f& position)
 {
     m_speed = 100.0f;
     setObjTexture(BULLET_OBJ);
-    setTheScale(0.05f, 0.05f);
+    setTheScale(0.02f, 0.02f);
 
 }
 
