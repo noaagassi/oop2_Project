@@ -8,4 +8,9 @@ bool SpreadingLaserWeaponObject::m_registerit = FactoryObject::registerit(SPREAD
 SpreadingLaserWeaponObject::SpreadingLaserWeaponObject(const sf::Vector2f& initPosition)
     :PlayerWeaponObject(initPosition)
 {
+    m_fireRate = 3.0;
+}
+
+void SpreadingLaserWeaponObject::shoot()
+{
 }

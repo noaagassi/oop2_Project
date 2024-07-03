@@ -1,12 +1,11 @@
 #pragma once
-#include "StaticObject.h"
 
-class PoisonObject : public StaticObject
+#include "FactoryObject.h"
+
+class PoisonObject : public BaseObject
 {
 public:
-    PoisonObject(const sf::Vector2f& initPosition);
-    PoisonObject();
-
+	PoisonObject(const sf::Vector2f& initPosition);
+	void draw(sf::RenderWindow*) const override;
 private:
-    static bool m_registerit;
 };

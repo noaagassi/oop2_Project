@@ -11,3 +11,13 @@ BaseGiftObject::BaseGiftObject(const sf::Vector2f& initPosition)
 BaseGiftObject::BaseGiftObject()
 {
 }
+
+bool BaseGiftObject::toDelete()
+{
+	return m_toDelete;
+}
+
+void BaseGiftObject::toDelete(bool toDelete)
+{
+	m_toDelete = toDelete;
+}

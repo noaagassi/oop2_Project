@@ -8,8 +8,8 @@ bool WallObject::m_registerit = FactoryObject::registerit(WALL_OBJ,
 WallObject::WallObject(const sf::Vector2f& initPosition)
     :StaticObject(initPosition)
 {
+    setTheScale(WALL_OBJ);
     setObjTexture(WALL_OBJ);
-    setScale(0.05f, 0.05f);
 
 }
 

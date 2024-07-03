@@ -39,7 +39,8 @@ enum Object_ID {
     WEAPON_GIFT_OBJ,
     PLAYER_OBJ,
     PLAY_SCREEN_OBJ,
-    SPREADING_LASER          //WITHOUT TEXTURE
+    SPREADING_LASER,
+    BULLET_OBJ
 };
 
 class TextureHandler

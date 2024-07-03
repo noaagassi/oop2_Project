@@ -2,27 +2,35 @@
 
 FlashlightObject::FlashlightObject()
 {
-    m_flashlightCone.setPointCount(3);
-    m_flashlightCone.setFillColor(sf::Color(128, 0, 128, 150));
+    m_flashlightCone.setPointCount(4);
+    m_flashlightCone.setFillColor(sf::Color(128, 128, 128 , 140));
 }
 
-void FlashlightObject::update(const sf::Vector2f& position, const sf::Vector2f& direction)
+void FlashlightObject::update(const sf::Vector2f& playerPos, const sf::Vector2f& direction)
 {
+   
     
-    // חישוב הזווית לפי הכיוון לעכבר
-    float angle = atan2(direction.y - position.y, direction.x - position.x) * 180 / 3.14159265;
-    // עדכון מיקום הנקודות של האור של הפנס
-    m_flashlightCone.setPoint(0, position);
-    m_flashlightCone.setPoint(1, position + sf::Vector2f(cos(angle * 3.14159265 / 180) * 150, sin(angle * 3.14159265 / 180) * 150));
-    m_flashlightCone.setPoint(2, position + sf::Vector2f(cos((angle + 20) * 3.14159265 / 180) * 150, sin((angle + 20) * 3.14159265 / 180) * 150));
-    
+    sf::Vector2f spriteCenter = playerPos + sf::Vector2f(15, 28);//(PLAYER_WIDTH / 2.0f, PLAYER_HEIGHT / 2.0f);
 
-   /* float angle = atan2(direction.y, direction.x) * 180 / 3.14159265;
+    float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+    float minLength = 0.001f;
+    sf::Vector2f adjustedDirection = direction;
+    if (length < minLength) {
+        adjustedDirection *= (minLength / length); // Escalar el vector para tener una longitud mםnima
+    }
 
-    m_flashlightCone.setPoint(0, position);
-    m_flashlightCone.setPoint(1, position + sf::Vector2f(cos(angle * 3.14159265 / 180) * 150, sin(angle * 3.14159265 / 180) * 150));
-    m_flashlightCone.setPoint(2, position + sf::Vector2f(cos((angle + 20) * 3.14159265 / 180) * 150, sin((angle + 20) * 3.14159265 / 180) * 150));*/
+    // Calcular el בngulo en grados
+    float angle = std::atan2(adjustedDirection.y, adjustedDirection.x) * 180 / 3.14159265;
+    float spreadAngle = 30.0f;
+
+   
+    m_flashlightCone.setPoint(0, spriteCenter);
+    m_flashlightCone.setPoint(1, spriteCenter + sf::Vector2f(cos((angle - spreadAngle / 2) * 3.14159265 / 180) * 150, sin((angle - spreadAngle / 2) * 3.14159265 / 180) * 100));
+    m_flashlightCone.setPoint(2, spriteCenter + sf::Vector2f(cos((angle + spreadAngle / 2) * 3.14159265 / 180) * 150, sin((angle + spreadAngle / 2) * 3.14159265 / 180) * 100));
+    m_flashlightCone.setPoint(3, spriteCenter);
+
 }
+
 
 sf::ConvexShape FlashlightObject::getShape()
 {

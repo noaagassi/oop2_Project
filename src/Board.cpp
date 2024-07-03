@@ -1,15 +1,12 @@
 #include "Board.h"
 #include "CollisionHandling.h"
+#include "Objects.h/BushObject.h"
+#include "Objects.h/BaseGiftObject.h"
+#include "Objects.h/BulletObject.h"
 //----------------------------------------
 Board::Board()
 	:m_levelNum(1)
 {
-	/*m_colorsCodes[sf::Color(34, 177, 76)] = COLOR_OF_OBJECT::GREEN;
-	m_colorsCodes[sf::Color(181, 230, 29)] = COLOR_OF_OBJECT::LIGHT_GREEN;
-	m_colorsCodes[sf::Color(163, 73, 164)] = COLOR_OF_OBJECT::PURPLE;
-	m_colorsCodes[sf::Color(185, 122, 87)] = COLOR_OF_OBJECT::BROWN;
-	m_colorsCodes[sf::Color(63, 72, 204)] = COLOR_OF_OBJECT::BLUE;*/
-
 	readLevel();
 }
 //----------------------------------------
@@ -38,16 +35,15 @@ std::string Board::updateNameLevel(int number)
 void Board::readMap(std::string fileName)
 {
 	auto image = sf::Image();
-	float location_y = 700.f;
+	float location_y = PLAY_WINDOW_HEIGHT;
 	float location_x = 0.f;
 	sf::Color pixelColor;
 	image.loadFromFile(fileName);
 	for (int x = 0; x<int(image.getSize().x); x++)
 	{
-		location_y = 700.f;
-		for (int y = int(image.getSize().y) - 1; y >= 0; y--)
+		location_y = PLAY_WINDOW_HEIGHT - (PLAY_WINDOW_HEIGHT / MAP_HEIGHT);
+		for (int y = int(image.getSize().y) -1 ; y >= 0; y--)
 		{
-	
 			pixelColor = image.getPixel(x, y);
 
 			if (pixelColor == sf::Color(163, 73, 164))   //purple color	player
@@ -55,6 +51,7 @@ void Board::readMap(std::string fileName)
 				sf::Vector2f position(location_x,location_y);
 				auto player = FactoryObject::createMoving(PLAYER_OBJ, position);
 				m_movingObjects.push_back(std::move(player));
+				
 			}
 			else if (pixelColor == sf::Color(34, 177, 76))      //green color trees
 			{
@@ -72,12 +69,6 @@ void Board::readMap(std::string fileName)
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto portal = FactoryObject::createStatic(PORTAL_OBJ, position);
-				
-				auto sharedPortal = std::shared_ptr<PortalObject>(dynamic_cast<PortalObject*>(portal.get()));
-				m_staticObjects.push_back(std::move(portal));
-				m_portals.push_back(sharedPortal);
-				sharedPortal->setPortals(std::make_shared<std::vector<std::shared_ptr<PortalObject>>>(m_portals));
-				
 				
 			}
 			else if (pixelColor == sf::Color(181, 230, 29))      //light green color for bush
@@ -122,31 +113,38 @@ void Board::readMap(std::string fileName)
 				auto poison = FactoryObject::createStatic(POISON_OBJ, position);
 				m_staticObjects.push_back(std::move(poison));
 			}
-			location_y -= 28.f;
+			location_y -= PLAY_WINDOW_HEIGHT/MAP_HEIGHT;
 		}
-		location_x += 40.f;
+		location_x += PLAY_WINDOW_WIDTH/MAP_WIDTH;
 	}
 }
+
+
+
 
 
 
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
-	
+	m_cloud.update(deltatime, window);
 	for (auto &currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
+		
 	}
+
+	auto playerBullets = getPlayer()->retrieveBullets();
+	addBullets(std::move(playerBullets));
+	
+	std::cout << m_movingObjects.size() << std::endl;
+
 	checkCollisions();
+
 }
-
-
-
-
-
 
 void Board::draw(sf::RenderWindow* window)
 {
+	m_cloud.draw(window);
 	for (const auto& currentObject : m_movingObjects)
 	{
 		currentObject->draw(window);
@@ -159,25 +157,61 @@ void Board::draw(sf::RenderWindow* window)
 
 void Board::checkCollisions()
 {
-	for (auto& moving : m_movingObjects)
+	for (auto moving = m_movingObjects.begin(); moving != m_movingObjects.end();)
 	{
-		for (auto& staticObj : m_staticObjects)
+		
+		for (auto staticObj = m_staticObjects.begin(); staticObj != m_staticObjects.end(); )
 		{
-			if (moving->isCollidingWith(*staticObj))
+			if ((*moving)->isCollidingWith(**staticObj))
 			{
 				try
 				{
-					processCollision(*moving, *staticObj);
+					processCollision(**moving, **staticObj);
 				}
 				catch (const UnknownCollision& e)
 				{
 					std::cerr << e.what() << std::endl;
 				}
+
+				BaseGiftObject* gift = dynamic_cast<BaseGiftObject*>((*staticObj).get());
+
+				if (gift && gift->toDelete())
+				{
+					staticObj = m_staticObjects.erase(staticObj);
+				}
+				else
+				{
+					++staticObj;
+				}
 			}
+			else
+			{
+				if (auto player = dynamic_cast<PlayerObject*>((*moving).get()))
+				{
+					if (auto bush = dynamic_cast<BushObject*>((*staticObj).get()))
+					{
+						bush->resetColor();
+					}
+				}
+				++staticObj;
+			}
+			
 		}
+
+		BulletObject* bullet = dynamic_cast<BulletObject*>((*moving).get());
+
+		if (bullet && bullet->toDelete())
+		{
+			moving = m_movingObjects.erase(moving);
+		}
+		else
+		{
+			++moving;
+		}
+
 	}
 
-	// Verificar colisiones entre los propios objetos móviles
+	//moving with moving
 	for (size_t i = 0; i < m_movingObjects.size(); ++i)
 	{
 		for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
@@ -197,18 +231,44 @@ void Board::checkCollisions()
 	}
 }
 
+
+PlayerObject* Board::getPlayer() const
+{
+	for (const auto& obj : m_movingObjects)
+	{
+		PlayerObject* player = dynamic_cast<PlayerObject*>(obj.get());
+
+		if (player != nullptr)
+		{
+			return player;
+		}
+	}
+	return nullptr;
+}
+
+sf::FloatRect Board::getPlayerBounds() const
+{
+	return getPlayer()->getSpriteBounds();
+}
+
+sf::Vector2f Board::getPlayrLocation() const
+{
+	return getPlayer()->getPosition();
+}
+
 void Board::handleMousePressed(sf::Event event)
 {
 }
 
 void Board::handleKeyPress(sf::Keyboard::Key key)
 {
-	switch (key){
-	case sf::Keyboard::D:
-		
-		break;
-	default:
-		break;
+}
+
+void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
+{
+	for (auto& bullet : bullets) {
+		m_movingObjects.push_back(std::move(bullet));
 	}
 }
+
 

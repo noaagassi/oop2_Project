@@ -11,6 +11,11 @@
 #include "Objects.h/WallObject.h"
 #include "Objects.h/PortalObject.h"
 #include "Objects.h/TreeObject.h"
+#include "Objects.h/LifeGiftObject.h"
+#include "Objects.h/FreezeGiftObject.h"
+#include"Objects.h/PoisonObject.h"
+#include"Objects.h/WeaponGiftObject.h"
+#include "Objects.h/BulletObject.h"
 
 
 
@@ -43,17 +48,7 @@ namespace // anonymous namespace — the standard way to make function "static"
     }
 
 
-    PortalObject& getRandomPortal(const PortalObject& currentPortal, const std::vector<std::unique_ptr<StaticObject>>& portals)
-    {
-        std::srand(static_cast<unsigned int>(std::time(0))); 
-        PortalObject* randomPortal = nullptr;
-        do {
-            int randomIndex = std::rand() % portals.size();
-            randomPortal = dynamic_cast<PortalObject*>(portals[randomIndex].get());
-        } while (randomPortal == &currentPortal || randomPortal == nullptr);
-
-        return *randomPortal;
-    }
+    
 
     ////////////////////////////////////////////////////////////////////////////////////
     // primary collision-processing functions
@@ -64,6 +59,9 @@ namespace // anonymous namespace — the standard way to make function "static"
 
 
         std::cout << "Player and Bush collision!\n";
+
+        real_bush.makeTranslucent();
+        real_player.setInBush(true);
     }
 
     void playerWall (BaseObject& player, BaseObject& wall)
@@ -99,39 +97,81 @@ namespace // anonymous namespace — the standard way to make function "static"
         PortalObject& real_portal = dynamic_cast<PortalObject&>(portal);
 
         std::cout << "Player and Portal collision!\n";
-        /*
-        PortalObject& target_portal = real_portal.getRandomPortal();
-        std::cout << "tengo un  potal";
-        sf::Vector2f target_position = target_portal.getSprite().getPosition();
+        
+        PortalObject* target_portal = real_portal.getRandomPortal();
+        sf::Vector2f target_position = target_portal->getSprite().getPosition();
+        sf::Vector2f offset(0.f, 40.f);
+        target_position += offset;
         real_player.setPosition(target_position);
 
-        sf::FloatRect playerBounds = real_player.getSprite().getGlobalBounds();
-        sf::FloatRect portalBounds = real_portal.getSprite().getGlobalBounds();
-
-        stopAdvance(playerBounds, portalBounds, real_player);
-        std::cout << "cambie de lugar"; 
-        */
     }
 
-    //...
-
-    // secondary collision-processing functions that just
-    // implement symmetry: swap the parameters and call a
-    // primary function
-    void bushPlayer (BaseObject& bush, BaseObject& player)
+    void playerLife(BaseObject& player, BaseObject& life)
     {
-        playerBush(player, bush);
+        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+        LifeGiftObject& real_life = dynamic_cast<LifeGiftObject&>(life);
+
+        std::cout << "Player and Life Gift collision!\n";
+
+        real_life.toDelete(true);
+
     }
 
-    void WallPlayer(BaseObject& wall, BaseObject& player)
+    void playerFreeze(BaseObject& player, BaseObject& freeze)
     {
-        playerWall(player, wall);
+        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+        FreezeGiftObject& real_freeze = dynamic_cast<FreezeGiftObject&>(freeze);
+
+        std::cout << "Player and Freeze Gift collision!\n";
+
+        real_freeze.toDelete(true);
+
+
     }
-    void portalPlayer(BaseObject& wall, BaseObject& player)
+
+    void playerWeapon(BaseObject& player, BaseObject& weapon)
     {
-        playerPortal(player, wall);
+        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+        WeaponGiftObject& real_weapon = dynamic_cast<WeaponGiftObject&>(weapon);
+
+        std::cout << "Player and Weapon Gift collision!\n";
+
+        real_weapon.toDelete(true);
+       
     }
-    //...
+
+    void playerPoison(BaseObject& player, BaseObject& poison)
+    {
+        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+        PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
+
+        std::cout << "Player and Poison collision!\n";
+
+       
+
+    }
+    void bulletWall(BaseObject& bullet, BaseObject& wall)
+    {
+        
+        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+        WallObject& real_wall = dynamic_cast<WallObject&>(wall);
+
+        std::cout << "Bullet and Wall collision!\n";
+        real_bullet.toDelete(true);
+
+    }
+    void bulletTree(BaseObject& bullet, BaseObject& tree)
+    {
+
+        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+        TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
+
+        std::cout << "Bullet and Tree collision!\n";
+        real_bullet.toDelete(true);
+
+    }
+
+    
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     using HitFunctionPtr = void (*)(BaseObject&, BaseObject&);
    
@@ -146,10 +186,12 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(WallObject))] = &playerWall;
         phm[Key(typeid(PlayerObject), typeid(TreeObject))] = &playerTree;
         phm[Key(typeid(PlayerObject), typeid(PortalObject))] = &playerPortal;
-
-        phm[Key(typeid(BushObject), typeid(PlayerObject))] = &bushPlayer;
-        phm[Key(typeid(WallObject), typeid(PlayerObject))] = &WallPlayer;
-        phm[Key(typeid(PortalObject), typeid(PlayerObject))] = &portalPlayer;
+        phm[Key(typeid(PlayerObject), typeid(LifeGiftObject))] = &playerLife;
+        phm[Key(typeid(PlayerObject), typeid(FreezeGiftObject))] = &playerFreeze;
+        phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
+        phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
+        phm[Key(typeid(BulletObject), typeid(WallObject))] = &bulletWall;
+        phm[Key(typeid(BulletObject), typeid(TreeObject))] = &bulletTree;
 
        
         //...

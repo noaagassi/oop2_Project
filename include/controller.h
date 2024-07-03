@@ -2,10 +2,12 @@
 #include <SFML/Graphics.hpp>
 #include "Objects.h/PlayerObject.h"
 #include "screenFolder.h/GameState.h"
-#include "screenFolder.h/Menu.h"
-#include "screenFolder.h/Instructions.h"
+#include "screenFolder.h/MenuState.h"
+#include "screenFolder.h/InstructionsState.h"
 #include "screenFolder.h/PlayState.h"
-#include "screenFolder.h/PausePage.h"
+#include "Utilities.h"
+
+#include "screenFolder.h/PauseState.h"
 
 
 
@@ -13,6 +15,7 @@ class Controller {
 public:
     Controller();
     void run();
+
 
 private:
     sf::RenderWindow m_window;

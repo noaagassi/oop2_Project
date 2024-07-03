@@ -7,10 +7,15 @@ bool BallsWeaponObject::m_registerit = FactoryObject::registerit(BALLS_WEAPON_4,
 
 BallsWeaponObject::BallsWeaponObject(const sf::Vector2f& initPosition)
 {
+    m_fireRate = 1.0f;
     setObjTexture(WALL_OBJ);
 }
 
 BallsWeaponObject::BallsWeaponObject()
 {
     setObjTexture(WALL_OBJ);
+}
+
+void BallsWeaponObject::shoot()
+{
 }
