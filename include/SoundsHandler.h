@@ -43,18 +43,18 @@ private:
 
     const std::string m_soundNames[SOUND_NUM] = {
         /*"sounds/.wav", */    
-        "C:/Users/roeyyo/source/repos/oop2_Project/resources/sounds/game_op2.wav"     
-        ,"sounds/loose1.wav",
-        "sounds/win2.wav",        
-        "sounds/poison2.wav",    
-        "sounds/laser_shoot.wav",
+        "game_op2.wav"     
+        ,"loose1.wav",
+        "win2.wav",        
+        "poison2.wav",    
+        "laser_shoot.wav",
         
-        "sounds/laser_hit.wav",   
-        "sounds/rocket_shoot.wav",
-        "sounds/rocket_hit.wav",
-        "sounds/ball_shoot1.wav", 
-        "sounds/ball_pop.wav"     ,"sounds/freeze_start.wav",
-        "sounds/freeze_end.wav",  "sounds/take_weapon.wav"  ,"sounds/extra_life.wav" };
+        "laser_hit.wav",   
+        "rocket_shoot.wav",
+        "rocket_hit.wav",
+        "ball_shoot1.wav", 
+        "ball_pop.wav"     ,"freeze_start.wav",
+        "freeze_end.wav",  "take_weapon.wav"  ,"extra_life.wav" };
 
 
     sf::Sound m_sound;
