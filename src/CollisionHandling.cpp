@@ -137,6 +137,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         std::cout << "Player and Weapon Gift collision!\n";
 
         real_weapon.toDelete(true);
+        real_player.weaponGift();
        
     }
 

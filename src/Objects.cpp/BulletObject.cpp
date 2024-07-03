@@ -27,7 +27,6 @@ void BulletObject::update(float deltaTime, sf::RenderWindow* window)
         && (m_target.y - m_position.y) <= 5
         && (m_target.y - m_position.y) >= -5 )
     {
-        std::cout << "deleted" << std::endl;
         m_toDelete = true;
     }
 
@@ -64,7 +63,6 @@ void BulletObject::setTarget(const sf::Vector2f& target)
     if (length != 0) {
         m_direction = direction / length;
     }
-    std::cout << "direccion "<<m_direction.x << " " << m_direction.y << std::endl;
 }
 
 

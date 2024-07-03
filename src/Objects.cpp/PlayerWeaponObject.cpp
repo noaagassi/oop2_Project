@@ -7,3 +7,8 @@ PlayerWeaponObject::PlayerWeaponObject()
 	:BaseWeaponObject()
 {
 }
+
+void PlayerWeaponObject::addBall()
+{
+	m_numOfBalls++;
+}

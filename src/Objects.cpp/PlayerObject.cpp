@@ -195,6 +195,10 @@ std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
     return m_currentWeapon->retrieveBullets();
     
 }
+void PlayerObject::weaponGift()
+{
+    m_currentWeapon->addBall();
+}
 //------------------------------------------------
 void PlayerObject::ateLiveGift()
 {

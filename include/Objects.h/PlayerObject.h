@@ -26,8 +26,7 @@ public:
     void shoot();
     void changeWeapon(int index);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
-
-    FlashlightObject getFlashlight();
+    void weaponGift();
     //
     void ateLiveGift();
 private:

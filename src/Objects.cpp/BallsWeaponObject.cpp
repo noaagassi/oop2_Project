@@ -3,10 +3,11 @@
 #include "Objects.h/BulletObject.h"
 
 BallsWeaponObject::BallsWeaponObject()
+    :PlayerWeaponObject()
 {
-    m_numOfBalls = 5;
-    m_fireRate = 1.0f;
     m_numOfBalls = 2;
+    m_fireRate = 1.0f;
+    
 }
 
 
@@ -26,8 +27,5 @@ void BallsWeaponObject::shoot(FlashlightObject flashlight)
     }
 }
 
-void BallsWeaponObject::addBall()
-{
-    m_numOfBalls++;
-}
+
 

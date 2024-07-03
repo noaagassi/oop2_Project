@@ -10,7 +10,7 @@ class PlayerWeaponObject : public BaseWeaponObject
 {
 public:
     PlayerWeaponObject();
-
-private:
-
+    void addBall();
+protected:
+    int m_numOfBalls;
 };
