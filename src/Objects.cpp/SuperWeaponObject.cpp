@@ -17,7 +17,6 @@ void SuperWeaponObject::shoot(FlashlightObject flashlight)
     sf::Vector2f target = (vertex1+vertex2)/2.0f;             
     auto rocket = std::make_unique<RocketObject>(start);
     rocket->setTarget(target);
-    std::cout << "rocket" << std::endl;
     m_bullets.push_back(std::move(rocket));
 
     

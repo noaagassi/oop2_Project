@@ -24,10 +24,10 @@ void BulletObject::setTarget(const sf::Vector2f& target)
 {
 	m_target = target;
 
-	sf::Vector2f direction = m_target - m_position;
-	float length = sqrt(direction.x * direction.x + direction.y * direction.y);
+	m_direction = m_target - m_position;
+	float length = sqrt(m_direction.x * m_direction.x + m_direction.y * m_direction.y);
 	if (length != 0) {
-		m_direction = direction / length;
+		m_direction = m_direction / length;
 	}
 
 }

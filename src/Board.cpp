@@ -147,14 +147,15 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 void Board::draw(sf::RenderWindow* window)
 {
 	m_cloud.draw(window);
-	for (const auto& currentObject : m_movingObjects)
-	{
-		currentObject->draw(window);
-	}
 	for (const auto& currentObject : m_staticObjects)
 	{
 		currentObject->draw(window);
 	}
+	for (const auto& currentObject : m_movingObjects)
+	{
+		currentObject->draw(window);
+	}
+	
 }
 
 void Board::checkCollisions()

@@ -141,6 +141,7 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
 
         if (event.type == sf::Event::MouseButtonReleased) {
             if (event.mouseButton.button == sf::Mouse::Left) {
+                changeWeapon(0);
                 shoot();
             }
         }
