@@ -3,6 +3,7 @@
 #include "Objects.h/BushObject.h"
 #include "Objects.h/BaseGiftObject.h"
 #include "Objects.h/BulletObject.h"
+#include "Objects.h/TreeObject.h"
 //----------------------------------------
 Board::Board()
 	:m_levelNum(1)
@@ -138,8 +139,6 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 
 	auto playerBullets = getPlayer()->retrieveBullets();
 	addBullets(std::move(playerBullets));
-	
-	std::cout << m_movingObjects.size() << std::endl;
 
 	checkCollisions();
 

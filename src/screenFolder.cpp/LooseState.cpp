@@ -1,6 +1,8 @@
 #include "screenFolder.h/LooseState.h"
-#include <iostream>
 
+#include "Buttons.h/MenuCommand.h"
+#include <iostream>
+/*
 
 LooseScreen::LooseScreen(sf::RenderWindow* window)
     : GameState(window,800,600)
@@ -31,11 +33,6 @@ void LooseScreen::update(float deltatime)
 void LooseScreen::handleEvent(sf::Event event)
 {
 }
-//
-//std::shared_ptr<GameState> LooseScreen::isStateChanged()
-//{
-//    return std::shared_ptr<GameState>();
-//}
 
 std::shared_ptr<GameState> LooseScreen::isStateChanged(sf::Event event)
 {

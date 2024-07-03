@@ -5,13 +5,14 @@
 #include "screenFolder.h/MenuState.h"
 #include "screenFolder.h/InstructionsState.h"
 #include "screenFolder.h/PlayState.h"
+#include "screenFolder.h/LooseScreen.h"
 #include "Utilities.h"
 
 #include "screenFolder.h/PauseState.h"
 
 
-
-class Controller {
+class Controller 
+{
 public:
     Controller();
     void run();
@@ -25,5 +26,6 @@ private:
     std::shared_ptr<PlayState> m_playState;
     std::shared_ptr<Instructions> m_instructions;
     std::shared_ptr<PausePage> m_pause;
+//    std::shared_ptr<LooseScreen> m_loose;
 
 };

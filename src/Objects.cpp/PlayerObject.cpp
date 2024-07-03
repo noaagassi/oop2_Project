@@ -17,7 +17,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 
 
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition)
+    : MovingObject(initPosition),m_lives(initPosition.x,initPosition.y+40), m_eatLifeGift(false)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
@@ -27,7 +27,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     rightFrames = { getFrame(2, 0), getFrame(2, 1), getFrame(2, 2), getFrame(2, 3) };
     downFrames = { getFrame(0, 0), getFrame(0, 1), getFrame(0, 2), getFrame(0, 3) };
     upFrames = { getFrame(3, 0), getFrame(3, 1), getFrame(3, 2), getFrame(3, 3) };
-
+    
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
     
@@ -38,12 +38,19 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
-
+    m_numberForHeart++;
+    if (m_numberForHeart % 100 == 0)
+    {
+        //m_lives.looseLive();
+    }
+    isAteLiveGift();
     handleInput(window);
     animate(deltaTime);
     m_objectSprite.setPosition(m_position);
-    
+    m_lifeTexture.setPosition(m_position.x, m_position.y + 40);
     updateFlashlight(window);
+    sf::Vector2f pos4lives(m_position.x, m_position.y + 40);
+    m_lives.update(pos4lives);
     m_currentWeapon->update(deltaTime);
 }
 //------------------------------------------------
@@ -52,10 +59,31 @@ void PlayerObject::draw(sf::RenderWindow* window) const
 {
     BaseObject::draw(window); 
     m_flashlight.draw(window);
+    m_lives.draw(window);
 }
 
 //------------------------------------------------
 
+void PlayerObject::changeHeart(bool updateLifes)
+{
+    if (updateLifes == LESS)
+    {
+        m_lifeTexture.setFillColor(sf::Color::Red);
+    }
+    else
+    {
+        m_lifeTexture.setFillColor(sf::Color::Blue);
+    }
+}
+//------------------------------------------------
+void PlayerObject::isAteLiveGift()
+{
+    if (m_eatLifeGift)
+    {
+        m_lives.addLive();
+        m_eatLifeGift = false;
+    }
+}
 //------------------------------------------------
 sf::IntRect PlayerObject::getFrame(int row, int col)
 {
@@ -106,17 +134,12 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
             }
         }
     }
-
-
-
-  
-
     if (!isMoving) {
         currentFrames = &defaultFrames;
     }
 }
 
-
+//------------------------------------------------
 
 void PlayerObject::animate(float deltaTime) 
 {
@@ -128,7 +151,7 @@ void PlayerObject::animate(float deltaTime)
     }
 }
 
-
+//------------------------------------------------
  
 void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
 {
@@ -139,17 +162,17 @@ void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
     m_flashlight.update(m_position, direction);
 
 }
-
+//------------------------------------------------
 bool PlayerObject::isInBush()
 {
     return m_inBush;
 }
-
+//------------------------------------------------
 void PlayerObject::setInBush(bool inBush)
 {
     m_inBush = inBush;
 }
-
+//------------------------------------------------
 void PlayerObject::shoot()
 {
     sf::Vector2f start = m_flashlight.getShape().getPoint(0);
@@ -166,17 +189,22 @@ void PlayerObject::shoot()
     } 
 }
 
-
+//------------------------------------------------
 void PlayerObject::changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon)
 {
     m_currentWeapon = std::move(newWeapon);
 }
-
+//------------------------------------------------
 
 std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
 {
     std::vector<std::unique_ptr<MovingObject>> bullets;
     bullets.swap(m_bullets); 
     return bullets;
+}
+//------------------------------------------------
+void PlayerObject::ateLiveGift()
+{
+    m_eatLifeGift = true;
 }
 

@@ -111,7 +111,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         LifeGiftObject& real_life = dynamic_cast<LifeGiftObject&>(life);
 
-        std::cout << "Player and Life Gift collision!\n";
+        real_player.ateLiveGift();
 
         real_life.toDelete(true);
 
