@@ -159,7 +159,7 @@ void Board::draw(sf::RenderWindow* window)
 
 void Board::checkCollisions()
 {
-	const auto& PoisonVec = m_cloud.getPoisonVec();
+	//const auto& PoisonVec = m_cloud.getPoisonVec();
 
 	for (auto moving = m_movingObjects.begin(); moving != m_movingObjects.end();)
 	{

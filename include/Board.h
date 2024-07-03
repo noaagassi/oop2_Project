@@ -52,10 +52,6 @@ private:
 
 	
 
-
-	//std::unique_ptr<PlayerObject> m_player;
-
-	//function of the object
 	void readMap(std::string fileName);
 
 };
