@@ -32,7 +32,7 @@ public:
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
-
+	bool playerIsHittingPoison(sf::Vector2f playerPosition);
 	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
 private:
@@ -50,8 +50,10 @@ private:
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 	CloudPoisonObject m_cloud;
 
+	
 
-	std::unique_ptr<PlayerObject> m_player;
+
+	//std::unique_ptr<PlayerObject> m_player;
 
 	//function of the object
 	void readMap(std::string fileName);
