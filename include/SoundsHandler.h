@@ -39,11 +39,11 @@ public:
 private:
 
     const std::string m_soundNames[SOUND_NUM] = {
-        /*"sounds/.wav", */            "sounds/game_op2.wav","sounds/loose1.wav",
-        "sounds/win2.wav",         "sounds/poison2.wav","sounds/laser_shoot.wav",
-        "sounds/laser_hit.wav",    "sounds/rocket_shoot.wav","sounds/rocket_hit.wav",
-        "sounds/ball_shoot1.wav",  "sounds/ball_pop.wav","sounds/freeze_start.wav",
-        "sounds/freeze_end.wav","sounds/take_weapon.wav","sounds/extra_life.wav" };
+        /*"sounds/.wav", */       "sounds/game_op2.wav"     ,"sounds/loose1.wav",
+        "sounds/win2.wav",        "sounds/poison2.wav"      ,"sounds/laser_shoot.wav",
+        "sounds/laser_hit.wav",   "sounds/rocket_shoot.wav" ,"sounds/rocket_hit.wav",
+        "sounds/ball_shoot1.wav", "sounds/ball_pop.wav"     ,"sounds/freeze_start.wav",
+        "sounds/freeze_end.wav",  "sounds/take_weapon.wav"  ,"sounds/extra_life.wav" };
 
 
     sf::Sound m_sound;
