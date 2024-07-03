@@ -6,11 +6,9 @@
 #include <SFML/Window.hpp>
 
 
-const int SOUND_NUM = 14;
+const int SOUND_NUM = 13;
 
 enum Sound_Id {
-    /*FIRST_MENU,*/
-    THE_GAME_SOUND,
     LOOSE,
     WIN,
     POISON,
@@ -36,15 +34,14 @@ public:
     SoundsHandler();
     ~SoundsHandler();
     static SoundsHandler& getInstance();
+    void playMusic();
 
     void playSound(Sound_Id id);
 
 private:
 
     const std::string m_soundNames[SOUND_NUM] = {
-        /*"sounds/.wav", */    
-        "game_op2.wav"     
-        ,"loose1.wav",
+        "loose1.wav",
         "win2.wav",        
         "poison2.wav",    
         "laser_shoot.wav",
@@ -56,7 +53,7 @@ private:
         "ball_pop.wav"     ,"freeze_start.wav",
         "freeze_end.wav",  "take_weapon.wav"  ,"extra_life.wav" };
 
-
+    sf::Music m_music;
     sf::Sound m_sound;
     sf::Sound m_sounds[SOUND_NUM];
     sf::SoundBuffer m_buffers[SOUND_NUM];
@@ -65,3 +62,5 @@ private:
 
 
 //SoundsHandler::getInstance().playSound(Sound_Id::)
+
+//THE_GAME_SOUND,

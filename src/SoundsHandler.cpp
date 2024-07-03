@@ -14,11 +14,7 @@ SoundsHandler::SoundsHandler()
         m_sounds[i].setBuffer(m_buffers[i]);
     }
 
-    // //matches each sound with it's own buffer
-    //for (int i = 0; i < SOUND_NUM; i++)
-    //{
-    //    m_sounds[i].setBuffer(m_buffers[i]);
-    //}
+    m_music.openFromFile("game_op2.wav");
 }
 
 SoundsHandler::~SoundsHandler() {}
@@ -29,6 +25,12 @@ SoundsHandler& SoundsHandler::getInstance()
 {
     static SoundsHandler instance;
     return instance;
+}
+
+void SoundsHandler::playMusic()
+{
+    m_music.setLoop(true);
+    m_music.play();
 }
 
 void SoundsHandler::playSound(Sound_Id id)

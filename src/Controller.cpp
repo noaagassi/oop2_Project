@@ -20,6 +20,8 @@ Controller::Controller()
 //    m_loose->initMap(m_menu, StateOptions::MenuScrn);
 
 	m_currentScreen = m_menu;
+
+    SoundsHandler::getInstance().playMusic();
 }
 
 
@@ -31,7 +33,6 @@ void Controller::run() {
     sf::View originView = m_window.getDefaultView();
 
     while (m_window.isOpen()) {
-        SoundsHandler::getInstance().playSound(Sound_Id::THE_GAME_SOUND);
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
         m_currentScreen->update(deltaTime);
