@@ -4,9 +4,8 @@
 class MasiveLaserWeaponObject : public EnemyWeaponObject
 {
 public:
-    MasiveLaserWeaponObject(const sf::Vector2f& initPosition);
     MasiveLaserWeaponObject();
-    void shoot() ;
+    void shoot(FlashlightObject flashlight) override;
 private:
     static bool m_registerit;
 };

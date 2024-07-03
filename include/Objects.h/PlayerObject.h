@@ -6,6 +6,7 @@
 #include "FlashlightObject.h"
 #include "PlayerLives.h"
 #include "BaseWeaponObject.h"
+#include "BallsWeaponObject.h"
 
 class PlayerObject : public MovingObject
 {
@@ -24,7 +25,7 @@ public:
     void changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
 
-
+    FlashlightObject getFlashlight();
     //
     void ateLiveGift();
 private:
@@ -39,7 +40,7 @@ private:
     sf::RectangleShape m_lifeTexture;
     FlashlightObject m_flashlight;
     std::unique_ptr<BaseWeaponObject> m_currentWeapon;
-    std::vector<std::unique_ptr<MovingObject>> m_bullets;
+   
 
     PlayerLives m_lives;
     //function for the hearts

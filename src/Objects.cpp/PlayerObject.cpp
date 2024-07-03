@@ -31,7 +31,8 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
     
-
+    BallsWeaponObject ballsWeapon;
+    m_currentWeapon = ballsWeapon;
 
 }
 //------------------------------------------------
@@ -175,18 +176,8 @@ void PlayerObject::setInBush(bool inBush)
 //------------------------------------------------
 void PlayerObject::shoot()
 {
-    sf::Vector2f start = m_flashlight.getShape().getPoint(0);
-    sf::Vector2f vertex1 = m_flashlight.getShape().getPoint(1);
-    sf::Vector2f vertex2 = m_flashlight.getShape().getPoint(2);
-
-    for (int i = 0; i < 5; ++i) {
-        float t = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-        sf::Vector2f randomPoint = vertex1 + t * (vertex2 - vertex1);
-        auto bullet = std::make_unique<BulletObject>(start);
-        bullet->setTarget(randomPoint);
-        m_bullets.push_back(std::move(bullet));
-       
-    } 
+    m_currentWeapon->shoot(m_flashlight);
+    
 }
 
 //------------------------------------------------
@@ -198,9 +189,12 @@ void PlayerObject::changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon)
 
 std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
 {
-    std::vector<std::unique_ptr<MovingObject>> bullets;
-    bullets.swap(m_bullets); 
-    return bullets;
+    return m_currentWeapon->retrieveBullets();
+    
+}
+FlashlightObject PlayerObject::getFlashlight()
+{
+    return m_flashlight;
 }
 //------------------------------------------------
 void PlayerObject::ateLiveGift()
