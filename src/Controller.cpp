@@ -31,6 +31,7 @@ void Controller::run() {
     sf::View originView = m_window.getDefaultView();
 
     while (m_window.isOpen()) {
+        SoundsHandler::getInstance().playSound(Sound_Id::THE_GAME_SOUND);
         float deltaTime = clock.restart().asSeconds();
         m_currentScreen->draw();
         m_currentScreen->update(deltaTime);
