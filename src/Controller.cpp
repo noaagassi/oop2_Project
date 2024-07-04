@@ -41,8 +41,6 @@ void Controller::run() {
             {
                 m_window.close();
             }
-
-            
             std::shared_ptr<GameState> nextScreen = m_currentScreen->isStateChanged(event);
             bool screenChanged = (nextScreen != nullptr);
             if (screenChanged)
@@ -55,9 +53,9 @@ void Controller::run() {
             }
             
         }
+                
         
-
-            m_currentScreen->update(deltaTime);
+        m_currentScreen->update(deltaTime);
 
             
            // m_window.clear();

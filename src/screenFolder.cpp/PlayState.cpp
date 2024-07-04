@@ -61,6 +61,7 @@ void PlayState::update(float deltatime)
        
 std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 {
+
     if (event.type == sf::Event::Closed) {
         m_window->close();
     }
