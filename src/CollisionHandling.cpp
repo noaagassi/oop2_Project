@@ -176,17 +176,30 @@ namespace // anonymous namespace — the standard way to make function "static"
     }
 
 
-    void ballLife(BaseObject& bullet, BaseObject& life)
+    void ballLife(BaseObject& ball, BaseObject& life)
     {
 
     }
 
-    void ballFreeze(BaseObject& bullet, BaseObject& freeze)
+    void ballPlayer(BaseObject& ball, BaseObject& player)
+    {
+
+    }
+    void playerBall(BaseObject& player, BaseObject& ball)
     {
 
     }
 
-    void ballWeapon(BaseObject& player, BaseObject& weapon)
+    void ballFreeze(BaseObject& ball, BaseObject& freeze)
+    {
+
+    }
+
+    void ballWeapon(BaseObject& ball, BaseObject& weapon)
+    {
+
+    }
+    void ballBall(BaseObject& ball1, BaseObject& ball2)
     {
 
     }
@@ -245,6 +258,9 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(BallObject), typeid(LifeGiftObject))] = &ballLife;
         phm[Key(typeid(BallObject), typeid(FreezeGiftObject))] = &ballFreeze;
         phm[Key(typeid(BallObject), typeid(WeaponGiftObject))] = &ballWeapon;
+        phm[Key(typeid(BallObject), typeid(BallObject))] = &ballBall;
+        phm[Key(typeid(PlayerObject), typeid(BallObject))] = &playerBall;
+        phm[Key(typeid(BallObject), typeid(PlayerObject))] = &ballPlayer;
         phm[Key(typeid(RocketObject), typeid(WallObject))] = &rocketWall;
         phm[Key(typeid(RocketObject), typeid(TreeObject))] = &rocketTree;
         phm[Key(typeid(RocketObject), typeid(LifeGiftObject))] = &rocketLife;
