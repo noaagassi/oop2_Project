@@ -1,10 +1,10 @@
 #include "Objects.h/BigSlowEnemyObject.h"
 
 
-
+//----------------------------------------------------------------------------
 bool BigSlowEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_1_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<BigSlowEnemyObject>(pos); });
-
+//------------------------------------------------------
 BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
     :BaseEnemyObject(initPosition)
 {
@@ -19,23 +19,23 @@ BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
 }
-
+//------------------------------------------------------
 sf::IntRect BigSlowEnemyObject::getFrame(int row, int col)
 {
     return sf::IntRect(col * BIG_ENEMY_SPRITE_WIDTH, row * BIG_ENEMY_SPRITE_HEIGHT, BIG_ENEMY_SPRITE_WIDTH, BIG_ENEMY_SPRITE_HEIGHT);
 }
-
+//------------------------------------------------------
 void BigSlowEnemyObject::move(float deltaTime)
 {
 }
-
-
+//------------------------------------------------------
 void BigSlowEnemyObject::handleInput(sf::RenderWindow window)
 {
 }
-
+//------------------------------------------------------
 void BigSlowEnemyObject::draw(sf::RenderWindow* window) const
 {
     BaseObject::draw(window);
     m_lives.draw(window);
 }
+//------------------------------------------------------
