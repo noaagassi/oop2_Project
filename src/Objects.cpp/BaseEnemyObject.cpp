@@ -51,7 +51,7 @@ void BaseEnemyObject::moveAndShoot(float deltaTime)
             std::cout << "is near" << std::endl;
             std::cout << "hola" << std::endl;
 
-            moveSmart(deltaTime);
+            moveSmartandShoot(deltaTime);
         }
         else                                            //if not bush and not near
         {
@@ -103,8 +103,33 @@ void BaseEnemyObject::moveRandom(float deltaTime)
 }
 
 
-void BaseEnemyObject::moveSmart(float deltaTime)
+void BaseEnemyObject::moveSmartandShoot(float deltaTime)
 {
+
+
+
+
+
+    if (10 <= (m_playerPos.x - m_position.x))
+    {
+        directionRight();
+        // add frames
+    }
+    else if (10 <= (m_position.x - m_playerPos.x)) {
+        directionLeft();
+    }
+
+    else if (10 <= (m_playerPos.y - m_position.y))
+    {
+        directionDown();
+    }
+    else if (10 <= (m_position.y - m_playerPos.y))
+    {
+        directionUp();
+    }
+
+    m_position += m_direction * m_speed * deltaTime;
+
 }
 
 

@@ -6,6 +6,7 @@ SuperWeaponObject::SuperWeaponObject()
     :PlayerWeaponObject()
 {
     m_fireRate = 1.0;
+
 }
 
 void SuperWeaponObject::shoot(FlashlightObject flashlight)
@@ -16,7 +17,7 @@ void SuperWeaponObject::shoot(FlashlightObject flashlight)
 
     SoundsHandler::getInstance().playSound(Sound_Id::BOMB_SHOOT);
 
-    sf::Vector2f target = (vertex1+vertex2)/2.0f;             
+    sf::Vector2f target = (vertex1 + vertex2) / 2.0f; 
     auto bomb = std::make_unique<BombObject>(start);
     bomb->setTarget(target);
     m_bullets.push_back(std::move(bomb));

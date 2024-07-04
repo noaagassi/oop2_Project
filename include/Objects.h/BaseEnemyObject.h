@@ -16,7 +16,7 @@ public:
     void directionRight();
     void directionLeft();
     void moveRandom(float deltaTime);
-    void moveSmart(float deltaTime);
+    void moveSmartandShoot(float deltaTime);
 
 protected:
     sf::Vector2f m_playerPos;
