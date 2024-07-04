@@ -11,7 +11,10 @@
 #include "BallsWeaponObject.h"
 #include "RocketWeaponObject.h"
 #include "SuperWeaponObject.h"
-
+=========
+#include "BaseWeaponObject.h"
+#include "SoundsHandler.h"
+>>>>>>>>> Temporary merge branch 2
 
 class PlayerObject : public MovingObject
 {
@@ -32,6 +35,8 @@ public:
     void weaponGift();
     //
     void ateLiveGift();
+
+    sf::Vector2f getPosForEnemy();
 private:
     //member of the texture of the player
     int spriteIndex;
