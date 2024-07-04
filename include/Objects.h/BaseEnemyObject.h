@@ -11,16 +11,17 @@ public:
     void setPlayerPos(sf::Vector2f playerPos);
     void setPoisonBounds(std::vector<sf::Vector2f> poisBounds);
 
-    void directionUp(float deltaTime);
-    void directionDown(float deltaTime);
-    void directionRight(float deltaTime);
-    void directionLeft(float deltaTime);
+    void directionUp();
+    void directionDown();
+    void directionRight();
+    void directionLeft();
     void moveRandom(float deltaTime);
     void moveSmart(float deltaTime);
-private:
+
+protected:
     sf::Vector2f m_playerPos;
     float m_speed;
-
+    sf::Vector2f m_direction;
     int m_bigRadius;
     int m_smallRadius;
     sf::CircleShape m_rangeForMove;

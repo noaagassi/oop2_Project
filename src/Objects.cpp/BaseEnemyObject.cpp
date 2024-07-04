@@ -1,5 +1,5 @@
 #include "Objects.h/BaseEnemyObject.h"
-
+#include <iostream>
 
 
 
@@ -28,6 +28,7 @@ void BaseEnemyObject::setPoisonBounds(std::vector<sf::Vector2f> poisBounds)
 void BaseEnemyObject::moveAndShoot(float deltaTime)
 {
     
+
 	if (m_playerPos != sf::Vector2f(0.0, 0.0))      //if player not in bush (in bush- (0,0))
 	{
         if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is 
@@ -62,22 +63,25 @@ void BaseEnemyObject::moveRandom(float deltaTime)
 
     switch (direction) {
     case 0:
-        directionUp(deltaTime);
+        directionUp();
         break;
     case 1:
-        directionRight(deltaTime);
+        directionRight();
         break;
     case 2:
-        directionDown(deltaTime);
+        directionDown();
         break;
     case 3:
-        directionLeft(deltaTime);
+        directionLeft();
         break;
 
     default:
         break;
     }
 
+    m_position += m_direction * m_speed * deltaTime;
+    m_objectSprite.setPosition(m_position);
+    
 }
 
 
@@ -90,22 +94,25 @@ void BaseEnemyObject::moveSmart(float deltaTime)
 
 
 
-void BaseEnemyObject:: directionUp(float deltaTime)
+void BaseEnemyObject:: directionUp()
 {
-    m_position.y -= m_speed* deltaTime;
-    //change frame
+    m_direction.x = 0;
+    m_direction.y = -1;
 }
 
-void BaseEnemyObject::directionDown(float deltaTime)
+void BaseEnemyObject::directionDown()
 {
-    m_position.y += m_speed * deltaTime;
+    m_direction.x = 0;
+    m_direction.y = 1;
 }
 
-void BaseEnemyObject::directionRight(float deltaTime)
+void BaseEnemyObject::directionRight()
 {
-    m_position.x += m_speed * deltaTime;
+    m_direction.x = 1;
+    m_direction.y = 0;
 }
-void BaseEnemyObject::directionLeft(float deltaTime)
+void BaseEnemyObject::directionLeft()
 {
-    m_position.x -= m_speed * deltaTime;
+    m_direction.x = -1;
+    m_direction.y = 0;
 }

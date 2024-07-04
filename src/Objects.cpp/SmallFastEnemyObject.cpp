@@ -11,6 +11,7 @@ bool SmallFastEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_2_OBJ,
 SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
     :BaseEnemyObject(initPosition,50,25)
 {
+    m_speed = 50.0;
     setObjTexture(ENEMY_1_OBJ);
     setTheScale(PLAYER_WIDTH, PLAYER_HEIGHT);
     
@@ -26,6 +27,11 @@ SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
 
+}
+
+void SmallFastEnemyObject::draw(sf::RenderWindow* window) const
+{
+    BaseObject::draw(window);
 }
 
 
