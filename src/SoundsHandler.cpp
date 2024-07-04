@@ -1,7 +1,7 @@
 
 #include "SoundsHandler.h"
 
-/*
+
 // loadds the sounds into the buffer array
 
 SoundsHandler::SoundsHandler()
