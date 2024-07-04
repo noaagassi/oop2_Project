@@ -8,17 +8,6 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int 
 {
 	m_rangeForMove.setRadius(m_bigRadius);
 	m_rangeForShoot.setRadius(m_smallRadius);
-    m_rangeForMove.setPosition(m_position);
-    m_rangeForMove.setOrigin(m_bigRadius, m_bigRadius);
-    m_rangeForShoot.setPosition(m_position);
-    m_rangeForShoot.setOrigin(m_smallRadius, m_smallRadius);
-    m_rangeForMove.setFillColor(sf::Color::Transparent);
-    m_rangeForMove.setOutlineColor(sf::Color::Red);
-    m_rangeForMove.setOutlineThickness(3);
-    m_rangeForShoot.setFillColor(sf::Color::Transparent);
-    m_rangeForShoot.setOutlineColor(sf::Color::Blue);
-    m_rangeForShoot.setOutlineThickness(3);
-
 }
 
 BaseEnemyObject::BaseEnemyObject()
@@ -28,9 +17,6 @@ BaseEnemyObject::BaseEnemyObject()
 void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
 {
 	moveAndShoot(deltatime);
-    m_rangeForMove.setPosition(m_position);
-    m_rangeForShoot.setPosition(m_position);
-    m_objectSprite.setPosition(m_position);
 }
 
 
@@ -49,7 +35,6 @@ void BaseEnemyObject::moveAndShoot(float deltaTime)
         if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is 
         {
             std::cout << "is near" << std::endl;
-            std::cout << "hola" << std::endl;
 
             moveSmart(deltaTime);
         }
@@ -98,7 +83,7 @@ void BaseEnemyObject::moveRandom(float deltaTime)
     }
 
     m_position += m_direction * m_speed * deltaTime;
-    
+    m_objectSprite.setPosition(m_position);
     
 }
 
