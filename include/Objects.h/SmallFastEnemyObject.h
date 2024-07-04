@@ -6,8 +6,8 @@ class SmallFastEnemyObject : public BaseEnemyObject
 public:
     SmallFastEnemyObject(const sf::Vector2f& initPosition);
     void draw(sf::RenderWindow* window) const override;
-    void update(float deltaTime, sf::RenderWindow* window);
-    void animate(float deltaTime);
+    
+    void animate(float deltaTime) override;
 
 private:
     

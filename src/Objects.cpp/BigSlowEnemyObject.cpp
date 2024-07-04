@@ -20,6 +20,11 @@ BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
 }
+//------------------------------------------------------
+void BigSlowEnemyObject::animate(float deltaTime)
+{
+}
+//------------------------------------------------------
 void BigSlowEnemyObject::resetSprite(int num)
 {
 }

@@ -28,6 +28,7 @@ BaseEnemyObject::BaseEnemyObject()
 void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
 {
 	moveAndShoot(deltatime);
+    animate(deltatime);
     if (m_poisonBounds.size() >= 2)
     {
         if (m_position.x <= m_poisonBounds[0].x ||
@@ -56,8 +57,6 @@ void BaseEnemyObject::moveAndShoot(float deltaTime)
         
         if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is 
         {
-            std::cout << "is near" << std::endl;
-            std::cout << "hola" << std::endl;
 
             moveSmartandShoot(deltaTime);
         }
@@ -89,18 +88,18 @@ void BaseEnemyObject::moveRandom(float deltaTime)
     switch (direction) {
     case 0:
         directionUp();
-        resetSprite(0);
+       
         break;
     case 1:
         directionRight();
-        resetSprite(1);
+        
         break;
     case 2:
-        resetSprite(2);
+       
         directionDown();
         break;
     case 3:
-        resetSprite(3);
+        
         directionLeft();
         break;
 
@@ -141,39 +140,31 @@ void BaseEnemyObject::moveSmartandShoot(float deltaTime)
     }
 
     m_position += m_direction * m_speed * deltaTime;
-    /*
-    if (m_position == lastPosition)         //if the last pos same as current pos (character not move)
-    {
-        m_isRandomMoving = true;
-        m_randomMoveTimer.restart();
-        
-    }
-    if (m_isRandomMoving)
-    {
-        moveRandom(deltaTime);
-    }*/
 }
 
 void BaseEnemyObject:: directionUp()
 {
     m_direction.x = 0;
     m_direction.y = -1;
+    resetSprite(0);
 }
 
 void BaseEnemyObject::directionDown()
 {
     m_direction.x = 0;
     m_direction.y = 1;
-
+    resetSprite(2);
 }
 
 void BaseEnemyObject::directionRight()
 {
     m_direction.x = 1;
     m_direction.y = 0;
+    resetSprite(1);
 }
 void BaseEnemyObject::directionLeft()
 {
     m_direction.x = -1;
     m_direction.y = 0;
+    resetSprite(3);
 }

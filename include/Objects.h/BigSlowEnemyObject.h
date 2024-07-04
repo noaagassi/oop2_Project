@@ -6,7 +6,7 @@ class BigSlowEnemyObject : public BaseEnemyObject
 {
 public:
     BigSlowEnemyObject(const sf::Vector2f& initPosition);
-
+    void animate(float deltaTime) override;
     void draw(sf::RenderWindow*) const override;
 private:
     void resetSprite(int num) override;

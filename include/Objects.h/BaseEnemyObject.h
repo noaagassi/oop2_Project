@@ -18,6 +18,9 @@ public:
     void moveRandom(float deltaTime);
     void moveSmartandShoot(float deltaTime);
 
+
+    virtual void animate(float deltTime)=0;
+
 protected:
     virtual void resetSprite(int) =0;
     sf::Vector2f m_playerPos;

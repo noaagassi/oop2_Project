@@ -32,14 +32,7 @@ void SmallFastEnemyObject::draw(sf::RenderWindow* window) const
     window->draw(m_rangeForMove);
     window->draw(m_rangeForShoot);
 }
-//---------------------------------------------------------------------------------------
-void SmallFastEnemyObject::update(float deltaTime, sf::RenderWindow* window)
-{
-    moveAndShoot(deltaTime);
-    animate(deltaTime);
-    m_objectSprite.setPosition(m_position);
 
-}
 void SmallFastEnemyObject::resetSprite(int num)
 {
     if (num == 0)
