@@ -37,7 +37,6 @@ const float WIDTH = 3000,
 const bool LESS = false,
            MORE = true;
 
-
 enum StateOptions {
     Null,
     PlayScrn,

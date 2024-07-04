@@ -11,6 +11,10 @@
 #include "BallsWeaponObject.h"
 #include "RocketWeaponObject.h"
 #include "SuperWeaponObject.h"
+=========
+#include "BaseWeaponObject.h"
+#include "SoundsHandler.h"
+>>>>>>>>> Temporary merge branch 2
 
 class PlayerObject : public MovingObject
 {

@@ -51,6 +51,7 @@ void Board::readMap(std::string fileName)
 			{
 				sf::Vector2f position(location_x,location_y);
 				auto player = FactoryObject::createMoving(PLAYER_OBJ, position);
+
 				m_movingObjects.push_back(std::move(player));
 				
 			}
@@ -121,6 +122,7 @@ void Board::readMap(std::string fileName)
 		}
 		location_x += PLAY_WINDOW_WIDTH / MAP_WIDTH;
 	}
+
 }
 
 

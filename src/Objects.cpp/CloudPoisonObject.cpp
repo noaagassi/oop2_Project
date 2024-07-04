@@ -4,6 +4,7 @@
 #include <iostream>
 #include "SoundsHandler.h"
 
+
 sf::Vector2f CloudPoisonObject::BounderiesOfPoison[2] = { {0.f, 0.f}, {0.f, 0.f} };
 
 //----------------------------------------------------
