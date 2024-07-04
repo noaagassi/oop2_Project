@@ -7,7 +7,7 @@ class BallsWeaponObject : public PlayerWeaponObject
 {
 public:
     BallsWeaponObject();
-    void shoot(FlashlightObject flashight) override;
+    void shoot(FlashlightObject flashight) ;
     
 private:
     //int m_numOfBalls;

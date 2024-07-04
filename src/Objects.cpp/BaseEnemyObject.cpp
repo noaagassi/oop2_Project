@@ -3,9 +3,14 @@
 
 
 //------------------------------------------------------------------------
-BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int small, float speed)
+BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int small, float speed, Object_ID WeaponName, float weaponSpeed, float fireRate)
 	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed)
 {
+
+
+    m_currentWeapon = std::make_unique<EnemyWeaponObject> (WeaponName, weaponSpeed, fireRate);
+
+
 	m_rangeForMove.setRadius(m_bigRadius);
 	m_rangeForShoot.setRadius(m_smallRadius);
     m_rangeForMove.setPosition(m_position);
@@ -19,10 +24,6 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int 
     m_rangeForShoot.setOutlineColor(sf::Color::Blue);
     m_rangeForShoot.setOutlineThickness(3);
 
-}
-//------------------------------------------------------------------------
-BaseEnemyObject::BaseEnemyObject()
-{
 }
 //------------------------------------------------------------------------
 void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
@@ -42,6 +43,7 @@ void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
     m_rangeForMove.setPosition(m_position);
     m_rangeForShoot.setPosition(m_position);
     m_objectSprite.setPosition(m_position);
+    m_currentWeapon->update(deltatime);
 }
 
 
@@ -55,7 +57,7 @@ void BaseEnemyObject::moveAndShoot(float deltaTime)
 	if (m_playerPos != sf::Vector2f(0.0, 0.0))      //if player not in bush (in bush- (0,0))
 	{   
         
-        if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is 
+        if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is near
         {
 
             moveSmartandShoot(deltaTime);
@@ -117,6 +119,10 @@ void BaseEnemyObject::moveRandom(float deltaTime)
 void BaseEnemyObject::moveSmartandShoot(float deltaTime)
 {
 
+    if (m_rangeForShoot.getGlobalBounds().contains(m_playerPos))
+    {
+        m_currentWeapon->shoot(m_position, m_playerPos);
+    }
 
     sf::Vector2f lastPosition = m_position;
 
@@ -167,4 +173,11 @@ void BaseEnemyObject::directionLeft()
     m_direction.x = -1;
     m_direction.y = 0;
     resetSprite(3);
+}
+
+
+std::vector<std::unique_ptr<MovingObject>> BaseEnemyObject::retrieveBullets()
+{
+    return m_currentWeapon->retrieveBullets();
+
 }

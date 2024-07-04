@@ -6,7 +6,7 @@ bool BigSlowEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_1_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<BigSlowEnemyObject>(pos); });
 //------------------------------------------------------
 BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
-    :BaseEnemyObject(initPosition,40,35,30)
+    :BaseEnemyObject(initPosition,40,35,30, MASSIVE_LASER_WEAPON_3_OBJ,50,50)
 {
     m_speed = 2.0;
 

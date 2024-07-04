@@ -7,7 +7,7 @@ public:
     BulletObject(const sf::Vector2f& position);
     sf::FloatRect getBounds() const ;
     virtual void update(float deltatime, sf::RenderWindow* window) =0;
-    virtual void draw(sf::RenderWindow* window) const =0;
+    
     bool toDelete();
     void toDelete(bool);
     void setTarget(const sf::Vector2f& target) ;
