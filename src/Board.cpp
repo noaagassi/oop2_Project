@@ -159,6 +159,8 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 		{
 			enemy->setPlayerPos(playerPos);
 			enemy->setPoisonBounds(m_cloud.getBoundaries());
+			//auto enemyBullets = enemy->retrieveBullets();
+			//addBullets(std::move(enemyBullets));
 		}
 	}
 
