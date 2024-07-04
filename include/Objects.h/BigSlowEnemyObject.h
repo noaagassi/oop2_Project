@@ -12,5 +12,8 @@ private:
     void resetSprite(int num) override;
     sf::IntRect getFrame(int row, int col);
     static bool m_registerit;
-    PlayerLives m_lives;
+    int m_spriteIndex;
+    sf::Clock m_clock;
+
 };
+

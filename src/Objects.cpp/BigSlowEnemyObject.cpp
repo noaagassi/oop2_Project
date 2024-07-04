@@ -6,27 +6,50 @@ bool BigSlowEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_1_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<BigSlowEnemyObject>(pos); });
 //------------------------------------------------------
 BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
-    :BaseEnemyObject(initPosition,40,35,30)
+    :BaseEnemyObject(initPosition,130,130,10)
 {
-    m_speed = 2.0;
+    setObjTexture(ENEMY_2_OBJ);
+    setTheScale(PLAYER_WIDTH+0.2, PLAYER_HEIGHT+0.2);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
-    rightFrames = { getFrame(2, 0), getFrame(2, 1), getFrame(2, 2), getFrame(2, 3) };
-    downFrames = { getFrame(0, 0), getFrame(0, 1), getFrame(0, 2), getFrame(0, 3) };
-    upFrames = { getFrame(3, 0), getFrame(3, 1), getFrame(3, 2), getFrame(3, 3) };
+    upFrames = { getFrame(0, 0), getFrame(0, 1), getFrame(0, 2), getFrame(0, 3) };
+     downFrames = { getFrame(2, 0), getFrame(2, 1), getFrame(2, 2), getFrame(2, 3) };
+     rightFrames= { getFrame(3, 0), getFrame(3, 1), getFrame(3, 2), getFrame(3, 3) };
 
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
-
+    m_clock.restart();
 }
 //------------------------------------------------------
 void BigSlowEnemyObject::animate(float deltaTime)
 {
+    if (m_clock.getElapsedTime().asSeconds() > 0.1f)
+    {
+        m_spriteIndex = (m_spriteIndex + 1) % currentFrames->size();
+        m_objectSprite.setTextureRect((*currentFrames)[m_spriteIndex]);
+        m_clock.restart();
+    }
 }
 //------------------------------------------------------
 void BigSlowEnemyObject::resetSprite(int num)
 {
+    if (num == 0)
+    {
+        currentFrames = &upFrames;
+    }
+    else if (num == 1)
+    {
+        currentFrames = &rightFrames;
+    }
+    else if (num == 2)
+    {
+        currentFrames = &downFrames;
+    }
+    else if (num == 3)
+    {
+        currentFrames = &leftFrames;
+    }
 }
 //------------------------------------------------------
 sf::IntRect BigSlowEnemyObject::getFrame(int row, int col)
@@ -38,6 +61,7 @@ sf::IntRect BigSlowEnemyObject::getFrame(int row, int col)
 void BigSlowEnemyObject::draw(sf::RenderWindow* window) const
 {
     BaseObject::draw(window);
-    m_lives.draw(window);
+    window->draw(m_rangeForMove);
+    window->draw(m_rangeForShoot);
 }
 //------------------------------------------------------

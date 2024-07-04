@@ -27,7 +27,6 @@ configure_file ("exitButton.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("clock.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("bush.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("playBackGround.png" ${CMAKE_BINARY_DIR} COPYONLY)
-configure_file ("levels/level1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("enemy1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("enemy2.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("heartplayer.png" ${CMAKE_BINARY_DIR} COPYONLY)
@@ -35,6 +34,9 @@ configure_file ("explosion.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("bullet.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 
+configure_file ("levels/level1.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("levels/level2.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("levels/level3.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("sounds/game_op2.wav" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("sounds/loose1.wav" ${CMAKE_BINARY_DIR} COPYONLY)
