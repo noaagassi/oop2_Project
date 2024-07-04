@@ -9,6 +9,7 @@ public:
 
     void draw(sf::RenderWindow*) const override;
 private:
+    void resetSprite(int num) override;
     sf::IntRect getFrame(int row, int col);
     static bool m_registerit;
     PlayerLives m_lives;
