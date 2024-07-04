@@ -5,6 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
+
 const int SOUND_NUM = 14;
 
 enum Sound_Id {
@@ -16,7 +17,7 @@ enum Sound_Id {
     LASER_SHOOT,
     LASER_HIT,
     ROCKET_SHOOT,
-    ROCKET_HEAT,
+    ROCKET_HIT,
     BALL_SHOOT,
     BALL_HIT,
     FREEZE,
@@ -26,9 +27,12 @@ enum Sound_Id {
 
 
 };
+/*
+class SoundsHandler
+{
 
-class SoundsHandler {
 public:
+
     SoundsHandler();
     ~SoundsHandler();
     static SoundsHandler& getInstance();
@@ -36,32 +40,16 @@ public:
     void playSound(Sound_Id id);
 
 private:
-//
-//    const std::string m_soundNames[SOUND_NUM] = {
-//        /*"sounds/.wav", */            "sounds/game_op2.wav","sounds/loose1.wav",
-//        "sounds/win2.wav",         "sounds/poison2.wav","sounds/laser_shoot.wav",
-//        "sounds/laser_hit.wav",    "sounds/rocket_shoot.wav","sounds/rocket_hit.wav",
-//        "sounds/ball_shoot1.wav",  "sounds/ball_pop.wav","sounds/freeze_start.wav",
-//        "sounds/freeze_end.wav","sounds/take_weapon.wav","sounds/extra_life.wav" };
-//
-// /*   const std::string m_soundNames[SOUND_NUM] = {
-//    "resources/sounds/game_op2.wav",
-//    "resources/sounds/loose1.wav",
-//    "resources/sounds/win2.wav",
-//    "resources/sounds/poison2.wav",
-//    "resources/sounds/laser_shoot.wav",
-//    "resources/sounds/laser_hit.wav",
-//    "resources/sounds/rocket_shoot.wav",
-//    "resources/sounds/rocket_hit.wav",
-//    "resources/sounds/ball_shoot1.wav",
-//    "resources/sounds/ball_pop.wav",
-//    "resources/sounds/freeze_start.wav",
-//    "resources/sounds/freeze_end.wav",
-//    "resources/sounds/take_weapon.wav"
-//    "resources/sounds/extra_life.wav"
-    };
-//
-////    sf::Sound m_sound;
-  //  sf::Sound m_sounds[SOUND_NUM];
-//  sf::SoundBuffer m_buffers[SOUND_NUM];
-//};
+
+    const std::string m_soundNames[SOUND_NUM] = {
+        /*"sounds/.wav", */       "sounds/game_op2.wav"     ,"sounds/loose1.wav",
+        "sounds/win2.wav",        "sounds/poison2.wav"      ,"sounds/laser_shoot.wav",
+        "sounds/laser_hit.wav",   "sounds/rocket_shoot.wav" ,"sounds/rocket_hit.wav",
+        "sounds/ball_shoot1.wav", "sounds/ball_pop.wav"     ,"sounds/freeze_start.wav",
+        "sounds/freeze_end.wav",  "sounds/take_weapon.wav"  ,"sounds/extra_life.wav" };
+
+
+    sf::Sound m_sound;
+    sf::Sound m_sounds[SOUND_NUM];
+    sf::SoundBuffer m_buffers[SOUND_NUM];
+};

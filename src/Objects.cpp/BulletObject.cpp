@@ -8,7 +8,7 @@ bool BulletObject::m_registerit = FactoryObject::registerit(BULLET_OBJ,
 BulletObject::BulletObject(const sf::Vector2f& position)
     : MovingObject(position),m_toDelete(false)
 {
-        m_shape.setRadius(5.f); 
+        m_shape.setRadius(2.f); 
         m_shape.setPosition(m_position);
         m_shape.setFillColor(sf::Color::Red);
 

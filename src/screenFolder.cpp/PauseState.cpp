@@ -17,13 +17,13 @@ PausePage::PausePage(sf::RenderWindow* window)
     setObjTexture(PAUSE_SCREEN_OBJ);
     setScale(PAUSE_SCREEN_OBJ);
 
+    std::unique_ptr<CommandButton> resumeCmd = std::make_unique<StartGameCommand>();
     std::unique_ptr<CommandButton> instCmd = std::make_unique<InstructionsCommand>();
     std::unique_ptr<CommandButton> exitCmd = std::make_unique<ExitCommand>();
-    std::unique_ptr<CommandButton> resumeCmd = std::make_unique<ResumeGameCommand>();
 
+    m_buttons.push_back(std::make_unique<Button>(std::move(resumeCmd), NEW_GAME_BUTTON_OBJ, 300, 100));
     m_buttons.push_back(std::make_unique<Button>(std::move(instCmd), INSTRUCTION_BUTTON_OBJ, 300, 200));
     m_buttons.push_back(std::make_unique<Button>(std::move(exitCmd), EXIT_BUTTON_OBJ, 300, 300));
-    m_buttons.push_back(std::make_unique<Button>(std::move(resumeCmd), RESUME_GAME_BUTTON_OBJ, 300, 400));
 
 }
 

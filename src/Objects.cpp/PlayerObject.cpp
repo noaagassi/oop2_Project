@@ -21,8 +21,6 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
-    //sf::IntRect textureRect(0.5f,0.5f)
-    //setTheScale(PLAYER_OBJ);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
@@ -157,8 +155,10 @@ void PlayerObject::animate(float deltaTime)
  
 void PlayerObject:: updateFlashlight(sf::RenderWindow* window)
 {
-    sf::Vector2i mousePosition = sf::Mouse::getPosition(*window);
-    sf::Vector2f direction = sf::Vector2f(mousePosition) - m_position;
+    sf::Vector2i mouseScreenPosition = sf::Mouse::getPosition(*window);
+    sf::Vector2f mouseWorldPosition = window->mapPixelToCoords(mouseScreenPosition);
+
+    sf::Vector2f direction = mouseWorldPosition - m_position;
     m_flashlight.update(m_position, direction);
 
 }

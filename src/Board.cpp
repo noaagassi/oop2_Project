@@ -70,6 +70,8 @@ void Board::readMap(std::string fileName)
 			{
 				sf::Vector2f position(location_x, location_y);
 				auto portal = FactoryObject::createStatic(PORTAL_OBJ, position);
+				
+				
 				m_staticObjects.push_back(std::move(portal));
 				
 			}
