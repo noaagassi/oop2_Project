@@ -26,8 +26,9 @@ private:
     std::shared_ptr<Menu> m_menu;
     std::shared_ptr<PlayState> m_playState;
     std::shared_ptr<Instructions> m_instructions;
-    std::shared_ptr<PausePage> m_pause;
-
     sf::View m_view;
+   // PauseState m_pauseState;
+
+    std::shared_ptr<PausePage> m_pause;
 
 };
