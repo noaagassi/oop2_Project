@@ -18,6 +18,9 @@
 #include"Objects.h/PoisonObject.h"
 #include"Objects.h/WeaponGiftObject.h"
 #include "Objects.h/BulletObject.h"
+#include "Objects.h/BallObject.h"
+#include "Objects.h/RocketObject.h"
+
 
 
 
@@ -144,6 +147,8 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         real_weapon.toDelete(true);
         SoundsHandler::getInstance().playSound(Sound_Id::WEAPON_GIFT);
+        real_player.weaponGift();
+       
     }
 
     void playerPoison(BaseObject& player, BaseObject& poison)
@@ -157,20 +162,53 @@ namespace // anonymous namespace — the standard way to make function "static"
        
 
     }
-    void bulletWall(BaseObject& bullet, BaseObject& wall)
+    void ballWall(BaseObject& bullet, BaseObject& wall)
     {
         
-        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+        BallObject& real_bullet = dynamic_cast<BallObject&>(bullet);
         WallObject& real_wall = dynamic_cast<WallObject&>(wall);
+
+        std::cout << "ball and Wall collision!\n";
+        real_bullet.toDelete(true);
+
+    }
+    void ballTree(BaseObject& bullet, BaseObject& tree)
+    {
+
+        BallObject& real_bullet = dynamic_cast<BallObject&>(bullet);
+        TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
+
+        std::cout << "ball and Tree collision!\n";
         SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
         std::cout << "Bullet and Wall collision!\n";
         real_bullet.toDelete(true);
 
     }
-    void bulletTree(BaseObject& bullet, BaseObject& tree)
+
+
+    void ballLife(BaseObject& bullet, BaseObject& life)
     {
 
-        BulletObject& real_bullet = dynamic_cast<BulletObject&>(bullet);
+    }
+
+    void ballFreeze(BaseObject& bullet, BaseObject& freeze)
+    {
+
+    }
+
+    void ballWeapon(BaseObject& player, BaseObject& weapon)
+    {
+
+    }
+
+    void rocketWall(BaseObject& bullet, BaseObject& wall)
+    {
+
+    }
+    void rocketTree(BaseObject& bullet, BaseObject& tree)
+    {
+
+        RocketObject& real_bullet = dynamic_cast<RocketObject&>(bullet);
         TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
         SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
         std::cout << "Bullet and Tree collision!\n";
@@ -178,6 +216,21 @@ namespace // anonymous namespace — the standard way to make function "static"
 
     }
 
+
+    void rocketLife(BaseObject& bullet, BaseObject& life)
+    {
+
+    }
+
+    void rocketFreeze(BaseObject& bullet, BaseObject& freeze)
+    {
+
+    }
+
+    void rocketWeapon(BaseObject& player, BaseObject& weapon)
+    {
+
+    }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     using HitFunctionPtr = void (*)(BaseObject&, BaseObject&);
@@ -197,9 +250,16 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(FreezeGiftObject))] = &playerFreeze;
         phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
         phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
-        phm[Key(typeid(BulletObject), typeid(WallObject))] = &bulletWall;
-        phm[Key(typeid(BulletObject), typeid(TreeObject))] = &bulletTree;
-
+        phm[Key(typeid(BallObject), typeid(WallObject))] = &ballWall;
+        phm[Key(typeid(BallObject), typeid(TreeObject))] = &ballTree;
+        phm[Key(typeid(BallObject), typeid(LifeGiftObject))] = &ballLife;
+        phm[Key(typeid(BallObject), typeid(FreezeGiftObject))] = &ballFreeze;
+        phm[Key(typeid(BallObject), typeid(WeaponGiftObject))] = &ballWeapon;
+        phm[Key(typeid(RocketObject), typeid(WallObject))] = &rocketWall;
+        phm[Key(typeid(RocketObject), typeid(TreeObject))] = &rocketTree;
+        phm[Key(typeid(RocketObject), typeid(LifeGiftObject))] = &rocketLife;
+        phm[Key(typeid(RocketObject), typeid(FreezeGiftObject))] = &rocketFreeze;
+        phm[Key(typeid(RocketObject), typeid(WeaponGiftObject))] = &rocketWeapon;
        
         //...
         return phm;

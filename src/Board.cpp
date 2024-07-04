@@ -147,14 +147,15 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 void Board::draw(sf::RenderWindow* window)
 {
 	m_cloud.draw(window);
-	for (const auto& currentObject : m_movingObjects)
-	{
-		currentObject->draw(window);
-	}
 	for (const auto& currentObject : m_staticObjects)
 	{
 		currentObject->draw(window);
 	}
+	for (const auto& currentObject : m_movingObjects)
+	{
+		currentObject->draw(window);
+	}
+	
 }
 
 void Board::checkCollisions()
@@ -175,10 +176,10 @@ void Board::checkCollisions()
 				{
 					std::cerr << e.what() << std::endl;
 				}
-
 				BaseGiftObject* gift = dynamic_cast<BaseGiftObject*>((*staticObj).get());
+				BulletObject* bullet = dynamic_cast<BulletObject*>((*moving).get());
 
-				if (gift && gift->toDelete())
+				if (gift && gift->toDelete() && !bullet)
 				{
 					staticObj = m_staticObjects.erase(staticObj);
 				}
@@ -186,6 +187,7 @@ void Board::checkCollisions()
 				{
 					++staticObj;
 				}
+
 			}
 			else
 			{
@@ -213,6 +215,7 @@ void Board::checkCollisions()
 
 		if (bullet && bullet->toDelete())
 		{
+			std::cout << "hay que borrar" << std::endl;
 			moving = m_movingObjects.erase(moving);
 		}
 		else

@@ -4,9 +4,8 @@
 class RocketWeaponObject : public PlayerWeaponObject
 {
 public:
-    RocketWeaponObject(const sf::Vector2f& initPosition);
     RocketWeaponObject();
-    void shoot() override;
+    void shoot(FlashlightObject flashight) override;
 
 private:
     static bool m_registerit;

@@ -31,7 +31,12 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     currentFrames = &defaultFrames;
     m_objectSprite.setTextureRect((*currentFrames)[0]);
     
+    m_weapons.push_back(std::make_unique<BallsWeaponObject>()); //index 0
+    m_weapons.push_back(std::make_unique<RocketWeaponObject>()); //index 1
+    m_weapons.push_back(std::make_unique<SuperWeaponObject>()); //index 2
 
+
+    m_currentWeapon = m_weapons[0].get();
 
 }
 //------------------------------------------------
@@ -89,7 +94,7 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
 {
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
-
+//-------------------------------------------------
 void PlayerObject::handleInput(sf::RenderWindow* window)
 {
 
@@ -119,9 +124,15 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
         isMoving = true;
         
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)){
-
-
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        if (m_rocketAviable  && !m_rocketFired) {
+            changeWeapon(2); // Cambia al RocketWeaponObject
+            shoot();
+            m_rocketFired = true;
+        }
+    }
+    else {
+        m_rocketFired = false; // Reinicia la bandera cuando se suelta la tecla Space
     }
     sf::Event event;
     while (window->pollEvent(event)) {
@@ -130,10 +141,12 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
 
         if (event.type == sf::Event::MouseButtonReleased) {
             if (event.mouseButton.button == sf::Mouse::Left) {
+                changeWeapon(0);
                 shoot();
             }
         }
     }
+
     if (!isMoving) {
         currentFrames = &defaultFrames;
     }
@@ -175,33 +188,24 @@ void PlayerObject::setInBush(bool inBush)
 //------------------------------------------------
 void PlayerObject::shoot()
 {
-    sf::Vector2f start = m_flashlight.getShape().getPoint(0);
-    sf::Vector2f vertex1 = m_flashlight.getShape().getPoint(1);
-    sf::Vector2f vertex2 = m_flashlight.getShape().getPoint(2);
-
-    for (int i = 0; i < 5; ++i) {
-        float t = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-        sf::Vector2f randomPoint = vertex1 + t * (vertex2 - vertex1);
-        auto bullet = std::make_unique<BulletObject>(start);
-        bullet->setTarget(randomPoint);
-        m_bullets.push_back(std::move(bullet));
-        SoundsHandler::getInstance().playSound(Sound_Id::BALL_SHOOT );
-       
-    } 
+    m_currentWeapon->shoot(m_flashlight);
 }
 
 //------------------------------------------------
-void PlayerObject::changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon)
+void PlayerObject::changeWeapon(int index)
 {
-    m_currentWeapon = std::move(newWeapon);
+    m_currentWeapon = m_weapons[index].get();
 }
 //------------------------------------------------
 
 std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
 {
-    std::vector<std::unique_ptr<MovingObject>> bullets;
-    bullets.swap(m_bullets); 
-    return bullets;
+    return m_currentWeapon->retrieveBullets();
+    
+}
+void PlayerObject::weaponGift()
+{
+    m_currentWeapon->addBall();
 }
 //------------------------------------------------
 void PlayerObject::ateLiveGift()

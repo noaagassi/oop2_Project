@@ -32,6 +32,8 @@ configure_file ("enemy1.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("heartplayer.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("bomb.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("explosion.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("bullet.png" ${CMAKE_BINARY_DIR} COPYONLY)
+
 
 
 configure_file ("sounds/game_op2.wav" ${CMAKE_BINARY_DIR} COPYONLY)

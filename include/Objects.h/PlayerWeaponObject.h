@@ -9,9 +9,8 @@
 class PlayerWeaponObject : public BaseWeaponObject
 {
 public:
-    PlayerWeaponObject(const sf::Vector2f& initPosition);
     PlayerWeaponObject();
-
-private:
-
+    void addBall();
+protected:
+    int m_numOfBalls;
 };

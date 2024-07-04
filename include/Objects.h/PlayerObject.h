@@ -7,6 +7,10 @@
 #include "PlayerLives.h"
 #include "BaseWeaponObject.h"
 #include "SoundsHandler.h"
+#include "PlayerWeaponObject.h"
+#include "BallsWeaponObject.h"
+#include "RocketWeaponObject.h"
+#include "SuperWeaponObject.h"
 
 class PlayerObject : public MovingObject
 {
@@ -22,10 +26,9 @@ public:
     bool isInBush();
     void setInBush(bool);
     void shoot();
-    void changeWeapon(std::unique_ptr<BaseWeaponObject> newWeapon);
+    void changeWeapon(int index);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
-
-
+    void weaponGift();
     //
     void ateLiveGift();
 private:
@@ -39,8 +42,10 @@ private:
     //memebrs for accessories
     sf::RectangleShape m_lifeTexture;
     FlashlightObject m_flashlight;
-    std::unique_ptr<BaseWeaponObject> m_currentWeapon;
-    std::vector<std::unique_ptr<MovingObject>> m_bullets;
+    PlayerWeaponObject* m_currentWeapon;
+    std::vector<std::unique_ptr<PlayerWeaponObject>> m_weapons;
+    SuperWeaponObject m_superWeapon;
+    
 
     PlayerLives m_lives;
     //function for the hearts
@@ -48,6 +53,10 @@ private:
     int m_numberForHeart;
     void isAteLiveGift();
     bool m_eatLifeGift;
+
+
+    bool m_rocketAviable = true;
+    bool m_rocketFired = false;
 
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);

@@ -1,4 +1,5 @@
 #pragma once
+/*
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
 #include "screenFolder.h/InstructionsState.h"
@@ -9,7 +10,7 @@
 #include <SFML/Graphics.hpp>
 
 
-/*
+
 class LooseScreen : public GameState
 {
 public:
