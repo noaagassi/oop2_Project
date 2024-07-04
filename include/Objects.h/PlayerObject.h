@@ -11,10 +11,6 @@
 #include "BallsWeaponObject.h"
 #include "RocketWeaponObject.h"
 #include "SuperWeaponObject.h"
-=========
-#include "BaseWeaponObject.h"
-#include "SoundsHandler.h"
->>>>>>>>> Temporary merge branch 2
 
 class PlayerObject : public MovingObject
 {
@@ -33,7 +29,9 @@ public:
     void changeWeapon(int index);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
     void weaponGift();
-    //
+
+    void setlife(float num);
+    
     void ateLiveGift();
 
     sf::Vector2f getPosForEnemy();

@@ -85,7 +85,7 @@ void PlayerObject::isAteLiveGift()
 {
     if (m_eatLifeGift)
     {
-        m_lives.addLive();
+        m_lives.addLive(10);
         m_eatLifeGift = false;
     }
 }
@@ -206,6 +206,17 @@ std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
 void PlayerObject::weaponGift()
 {
     m_currentWeapon->addBall();
+}
+void PlayerObject::setlife(float num)
+{
+    if (num > 0)
+    {
+        m_lives.addLive(num);
+    }
+    else
+    {
+        m_lives.looseLive((-1*num));
+    }
 }
 //------------------------------------------------
 void PlayerObject::ateLiveGift()

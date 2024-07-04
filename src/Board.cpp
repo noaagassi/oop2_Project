@@ -228,8 +228,7 @@ void Board::checkCollisions()
 		{
 			if (isPlayerInPoison(player->getPosition(), m_cloud.getBoundaries()))
 			{
-				SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
-
+				player->setlife(-0.02);
 			}
 		}
 

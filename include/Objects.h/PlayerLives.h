@@ -21,8 +21,8 @@ public:
 	void draw(sf::RenderWindow*) const;
 	void update(sf::Vector2f);
 
-	void addLive();
-	void looseLive();
+	void addLive(float num);
+	void looseLive(float num);
 	bool stillAlive();
 private:
 	sf::Sprite m_heartSprite;

@@ -25,14 +25,7 @@ sf::IntRect BigSlowEnemyObject::getFrame(int row, int col)
 {
     return sf::IntRect(col * BIG_ENEMY_SPRITE_WIDTH, row * BIG_ENEMY_SPRITE_HEIGHT, BIG_ENEMY_SPRITE_WIDTH, BIG_ENEMY_SPRITE_HEIGHT);
 }
-//------------------------------------------------------
-void BigSlowEnemyObject::move(float deltaTime)
-{
-}
-//------------------------------------------------------
-void BigSlowEnemyObject::handleInput(sf::RenderWindow window)
-{
-}
+
 //------------------------------------------------------
 void BigSlowEnemyObject::draw(sf::RenderWindow* window) const
 {

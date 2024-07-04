@@ -153,12 +153,12 @@ namespace // anonymous namespace — the standard way to make function "static"
        
     }
 
-    void playerPoison(BaseObject& player, BaseObject& poison)
-    {
-        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
-        PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
-        //SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
-    }
+    //void playerPoison(BaseObject& player, BaseObject& poison)
+    //{
+    //    PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+    //    PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
+    //    //SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+    //}
     void ballWall(BaseObject& bullet, BaseObject& wall)
     {
         
@@ -285,7 +285,8 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(LifeGiftObject))] = &playerLife;
         phm[Key(typeid(PlayerObject), typeid(FreezeGiftObject))] = &playerFreeze;
         phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
-        phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
+        //phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
+
         phm[Key(typeid(BallObject), typeid(WallObject))] = &ballWall;
         phm[Key(typeid(BallObject), typeid(TreeObject))] = &ballTree;
         phm[Key(typeid(BallObject), typeid(LifeGiftObject))] = &nothingToDo;
