@@ -6,7 +6,7 @@
 #include "Objects.h/TreeObject.h"
 //----------------------------------------
 Board::Board()
-	:m_levelNum(1)
+	:m_levelNum(1), m_numberOfBushes(0), m_checkNumberOfBushes(0)
 {
 	readLevel();
 }
@@ -81,6 +81,7 @@ void Board::readMap(std::string fileName)
 				sf::Vector2f position(location_x, location_y);
 				auto bush = FactoryObject::createStatic(BUSH_OBJ, position);
 				m_staticObjects.push_back(std::move(bush));
+				m_numberOfBushes++;
 			}
 			else if (pixelColor == sf::Color(237, 28, 36))      //red color for life gift
 			{
@@ -142,10 +143,9 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 			playerPos = player->getPosForEnemy();
 		}
 	}
-
-	auto playerBullets = getPlayer()->retrieveBullets();        // get bullets from player and add to m_movingobject
+	auto player = getPlayer();
+	auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
 	addBullets(std::move(playerBullets));
-
 
 
 	for (auto& currentObj : m_movingObjects)                   //send to the enemy the player position and the poison position
@@ -158,7 +158,11 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	}
 
 	checkCollisions();
-
+	if (m_checkNumberOfBushes == m_numberOfBushes)
+	{
+		player->setInBush(false);
+	}
+	m_checkNumberOfBushes = 0;
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -213,6 +217,7 @@ void Board::checkCollisions()
 					if (auto bush = dynamic_cast<BushObject*>((*staticObj).get()))
 					{
 						bush->resetColor();
+						m_checkNumberOfBushes++;
 					}
 				}
 				++staticObj;

@@ -30,9 +30,12 @@ void BaseEnemyObject::moveAndShoot(float deltaTime)
     
 
 	if (m_playerPos != sf::Vector2f(0.0, 0.0))      //if player not in bush (in bush- (0,0))
-	{
+	{   
+        
         if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is 
         {
+            std::cout << "is near" << std::endl;
+
             moveSmart(deltaTime);
         }
         else                                            //if not bush and not near
@@ -104,6 +107,7 @@ void BaseEnemyObject::directionDown()
 {
     m_direction.x = 0;
     m_direction.y = 1;
+
 }
 
 void BaseEnemyObject::directionRight()

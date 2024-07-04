@@ -56,4 +56,7 @@ private:
 
 	void readMap(std::string fileName);
 
+	int m_numberOfBushes;
+	int m_checkNumberOfBushes;
+
 };
