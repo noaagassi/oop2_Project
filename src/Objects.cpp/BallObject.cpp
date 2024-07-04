@@ -31,10 +31,6 @@ void BallObject::update(float deltaTime, sf::RenderWindow* window)
 
 }
 
-void BallObject::draw(sf::RenderWindow* window) const
-{
-    window->draw(m_objectSprite);
-}
 
 
 

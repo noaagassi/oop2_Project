@@ -116,13 +116,13 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         if (m_bombAviable  && !m_bombFired) {
-            changeWeapon(2); // Cambia al bombWeaponObject
+            changeWeapon(2);
             shoot();
             m_bombFired = true;
         }
     }
     else {
-        m_bombFired = false; // Reinicia la bandera cuando se suelta la tecla Space
+        m_bombFired = false; 
     }
     sf::Event event;
     while (window->pollEvent(event)) {

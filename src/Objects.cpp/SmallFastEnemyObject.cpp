@@ -9,7 +9,7 @@ bool SmallFastEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_2_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<SmallFastEnemyObject>(pos); });
 //---------------------------------------------------------------------------------------
 SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
-    :BaseEnemyObject(initPosition, 50, 25,50), m_spriteIndex(0)
+    :BaseEnemyObject(initPosition, 50, 25,50, REGULAR_LASER_WEAPON_1_OBJ,80,30), m_spriteIndex(0)
 {
     setObjTexture(ENEMY_1_OBJ);
     setTheScale(PLAYER_WIDTH, PLAYER_HEIGHT);
@@ -24,6 +24,8 @@ SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
     m_objectSprite.setTextureRect((*currentFrames)[0]);
 
     m_clock.restart();
+
+
 }
 //---------------------------------------------------------------------------------------
 void SmallFastEnemyObject::draw(sf::RenderWindow* window) const

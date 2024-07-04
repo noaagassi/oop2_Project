@@ -1,11 +1,12 @@
 #pragma once
 #include "MovingObject.h"
+#include "EnemyWeaponObject.h"
 //-------------------------------------------------------
 class BaseEnemyObject : public MovingObject
 {
 public:
-    BaseEnemyObject(const sf::Vector2f& initPosition, int big ,int small,float);
-    BaseEnemyObject();
+    BaseEnemyObject(const sf::Vector2f& initPosition, int big ,int small,float, Object_ID WeaponName, float weaponSpeed, float fireRate);
+
     void update(float deltatime, sf::RenderWindow* window) override;
     void moveAndShoot(float deltaTime);
     void setPlayerPos(sf::Vector2f playerPos);
@@ -15,6 +16,9 @@ public:
     void directionDown();
     void directionRight();
     void directionLeft();
+
+    std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
+
     void moveRandom(float deltaTime);
     void moveSmartandShoot(float deltaTime);
 
@@ -30,7 +34,7 @@ protected:
     int m_smallRadius;
     sf::CircleShape m_rangeForMove;
     sf::CircleShape m_rangeForShoot;
-
+    std::unique_ptr<EnemyWeaponObject> m_currentWeapon;
     bool m_isRandomMoving;
     sf::Clock m_randomMoveTimer;
 

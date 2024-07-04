@@ -22,6 +22,12 @@ void LaserObject::update(float deltaTime, sf::RenderWindow* window)
 		m_toDelete = true;
 	}
 }
+void LaserObject::setMembers(Object_ID WeaponName, float weaponSpeed, float fireRate)
+{
+	setObjTexture(WeaponName);
+	m_speed = weaponSpeed;
+	m_fireRate = fireRate;
+}
 //----------------------------------------------------------------
 
 
