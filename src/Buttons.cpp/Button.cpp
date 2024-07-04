@@ -45,7 +45,6 @@ void Button::draw(sf::RenderWindow* window)
 
 bool Button::isMouseOver(sf::RenderWindow* window)
 {
-	std::cout << "checking..." << std::endl;
 	sf::Vector2i mousePos = sf::Mouse::getPosition(*window);
 	return m_sprite.getGlobalBounds().contains(static_cast<float>(mousePos.x), static_cast<float>(mousePos.y));
 

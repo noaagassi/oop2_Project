@@ -1,12 +1,19 @@
 #pragma once
-#include "StaticObject.h"
+#include "FlashlightObject.h"
+#include "MovingObject.h"
 
-class BaseWeaponObject : public StaticObject
+class BaseWeaponObject 
 {
 public:
-    BaseWeaponObject(const sf::Vector2f& initPosition);
     BaseWeaponObject();
 
-private:
+    virtual void shoot(FlashlightObject flashlight) = 0;
+    void setFireRate(float rate);
+    void update(float deltaTime);
+    std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
 
+
+protected:
+    float m_fireRate;
+    std::vector<std::unique_ptr<MovingObject>> m_bullets; 
 };

@@ -5,7 +5,7 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS =31;
+const int NUMBER_OF_OBJECTS =33;
 
 enum Object_ID {
     CLOCK_OBJ,
@@ -28,7 +28,7 @@ enum Object_ID {
     ENEMY_2_OBJ,
     TREES_OBJ,
     REGULAR_LASER_WEAPON_1_OBJ,
-    ROCKET_WEAPON_2_OBJ,
+    BOMB_OBJ,
     MASSIVE_LASER_WEAPON_3_OBJ,
     BALLS_WEAPON_4,
     WEAPON_SUPER_OBJ,
@@ -39,7 +39,9 @@ enum Object_ID {
     WEAPON_GIFT_OBJ,
     PLAYER_OBJ,
     PLAY_SCREEN_OBJ,
-    SPREADING_LASER          //WITHOUT TEXTURE
+    BULLET_OBJ,
+    HEARTS_PLAYER_OBJ,
+    SPREADING_LASER
 };
 
 class TextureHandler
@@ -58,16 +60,17 @@ public:
 private:
 
     std::string m_imgNames[NUMBER_OF_OBJECTS] = {
-        "clock.png",              "instruction1.png",  "instruction2.png",
-        "looseBackGround.png",     "weenBackGround.png", "pauseBackGround.png",
-        "menuBackGround.png",     "newGameButton.png",  "resumeButton.png" , "exitButton.png",
-        "instructionButton.png",  "pauseButton.png",   "wall.png",
-        "bush.png",               "portal.png",        "poison.png",        
-        "enemy1.png",             "enemy2.png",        "trees.png",
-        "regularLaserWeapon1.png","rocketWeapon2.png", "massiveLaserWeapon3.png" ,
-        "ballWeapon.png",        "weaponSuper.png",    "weaponEnemy1.png",  
-        "weaponEnemy2.png",       "freezeGift.png",    "lifeGift.png",      
-        "weaponGift.png",         "player.png",        "playBackGround.png" };
+        "clock.png",              "instruction1.png",       "instruction2.png",
+        "looseBackGround.png",    "weenBackGround.png",     "pauseBackGround.png",
+        "menuBackGround.png",     "newGameButton.png",      "resumeButton.png",
+        "exitButton.png",         "instructionButton.png",  "pauseButton.png",   
+        "wall.png",               "bush.png",               "portal.png",        
+        "poison.png",             "enemy1.png",             "enemy2.png",
+        "trees.png",              "regularLaserWeapon1.png","bomb.png",
+        "massiveLaserWeapon3.png","ballWeapon.png",         "weaponSuper.png",   
+        "weaponEnemy1.png",       "weaponEnemy2.png",       "freezeGift.png",    
+        "lifeGift.png",           "weaponGift.png",         "player.png",        
+        "playBackGround.png",     "bullet.png",             "heartplayer.png" };
 
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];

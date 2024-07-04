@@ -20,14 +20,16 @@ public:
 
     void draw() override;
     void update(float deltatime) override;
-    //std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
+    std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
+    void handleView();
 
 private:
     //std::vector<std::unique_ptr<Button>> m_buttons; // [pause]
 
     
     
-    sf::View view;
+    sf::View m_view;
+    sf::View m_uiView;
     Board m_board;
     
 };

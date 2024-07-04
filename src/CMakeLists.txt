@@ -4,15 +4,16 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
 "../include/Board.h"								"Board.cpp" 
 "../include/Utilities.h" 
 "../include/Controller.h"							"Controller.cpp" 
+"../include/SoundsHandler.h"						"SoundsHandler.cpp"
 
 #screens:
-"../include/screenFolder.h/Menu.h"					"screenFolder.cpp/Menu.cpp" 
-"../include/screenFolder.h/PausePage.h"				"../src/screenFolder.cpp/PausePage.cpp" 
+"../include/screenFolder.h/MenuState.h"				"screenFolder.cpp/MenuState.cpp" 
+"../include/screenFolder.h/PauseState.h"			"screenFolder.cpp/PauseState.cpp" 
 "../include/screenFolder.h/GameState.h"				"../src/screenFolder.cpp/GameState.cpp"
- "../include/screenFolder.h/LooseScreen.h"			"screenFolder.cpp/LooseScreen.cpp" 
-"../include/screenFolder.h/WinScreen.h"				"screenFolder.cpp/WinScreen.cpp" 
+ "../include/screenFolder.h/LooseState.h"			"screenFolder.cpp/LooseState.cpp" 
+"../include/screenFolder.h/WinState.h"				"screenFolder.cpp/WinState.cpp" 
 "../include/screenFolder.h/PlayState.h"				"screenFolder.cpp/PlayState.cpp"
-"../include/screenFolder.h/Instructions.h"			"screenFolder.cpp/Instructions.cpp" 
+"../include/screenFolder.h/InstructionsState.h"		"screenFolder.cpp/InstructionsState.cpp" 
 
 #objects:
 "../include/Objects.h/BaseObject.h"					"Objects.cpp/BaseObject.cpp"
@@ -28,8 +29,8 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/EnemyWeaponObject.h"			"Objects.cpp/EnemyWeaponObject.cpp"
  "../include/Objects.h/PlayerWeaponObject.h"		"Objects.cpp/PlayerWeaponObject.cpp"
  "../include/Objects.h/BallsWeaponObject.h"			"Objects.cpp/BallsWeaponObject.cpp" 
- "../include/Objects.h/RocketWeaponObject.h"        "Objects.cpp/RocketWeaponObject.cpp"
- "../include/Objects.h/SpreadingLaserWeaponObject.h" "Objects.cpp/SpreadingLaserWeaponObject.cpp" 
+ "../include/Objects.h/BombWeaponObject.h"        "Objects.cpp/BombWeaponObject.cpp"
+ "../include/Objects.h/SpreadingLaserWeaponObject.h""Objects.cpp/SpreadingLaserWeaponObject.cpp" 
  "../include/Objects.h/SuperWeaponObject.h"         "Objects.cpp/SuperWeaponObject.cpp"
  "../include/Objects.h/PoisonObject.h"				"Objects.cpp/PoisonObject.cpp"
  "../include/Objects.h/WallObject.h"                "Objects.cpp/WallObject.cpp"
@@ -42,4 +43,8 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/FactoryObject.h"				"Objects.cpp/FactoryObject.cpp" 
  "../include/Objects.h/FlashlightObject.h"			"Objects.cpp/FlashlightObject.cpp" 
  "../include/Objects.h/TreeObject.h"				"Objects.cpp/TreeObject.cpp" 
- "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp")
+ "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" 
+ "../include/Objects.h/CloudPoisonObject.h"			"Objects.cpp/CloudPoisonObject.cpp"   
+ "../include/Objects.h/BombObject.h"	    "Objects.cpp/BombObject.cpp" 
+ "../include/Objects.h/BallObject.h"				"Objects.cpp/BallObject.cpp")
+

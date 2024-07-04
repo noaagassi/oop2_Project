@@ -2,17 +2,14 @@
 #include "Objects.h/MasiveLaserWeaponObject.h"
 
 
-
-bool MasiveLaserWeaponObject::m_registerit = FactoryObject::registerit(WEAPON_ENEMY_1_OBJ,
-    [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<MasiveLaserWeaponObject>(pos); });
-
-MasiveLaserWeaponObject::MasiveLaserWeaponObject(const sf::Vector2f& initPosition)
-    :EnemyWeaponObject(initPosition)
+MasiveLaserWeaponObject::MasiveLaserWeaponObject()
+    :EnemyWeaponObject()
 {
-    setObjTexture(MASSIVE_LASER_WEAPON_3_OBJ);
+    m_fireRate = 2.0;
+   
 }
 
-MasiveLaserWeaponObject::MasiveLaserWeaponObject()
+
+void MasiveLaserWeaponObject::shoot(FlashlightObject flashight)
 {
-    setObjTexture(MASSIVE_LASER_WEAPON_3_OBJ);
 }

@@ -1,12 +1,12 @@
 #pragma once
 #include "PlayerWeaponObject.h"
+#include "Objects.h/BombObject.h"
 
 class SuperWeaponObject : public PlayerWeaponObject
 {
 public:
-    SuperWeaponObject(const sf::Vector2f& initPosition);
-
+    SuperWeaponObject();
+    void shoot(FlashlightObject flashight) override;
 
 private:
-    static bool m_registerit;
 };

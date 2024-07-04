@@ -3,11 +3,12 @@
 
 
 
-PlayerWeaponObject::PlayerWeaponObject(const sf::Vector2f& initPosition)
-	:BaseWeaponObject(initPosition)
+PlayerWeaponObject::PlayerWeaponObject()
+	:BaseWeaponObject()
 {
 }
 
-PlayerWeaponObject::PlayerWeaponObject()
+void PlayerWeaponObject::addBall()
 {
+	m_numOfBalls+=2;
 }

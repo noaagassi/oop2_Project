@@ -1,53 +1,35 @@
-#include "Objects.h/PortalObject.h"
-
+ï»¿#include "Objects.h/PortalObject.h"
+#include <iostream>
 
 
 bool PortalObject::m_registerit = FactoryObject::registerit(PORTAL_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PortalObject>(pos); });
 
+std::vector<PortalObject*> PortalObject::allPortals;
+
 PortalObject::PortalObject(const sf::Vector2f& initPosition)
-    :StaticObject(initPosition) , m_ptr2portals(nullptr)
+    :StaticObject(initPosition) 
 {
+    allPortals.push_back(this);
     setTheScale(PORTAL_OBJ);
     setObjTexture(PORTAL_OBJ);
 }
 
 PortalObject::PortalObject()
-    :m_ptr2portals(nullptr)
 {
+    allPortals.push_back(this);
     setObjTexture(PORTAL_OBJ);
 }
 
-void PortalObject::setPortals(std::shared_ptr<std::vector<std::shared_ptr<PortalObject>>> portals)
+
+PortalObject* PortalObject::getRandomPortal()
 {
-    m_ptr2portals = portals;
-}
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-PortalObject& PortalObject::getRandomPortal()
-{
-    if (m_ptr2portals && !m_ptr2portals->empty())
-    {
-        // Obtener un índice aleatorio dentro del rango válido
-        size_t current_index = 0;
-        for (size_t i = 0; i < m_ptr2portals->size(); ++i)
-        {
-            if ((*m_ptr2portals)[i].get() == this)
-            {
-                current_index = i;
-                break;
-            }
-        }
+    size_t randomIndex;
+    do {
+        randomIndex = std::rand() % PortalObject::allPortals.size();
+    } while (PortalObject::allPortals[randomIndex] == this);
 
-        size_t random_index = current_index;
-        do {
-            random_index = (random_index + 1) % m_ptr2portals->size();
-        } while (random_index == current_index);
-
-        return dynamic_cast<PortalObject&>(*(*m_ptr2portals)[random_index]);
-    }
-
-    // En caso de que m_ptr2portals no esté inicializado o esté vacío,
-    // deberías manejar esta situación según lo que sea apropiado para tu juego.
-    // Puedes lanzar una excepción, retornar un portal por defecto, etc.
-    throw std::logic_error("m_ptr2portals is not initialized or empty.");
+    return PortalObject::allPortals[randomIndex];
 }

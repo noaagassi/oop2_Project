@@ -13,6 +13,8 @@
 #include <fstream>
 #include "Utilities.h"
 #include "Objects.h/FactoryObject.h"
+#include "Objects.h/CloudPoisonObject.h"
+#include "Objects.h/BaseEnemyObject.h"
 
 class Board
 {
@@ -27,14 +29,18 @@ public:
 
 	sf::Vector2f getPlayrLocation() const;
 	sf::FloatRect getPlayerBounds() const;
+	PlayerObject* getPlayer() const;
 
+	bool isPlayerInPoison(sf::Vector2f playerPosition, std::vector<sf::Vector2f> poisonPoints);
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
+	bool loose();
 
+	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
 private:
-
+	
 	//member for reading levels
 	int m_levelNum;
 	std::ifstream m_file;
@@ -46,10 +52,14 @@ private:
 	//members for the object in the level
 	std::vector<std::unique_ptr<MovingObject>> m_movingObjects;
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
+	CloudPoisonObject m_cloud;
 
-	std::vector<std::shared_ptr<PortalObject>> m_portals;
 
-	//function of the object
 	void readMap(std::string fileName);
 
+	int m_numberOfBushes;
+	int m_checkNumberOfBushes;
+
+
+	bool m_isGameOver;
 };

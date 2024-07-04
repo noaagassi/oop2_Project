@@ -10,7 +10,6 @@ TextureHandler::TextureHandler()
         m_textures[i].loadFromFile(m_imgNames[i]);
     }
 
-    //m_font.loadFromFile("Caramel.ttf");
 }
 
 TextureHandler& TextureHandler::getInstance()
@@ -26,7 +25,6 @@ sf::Texture* TextureHandler::getObjTexture(Object_ID name)
     return &m_textures[name];
 }
 
-//sf::Font TextureHandler::getFont() const { return m_font; }
 
 
 TextureHandler::~TextureHandler() {}

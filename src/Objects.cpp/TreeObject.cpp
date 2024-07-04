@@ -17,3 +17,4 @@ TreeObject::TreeObject()
 {
     setObjTexture(TREES_OBJ);
 }
+

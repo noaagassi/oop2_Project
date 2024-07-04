@@ -16,3 +16,17 @@ BushObject::BushObject()
 {
     setObjTexture(BUSH_OBJ);
 }
+
+void BushObject::resetColor()
+{
+    sf::Color color = m_objectSprite.getColor();
+    color.a = 255;  
+    m_objectSprite.setColor(color);
+}
+
+void BushObject::makeTranslucent()
+{
+    sf::Color color = m_objectSprite.getColor();
+    color.a = 128;
+    m_objectSprite.setColor(color);
+}

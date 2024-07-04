@@ -2,10 +2,12 @@
 
 
 
-bool SpreadingLaserWeaponObject::m_registerit = FactoryObject::registerit(SPREADING_LASER,
-    [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<SpreadingLaserWeaponObject>(pos); });
+SpreadingLaserWeaponObject::SpreadingLaserWeaponObject()
+    :PlayerWeaponObject()
+{
+    m_fireRate = 3.0;
+}
 
-SpreadingLaserWeaponObject::SpreadingLaserWeaponObject(const sf::Vector2f& initPosition)
-    :PlayerWeaponObject(initPosition)
+void SpreadingLaserWeaponObject::shoot(FlashlightObject flashight)
 {
 }
