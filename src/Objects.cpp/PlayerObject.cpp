@@ -17,7 +17,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 
 
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y+10), m_eatLifeGift(false)
+    : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y-10), m_eatLifeGift(false)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
@@ -54,7 +54,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     m_objectSprite.setPosition(m_position);
     m_lifeTexture.setPosition(m_position.x, m_position.y + 40);
     updateFlashlight(window);
-    sf::Vector2f pos4lives(m_position.x-12, m_position.y+15);
+    sf::Vector2f pos4lives(m_position.x-20, m_position.y-10);
     m_lives.update(pos4lives);
     m_currentWeapon->update(deltaTime);
 }

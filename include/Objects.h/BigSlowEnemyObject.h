@@ -10,6 +10,7 @@ public:
     void handleInput(sf::RenderWindow);
     void draw(sf::RenderWindow*) const override;
 private:
+    sf::IntRect getFrame(int row, int col);
     static bool m_registerit;
     PlayerLives m_lives;
 };
