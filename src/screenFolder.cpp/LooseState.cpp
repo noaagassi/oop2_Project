@@ -5,6 +5,7 @@
 #include <iostream>
 
 
+
 LooseScreen::LooseScreen(sf::RenderWindow* window)
     : GameState(window,800,600)
 
