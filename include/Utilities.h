@@ -20,6 +20,8 @@ const int NUM_OF_TEXTURES = sizeof(NAME_OF_PNG_FILES) / sizeof(NAME_OF_PNG_FILES
 
 const sf::Vector2f textureSize(100.0f, 100.0f);
 
+const unsigned int CLOUD_POISEN_HEIGHT = 980;
+const unsigned int CLOUD_POISEN_WIDTH = 1060;
 const unsigned int PLAY_WINDOW_HEIGHT = 1000;
 const unsigned int PLAY_WINDOW_WIDTH = 1080;
 const float VIEW_HEIGHT = 200;
