@@ -32,7 +32,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     m_objectSprite.setTextureRect((*currentFrames)[0]);
     
     m_weapons.push_back(std::make_unique<BallsWeaponObject>()); //index 0
-    m_weapons.push_back(std::make_unique<RocketWeaponObject>()); //index 1
+    m_weapons.push_back(std::make_unique<BombWeaponObject>()); //index 1
     m_weapons.push_back(std::make_unique<SuperWeaponObject>()); //index 2
 
 
@@ -125,14 +125,14 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
         
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        if (m_rocketAviable  && !m_rocketFired) {
-            changeWeapon(2); // Cambia al RocketWeaponObject
+        if (m_bombAviable  && !m_bombFired) {
+            changeWeapon(2); // Cambia al bombWeaponObject
             shoot();
-            m_rocketFired = true;
+            m_bombFired = true;
         }
     }
     else {
-        m_rocketFired = false; // Reinicia la bandera cuando se suelta la tecla Space
+        m_bombFired = false; // Reinicia la bandera cuando se suelta la tecla Space
     }
     sf::Event event;
     while (window->pollEvent(event)) {

@@ -2,9 +2,9 @@
 #include <SFML/Graphics.hpp>
 #include "BulletObject.h"
 
-class RocketObject : public BulletObject {
+class BombObject : public BulletObject {
 public:
-    RocketObject(const sf::Vector2f& position);
+    BombObject(const sf::Vector2f& position);
     void update(float deltatime, sf::RenderWindow* window) override;
     void draw(sf::RenderWindow* window) const override;
     

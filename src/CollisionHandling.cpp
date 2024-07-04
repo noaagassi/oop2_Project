@@ -19,7 +19,7 @@
 #include"Objects.h/WeaponGiftObject.h"
 #include "Objects.h/BulletObject.h"
 #include "Objects.h/BallObject.h"
-#include "Objects.h/RocketObject.h"
+#include "Objects.h/BombObject.h"
 #include "Objects.h/SmallFastEnemyObject.h"
 #include "Objects.h/BigSlowEnemyObject.h"
 
@@ -186,10 +186,10 @@ namespace // anonymous namespace — the standard way to make function "static"
    
 
     
-    void rocketTree(BaseObject& bullet, BaseObject& tree)
+    void bombTree(BaseObject& bullet, BaseObject& tree)
     {
 
-        RocketObject& real_bullet = dynamic_cast<RocketObject&>(bullet);
+        BombObject& real_bullet = dynamic_cast<BombObject&>(bullet);
         TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
         SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
         
@@ -295,11 +295,11 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(BallObject), typeid(BallObject))] = &nothingToDo;
         phm[Key(typeid(PlayerObject), typeid(BallObject))] = &nothingToDo;
         phm[Key(typeid(BallObject), typeid(PlayerObject))] = &nothingToDo;
-        phm[Key(typeid(RocketObject), typeid(WallObject))] = &nothingToDo;
-        phm[Key(typeid(RocketObject), typeid(TreeObject))] = &rocketTree;
-        phm[Key(typeid(RocketObject), typeid(LifeGiftObject))] = &nothingToDo;
-        phm[Key(typeid(RocketObject), typeid(FreezeGiftObject))] = &nothingToDo;
-        phm[Key(typeid(RocketObject), typeid(WeaponGiftObject))] = &nothingToDo;
+        phm[Key(typeid(BombObject), typeid(WallObject))] = &nothingToDo;
+        phm[Key(typeid(BombObject), typeid(TreeObject))] = &bombTree;
+        phm[Key(typeid(BombObject), typeid(LifeGiftObject))] = &nothingToDo;
+        phm[Key(typeid(BombObject), typeid(FreezeGiftObject))] = &nothingToDo;
+        phm[Key(typeid(BombObject), typeid(WeaponGiftObject))] = &nothingToDo;
 
         phm[Key(typeid(SmallFastEnemyObject), typeid(BushObject))] = &nothingToDo;
         phm[Key(typeid(SmallFastEnemyObject), typeid(WallObject))] = &smallEnemyWall;

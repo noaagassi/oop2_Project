@@ -9,7 +9,7 @@
 #include "SoundsHandler.h"
 #include "PlayerWeaponObject.h"
 #include "BallsWeaponObject.h"
-#include "RocketWeaponObject.h"
+#include "BombWeaponObject.h"
 #include "SuperWeaponObject.h"
 
 class PlayerObject : public MovingObject
@@ -59,8 +59,8 @@ private:
     bool m_eatLifeGift;
 
 
-    bool m_rocketAviable = true;
-    bool m_rocketFired = false;
+    bool m_bombAviable = true;
+    bool m_bombFired = false;
 
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);
