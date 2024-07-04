@@ -9,7 +9,7 @@ bool SmallFastEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_2_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<SmallFastEnemyObject>(pos); });
 
 SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
-    :BaseEnemyObject(initPosition,50,25)
+    :BaseEnemyObject(initPosition,100,25)
 {
     m_speed = 50.0;
     setObjTexture(ENEMY_1_OBJ);
@@ -32,6 +32,8 @@ SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
 void SmallFastEnemyObject::draw(sf::RenderWindow* window) const
 {
     BaseObject::draw(window);
+    window->draw(m_rangeForMove);
+    window->draw(m_rangeForShoot);
 }
 
 
