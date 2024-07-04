@@ -122,7 +122,6 @@ void Board::readMap(std::string fileName)
 		}
 		location_x += PLAY_WINDOW_WIDTH / MAP_WIDTH;
 	}
-
 }
 
 
@@ -132,15 +131,29 @@ void Board::readMap(std::string fileName)
 
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
+	sf::Vector2f playerPos;
 	m_cloud.update(deltatime, window);
 	for (auto& currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
 
-	}
+		if (auto player = dynamic_cast <PlayerObject*> (currentObj.get()))
+		{
+			auto playerBullets = player->retrieveBullets();
+			addBullets(std::move(playerBullets));
 
-	auto playerBullets = getPlayer()->retrieveBullets();
-	addBullets(std::move(playerBullets));
+			playerPos = player->getPosForEnemy();
+
+		}
+	}
+	for (auto& currentObj : m_movingObjects)
+	{
+		if (auto enemy = dynamic_cast <BaseEnemyObject*> (currentObj.get()))
+		{
+			enemy->setPlayerPos(playerPos);
+			enemy->setPoisonBounds(m_cloud.getBoundaries());
+		}
+	}
 
 	checkCollisions();
 

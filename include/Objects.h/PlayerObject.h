@@ -31,6 +31,8 @@ public:
     void weaponGift();
     //
     void ateLiveGift();
+
+    sf::Vector2f getPosForEnemy();
 private:
     //member of the texture of the player
     int spriteIndex;

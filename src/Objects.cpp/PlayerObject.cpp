@@ -213,3 +213,13 @@ void PlayerObject::ateLiveGift()
     m_eatLifeGift = true;
 }
 
+sf::Vector2f PlayerObject::getPosForEnemy()
+{
+    if (!m_inBush)
+    {
+        return m_position;
+    }
+    return sf::Vector2f(0.0,0.0);
+
+}
+

@@ -14,6 +14,7 @@
 #include "Utilities.h"
 #include "Objects.h/FactoryObject.h"
 #include "Objects.h/CloudPoisonObject.h"
+#include "Objects.h/BaseEnemyObject.h"
 
 class Board
 {
@@ -52,7 +53,6 @@ private:
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 	CloudPoisonObject m_cloud;
 
-	
 
 	void readMap(std::string fileName);
 

@@ -9,7 +9,7 @@ bool SmallFastEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_2_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<SmallFastEnemyObject>(pos); });
 
 SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
-    :BaseEnemyObject(initPosition)
+    :BaseEnemyObject(initPosition,50,25)
 {
     setObjTexture(ENEMY_1_OBJ);
     setTheScale(PLAYER_WIDTH, PLAYER_HEIGHT);
@@ -35,12 +35,3 @@ sf::IntRect SmallFastEnemyObject::getFrame(int row, int col)
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
 
-
-void SmallFastEnemyObject::move(float deltaTime)
-{
-}
-
-
-void SmallFastEnemyObject::handleInput(sf::RenderWindow window)
-{
-}
