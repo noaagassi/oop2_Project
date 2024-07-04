@@ -139,14 +139,16 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 
 		if (auto player = dynamic_cast <PlayerObject*> (currentObj.get()))
 		{
-			auto playerBullets = player->retrieveBullets();
-			addBullets(std::move(playerBullets));
-
 			playerPos = player->getPosForEnemy();
-
 		}
 	}
-	for (auto& currentObj : m_movingObjects)
+
+	auto playerBullets = getPlayer()->retrieveBullets();        // get bullets from player and add to m_movingobject
+	addBullets(std::move(playerBullets));
+
+
+
+	for (auto& currentObj : m_movingObjects)                   //send to the enemy the player position and the poison position
 	{
 		if (auto enemy = dynamic_cast <BaseEnemyObject*> (currentObj.get()))
 		{
