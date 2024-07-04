@@ -5,12 +5,12 @@
 #include "FactoryObject.h"
 #include "FlashlightObject.h"
 #include "PlayerLives.h"
+#include "BaseWeaponObject.h"
+#include "SoundsHandler.h"
 #include "PlayerWeaponObject.h"
 #include "BallsWeaponObject.h"
 #include "RocketWeaponObject.h"
 #include "SuperWeaponObject.h"
-#include "BaseWeaponObject.h"
-#include "SoundsHandler.h"
 
 class PlayerObject : public MovingObject
 {

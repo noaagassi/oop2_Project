@@ -1,6 +1,7 @@
 
 #include "Objects.h/BallsWeaponObject.h"
 #include "Objects.h/BallObject.h"
+#include "SoundsHandler.h"
 
 BallsWeaponObject::BallsWeaponObject()
     :PlayerWeaponObject()
@@ -23,7 +24,7 @@ void BallsWeaponObject::shoot(FlashlightObject flashlight)
         auto bullet = std::make_unique<BallObject>(start);
         bullet->setTarget(randomPoint);
         m_bullets.push_back(std::move(bullet));
-
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_SHOOT);
     }
 }
 
