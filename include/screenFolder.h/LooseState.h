@@ -1,5 +1,5 @@
 #pragma once
-/*
+
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
 #include "screenFolder.h/InstructionsState.h"
@@ -30,4 +30,4 @@ private:
 
 
   
-};*/
+};

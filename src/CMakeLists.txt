@@ -29,7 +29,7 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/EnemyWeaponObject.h"			"Objects.cpp/EnemyWeaponObject.cpp"
  "../include/Objects.h/PlayerWeaponObject.h"		"Objects.cpp/PlayerWeaponObject.cpp"
  "../include/Objects.h/BallsWeaponObject.h"			"Objects.cpp/BallsWeaponObject.cpp" 
- "../include/Objects.h/RocketWeaponObject.h"        "Objects.cpp/RocketWeaponObject.cpp"
+ "../include/Objects.h/BombWeaponObject.h"        "Objects.cpp/BombWeaponObject.cpp"
  "../include/Objects.h/SpreadingLaserWeaponObject.h""Objects.cpp/SpreadingLaserWeaponObject.cpp" 
  "../include/Objects.h/SuperWeaponObject.h"         "Objects.cpp/SuperWeaponObject.cpp"
  "../include/Objects.h/PoisonObject.h"				"Objects.cpp/PoisonObject.cpp"
@@ -45,6 +45,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/TreeObject.h"				"Objects.cpp/TreeObject.cpp" 
  "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" 
  "../include/Objects.h/CloudPoisonObject.h"			"Objects.cpp/CloudPoisonObject.cpp"   
- "../include/Objects.h/RocketObject.h"			    "Objects.cpp/RocketObject.cpp" 
+ "../include/Objects.h/BombObject.h"	    "Objects.cpp/BombObject.cpp" 
  "../include/Objects.h/BallObject.h"				"Objects.cpp/BallObject.cpp")
 

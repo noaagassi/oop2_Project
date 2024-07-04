@@ -1,4 +1,5 @@
 #include "Objects.h/PlayerLives.h"
+#include "SoundsHandler.h"
 //---------------------------------
 PlayerLives::PlayerLives()
 {
@@ -23,9 +24,9 @@ void PlayerLives::update(sf::Vector2f newPosition)
 	setPosition(newPosition);
 }
 //---------------------------------
-void PlayerLives::addLive()
+void PlayerLives::addLive(float num)
 {
-	m_lifesRectangle.setSize({ m_lifesRectangle.getSize().x + 15, m_lifesRectangle.getSize().y });
+	m_lifesRectangle.setSize({ m_lifesRectangle.getSize().x + num, m_lifesRectangle.getSize().y });
 
 	if (m_lifesRectangle.getSize().x > LIVES_RECTANGLE_SIZE.x)
 	{
@@ -33,11 +34,12 @@ void PlayerLives::addLive()
 	}
 }
 //---------------------------------
-void PlayerLives::looseLive()
+void PlayerLives::looseLive(float num)
 {
-	if (m_lifesRectangle.getSize().x >= 3)
+	SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+	if (m_lifesRectangle.getSize().x >= num)
 	{
-		m_lifesRectangle.setSize({ m_lifesRectangle.getSize().x - 3, m_lifesRectangle.getSize().y });
+		m_lifesRectangle.setSize({ m_lifesRectangle.getSize().x - num, m_lifesRectangle.getSize().y });
 
 	}
 	else
@@ -50,11 +52,11 @@ void PlayerLives::looseLive()
 //---------------------------------
 bool PlayerLives::stillAlive()
 {
-	if (m_lifesRectangle.getSize().x == 0)
+	if (m_lifesRectangle.getSize().x <= 0)
 	{
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
 //---------------------------------
 void PlayerLives::setRectangles(sf::Vector2f position)

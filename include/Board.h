@@ -14,6 +14,7 @@
 #include "Utilities.h"
 #include "Objects.h/FactoryObject.h"
 #include "Objects.h/CloudPoisonObject.h"
+#include "Objects.h/BaseEnemyObject.h"
 
 class Board
 {
@@ -34,6 +35,7 @@ public:
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
+	bool loose();
 
 	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
@@ -52,8 +54,12 @@ private:
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 	CloudPoisonObject m_cloud;
 
-	
 
 	void readMap(std::string fileName);
 
+	int m_numberOfBushes;
+	int m_checkNumberOfBushes;
+
+
+	bool m_isGameOver;
 };

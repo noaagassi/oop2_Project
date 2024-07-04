@@ -14,8 +14,8 @@ enum Sound_Id {
     POISON,
     LASER_SHOOT,
     LASER_HIT,
-    ROCKET_SHOOT,
-    ROCKET_HIT,
+    BOMB_SHOOT,
+    BOMB_HIT,
     BALL_SHOOT,
     BALL_HIT,
     FREEZE,
@@ -43,8 +43,8 @@ private:
 
     const std::string m_soundNames[SOUND_NUM] = {
         "loose1.wav",       "win2.wav",       "poison2.wav",    
-        "laser_shoot.wav",  "laser_hit.wav",  "rocket_shoot.wav",
-        "rocket_hit.wav",   "ball_shoot1.wav","ball_pop.wav",
+        "laser_shoot.wav",  "laser_hit.wav",  "Bomb_shoot.wav",
+        "Bomb_hit.wav",   "ball_shoot1.wav","ball_pop.wav",
         "freeze_start.wav", "freeze_end.wav", "take_weapon.wav",
         "extra_life.wav",   "poison_hit.wav", "portal_enter.wav"};
 

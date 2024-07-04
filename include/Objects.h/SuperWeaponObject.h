@@ -1,6 +1,6 @@
 #pragma once
 #include "PlayerWeaponObject.h"
-#include "Objects.h/RocketObject.h"
+#include "Objects.h/BombObject.h"
 
 class SuperWeaponObject : public PlayerWeaponObject
 {

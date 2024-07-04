@@ -5,11 +5,9 @@
 #include "FactoryObject.h"
 #include "FlashlightObject.h"
 #include "PlayerLives.h"
-#include "BaseWeaponObject.h"
-#include "SoundsHandler.h"
 #include "PlayerWeaponObject.h"
 #include "BallsWeaponObject.h"
-#include "RocketWeaponObject.h"
+#include "BombWeaponObject.h"
 #include "SuperWeaponObject.h"
 
 class PlayerObject : public MovingObject
@@ -29,8 +27,12 @@ public:
     void changeWeapon(int index);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
     void weaponGift();
-    //
+    bool isdead();
+    void setlife(float num);
+    
     void ateLiveGift();
+
+    sf::Vector2f getPosForEnemy();
 private:
     //member of the texture of the player
     int spriteIndex;
@@ -55,8 +57,8 @@ private:
     bool m_eatLifeGift;
 
 
-    bool m_rocketAviable = true;
-    bool m_rocketFired = false;
+    bool m_bombAviable = true;
+    bool m_bombFired = false;
 
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);

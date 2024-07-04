@@ -1,10 +1,10 @@
 #pragma once
 #include "PlayerWeaponObject.h"
 
-class RocketWeaponObject : public PlayerWeaponObject
+class BombWeaponObject : public PlayerWeaponObject
 {
 public:
-    RocketWeaponObject();
+    BombWeaponObject();
     void shoot(FlashlightObject flashight) override;
 
 private:

@@ -8,16 +8,11 @@
 //------------------------------------------------
 
 //------------------------------------------------
-
-
 bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
-
-
-
-
+//------------------------------------------------
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y+10), m_eatLifeGift(false)
+    : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y-10), m_eatLifeGift(false)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
@@ -32,7 +27,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     m_objectSprite.setTextureRect((*currentFrames)[0]);
     
     m_weapons.push_back(std::make_unique<BallsWeaponObject>()); //index 0
-    m_weapons.push_back(std::make_unique<RocketWeaponObject>()); //index 1
+    m_weapons.push_back(std::make_unique<BombWeaponObject>()); //index 1
     m_weapons.push_back(std::make_unique<SuperWeaponObject>()); //index 2
 
 
@@ -43,18 +38,13 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
-    m_numberForHeart++;
-    if (m_numberForHeart % 100 == 0)
-    {
-        //m_lives.looseLive();
-    }
     isAteLiveGift();
     handleInput(window);
     animate(deltaTime);
     m_objectSprite.setPosition(m_position);
     m_lifeTexture.setPosition(m_position.x, m_position.y + 40);
     updateFlashlight(window);
-    sf::Vector2f pos4lives(m_position.x-12, m_position.y+15);
+    sf::Vector2f pos4lives(m_position.x-20, m_position.y-10);
     m_lives.update(pos4lives);
     m_currentWeapon->update(deltaTime);
 }
@@ -85,7 +75,7 @@ void PlayerObject::isAteLiveGift()
 {
     if (m_eatLifeGift)
     {
-        m_lives.addLive();
+        m_lives.addLive(10);
         m_eatLifeGift = false;
     }
 }
@@ -125,14 +115,14 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
         
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        if (m_rocketAviable  && !m_rocketFired) {
-            changeWeapon(2); // Cambia al RocketWeaponObject
+        if (m_bombAviable  && !m_bombFired) {
+            changeWeapon(2); // Cambia al bombWeaponObject
             shoot();
-            m_rocketFired = true;
+            m_bombFired = true;
         }
     }
     else {
-        m_rocketFired = false; // Reinicia la bandera cuando se suelta la tecla Space
+        m_bombFired = false; // Reinicia la bandera cuando se suelta la tecla Space
     }
     sf::Event event;
     while (window->pollEvent(event)) {
@@ -207,9 +197,40 @@ void PlayerObject::weaponGift()
 {
     m_currentWeapon->addBall();
 }
+//------------------------------------------
+bool PlayerObject::isdead()
+{
+    if (m_lives.stillAlive())
+    {
+        return false;
+    }
+    return true;
+}
+//------------------------------------------
+void PlayerObject::setlife(float num)
+{
+    if (num > 0)
+    {
+        m_lives.addLive(num);
+    }
+    else
+    {
+        m_lives.looseLive((-1*num));
+    }
+}
 //------------------------------------------------
 void PlayerObject::ateLiveGift()
 {
     m_eatLifeGift = true;
+}
+
+sf::Vector2f PlayerObject::getPosForEnemy()
+{
+    if (!m_inBush)
+    {
+        return m_position;
+    }
+    return sf::Vector2f(0.0,0.0);
+
 }
 

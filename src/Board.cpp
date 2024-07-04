@@ -6,7 +6,7 @@
 #include "Objects.h/TreeObject.h"
 //----------------------------------------
 Board::Board()
-	:m_levelNum(1)
+	:m_levelNum(1), m_numberOfBushes(0), m_checkNumberOfBushes(0), m_isGameOver(false)
 {
 	readLevel();
 }
@@ -51,6 +51,7 @@ void Board::readMap(std::string fileName)
 			{
 				sf::Vector2f position(location_x,location_y);
 				auto player = FactoryObject::createMoving(PLAYER_OBJ, position);
+
 				m_movingObjects.push_back(std::move(player));
 				
 			}
@@ -80,6 +81,7 @@ void Board::readMap(std::string fileName)
 				sf::Vector2f position(location_x, location_y);
 				auto bush = FactoryObject::createStatic(BUSH_OBJ, position);
 				m_staticObjects.push_back(std::move(bush));
+				m_numberOfBushes++;
 			}
 			else if (pixelColor == sf::Color(237, 28, 36))      //red color for life gift
 			{
@@ -130,18 +132,42 @@ void Board::readMap(std::string fileName)
 
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
+	sf::Vector2f playerPos;
 	m_cloud.update(deltatime, window);
 	for (auto& currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
 
+		if (auto player = dynamic_cast <PlayerObject*> (currentObj.get()))
+		{
+			playerPos = player->getPosForEnemy();
+		}
 	}
-
-	auto playerBullets = getPlayer()->retrieveBullets();
+	auto player = getPlayer();
+	
+	if (player->isdead())
+	{
+		m_isGameOver = true;
+	}
+	auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
 	addBullets(std::move(playerBullets));
 
-	checkCollisions();
 
+	for (auto& currentObj : m_movingObjects)                   //send to the enemy the player position and the poison position
+	{
+		if (auto enemy = dynamic_cast <BaseEnemyObject*> (currentObj.get()))
+		{
+			enemy->setPlayerPos(playerPos);
+			enemy->setPoisonBounds(m_cloud.getBoundaries());
+		}
+	}
+
+	checkCollisions();
+	if (m_checkNumberOfBushes == m_numberOfBushes)
+	{
+		player->setInBush(false);
+	}
+	m_checkNumberOfBushes = 0;
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -196,6 +222,7 @@ void Board::checkCollisions()
 					if (auto bush = dynamic_cast<BushObject*>((*staticObj).get()))
 					{
 						bush->resetColor();
+						m_checkNumberOfBushes++;
 					}
 				}
 				++staticObj;
@@ -206,8 +233,7 @@ void Board::checkCollisions()
 		{
 			if (isPlayerInPoison(player->getPosition(), m_cloud.getBoundaries()))
 			{
-				SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
-
+				player->setlife(-0.02);
 			}
 		}
 
@@ -215,7 +241,7 @@ void Board::checkCollisions()
 
 		if (bullet && bullet->toDelete())
 		{
-			std::cout << "hay que borrar" << std::endl;
+			
 			moving = m_movingObjects.erase(moving);
 		}
 		else
@@ -228,7 +254,7 @@ void Board::checkCollisions()
 
 	}
 
-	//
+	
 	//for (size_t i = 0; i < m_movingObjects.size(); ++i)
 	//{
 	//	//moving with moving
@@ -309,6 +335,12 @@ void Board::handleMousePressed(sf::Event event)
 
 void Board::handleKeyPress(sf::Keyboard::Key key)
 {
+}
+
+bool Board::loose()
+{
+	
+	return m_isGameOver;
 }
 
 void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)

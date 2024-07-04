@@ -6,10 +6,11 @@ class BigSlowEnemyObject : public BaseEnemyObject
 {
 public:
     BigSlowEnemyObject(const sf::Vector2f& initPosition);
-    void move(float deltaTime) override;
-    void handleInput(sf::RenderWindow);
+    void animate(float deltaTime) override;
     void draw(sf::RenderWindow*) const override;
 private:
+    void resetSprite(int num) override;
+    sf::IntRect getFrame(int row, int col);
     static bool m_registerit;
     PlayerLives m_lives;
 };

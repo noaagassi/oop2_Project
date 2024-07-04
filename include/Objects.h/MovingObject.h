@@ -16,7 +16,7 @@ public:
     void goRight();
     void goUp();
     void goDown();
-
+    void animate(float deltaTime);
 protected:
     std::vector<sf::IntRect> defaultFrames;
     std::vector<sf::IntRect> leftFrames;

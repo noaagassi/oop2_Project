@@ -43,3 +43,5 @@ void MovingObject::goDown()
 	currentFrames = &downFrames;
 	m_isMoving = true;
 }
+
+
