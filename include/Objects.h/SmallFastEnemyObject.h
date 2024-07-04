@@ -12,6 +12,5 @@ private:
     
     sf::IntRect getFrame(int row, int col);
     
-    
     static bool m_registerit;
 };
