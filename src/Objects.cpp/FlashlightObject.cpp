@@ -10,7 +10,7 @@ void FlashlightObject::update(const sf::Vector2f& playerPos, const sf::Vector2f&
 {
    
     
-    sf::Vector2f spriteCenter = playerPos + sf::Vector2f(15, 28);//(PLAYER_WIDTH / 2.0f, PLAYER_HEIGHT / 2.0f);
+    sf::Vector2f spriteCenter = playerPos + sf::Vector2f(15, 14);//(PLAYER_WIDTH / 2.0f, PLAYER_HEIGHT / 2.0f);
 
     float length = std::sqrt(direction.x * direction.x + direction.y * direction.y);
     float minLength = 0.001f;
