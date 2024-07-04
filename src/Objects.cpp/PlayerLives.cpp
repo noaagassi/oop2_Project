@@ -52,11 +52,11 @@ void PlayerLives::looseLive(float num)
 //---------------------------------
 bool PlayerLives::stillAlive()
 {
-	if (m_lifesRectangle.getSize().x == 0)
+	if (m_lifesRectangle.getSize().x <= 0)
 	{
-		return true;
+		return false;
 	}
-	return false;
+	return true;
 }
 //---------------------------------
 void PlayerLives::setRectangles(sf::Vector2f position)

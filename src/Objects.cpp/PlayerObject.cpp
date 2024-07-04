@@ -207,6 +207,16 @@ void PlayerObject::weaponGift()
 {
     m_currentWeapon->addBall();
 }
+//------------------------------------------
+bool PlayerObject::isdead()
+{
+    if (m_lives.stillAlive())
+    {
+        return false;
+    }
+    return true;
+}
+//------------------------------------------
 void PlayerObject::setlife(float num)
 {
     if (num > 0)

@@ -6,7 +6,7 @@
 #include "Objects.h/TreeObject.h"
 //----------------------------------------
 Board::Board()
-	:m_levelNum(1), m_numberOfBushes(0), m_checkNumberOfBushes(0)
+	:m_levelNum(1), m_numberOfBushes(0), m_checkNumberOfBushes(0), m_isGameOver(false)
 {
 	readLevel();
 }
@@ -144,6 +144,11 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 		}
 	}
 	auto player = getPlayer();
+	
+	if (player->isdead())
+	{
+		m_isGameOver = true;
+	}
 	auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
 	addBullets(std::move(playerBullets));
 
@@ -330,6 +335,12 @@ void Board::handleMousePressed(sf::Event event)
 
 void Board::handleKeyPress(sf::Keyboard::Key key)
 {
+}
+
+bool Board::loose()
+{
+	
+	return m_isGameOver;
 }
 
 void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)

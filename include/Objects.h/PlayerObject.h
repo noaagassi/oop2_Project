@@ -29,7 +29,7 @@ public:
     void changeWeapon(int index);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
     void weaponGift();
-
+    bool isdead();
     void setlife(float num);
     
     void ateLiveGift();

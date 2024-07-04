@@ -35,6 +35,7 @@ public:
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
+	bool loose();
 
 	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
@@ -59,4 +60,6 @@ private:
 	int m_numberOfBushes;
 	int m_checkNumberOfBushes;
 
+
+	bool m_isGameOver;
 };

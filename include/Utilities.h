@@ -44,7 +44,8 @@ enum StateOptions {
     PauseScrn,
     InstructionsScrn,
     ResumeScrn,
-    Exit
+    Exit,
+    LooseScrn
 };
 
 
