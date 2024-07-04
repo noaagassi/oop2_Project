@@ -247,11 +247,18 @@ namespace // anonymous namespace — the standard way to make function "static"
 
     void smallEnemyPoison(BaseObject& enemy, BaseObject& poison)
     {
-        SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
-        PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
-        //SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+        //SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
+        //PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
 
-        
+
+
+        //sf::FloatRect enemyBounds = real_enemy.getSprite().getGlobalBounds();
+        //sf::FloatRect poisonBounds = real_poison.getSprite().getGlobalBounds();
+
+        //stopAdvance(enemyBounds, poisonBounds, real_enemy);
+        ////SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+
+        //
 
 
 

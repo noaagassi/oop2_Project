@@ -28,6 +28,16 @@ BaseEnemyObject::BaseEnemyObject()
 void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
 {
 	moveAndShoot(deltatime);
+    if (m_poisonBounds.size() >= 2)
+    {
+        if (m_position.x <= m_poisonBounds[0].x ||
+            m_position.x >= m_poisonBounds[1].x ||
+            m_position.y <= m_poisonBounds[0].y ||
+            m_position.y >= m_poisonBounds[1].y)
+        {
+            m_position -= 2.0f * (m_direction)*m_speed * deltatime;
+        }
+    }
     m_rangeForMove.setPosition(m_position);
     m_rangeForShoot.setPosition(m_position);
     m_objectSprite.setPosition(m_position);
@@ -37,6 +47,7 @@ void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
 void BaseEnemyObject::setPoisonBounds(std::vector<sf::Vector2f> poisBounds)
 {
 	m_poisonBounds = poisBounds;
+    std::cout << m_poisonBounds.size() << std::endl;
 }
 
 void BaseEnemyObject::moveAndShoot(float deltaTime)

@@ -26,6 +26,7 @@ private:
     std::shared_ptr<PlayState> m_playState;
     std::shared_ptr<Instructions> m_instructions;
     std::shared_ptr<PausePage> m_pause;
+    std::shared_ptr<LooseScreen> m_loose;
 //    std::shared_ptr<LooseScreen> m_loose;
 
 };

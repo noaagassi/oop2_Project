@@ -13,13 +13,13 @@ Controller::Controller()
 	m_menu->initMap(m_instructions, StateOptions::InstructionsScrn);
 
     m_playState->initMap(m_pause, StateOptions::PauseScrn);
-    m_playState->initMap(m_pause, StateOptions::LooseScrn);
+    m_playState->initMap(m_loose, StateOptions::LooseScrn);
 
     m_pause->initMap(m_playState, StateOptions::PlayScrn);
     m_pause->initMap(m_instructions, StateOptions::InstructionsScrn);
     m_pause->initMap(m_menu, StateOptions::MenuScrn);
 
-//    m_loose->initMap(m_menu, StateOptions::MenuScrn);
+    //m_loose->initMap(m_menu, StateOptions::MenuScrn);
 
 	m_currentScreen = m_menu;
 

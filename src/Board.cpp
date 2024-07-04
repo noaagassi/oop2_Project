@@ -241,7 +241,7 @@ void Board::checkCollisions()
 
 		if (bullet && bullet->toDelete())
 		{
-			std::cout << "hay que borrar" << std::endl;
+			
 			moving = m_movingObjects.erase(moving);
 		}
 		else
@@ -254,7 +254,7 @@ void Board::checkCollisions()
 
 	}
 
-	//
+	
 	//for (size_t i = 0; i < m_movingObjects.size(); ++i)
 	//{
 	//	//moving with moving
