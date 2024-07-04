@@ -117,9 +117,9 @@ void Board::readMap(std::string fileName)
 				auto poison = FactoryObject::createStatic(POISON_OBJ, position);
 				m_staticObjects.push_back(std::move(poison));
 			}
-			location_y -= PLAY_WINDOW_HEIGHT/MAP_HEIGHT;
+			location_y -= PLAY_WINDOW_HEIGHT / MAP_HEIGHT;
 		}
-		location_x += PLAY_WINDOW_WIDTH/MAP_WIDTH;
+		location_x += PLAY_WINDOW_WIDTH / MAP_WIDTH;
 	}
 }
 
@@ -131,10 +131,10 @@ void Board::readMap(std::string fileName)
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
 	m_cloud.update(deltatime, window);
-	for (auto &currentObj : m_movingObjects)
+	for (auto& currentObj : m_movingObjects)
 	{
 		currentObj->update(deltatime, window);
-		
+
 	}
 
 	auto playerBullets = getPlayer()->retrieveBullets();
@@ -147,21 +147,23 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 void Board::draw(sf::RenderWindow* window)
 {
 	m_cloud.draw(window);
-	for (const auto& currentObject : m_movingObjects)
-	{
-		currentObject->draw(window);
-	}
 	for (const auto& currentObject : m_staticObjects)
 	{
 		currentObject->draw(window);
 	}
+	for (const auto& currentObject : m_movingObjects)
+	{
+		currentObject->draw(window);
+	}
+	
 }
 
 void Board::checkCollisions()
 {
+
 	for (auto moving = m_movingObjects.begin(); moving != m_movingObjects.end();)
 	{
-		
+
 		for (auto staticObj = m_staticObjects.begin(); staticObj != m_staticObjects.end(); )
 		{
 			if ((*moving)->isCollidingWith(**staticObj))
@@ -174,10 +176,10 @@ void Board::checkCollisions()
 				{
 					std::cerr << e.what() << std::endl;
 				}
-
 				BaseGiftObject* gift = dynamic_cast<BaseGiftObject*>((*staticObj).get());
+				BulletObject* bullet = dynamic_cast<BulletObject*>((*moving).get());
 
-				if (gift && gift->toDelete())
+				if (gift && gift->toDelete() && !bullet)
 				{
 					staticObj = m_staticObjects.erase(staticObj);
 				}
@@ -185,6 +187,7 @@ void Board::checkCollisions()
 				{
 					++staticObj;
 				}
+
 			}
 			else
 			{
@@ -197,13 +200,22 @@ void Board::checkCollisions()
 				}
 				++staticObj;
 			}
-			
+
+		}
+		if (auto player = dynamic_cast<PlayerObject*>((*moving).get()))
+		{
+			if (isPlayerInPoison(player->getPosition(), m_cloud.getBoundaries()))
+			{
+				SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+
+			}
 		}
 
 		BulletObject* bullet = dynamic_cast<BulletObject*>((*moving).get());
 
 		if (bullet && bullet->toDelete())
 		{
+			std::cout << "hay que borrar" << std::endl;
 			moving = m_movingObjects.erase(moving);
 		}
 		else
@@ -211,26 +223,47 @@ void Board::checkCollisions()
 			++moving;
 		}
 
+
+		
+
 	}
 
-	//moving with moving
-	for (size_t i = 0; i < m_movingObjects.size(); ++i)
-	{
-		for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
-		{
-			if (m_movingObjects[i]->isCollidingWith(*m_movingObjects[j]))
-			{
-				try
-				{
-					processCollision(*m_movingObjects[i], *m_movingObjects[j]);
-				}
-				catch (const UnknownCollision& e)
-				{
-					std::cerr << e.what() << std::endl;
-				}
-			}
-		}
-	}
+	//
+	//for (size_t i = 0; i < m_movingObjects.size(); ++i)
+	//{
+	//	//moving with moving
+	//	for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
+	//	{
+	//		if (m_movingObjects[i]->isCollidingWith(*m_movingObjects[j]))
+	//		{
+	//			try
+	//			{
+	//				processCollision(*m_movingObjects[i], *m_movingObjects[j]);
+	//			}
+	//			catch (const UnknownCollision& e)
+	//			{
+	//				std::cerr << e.what() << std::endl;
+	//			}
+	//		}
+	//	}
+	//	//moving with poison
+	//	for (size_t k = 0; k < PoisonVec.size(); k++)
+	//	{
+	//		if (m_movingObjects[i]->isCollidingWith(*PoisonVec[k]))
+	//		{
+	//			try
+	//			{
+	//				processCollision(*m_movingObjects[i], *PoisonVec[k]);
+	//			}
+	//			catch (const UnknownCollision& e)
+	//			{
+	//				std::cerr << e.what() << std::endl;
+	//			}
+	//		}
+	//	}
+	//}
+
+
 }
 
 
@@ -246,6 +279,18 @@ PlayerObject* Board::getPlayer() const
 		}
 	}
 	return nullptr;
+}
+
+bool Board::isPlayerInPoison(sf::Vector2f playerPosition, std::vector<sf::Vector2f> poisonPoints)
+{
+	if (playerPosition.x <= poisonPoints[0].x ||
+		playerPosition.x >= poisonPoints[1].x ||
+		playerPosition.y <= poisonPoints[0].y ||
+		playerPosition.y >= poisonPoints[1].y)
+	{
+		return true;
+	}
+	return false;
 }
 
 sf::FloatRect Board::getPlayerBounds() const

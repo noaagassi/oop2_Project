@@ -21,6 +21,8 @@ Controller::Controller()
 //    m_loose->initMap(m_menu, StateOptions::MenuScrn);
 
 	m_currentScreen = m_menu;
+
+    SoundsHandler::getInstance().playMusic();
 }
 //------------------------------------------------------
 void Controller::run() {
@@ -57,7 +59,7 @@ void Controller::run() {
             m_currentScreen->update(deltaTime);
 
             
-            //m_window.clear();
+            m_window.clear();
             m_currentScreen->draw();
             m_window.display();
     }

@@ -2,12 +2,13 @@
 
 #include "Objects.h/CloudPoisonObject.h"
 #include <iostream>
+#include "SoundsHandler.h"
 
 sf::Vector2f CloudPoisonObject::BounderiesOfPoison[2] = { {0.f, 0.f}, {0.f, 0.f} };
 
 //----------------------------------------------------
 CloudPoisonObject::CloudPoisonObject()
-	:m_countingTime(sf::Time::Zero), m_limitTime(sf::seconds(5))
+	:m_countingTime(sf::Time::Zero), m_limitTime(sf::seconds(13))
 	//:m_frame(sf::Vector2f(200.f,200.f)), m_rectangleSize(5), m_countingTime(sf::Time::Zero),m_limitTime(sf::seconds(5))
 {
 	
@@ -38,6 +39,7 @@ void CloudPoisonObject::update(float deltaTime, sf::RenderWindow* window)
 
 	if (m_countingTime >= m_limitTime)
 	{
+		SoundsHandler::getInstance().playSound(Sound_Id::POISON);
 		update(m_countingTime);
 	}
 }

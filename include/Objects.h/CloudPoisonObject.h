@@ -14,7 +14,7 @@ private:
 	void update(sf::Time);
 	void fillPoisonVector();
 	//members for vector of poison
-	std::vector<std::unique_ptr<PoisonObject>> m_poisons;
+	std::vector<std::shared_ptr<PoisonObject>> m_poisons;
 	sf::Vector2f m_start;
 	sf::Vector2f m_end;
 

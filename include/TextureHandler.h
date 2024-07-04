@@ -28,7 +28,7 @@ enum Object_ID {
     ENEMY_2_OBJ,
     TREES_OBJ,
     REGULAR_LASER_WEAPON_1_OBJ,
-    ROCKET_WEAPON_2_OBJ,
+    ROCKET_OBJ,
     MASSIVE_LASER_WEAPON_3_OBJ,
     BALLS_WEAPON_4,
     WEAPON_SUPER_OBJ,
@@ -39,9 +39,9 @@ enum Object_ID {
     WEAPON_GIFT_OBJ,
     PLAYER_OBJ,
     PLAY_SCREEN_OBJ,
-    SPREADING_LASER,
     BULLET_OBJ,
-    HEARTS_PLAYER_OBJ
+    HEARTS_PLAYER_OBJ,
+    SPREADING_LASER
 };
 
 class TextureHandler
@@ -70,7 +70,7 @@ private:
         "ballWeapon.png",         "weaponSuper.png",   "weaponEnemy1.png",  
         "weaponEnemy2.png",       "freezeGift.png",    "lifeGift.png",      
         "weaponGift.png",         "player.png",        "playBackGround.png" ,
-        "heartplayer.png" };
+        "bullet.png",             "heartplayer.png" };
 
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];
