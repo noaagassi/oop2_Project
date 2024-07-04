@@ -4,7 +4,7 @@
 
 
 BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int small)
-	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small)
+	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small), m_isRandomMoving(false)
 {
 	m_rangeForMove.setRadius(m_bigRadius);
 	m_rangeForShoot.setRadius(m_smallRadius);
@@ -110,6 +110,7 @@ void BaseEnemyObject::moveRandom(float deltaTime)
 
     m_position += m_direction * m_speed * deltaTime;
     
+
     
 }
 
@@ -118,7 +119,7 @@ void BaseEnemyObject::moveSmartandShoot(float deltaTime)
 {
 
 
-
+    sf::Vector2f lastPosition = m_position;
 
 
     if (10 <= (m_playerPos.x - m_position.x))
@@ -126,21 +127,31 @@ void BaseEnemyObject::moveSmartandShoot(float deltaTime)
         directionRight();
         // add frames
     }
-    else if (10 <= (m_position.x - m_playerPos.x)) {
+     if (10 <= (m_position.x - m_playerPos.x)) {
         directionLeft();
     }
 
-    else if (10 <= (m_playerPos.y - m_position.y))
+     if (10 <= (m_playerPos.y - m_position.y))
     {
         directionDown();
     }
-    else if (10 <= (m_position.y - m_playerPos.y))
+     if (10 <= (m_position.y - m_playerPos.y))
     {
         directionUp();
     }
 
     m_position += m_direction * m_speed * deltaTime;
-
+    /*
+    if (m_position == lastPosition)         //if the last pos same as current pos (character not move)
+    {
+        m_isRandomMoving = true;
+        m_randomMoveTimer.restart();
+        
+    }
+    if (m_isRandomMoving)
+    {
+        moveRandom(deltaTime);
+    }*/
 }
 
 

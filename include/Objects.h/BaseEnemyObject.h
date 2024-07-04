@@ -27,5 +27,8 @@ protected:
     sf::CircleShape m_rangeForMove;
     sf::CircleShape m_rangeForShoot;
 
+    bool m_isRandomMoving;
+    sf::Clock m_randomMoveTimer;
+
     std::vector<sf::Vector2f> m_poisonBounds;
 };
