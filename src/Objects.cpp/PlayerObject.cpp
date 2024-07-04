@@ -8,14 +8,9 @@
 //------------------------------------------------
 
 //------------------------------------------------
-
-
 bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
-
-
-
-
+//------------------------------------------------
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y-10), m_eatLifeGift(false)
 {
@@ -43,11 +38,6 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
-    m_numberForHeart++;
-    if (m_numberForHeart % 100 == 0)
-    {
-        //m_lives.looseLive();
-    }
     isAteLiveGift();
     handleInput(window);
     animate(deltaTime);

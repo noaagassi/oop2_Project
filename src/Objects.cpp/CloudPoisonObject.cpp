@@ -15,8 +15,8 @@ CloudPoisonObject::CloudPoisonObject()
 	
 	m_start.x = -60.0f,
 		m_start.y = -70.0f;
-	m_end.x = PLAY_WINDOW_WIDTH -25,
-		m_end.y = PLAY_WINDOW_HEIGHT -20;
+	m_end.x = CLOUD_POISEN_WIDTH,
+		m_end.y = CLOUD_POISEN_HEIGHT;
 	BounderiesOfPoison[0] = m_start;
 	BounderiesOfPoison[1] = m_end;
 
@@ -47,16 +47,15 @@ void CloudPoisonObject::update(float deltaTime, sf::RenderWindow* window)
 //----------------------------------------------------
 void CloudPoisonObject::update(sf::Time elapse)
 {
-	int NEW_HEIGHT = PLAY_WINDOW_HEIGHT - 50;
-	int NEW_WIDTH = PLAY_WINDOW_WIDTH - 70;
+	int NEW_HEIGHT = CLOUD_POISEN_HEIGHT;
+	int NEW_WIDTH = CLOUD_POISEN_WIDTH;
 	float y_ratio = NEW_HEIGHT / MAP_HEIGHT,
 		x_ratio = NEW_WIDTH / MAP_WIDTH;
 
 
 	std::cout << "Updating rectangle size. Elapsed time: " << elapse.asSeconds() << " seconds" << std::endl; // הודעת דיבוג
 	m_countingTime = sf::Time::Zero;
-	//float y_ratio = PLAY_WINDOW_HEIGHT / MAP_HEIGHT,
-	//	x_ratio = PLAY_WINDOW_WIDTH / MAP_WIDTH;
+
 	m_start.x += x_ratio,
 		m_start.y += y_ratio,
 		m_end.x -= x_ratio,
@@ -66,8 +65,8 @@ void CloudPoisonObject::update(sf::Time elapse)
 }
 void CloudPoisonObject::fillPoisonVector()
 {
-	int NEW_HEIGHT = PLAY_WINDOW_HEIGHT - 50;
-	int NEW_WIDTH = PLAY_WINDOW_WIDTH - 70;
+	int NEW_HEIGHT = CLOUD_POISEN_HEIGHT;
+	int NEW_WIDTH = CLOUD_POISEN_WIDTH;
 	float y_ratio = NEW_HEIGHT / MAP_HEIGHT,
 		x_ratio = NEW_WIDTH / MAP_WIDTH;
 	sf::Vector2f start = m_start;

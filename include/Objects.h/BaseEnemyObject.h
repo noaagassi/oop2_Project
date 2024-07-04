@@ -1,10 +1,10 @@
 #pragma once
 #include "MovingObject.h"
-
+//-------------------------------------------------------
 class BaseEnemyObject : public MovingObject
 {
 public:
-    BaseEnemyObject(const sf::Vector2f& initPosition, int big ,int small);
+    BaseEnemyObject(const sf::Vector2f& initPosition, int big ,int small,float);
     BaseEnemyObject();
     void update(float deltatime, sf::RenderWindow* window) override;
     void moveAndShoot(float deltaTime);
@@ -19,6 +19,7 @@ public:
     void moveSmartandShoot(float deltaTime);
 
 protected:
+    virtual void resetSprite(int) =0;
     sf::Vector2f m_playerPos;
     float m_speed;
     sf::Vector2f m_direction;
