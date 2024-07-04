@@ -167,7 +167,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         
         BallObject& real_bullet = dynamic_cast<BallObject&>(bullet);
         WallObject& real_wall = dynamic_cast<WallObject&>(wall);
-
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
         std::cout << "ball and Wall collision!\n";
         real_bullet.toDelete(true);
 
