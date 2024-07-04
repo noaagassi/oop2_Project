@@ -56,6 +56,7 @@ void PlayState::update(float deltatime)
 }
 
 
+
   /*
 std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 {
@@ -84,7 +85,7 @@ std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
 
     return nullptr;
 }
-
+*/
 void PlayState::handleView()
 {
     sf::Vector2f playerPosition = getPlayerLocation();
@@ -105,4 +106,4 @@ void PlayState::handleView()
     
 }
  
- */
+ 

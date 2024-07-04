@@ -1,5 +1,5 @@
 #include "Objects.h/LaserObject.h"
-/*
+
 //-----------------------------------------------
 bool LaserObject::m_registerit = FactoryObject::registerit(BULLET_OBJ,
 	[](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<LaserObject>(pos); });
@@ -25,4 +25,3 @@ void LaserObject::update(float deltaTime, sf::RenderWindow* window)
 //----------------------------------------------------------------
 
 
-*/

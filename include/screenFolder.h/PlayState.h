@@ -20,7 +20,7 @@ public:
 
     void draw() override;
     void update(float deltatime) override;
-    std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
+   // std::shared_ptr <GameState> isStateChanged(sf::Event event) override;
     void handleView();
 
 private:
