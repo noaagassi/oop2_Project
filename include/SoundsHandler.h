@@ -5,11 +5,10 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int SOUND_NUM = 14;
+
+const int SOUND_NUM = 15;
 
 enum Sound_Id {
-    /*FIRST_MENU,*/
-    THE_GAME_SOUND,
     LOOSE,
     WIN,
     POISON,
@@ -22,11 +21,12 @@ enum Sound_Id {
     FREEZE,
     UN_FREEZE,
     WEAPON_GIFT,
-    EXTRA_LIFE
-
+    EXTRA_LIFE,
+    POISON_HIT,
+    PORTAL_ENTER
 
 };
-/*
+
 class SoundsHandler
 {
 
@@ -35,31 +35,27 @@ public:
     SoundsHandler();
     ~SoundsHandler();
     static SoundsHandler& getInstance();
+    void playMusic();
 
     void playSound(Sound_Id id);
 
 private:
 
     const std::string m_soundNames[SOUND_NUM] = {
-    "resources/sounds/game_op2.wav",
-    "resources/sounds/loose1.wav",
-    "resources/sounds/win2.wav",
-    "resources/sounds/poison2.wav",
-    "resources/sounds/laser_shoot.wav",
-    "resources/sounds/laser_hit.wav",
-    "resources/sounds/rocket_shoot.wav",
-    "resources/sounds/rocket_hit.wav",
-    "resources/sounds/ball_shoot1.wav",
-    "resources/sounds/ball_pop.wav",
-    "resources/sounds/freeze_start.wav",
-    "resources/sounds/freeze_end.wav",
-    "resources/sounds/take_weapon.wav",
-    "resources/sounds/extra_life.wav"
-    };
+        "loose1.wav",       "win2.wav",       "poison2.wav",    
+        "laser_shoot.wav",  "laser_hit.wav",  "rocket_shoot.wav",
+        "rocket_hit.wav",   "ball_shoot1.wav","ball_pop.wav",
+        "freeze_start.wav", "freeze_end.wav", "take_weapon.wav",
+        "extra_life.wav",   "poison_hit.wav", "portal_enter.wav"};
 
-    //sf::Sound m_sound;
+    sf::Music m_music;
+    sf::Sound m_sound;
     sf::Sound m_sounds[SOUND_NUM];
     sf::SoundBuffer m_buffers[SOUND_NUM];
-
 };
-*/
+
+
+
+//SoundsHandler::getInstance().playSound(Sound_Id::)
+
+//THE_GAME_SOUND,

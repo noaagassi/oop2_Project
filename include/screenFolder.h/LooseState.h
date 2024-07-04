@@ -2,8 +2,8 @@
 /*
 #include "screenFolder.h/GameState.h"
 #include "screenFolder.h/PlayState.h"
-#include "screenFolder.h/Instructions.h"
-#include "screenFolder.h/Menu.h"
+#include "screenFolder.h/InstructionsState.h"
+#include "screenFolder.h/MenuState.h"
 #include "screenFolder.h/InstructionsState.h"
 #include "Utilities.h"
 #include "Buttons.h/Button.h"

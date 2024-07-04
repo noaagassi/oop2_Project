@@ -1,3 +1,4 @@
+
 #pragma once
 #include "Objects.h/SmallFastEnemyObject.h"
 #include "Utilities.h"
@@ -13,7 +14,8 @@ SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
     setObjTexture(ENEMY_1_OBJ);
     setTheScale(PLAYER_WIDTH, PLAYER_HEIGHT);
     
-    
+
+
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };
     rightFrames = { getFrame(2, 0), getFrame(2, 1), getFrame(2, 2), getFrame(2, 3) };

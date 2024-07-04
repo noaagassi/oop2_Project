@@ -29,6 +29,8 @@ public:
 	sf::Vector2f getPlayrLocation() const;
 	sf::FloatRect getPlayerBounds() const;
 	PlayerObject* getPlayer() const;
+
+	bool isPlayerInPoison(sf::Vector2f playerPosition, std::vector<sf::Vector2f> poisonPoints);
 	
 	void handleMousePressed(sf::Event event);
 	void handleKeyPress(sf::Keyboard::Key key); 
@@ -50,10 +52,8 @@ private:
 	std::vector<std::unique_ptr<StaticObject>> m_staticObjects;
 	CloudPoisonObject m_cloud;
 
+	
 
-	std::unique_ptr<PlayerObject> m_player;
-
-	//function of the object
 	void readMap(std::string fileName);
 
 };

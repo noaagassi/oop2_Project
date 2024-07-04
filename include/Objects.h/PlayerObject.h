@@ -9,6 +9,8 @@
 #include "BallsWeaponObject.h"
 #include "RocketWeaponObject.h"
 #include "SuperWeaponObject.h"
+#include "BaseWeaponObject.h"
+#include "SoundsHandler.h"
 
 class PlayerObject : public MovingObject
 {
