@@ -5,7 +5,7 @@
 #include "screenFolder.h/MenuState.h"
 #include "screenFolder.h/InstructionsState.h"
 #include "screenFolder.h/PlayState.h"
-//#include "screenFolder.h/LooseScreen.h"
+#include "screenFolder.h/LooseScreen.h"
 #include "Utilities.h"
 
 #include "screenFolder.h/PauseState.h"
