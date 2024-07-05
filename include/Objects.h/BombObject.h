@@ -16,4 +16,5 @@ private:
     //float m_speed = 100.f;
     //bool m_toDelete;
     sf::Vector2f m_velocity;
+    //std::unique_ptr<sf::RenderWindow> m_window;
 };

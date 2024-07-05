@@ -265,7 +265,6 @@ void Board::checkCollisions()
 
 		if (bullet && bullet->toDelete())
 		{
-
 			moving = m_movingObjects.erase(moving);
 		}
 		else

@@ -20,7 +20,10 @@ void BombObject::update(float deltatime, sf::RenderWindow* window)
 
 void BombObject::draw(sf::RenderWindow* window) const
 {
+    //m_window = std::make_unique(window);
     window->draw(m_objectSprite);
 }
+
+
 
 
