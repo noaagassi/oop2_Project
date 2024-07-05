@@ -237,58 +237,42 @@ void Board::checkCollisions()
 			}
 		}
 
+
+
+		if (moving != m_movingObjects.end())
+		{
+			for (auto moving2 = std::next(moving); moving2 != m_movingObjects.end(); ++moving2)
+			{
+				if ((*moving)->isCollidingWith(**moving2))
+				{
+					try
+					{
+						processCollision(**moving, **moving2);
+
+					}
+					catch (const UnknownCollision& e)
+					{
+						std::cerr << e.what() << std::endl;
+					}
+				}
+			
+			}
+
+		}
+
+
 		BulletObject* bullet = dynamic_cast<BulletObject*>((*moving).get());
 
 		if (bullet && bullet->toDelete())
 		{
-			
+
 			moving = m_movingObjects.erase(moving);
 		}
 		else
 		{
 			++moving;
 		}
-
-
-		
-
 	}
-
-	
-	//for (size_t i = 0; i < m_movingObjects.size(); ++i)
-	//{
-	//	//moving with moving
-	//	for (size_t j = i + 1; j < m_movingObjects.size(); ++j)
-	//	{
-	//		if (m_movingObjects[i]->isCollidingWith(*m_movingObjects[j]))
-	//		{
-	//			try
-	//			{
-	//				processCollision(*m_movingObjects[i], *m_movingObjects[j]);
-	//			}
-	//			catch (const UnknownCollision& e)
-	//			{
-	//				std::cerr << e.what() << std::endl;
-	//			}
-	//		}
-	//	}
-	//	//moving with poison
-	//	for (size_t k = 0; k < PoisonVec.size(); k++)
-	//	{
-	//		if (m_movingObjects[i]->isCollidingWith(*PoisonVec[k]))
-	//		{
-	//			try
-	//			{
-	//				processCollision(*m_movingObjects[i], *PoisonVec[k]);
-	//			}
-	//			catch (const UnknownCollision& e)
-	//			{
-	//				std::cerr << e.what() << std::endl;
-	//			}
-	//		}
-	//	}
-	//}
-
 
 }
 

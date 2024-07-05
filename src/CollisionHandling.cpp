@@ -22,6 +22,7 @@
 #include "Objects.h/BombObject.h"
 #include "Objects.h/SmallFastEnemyObject.h"
 #include "Objects.h/BigSlowEnemyObject.h"
+#include "Objects.h/BaseEnemyObject.h"
 
 
 
@@ -153,12 +154,6 @@ namespace // anonymous namespace — the standard way to make function "static"
        
     }
 
-    //void playerPoison(BaseObject& player, BaseObject& poison)
-    //{
-    //    PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
-    //    PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
-    //    //SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
-    //}
     void ballWall(BaseObject& bullet, BaseObject& wall)
     {
         
@@ -191,14 +186,73 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         BombObject& real_bullet = dynamic_cast<BombObject&>(bullet);
         TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
-        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
+        //SoundsHandler::getInstance().playSound(Sound_Id::BOMB_HIT);
         
         real_bullet.toDelete(true);
 
     }
+    
+    
+    void bombBigEnemy(BaseObject& bomb, BaseObject& enemy)
+    {
 
+        BombObject& real_bomb = dynamic_cast<BombObject&>(bomb);
+        BigSlowEnemyObject& real_enemy = dynamic_cast<BigSlowEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BOMB_HIT);
+        real_bomb.setObjTexture(Object_ID::EXPLOSION);
+        real_bomb.toDelete(true);
+
+    }
+    void bigEnemyBomb(BaseObject& enemy, BaseObject& bomb)
+    {
+        bombBigEnemy(bomb, enemy);
+    }
+    
+    void ballBigEnemy(BaseObject& ball, BaseObject& enemy)
+    {
+
+        BallObject& real_ball = dynamic_cast<BallObject&>(ball);
+        BigSlowEnemyObject& real_enemy = dynamic_cast<BigSlowEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
+        
+        real_ball.toDelete(true);
+
+    }
+    void bigEnemyBall(BaseObject& enemy, BaseObject& ball)
+    {
+        ballBigEnemy(ball, enemy);
+    }
 
     
+    void bombSmallEnemy(BaseObject& bomb, BaseObject& enemy)
+    {
+
+        BombObject& real_bomb = dynamic_cast<BombObject&>(bomb);
+        SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BOMB_HIT);
+        real_bomb.setObjTexture(Object_ID::EXPLOSION);
+        real_bomb.toDelete(true);
+
+    }
+    void smallEnemyBomb(BaseObject& enemy, BaseObject& bomb)
+    {
+        bombSmallEnemy(bomb, enemy);
+    }
+    
+    void ballSmallEnemy(BaseObject& ball, BaseObject& enemy)
+    {
+
+        BallObject& real_ball = dynamic_cast<BallObject&>(ball);
+        SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
+        
+        real_ball.toDelete(true);
+
+    }
+    void smallEnemyBall(BaseObject& enemy, BaseObject& ball)
+    {
+        ballSmallEnemy(ball, enemy);
+    }
 
     
 
@@ -247,21 +301,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
     void smallEnemyPoison(BaseObject& enemy, BaseObject& poison)
     {
-        //SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
-        //PoisonObject& real_poison = dynamic_cast<PoisonObject&>(poison);
-
-
-
-        //sf::FloatRect enemyBounds = real_enemy.getSprite().getGlobalBounds();
-        //sf::FloatRect poisonBounds = real_poison.getSprite().getGlobalBounds();
-
-        //stopAdvance(enemyBounds, poisonBounds, real_enemy);
-        ////SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
-
-        //
-
-
-
+       
     }
 
 
@@ -294,6 +334,14 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
         //phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
 
+        phm[Key(typeid(SmallFastEnemyObject), typeid(BallObject))] = &smallEnemyBall;
+        phm[Key(typeid(BigSlowEnemyObject), typeid(BallObject))] = &bigEnemyBall;
+        phm[Key(typeid(SmallFastEnemyObject), typeid(BombObject))] = &smallEnemyBomb;
+        phm[Key(typeid(BigSlowEnemyObject), typeid(BombObject))] = &bigEnemyBomb;
+        phm[Key(typeid(BallObject), typeid(SmallFastEnemyObject))] = &ballSmallEnemy;
+        phm[Key(typeid(BallObject), typeid(BigSlowEnemyObject))] = &ballBigEnemy;
+        phm[Key(typeid(BombObject), typeid(SmallFastEnemyObject))] = &bombSmallEnemy;
+        phm[Key(typeid(BombObject), typeid(BigSlowEnemyObject))] = &bombBigEnemy;
         phm[Key(typeid(BallObject), typeid(WallObject))] = &ballWall;
         phm[Key(typeid(BallObject), typeid(TreeObject))] = &ballTree;
         phm[Key(typeid(BallObject), typeid(LifeGiftObject))] = &nothingToDo;
@@ -318,13 +366,9 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(SmallFastEnemyObject), typeid(PoisonObject))] = &smallEnemyPoison;
 
         phm[Key(typeid(BigSlowEnemyObject), typeid(BushObject))] = &nothingToDo;
-        //phm[Key(typeid(BigSlowEnemyObject), typeid(WallObject))] = &bigEnemyWall;
-        //phm[Key(typeid(BigSlowEnemyObject), typeid(TreeObject))] = &bigEnemyTree;
-        //phm[Key(typeid(BigSlowEnemyObject), typeid(PortalObject))] = &bigEnemyPortal;
         phm[Key(typeid(BigSlowEnemyObject), typeid(LifeGiftObject))] = &nothingToDo;
         phm[Key(typeid(BigSlowEnemyObject), typeid(FreezeGiftObject))] = &nothingToDo;
         phm[Key(typeid(BigSlowEnemyObject), typeid(WeaponGiftObject))] = &nothingToDo;
-       // phm[Key(typeid(BigSlowEnemyObject), typeid(PoisonObject))] = &bigEnemyPoison;
        
         //...
         return phm;
