@@ -1,0 +1,33 @@
+#include "Objects.h/LaserObject.h"
+
+//-----------------------------------------------
+bool LaserObject::m_registerit = FactoryObject::registerit(BULLET_OBJ,
+	[](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<LaserObject>(pos); });
+//------------------------------------------------------------
+LaserObject::LaserObject(const sf::Vector2f& position)
+	:BulletObject(position)
+{
+}
+//----------------------------------------------------------------
+void LaserObject::update(float deltaTime, sf::RenderWindow* window)
+{
+	m_position += m_direction * m_speed * deltaTime;
+	m_objectSprite.setPosition(m_position);
+	
+	if ((m_target.x - m_position.x) <= 5
+		&& (m_target.x - m_position.x) >= -5
+		&& (m_target.y - m_position.y) <= 5
+		&& (m_target.y - m_position.y) >= -5)
+	{
+		m_toDelete = true;
+	}
+}
+void LaserObject::setMembers(Object_ID WeaponName, float weaponSpeed, float fireRate)
+{
+	setObjTexture(WeaponName);
+	m_speed = weaponSpeed;
+	m_fireRate = fireRate;
+}
+//----------------------------------------------------------------
+
+
