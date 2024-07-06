@@ -9,8 +9,9 @@
 #include "BallsWeaponObject.h"
 #include "BombWeaponObject.h"
 #include "SuperWeaponObject.h"
+#include "CharacterObject.h"
 
-class PlayerObject : public MovingObject
+class PlayerObject : public CharacterObject
 {
 public:
     //c-tor

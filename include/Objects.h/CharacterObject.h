@@ -5,6 +5,7 @@
 #include "BaseObject.h"
 #include "FactoryObject.h"
 #include "Utilities.h"
+#include "BaseWeaponObject.h"
 
 class CharacterObject : public MovingObject
 {
@@ -17,7 +18,7 @@ public:
     void goUp();
     void goDown();*/
     void animate(float deltaTime);
-    //std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
+   //std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
     //bool toDelete();
 protected:
     std::vector<sf::IntRect> defaultFrames;
@@ -26,7 +27,7 @@ protected:
     std::vector<sf::IntRect> downFrames;
     std::vector<sf::IntRect> upFrames;
     std::vector<sf::IntRect>* currentFrames;
-
+    //std::unique_ptr<BaseWeaponObject> m_currentWeapon;
     float m_speed;
     bool m_isMoving;
     sf::Vector2f m_direction;

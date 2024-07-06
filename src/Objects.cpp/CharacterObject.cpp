@@ -8,4 +8,9 @@ CharacterObject::CharacterObject(const sf::Vector2f& initPosition)
 void CharacterObject::animate(float deltaTime)
 {
 }
+/*
+std::vector<std::unique_ptr<MovingObject>> CharacterObject::retrieveBullets()
+{
+	return m_currentWeapon->retrieveBullets();
 
+}*/

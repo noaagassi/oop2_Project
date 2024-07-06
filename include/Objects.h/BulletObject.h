@@ -14,7 +14,7 @@ public:
 
 
 protected:
-    static bool m_registerit;
+    //static bool m_registerit;
     sf::Vector2f m_target;
     sf::Vector2f m_direction;
     float m_speed;

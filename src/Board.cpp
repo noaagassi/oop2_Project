@@ -136,7 +136,14 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	m_cloud.update(deltatime, window);
 	for (auto& currentObj : m_movingObjects)
 	{
-		currentObj->update(deltatime, window);
+		if (currentObj)
+		{
+			currentObj->update(deltatime, window);
+		}
+		else 
+		{
+			std::cerr << "Intento de actualizar un objeto nulo" << std::endl;
+		}
 
 		if (auto player = dynamic_cast <PlayerObject*> (currentObj.get()))
 		{
@@ -149,8 +156,8 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	{
 		m_isGameOver = true;
 	}
-	auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
-	addBullets(std::move(playerBullets));
+	//auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
+	//addBullets(std::move(playerBullets));
 
 	for (auto& currentObj : m_movingObjects)
 	{
@@ -159,8 +166,8 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 		{
 			enemy->setPlayerPos(playerPos);
 			enemy->setPoisonBounds(m_cloud.getBoundaries());
-			auto currentEnemyBullets = enemy->retrieveBullets();
-			addBullets(std::move(currentEnemyBullets));
+			//auto currentEnemyBullets = enemy->retrieveBullets();
+			//addBullets(std::move(currentEnemyBullets));
 		}
 	}
 	
@@ -350,24 +357,19 @@ bool Board::loose()
 
 void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
 {
-	if (bullets.empty()) {
-		std::cerr << "Warning: Trying to add an empty bullet vector!" << std::endl;
-		return;
+	
+	for (auto& bullet : bullets) {
+		if (bullet)
+		{
+			m_movingObjects.push_back(std::move(bullet));
+		}
+		else 
+		{
+			std::cerr << "Fallo al crear una bala" << std::endl;
+		}
 	}
 
-	for (auto& bullet : bullets) {
-		// Verificar si el puntero de bala es nulo
-		if (!bullet) {
-			std::cerr << "Warning: Null bullet detected!" << std::endl;
-			continue;
-		}
-		m_movingObjects.push_back(std::move(bullet));
-	}
-	/*
-	for (auto& bullet : bullets) {
-		m_movingObjects.push_back(std::move(bullet));
-	}
-	*/
+	
 }
 
 

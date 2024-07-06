@@ -264,9 +264,31 @@ namespace // anonymous namespace — the standard way to make function "static"
 
     }
 
+    void bigEnemyTree(BaseObject& enemy, BaseObject& tree)
+    {
+        BigSlowEnemyObject& real_enemy = dynamic_cast<BigSlowEnemyObject&>(enemy);
+        TreeObject& real_tree = dynamic_cast<TreeObject&>(tree);
 
 
 
+        sf::FloatRect enemyBounds = real_enemy.getSprite().getGlobalBounds();
+        sf::FloatRect treeBounds = real_tree.getSprite().getGlobalBounds();
+
+        stopAdvance(enemyBounds, treeBounds, real_enemy);
+    }
+
+    void bigEnemyWall(BaseObject& enemy, BaseObject& wall)
+    {
+        BigSlowEnemyObject& real_enemy = dynamic_cast<BigSlowEnemyObject&>(enemy);
+        WallObject& real_wall = dynamic_cast<WallObject&>(wall);
+
+
+
+        sf::FloatRect enemyBounds = real_enemy.getSprite().getGlobalBounds();
+        sf::FloatRect wallBounds = real_wall.getSprite().getGlobalBounds();
+
+        stopAdvance(enemyBounds, wallBounds, real_enemy);
+    }
 
 
 
@@ -318,8 +340,8 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(SmallFastEnemyObject), typeid(PoisonObject))] = &smallEnemyPoison;
 
         phm[Key(typeid(BigSlowEnemyObject), typeid(BushObject))] = &nothingToDo;
-        //phm[Key(typeid(BigSlowEnemyObject), typeid(WallObject))] = &bigEnemyWall;
-        //phm[Key(typeid(BigSlowEnemyObject), typeid(TreeObject))] = &bigEnemyTree;
+        phm[Key(typeid(BigSlowEnemyObject), typeid(WallObject))] = &bigEnemyWall;
+        phm[Key(typeid(BigSlowEnemyObject), typeid(TreeObject))] = &bigEnemyTree;
         //phm[Key(typeid(BigSlowEnemyObject), typeid(PortalObject))] = &bigEnemyPortal;
         phm[Key(typeid(BigSlowEnemyObject), typeid(LifeGiftObject))] = &nothingToDo;
         phm[Key(typeid(BigSlowEnemyObject), typeid(FreezeGiftObject))] = &nothingToDo;

@@ -1,5 +1,5 @@
 #include "Objects.h/EnemyWeaponObject.h"
-
+#include <iostream>
 
 
 
@@ -16,6 +16,7 @@ void EnemyWeaponObject::shoot(sf::Vector2f enemyPos, sf::Vector2f playerPos)
     bullet->setTarget(playerPos);
     bullet->setMembers(m_weaponName, m_weaponSpeed, m_fireRate);
     m_bullets.push_back(std::move(bullet));
+    std::cout << "agregando laser" << std::endl;
         
     //SoundsHandler::getInstance().playSound(Sound_Id::BALL_SHOOT);
     

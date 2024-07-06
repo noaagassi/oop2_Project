@@ -1,8 +1,9 @@
 #pragma once
 #include "MovingObject.h"
 #include "EnemyWeaponObject.h"
+#include "CharacterObject.h"
 //-------------------------------------------------------
-class BaseEnemyObject : public MovingObject
+class BaseEnemyObject : public CharacterObject
 {
 public:
     BaseEnemyObject(const sf::Vector2f& initPosition, int big ,int small,float, Object_ID WeaponName, float weaponSpeed, float fireRate);
@@ -21,7 +22,7 @@ public:
 
     void moveRandom(float deltaTime);
     void moveSmartandShoot(float deltaTime);
-
+    void draw(sf::RenderWindow* window) const override;
 
     virtual void animate(float deltTime)=0;
 
@@ -39,4 +40,7 @@ protected:
     sf::Clock m_randomMoveTimer;
 
     std::vector<sf::Vector2f> m_poisonBounds;
+
+    float m_shootCooldown = 5.0f; 
+    float m_timeSinceLastShot = 0.0f;
 };

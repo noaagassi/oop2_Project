@@ -12,7 +12,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
 //------------------------------------------------
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y-10), m_eatLifeGift(false)
+    : CharacterObject(initPosition),m_lives(initPosition.x-20,initPosition.y-10), m_eatLifeGift(false)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
@@ -46,7 +46,7 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     updateFlashlight(window);
     sf::Vector2f pos4lives(m_position.x-20, m_position.y-10);
     m_lives.update(pos4lives);
-    m_currentWeapon->update(deltaTime);
+    m_currentWeapon->update(deltaTime,window);
 }
 //------------------------------------------------
 
@@ -55,6 +55,7 @@ void PlayerObject::draw(sf::RenderWindow* window) const
     BaseObject::draw(window); 
     m_flashlight.draw(window);
     m_lives.draw(window);
+    m_currentWeapon->draw(window);
 }
 
 //------------------------------------------------
@@ -183,11 +184,7 @@ void PlayerObject::changeWeapon(int index)
 }
 //------------------------------------------------
 
-std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
-{
-    return m_currentWeapon->retrieveBullets();
-    
-}
+
 void PlayerObject::weaponGift()
 {
     m_currentWeapon->addBall();
@@ -229,3 +226,8 @@ sf::Vector2f PlayerObject::getPosForEnemy()
 
 }
 
+std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
+{
+    return m_currentWeapon->retrieveBullets();
+
+}

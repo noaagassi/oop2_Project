@@ -4,7 +4,7 @@
 
 //------------------------------------------------------------------------
 BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int small, float speed, Object_ID WeaponName, float weaponSpeed, float fireRate)
-	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed)
+	:CharacterObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed)
 {
 
 
@@ -43,7 +43,7 @@ void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
     m_rangeForMove.setPosition(m_position);
     m_rangeForShoot.setPosition(m_position);
     m_objectSprite.setPosition(m_position);
-    m_currentWeapon->update(deltatime);
+    m_currentWeapon->update(deltatime,window);
 }
 
 
@@ -118,10 +118,12 @@ void BaseEnemyObject::moveRandom(float deltaTime)
 
 void BaseEnemyObject::moveSmartandShoot(float deltaTime)
 {
+    m_timeSinceLastShot += deltaTime;
 
-    if (m_rangeForShoot.getGlobalBounds().contains(m_playerPos))
+    if (m_rangeForShoot.getGlobalBounds().contains(m_playerPos) && m_timeSinceLastShot >= m_shootCooldown)
     {
         m_currentWeapon->shoot(m_position, m_playerPos);
+        m_timeSinceLastShot = 0.0f;
     }
 
     sf::Vector2f lastPosition = m_position;
@@ -146,6 +148,12 @@ void BaseEnemyObject::moveSmartandShoot(float deltaTime)
     }
 
     m_position += m_direction * m_speed * deltaTime;
+}
+
+void BaseEnemyObject::draw(sf::RenderWindow* window) const
+{
+    BaseObject::draw(window);
+    m_currentWeapon->draw(window);
 }
 
 void BaseEnemyObject:: directionUp()
@@ -174,7 +182,6 @@ void BaseEnemyObject::directionLeft()
     m_direction.y = 0;
     resetSprite(3);
 }
-
 
 std::vector<std::unique_ptr<MovingObject>> BaseEnemyObject::retrieveBullets()
 {

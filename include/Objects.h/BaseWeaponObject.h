@@ -8,9 +8,9 @@ public:
     BaseWeaponObject();
 
     void setFireRate(float rate);
-    void update(float deltaTime);
+    void update(float deltaTime,sf::RenderWindow* window);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
-
+    void draw(sf::RenderWindow* window);
 
 protected:
     float m_fireRate;
