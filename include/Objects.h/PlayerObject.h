@@ -16,6 +16,7 @@ public:
     //c-tor
     PlayerObject(const sf::Vector2f& pos);
 
+    std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
 
     void update(float deltaTime, sf::RenderWindow* window);
     void draw(sf::RenderWindow* window) const override;
@@ -23,9 +24,8 @@ public:
     void updateFlashlight(sf::RenderWindow* window);
     bool isInBush();
     void setInBush(bool);
-    void shoot();
     void changeWeapon(int index);
-    std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
+   
     void weaponGift();
     bool isdead();
     void setlife(float num);
@@ -44,7 +44,7 @@ private:
     //memebrs for accessories
     sf::RectangleShape m_lifeTexture;
     FlashlightObject m_flashlight;
-    PlayerWeaponObject* m_currentWeapon;
+    
     std::vector<std::unique_ptr<PlayerWeaponObject>> m_weapons;
     SuperWeaponObject m_superWeapon;
     
@@ -63,4 +63,5 @@ private:
     sf::IntRect getFrame(int row, int col);
     void animate(float deltaTime);
     static bool m_registerit;
+    PlayerWeaponObject* m_currentWeapon;
 };

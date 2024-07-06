@@ -9,7 +9,7 @@
 //------------------------------------------------
 
 MovingObject::MovingObject(const sf::Vector2f& initPosition)
-	:BaseObject(initPosition)
+	:BaseObject(initPosition), m_toDelete(false)
 { }
 
 MovingObject::MovingObject()
@@ -42,6 +42,11 @@ void MovingObject::goDown()
 	m_direction.y += 1.f;
 	currentFrames = &downFrames;
 	m_isMoving = true;
+}
+
+bool MovingObject::toDelete()
+{
+	return m_toDelete;
 }
 
 

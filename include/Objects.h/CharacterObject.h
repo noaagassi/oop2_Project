@@ -6,18 +6,19 @@
 #include "FactoryObject.h"
 #include "Utilities.h"
 
-class MovingObject : public BaseObject
+class CharacterObject : public MovingObject
 {
 public:
-    MovingObject(const sf::Vector2f& initPosition);
-    MovingObject();
+    CharacterObject(const sf::Vector2f& initPosition);
+    //CharacterObject();
     virtual void update(float deltatime, sf::RenderWindow* window) = 0;
-    void goLeft();
+   /* void goLeft();
     void goRight();
     void goUp();
-    void goDown();
+    void goDown();*/
     void animate(float deltaTime);
-    bool toDelete();
+    //std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
+    //bool toDelete();
 protected:
     std::vector<sf::IntRect> defaultFrames;
     std::vector<sf::IntRect> leftFrames;
@@ -29,5 +30,6 @@ protected:
     float m_speed;
     bool m_isMoving;
     sf::Vector2f m_direction;
-    bool m_toDelete=false;
+    bool m_toDelete = false;
+
 };

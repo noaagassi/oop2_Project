@@ -129,10 +129,10 @@ void Board::readMap(std::string fileName)
 
 
 
-
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
 	sf::Vector2f playerPos;
+	std::vector<std::unique_ptr<MovingObject>> enemyBullets;
 	m_cloud.update(deltatime, window);
 	for (auto& currentObj : m_movingObjects)
 	{
@@ -152,24 +152,27 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
 	addBullets(std::move(playerBullets));
 
-
-	for (auto& currentObj : m_movingObjects)                   //send to the enemy the player position and the poison position
+	for (auto& currentObj : m_movingObjects)
 	{
-		if (auto enemy = dynamic_cast <BaseEnemyObject*> (currentObj.get()))
+
+		if (auto enemy = dynamic_cast<BaseEnemyObject*>(currentObj.get()))
 		{
 			enemy->setPlayerPos(playerPos);
 			enemy->setPoisonBounds(m_cloud.getBoundaries());
-			//auto enemyBullets = enemy->retrieveBullets();
-			//addBullets(std::move(enemyBullets));
+			auto currentEnemyBullets = enemy->retrieveBullets();
+			addBullets(std::move(currentEnemyBullets));
 		}
 	}
-
+	
+	
+	
 	checkCollisions();
 	if (m_checkNumberOfBushes == m_numberOfBushes)
 	{
 		player->setInBush(false);
 	}
 	m_checkNumberOfBushes = 0;
+
 }
 
 void Board::draw(sf::RenderWindow* window)
@@ -347,9 +350,24 @@ bool Board::loose()
 
 void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
 {
+	if (bullets.empty()) {
+		std::cerr << "Warning: Trying to add an empty bullet vector!" << std::endl;
+		return;
+	}
+
+	for (auto& bullet : bullets) {
+		// Verificar si el puntero de bala es nulo
+		if (!bullet) {
+			std::cerr << "Warning: Null bullet detected!" << std::endl;
+			continue;
+		}
+		m_movingObjects.push_back(std::move(bullet));
+	}
+	/*
 	for (auto& bullet : bullets) {
 		m_movingObjects.push_back(std::move(bullet));
 	}
+	*/
 }
 
 

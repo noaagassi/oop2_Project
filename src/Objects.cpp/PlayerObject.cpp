@@ -117,7 +117,7 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
         if (m_bombAviable  && !m_bombFired) {
             changeWeapon(2);
-            shoot();
+            m_currentWeapon->shoot(m_flashlight);
             m_bombFired = true;
         }
     }
@@ -132,7 +132,7 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
         if (event.type == sf::Event::MouseButtonReleased) {
             if (event.mouseButton.button == sf::Mouse::Left) {
                 changeWeapon(0);
-                shoot();
+                m_currentWeapon->shoot(m_flashlight);
             }
         }
     }
@@ -174,11 +174,6 @@ bool PlayerObject::isInBush()
 void PlayerObject::setInBush(bool inBush)
 {
     m_inBush = inBush;
-}
-//------------------------------------------------
-void PlayerObject::shoot()
-{
-    m_currentWeapon->shoot(m_flashlight);
 }
 
 //------------------------------------------------
