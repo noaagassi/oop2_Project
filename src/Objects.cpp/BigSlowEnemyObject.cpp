@@ -6,7 +6,7 @@ bool BigSlowEnemyObject::m_registerit = FactoryObject::registerit(ENEMY_1_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<BigSlowEnemyObject>(pos); });
 //------------------------------------------------------
 BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
-    :BaseEnemyObject(initPosition,150,150,10)
+    :BaseEnemyObject(initPosition,150,150,6)
 {
 
     setObjTexture(ENEMY_2_OBJ);
