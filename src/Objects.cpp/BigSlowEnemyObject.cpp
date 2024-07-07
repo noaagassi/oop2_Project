@@ -65,5 +65,7 @@ void BigSlowEnemyObject::draw(sf::RenderWindow* window) const
     BaseObject::draw(window);
     window->draw(m_rangeForMove);
     window->draw(m_rangeForShoot);
+    m_lives.draw(window);
+
 }
 //------------------------------------------------------
