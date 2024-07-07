@@ -51,15 +51,6 @@ enum StateOptions {
 };
 
 
-//enum class COLOR_OF_OBJECT {
-//    GREEN,              //TREE
-//    LIGHT_GREEN,        //BUSH
-//    PURPLE,             //PLAYER 
-//    BROWN,              //WALL
-//    BLUE               //PORTAL
-//    
-//};
-
 
 /// for the frames of the player and enemyies
 //constant ans enum

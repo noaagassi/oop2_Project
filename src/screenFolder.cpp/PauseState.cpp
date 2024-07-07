@@ -34,16 +34,13 @@ PausePage::~PausePage()
 
 void PausePage::draw()
 {
-    // to do on top of the window, and save the game that was runing
     m_window->setTitle("Pause");
     m_window->setSize(m_windowSize);
-    //m_window->clear();
     m_window->draw(m_backGroundSprite);
 
     for (auto& button : m_buttons) {
         button->draw(m_window);
     }
-    //m_window->display();
 }
 
 void PausePage::update(float deltatime)

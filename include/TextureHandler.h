@@ -54,8 +54,6 @@ public:
 
     sf::Texture* getObjTexture(Object_ID name);
 
-    //sf::Font getFont() const;
-
     ~TextureHandler();
 
 private:
@@ -76,5 +74,4 @@ private:
 
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];
-    //sf::Font m_font;
 };
