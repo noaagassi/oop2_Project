@@ -100,7 +100,6 @@ void PlayerLives::calculateNewPos(sf::Vector2f backgroundPosition)
 {
 	sf::Vector2f newPos(backgroundPosition.x + RATIO_4_WIDTH,
 						backgroundPosition.y +RATIO_4_HEIGHT);
-	//std::cout << "the Ratio is " << RATIO_4_HEIGHT << std::endl;
 	m_lifesRectangle.setPosition(newPos);
 }
 //---------------------------------

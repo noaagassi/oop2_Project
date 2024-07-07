@@ -4,7 +4,7 @@
 
 //------------------------------------------------------------------------
 BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int small, float speed, Object_ID WeaponName, float weaponSpeed, float fireRate)
-	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed)
+	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed),m_lives(initPosition.x-13,initPosition.y -10)
 {
 
 
@@ -26,6 +26,20 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int 
 
 }
 //------------------------------------------------------------------------
+void BaseEnemyObject::looseLive(float num)
+{
+    m_lives.addLive(num);
+}
+//------------------------------------------------------------------------
+bool BaseEnemyObject::IsDead()
+{
+    if (m_lives.stillAlive())
+    {
+        return false;
+    }
+    return true;
+}
+//------------------------------------------------------------------------
 void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
 {
 	moveAndShoot(deltatime);
@@ -44,6 +58,8 @@ void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
     m_rangeForShoot.setPosition(m_position);
     m_objectSprite.setPosition(m_position);
     m_currentWeapon->update(deltatime);
+    sf::Vector2f updateLivePos(m_position.x-13, m_position.y - 10);
+    m_lives.update(updateLivePos);
 }
 
 

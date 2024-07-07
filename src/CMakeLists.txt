@@ -43,5 +43,5 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" 
  "../include/Objects.h/CloudPoisonObject.h"			"Objects.cpp/CloudPoisonObject.cpp"   
  "../include/Objects.h/BombObject.h"	            "Objects.cpp/BombObject.cpp" 
- "../include/Objects.h/BallObject.h"				"Objects.cpp/BallObject.cpp")
+ "../include/Objects.h/BallObject.h"				"Objects.cpp/BallObject.cpp" "../include/Objects.h/BombChargePlayerObject.h" "Objects.cpp/BombChargePlayerObject.cpp")
 
