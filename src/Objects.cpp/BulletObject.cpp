@@ -31,3 +31,4 @@ void BulletObject::setTarget(const sf::Vector2f& target)
 	}
 
 }
+

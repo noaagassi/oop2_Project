@@ -19,7 +19,7 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int 
     m_rangeForShoot.setOutlineColor(sf::Color::Blue);
     m_rangeForShoot.setOutlineThickness(3);
 
-    m_weapon = std::make_unique<EnemyWeaponObject>();
+    
 
 }
 //------------------------------------------------------------------------
@@ -179,12 +179,6 @@ void BaseEnemyObject::directionLeft()
 }
 
 
-
-std::vector<std::unique_ptr<MovingObject>> BaseEnemyObject::retrieveBullets()
-{
-    return m_weapon->retrieveBullets();
-
-}
 
 std::unique_ptr<MovingObject> BaseEnemyObject::retrieveBullet()
 {

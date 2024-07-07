@@ -16,7 +16,6 @@ public:
     void directionDown();
     void directionRight();
     void directionLeft();
-    std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
     std::unique_ptr<MovingObject> retrieveBullet();
     void moveRandom(float deltaTime);
     void moveSmartandShoot(float deltaTime);

@@ -154,6 +154,7 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	{
 		m_isGameOver = true;
 	}
+
 	auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
 	addBullets(std::move(playerBullets));
 
@@ -335,9 +336,13 @@ bool Board::loose()
 
 void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
 {
-	for (auto& bullet : bullets) {
-		m_movingObjects.push_back(std::move(bullet));
+	if (!bullets.empty())
+	{
+		for (auto& bullet : bullets) {
+			m_movingObjects.push_back(std::move(bullet));
+		}
 	}
+	
 }
 
 
