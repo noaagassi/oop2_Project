@@ -32,6 +32,10 @@ void LaserObject::update(float deltaTime, sf::RenderWindow* window)
 		m_toDelete = true;
 	}
 }
+float LaserObject::getFireRate() const
+{
+	return m_fireRate;
+}
 //----------------------------------------------------------------
 void LaserObject::setBulletMembers(Object_ID name, float speed, float fireRate)
 {

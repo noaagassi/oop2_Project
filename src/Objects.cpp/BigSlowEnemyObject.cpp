@@ -11,7 +11,7 @@ BigSlowEnemyObject::BigSlowEnemyObject(const sf::Vector2f& initPosition)
 
     setObjTexture(ENEMY_2_OBJ);
     setTheScale(PLAYER_WIDTH+0.2, PLAYER_HEIGHT+0.2);
-    m_weapon = std::make_unique<EnemyWeaponObject>(MASSIVE_LASER_WEAPON_3_OBJ, 80.0, 15.0);
+    m_weapon = std::make_unique<EnemyWeaponObject>(MASSIVE_LASER_WEAPON_3_OBJ, 50.0, 4.2);
 
     defaultFrames = { getFrame(0, 0) };
     leftFrames = { getFrame(1, 0), getFrame(1, 1), getFrame(1, 2), getFrame(1, 3) };

@@ -233,7 +233,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
         SoundsHandler::getInstance().playSound(Sound_Id::BOMB_HIT);
         real_bomb.setObjTexture(Object_ID::EXPLOSION);
-        real_enemy.looseLive(3);
+        real_enemy.looseLive(3.5);
         real_bomb.toDelete(true);
 
     }
@@ -309,7 +309,21 @@ namespace // anonymous namespace — the standard way to make function "static"
     }
 
 
+    void playerLaser(BaseObject& player, BaseObject& laser)
+    {
 
+        PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
+        LaserObject& real_laser= dynamic_cast<LaserObject&>(laser);
+        SoundsHandler::getInstance().playSound(Sound_Id::POISON_HIT);
+
+        real_player.setlife(-(real_laser.getFireRate()));
+        real_laser.toDelete(true);
+
+    }
+    void laserPlayer(BaseObject& laser, BaseObject& player)
+    {
+        playerLaser(player, laser);
+    }
 
 
 
@@ -336,7 +350,9 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(PlayerObject), typeid(LifeGiftObject))] = &playerLife;
         phm[Key(typeid(PlayerObject), typeid(FreezeGiftObject))] = &playerFreeze;
         phm[Key(typeid(PlayerObject), typeid(WeaponGiftObject))] = &playerWeapon;
-        //phm[Key(typeid(PlayerObject), typeid(PoisonObject))] = &playerPoison;
+
+        phm[Key(typeid(LaserObject), typeid(PlayerObject))] = &laserPlayer;
+        phm[Key(typeid(PlayerObject), typeid(LaserObject))] = &playerLaser;
 
         phm[Key(typeid(SmallFastEnemyObject), typeid(BallObject))] = &smallEnemyBall;
         phm[Key(typeid(BigSlowEnemyObject), typeid(BallObject))] = &bigEnemyBall;
