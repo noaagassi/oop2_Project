@@ -38,7 +38,7 @@ void BombChargePlayerObject::restartCharge()
 //--------------------------------------------
 void BombChargePlayerObject::resizeBomb(float time)
 {
-	sf::Vector2f newSize(m_bombCharge.getSize().x + time, m_bombCharge.getSize().y);
+	sf::Vector2f newSize(m_bombCharge.getSize().x + time+0.004, m_bombCharge.getSize().y);
 	m_bombCharge.setSize(newSize);
 	if (m_bombCharge.getSize().x >= LIMIT_SIZE)
 	{
