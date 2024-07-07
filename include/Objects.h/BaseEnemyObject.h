@@ -1,6 +1,7 @@
 #pragma once
 #include "Objects.h/MovingObject.h"
 #include "Objects.h/EnemyWeaponObject.h"
+#include "PlayerLives.h"
 //-------------------------------------------------------
 class BaseEnemyObject : public MovingObject
 {
@@ -11,6 +12,10 @@ public:
     void moveAndShoot(float deltaTime);
     void setPlayerPos(sf::Vector2f playerPos);
     void setPoisonBounds(std::vector<sf::Vector2f> poisBounds);
+    
+    void looseLive(float);
+    bool IsDead();
+    void freeze(bool);
 
     void directionUp();
     void directionDown();
@@ -42,4 +47,11 @@ protected:
 
     float m_timeSinceLastShot=0.0;
     float m_shootCoolDown=2.0;
+    PlayerLives m_lives;
+    bool m_canMove;
 };
+
+    
+  
+ 
+

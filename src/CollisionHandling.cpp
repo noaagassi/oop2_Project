@@ -134,7 +134,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         FreezeGiftObject& real_freeze = dynamic_cast<FreezeGiftObject&>(freeze);
 
        
-
+        real_player.isAteFreezeGift();
         real_freeze.toDelete(true);
         SoundsHandler::getInstance().playSound(Sound_Id::FREEZE);
 

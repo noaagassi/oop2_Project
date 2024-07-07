@@ -133,6 +133,7 @@ void Board::readMap(std::string fileName)
 
 void Board::update(float deltatime, sf::RenderWindow* window)
 {
+	bool wasAtFreezeGift = false;
 	sf::Vector2f playerPos;
 	m_cloud.update(deltatime, window);
 	for (auto& currentObj : m_movingObjects)
@@ -144,6 +145,7 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 			if (auto player = dynamic_cast <PlayerObject*> (currentObj.get()))
 			{
 				playerPos = player->getPosForEnemy();
+				wasAtFreezeGift = player->getFreezeGift();
 			}
 		}
 		
@@ -165,6 +167,7 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 		{
 			enemy->setPlayerPos(playerPos);
 			enemy->setPoisonBounds(m_cloud.getBoundaries());
+			enemy->freeze(wasAtFreezeGift);
 			auto enemyLaser= enemy->retrieveBullet();        // get bullets from enemy and add to m_movingobject
 			addSingleBullet(std::move(enemyLaser));
 		}

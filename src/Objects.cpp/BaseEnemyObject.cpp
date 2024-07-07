@@ -4,7 +4,7 @@
 
 //------------------------------------------------------------------------
 BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int small, float speed)
-	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed)
+	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed),m_lives(initPosition.x - 13, initPosition.y - 10), m_canMove(true)
 {
 	m_rangeForMove.setRadius(m_bigRadius);
 	m_rangeForShoot.setRadius(m_smallRadius);
@@ -19,10 +19,8 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int 
     m_rangeForShoot.setOutlineColor(sf::Color::Blue);
     m_rangeForShoot.setOutlineThickness(3);
 
-    
-
-
 }
+
 //------------------------------------------------------------------------
 BaseEnemyObject::BaseEnemyObject()
 {
@@ -45,6 +43,8 @@ void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
     m_rangeForMove.setPosition(m_position);
     m_rangeForShoot.setPosition(m_position);
     m_objectSprite.setPosition(m_position);
+    sf::Vector2f updateLivePos(m_position.x - 13, m_position.y - 10);
+    m_lives.update(updateLivePos);
 }
 
 
@@ -55,7 +55,7 @@ void BaseEnemyObject::setPoisonBounds(std::vector<sf::Vector2f> poisBounds)
 //------------------------------------------------------------------------
 void BaseEnemyObject::moveAndShoot(float deltaTime)
 {
-	if (m_playerPos != sf::Vector2f(0.0, 0.0))      //if player not in bush (in bush- (0,0))
+	if (m_playerPos != sf::Vector2f(0.0, 0.0) && m_canMove)      //if player not in bush (in bush- (0,0))
 	{   
         
         if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is 
@@ -70,9 +70,13 @@ void BaseEnemyObject::moveAndShoot(float deltaTime)
 	}
     else                                            //if in bush
     {
-        moveRandom(deltaTime);
+        if (m_canMove)
+        {
+            moveRandom(deltaTime);
+        }
     }	
 }
+
 
 void BaseEnemyObject::setPlayerPos(sf::Vector2f playerPos)
 {
@@ -186,3 +190,36 @@ std::unique_ptr<MovingObject> BaseEnemyObject::retrieveBullet()
     return m_weapon->retrieveBullet();
 
 }
+
+//------------------------------------------------------------------------
+void BaseEnemyObject::looseLive(float num)
+{
+    m_lives.looseLive(num);
+}
+
+
+//------------------------------------------------------------------------
+bool BaseEnemyObject::IsDead()
+{
+    if (m_lives.stillAlive())
+    {
+        return false;
+    }
+    return true;
+}
+
+
+//------------------------------------------------------------------------
+void BaseEnemyObject::freeze(bool value)
+{
+    if (value)
+    {
+        m_canMove = false;
+    }
+    else
+    {
+        m_canMove = true;
+    }
+}
+
+
