@@ -69,6 +69,13 @@ std::shared_ptr<GameState> PlayState::isStateChanged(sf:: Event event)
     {
        return m_states[LooseScrn];
     }
+    if (m_board.win())
+    {
+        if (!m_board.readLevel())
+        {
+            return m_states[WinScrn];
+        }
+    }
     if (event.type == sf::Event::MouseButtonReleased) {
         if (event.mouseButton.button == sf::Mouse::Left) {
             for (auto& button : m_buttons) {

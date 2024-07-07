@@ -5,14 +5,14 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
 
-const int NUMBER_OF_OBJECTS =34;
+const int NUMBER_OF_OBJECTS =38;
 
 enum Object_ID {
     CLOCK_OBJ,
     INSTRUCTION_PAGE_1_OBJ,
     INSTRUCTION_PAGE_2_OBJ,
     LOOSE_SCREEN_OBJ,
-    WEEN_SCREEN_OBJ,
+    WIN_SCREEN_OBJ,
     PAUSE_SCREEN_OBJ,
     MENU_BACK_GROUND_OBJ,
     NEW_GAME_BUTTON_OBJ,
@@ -42,7 +42,11 @@ enum Object_ID {
     BULLET_OBJ,
     HEARTS_PLAYER_OBJ,
     SPREADING_LASER,
-    EXPLOSION
+    EXPLOSION,
+    NEXT_PAGE_BUTTON,
+    PREVIOUS_PAGE_BUTTON,
+    PLAY_BUTTON,
+    MENU_BUTTON
 };
 
 class TextureHandler
@@ -60,7 +64,7 @@ private:
 
     std::string m_imgNames[NUMBER_OF_OBJECTS] = {
         "clock.png",              "instruction1.png",       "instruction2.png",
-        "looseBackGround.png",    "weenBackGround.png",     "pauseBackGround.png",
+        "looseBackGround.png",    "win_screen.png",         "pauseBackGround.png",
         "menuBackGround.png",     "newGameButton.png",      "resumeButton.png",
         "exitButton.png",         "instructionButton.png",  "pauseButton.png",   
         "wall.png",               "bush.png",               "portal.png",        
@@ -70,7 +74,8 @@ private:
         "weaponEnemy1.png",       "weaponEnemy2.png",       "freezeGift.png",    
         "lifeGift.png",           "weaponGift.png",         "player.png",        
         "playBackGround.png",     "bullet.png",             "heartplayer.png",
-        "explosion.png"};
+        "explosion.png",           "nextPageButton.png",     "previousPageButton.png",
+        "play_Button.png",        "menuButton.png"};
 
 
     sf::Texture m_textures[NUMBER_OF_OBJECTS];

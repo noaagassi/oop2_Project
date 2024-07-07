@@ -47,7 +47,11 @@ enum StateOptions {
     InstructionsScrn,
     ResumeScrn,
     Exit,
-    LooseScrn
+    LooseScrn,
+    WinScrn,
+    Instruction1,
+    Instruction2
+
 };
 
 

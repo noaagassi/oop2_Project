@@ -100,9 +100,7 @@ void CloudPoisonObject::resetBounderies(float x, float y)
 	BounderiesOfPoison[0].y += y;
 	BounderiesOfPoison[1].x -= x;
 	BounderiesOfPoison[1].y -= y;
-	std::cout << "The current global boundaries are: (" << BounderiesOfPoison[0].x << ", " << BounderiesOfPoison[0].y << ") and ("
-		<< BounderiesOfPoison[1].x << ", " << BounderiesOfPoison[1].y << ")" << std::endl;
-
+	
 }
 
 //----------------------------------------------------

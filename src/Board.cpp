@@ -20,12 +20,17 @@ Board::~Board()
 
 //----------------------------------------
 
-void Board::readLevel()
+bool Board::readLevel()
 {
 	std::string fileName = updateNameLevel(m_levelNum);
-
+	std::ifstream file(fileName);
+	if (!file.is_open()) {
+		// אם לא ניתן לפתוח את הקובץ, החזר false
+		return false;
+	}
 	readMap(fileName);
 	m_levelNum++;
+	return true;
 }
 //----------------------------------------
 std::string Board::updateNameLevel(int number)
@@ -377,3 +382,9 @@ void Board::addSingleBullet(std::unique_ptr<MovingObject> bullet)
 	}
 }
 
+
+
+bool Board::win()
+{
+	return m_winGame;
+}

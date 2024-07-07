@@ -30,7 +30,7 @@ public:
 	sf::Vector2f getPlayrLocation() const;
 	sf::FloatRect getPlayerBounds() const;
 	PlayerObject* getPlayer() const;
-
+	bool readLevel();
 	bool isPlayerInPoison(sf::Vector2f playerPosition, std::vector<sf::Vector2f> poisonPoints);
 	
 	void handleMousePressed(sf::Event event);
@@ -41,14 +41,15 @@ public:
 
 	void addSingleBullet(std::unique_ptr<MovingObject> bullet);
 
+	bool win();
+
 private:
 	
 	//member for reading levels
 	int m_levelNum;
 	std::ifstream m_file;
 
-	//funcion for reading levels
-	void readLevel();
+	
 	std::string updateNameLevel(int);
 
 	//members for the object in the level

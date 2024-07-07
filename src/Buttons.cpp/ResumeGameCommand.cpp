@@ -3,6 +3,5 @@
 
 StateOptions ResumeGameCommand::execute()
 {
-	std::cout << "Resume button clicked!" << std::endl;
 	return ResumeScrn;
 }
