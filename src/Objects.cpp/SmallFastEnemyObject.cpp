@@ -30,8 +30,8 @@ SmallFastEnemyObject::SmallFastEnemyObject(const sf::Vector2f& initPosition)
 void SmallFastEnemyObject::draw(sf::RenderWindow* window) const
 {
     BaseObject::draw(window);
-    window->draw(m_rangeForMove);
-    window->draw(m_rangeForShoot);
+    //window->draw(m_rangeForMove);
+    //window->draw(m_rangeForShoot);
     m_lives.draw(window);
 }
 

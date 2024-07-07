@@ -89,8 +89,8 @@ void Instructions::draw()
     m_window->setSize(m_windowSize);
     m_window->clear();
     m_window->draw(m_backGroundSprite);
-    for (auto& button : m_buttons) {
-        button->draw(m_window);
-    }
+   // for (auto& button : m_buttons) {
+     //   button->draw(m_window);
+    //}
     m_window->display();
 }
