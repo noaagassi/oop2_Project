@@ -1,6 +1,6 @@
 #pragma once
-#include "MovingObject.h"
-#include "EnemyWeaponObject.h"
+#include "Objects.h/MovingObject.h"
+#include "Objects.h/EnemyWeaponObject.h"
 //-------------------------------------------------------
 class BaseEnemyObject : public MovingObject
 {

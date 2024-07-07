@@ -4,6 +4,7 @@
 #include "Objects.h/BaseGiftObject.h"
 #include "Objects.h/BulletObject.h"
 #include "Objects.h/TreeObject.h"
+
 //----------------------------------------
 Board::Board()
 	:m_levelNum(1), m_numberOfBushes(0), m_checkNumberOfBushes(0), m_isGameOver(false)
