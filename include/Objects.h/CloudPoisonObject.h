@@ -24,8 +24,5 @@ private:
 	static sf::Vector2f BounderiesOfPoison[2];
 	
 	void resetBounderies(float, float);
-	//members for rectangle
-	//sf::RectangleShape m_frame;
-	//float m_rectangleSize;
 	
 };

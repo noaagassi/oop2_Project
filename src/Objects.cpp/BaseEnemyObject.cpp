@@ -21,6 +21,7 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int 
 
     
 
+
 }
 //------------------------------------------------------------------------
 BaseEnemyObject::BaseEnemyObject()

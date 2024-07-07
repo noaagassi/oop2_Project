@@ -21,6 +21,9 @@ void EnemyWeaponObject::shoot(sf::Vector2f enemyPos , sf::Vector2f playerPos)
 
 std::unique_ptr<MovingObject> EnemyWeaponObject::retrieveBullet()
 {
-    
+    if (m_bullet != nullptr)
+    {
+        return std::move(m_bullet);
+    }
     return std::move(m_bullet);
 }

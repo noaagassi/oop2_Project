@@ -349,7 +349,8 @@ void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
 void Board::addSingleBullet(std::unique_ptr<MovingObject> bullet)
 {
 	
-	if (bullet) {
+	if (bullet) 
+	{
 		m_movingObjects.push_back(std::move(bullet));
 	}
 }

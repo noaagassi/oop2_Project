@@ -10,18 +10,19 @@ sf::Vector2f CloudPoisonObject::BounderiesOfPoison[2] = { {0.f, 0.f}, {0.f, 0.f}
 //----------------------------------------------------
 CloudPoisonObject::CloudPoisonObject()
 	:m_countingTime(sf::Time::Zero), m_limitTime(sf::seconds(13))
-	//:m_frame(sf::Vector2f(200.f,200.f)), m_rectangleSize(5), m_countingTime(sf::Time::Zero),m_limitTime(sf::seconds(5))
 {
 	
 	m_start.x = -60.0f,
 		m_start.y = -70.0f;
 	m_end.x = CLOUD_POISEN_WIDTH,
 		m_end.y = CLOUD_POISEN_HEIGHT;
+	sf::Vector2f start4Bounderies(0, 0);
 	BounderiesOfPoison[0] = m_start;
 	BounderiesOfPoison[1] = m_end;
 
 	m_clock.restart();
 	fillPoisonVector();
+	
 }
 //----------------------------------------------------
 void CloudPoisonObject::draw(sf::RenderWindow* window)
@@ -53,7 +54,6 @@ void CloudPoisonObject::update(sf::Time elapse)
 		x_ratio = NEW_WIDTH / MAP_WIDTH;
 
 
-	std::cout << "Updating rectangle size. Elapsed time: " << elapse.asSeconds() << " seconds" << std::endl; // הודעת דיבוג
 	m_countingTime = sf::Time::Zero;
 
 	m_start.x += x_ratio,
@@ -63,6 +63,10 @@ void CloudPoisonObject::update(sf::Time elapse)
 	resetBounderies(x_ratio, y_ratio);
 	fillPoisonVector();
 }
+
+
+
+
 void CloudPoisonObject::fillPoisonVector()
 {
 	int NEW_HEIGHT = CLOUD_POISEN_HEIGHT;
@@ -89,6 +93,7 @@ void CloudPoisonObject::fillPoisonVector()
 	}
 
 }
+//----------------------------------------------------
 void CloudPoisonObject::resetBounderies(float x, float y)
 {
 	BounderiesOfPoison[0].x += x;
@@ -100,9 +105,9 @@ void CloudPoisonObject::resetBounderies(float x, float y)
 
 }
 
-std::vector<sf::Vector2f> CloudPoisonObject::getBoundaries() const 
+//----------------------------------------------------
+std::vector<sf::Vector2f> CloudPoisonObject::getBoundaries() const
 {
 	return std::vector<sf::Vector2f>
 		(std::begin(BounderiesOfPoison), std::end(BounderiesOfPoison));
 }
-//----------------------------------------------------
