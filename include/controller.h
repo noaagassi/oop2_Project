@@ -5,6 +5,7 @@
 #include "screenFolder.h/MenuState.h"
 #include "screenFolder.h/InstructionsState.h"
 #include "screenFolder.h/PlayState.h"
+#include "screenFolder.h/WinState.h"
 #include "screenFolder.h/LooseState.h"
 #include "Utilities.h"
 #include "SoundsHandler.h"
@@ -27,6 +28,7 @@ private:
     std::shared_ptr<Instructions> m_instructions;
     std::shared_ptr<PausePage> m_pause;
     std::shared_ptr<LooseScreen> m_loose;
-//    std::shared_ptr<LooseScreen> m_loose;
+    std::shared_ptr<WinScreen> m_win;
+
 
 };
