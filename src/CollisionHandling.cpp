@@ -67,7 +67,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         real_bush.makeTranslucent();
         real_player.setInBush(true);
     }
-
+    //--------------------------------------------------------------------
     void playerWall (BaseObject& player, BaseObject& wall)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
@@ -80,8 +80,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         stopAdvance(playerBounds, wallBounds, real_player);
     }
-    
-    
+    //--------------------------------------------------------------------
     void playerTree(BaseObject& player, BaseObject& tree)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
@@ -94,7 +93,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         stopAdvance(playerBounds, treeBounds, real_player);
     }
-
+    //--------------------------------------------------------------------
     void playerPortal(BaseObject& player, BaseObject& portal)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
@@ -111,7 +110,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         real_player.setPosition(target_position);
 
     }
-
+    //--------------------------------------------------------------------
     void playerLife(BaseObject& player, BaseObject& life)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
@@ -123,7 +122,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         real_life.toDelete(true);
 
     }
-
+    //--------------------------------------------------------------------
     void playerFreeze(BaseObject& player, BaseObject& freeze)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
@@ -135,7 +134,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
 
     }
-
+    //--------------------------------------------------------------------
     void playerWeapon(BaseObject& player, BaseObject& weapon)
     {
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
@@ -165,6 +164,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         real_bullet.toDelete(true);
 
     }
+    //--------------------------------------------------------------------
     void ballTree(BaseObject& bullet, BaseObject& tree)
     {
 
@@ -177,11 +177,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         real_bullet.toDelete(true);
 
     }
-
-
-   
-
-    
+    //--------------------------------------------------------------------
     void bombTree(BaseObject& bullet, BaseObject& tree)
     {
 
@@ -193,11 +189,71 @@ namespace // anonymous namespace — the standard way to make function "static"
 
     }
 
+    //--------------------------------------------------------------------
+    void ballsmallenemy(BaseObject& bullet, BaseObject& enemy)
+    {
+        BallObject& real_bullet = dynamic_cast<BallObject&>(bullet);
+        SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
 
-    
+        real_enemy.looseLive(10);
+        real_bullet.toDelete(true);
+    }
+    //--------------------------------------------------------------------
+    void smallenemyball(BaseObject& enemy, BaseObject& bullet)
+    {
+        ballsmallenemy(bullet, enemy);
+    }
+    //--------------------------------------------------------------------
+    void bombsmallenemy(BaseObject& bullet, BaseObject& enemy)
+    {
 
-    
+        BombObject& real_bullet = dynamic_cast<BombObject&>(bullet);
+        SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
 
+        real_enemy.looseLive(10);
+        real_bullet.toDelete(true);
+
+    }
+    //--------------------------------------------------------------------
+    void smallenemybomb(BaseObject& enemy, BaseObject& bullet)
+    {
+        bombsmallenemy(bullet, enemy);
+    }
+    //--------------------------------------------------------------------
+        void ballBigenemy(BaseObject& bullet, BaseObject& enemy)
+    {
+        BallObject& real_bullet = dynamic_cast<BallObject&>(bullet);
+        BigSlowEnemyObject& real_enemy = dynamic_cast<BigSlowEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
+
+        real_enemy.looseLive(10);
+        real_bullet.toDelete(true);
+
+    }
+    //--------------------------------------------------------------------
+        void Bigenemyball(BaseObject& enemy, BaseObject& bullet)
+        {
+            ballBigenemy(bullet, enemy);
+        }
+    //--------------------------------------------------------------------
+    void bombbigenemy(BaseObject& bullet, BaseObject& enemy)
+    {
+        BombObject& real_bullet = dynamic_cast<BombObject&>(bullet);
+        BigSlowEnemyObject& real_enemy = dynamic_cast<BigSlowEnemyObject&>(enemy);
+        SoundsHandler::getInstance().playSound(Sound_Id::BALL_HIT);
+
+        real_enemy.looseLive(10);
+        real_bullet.toDelete(true);
+
+    }
+    //--------------------------------------------------------------------
+    void bigenemyBomb(BaseObject& enemy, BaseObject& bomb)
+    {
+        bombbigenemy(bomb, enemy);
+    }
+    //--------------------------------------------------------------------
     void smallEnemyTree(BaseObject& enemy, BaseObject& tree)
     {
         SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
@@ -210,7 +266,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         stopAdvance(enemyBounds, treeBounds, real_enemy);
     }
-
+    //--------------------------------------------------------------------
     void smallEnemyWall(BaseObject& enemy, BaseObject& wall)
     {
         SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
@@ -223,7 +279,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
         stopAdvance(enemyBounds, wallBounds, real_enemy);
     }
-
+    //--------------------------------------------------------------------
     void smallEnemyPortal(BaseObject& enemy, BaseObject& portal)
     {
         SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
@@ -239,7 +295,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         real_enemy.setPosition(target_position);
 
     }
-
+    //--------------------------------------------------------------------
 
     void smallEnemyPoison(BaseObject& enemy, BaseObject& poison)
     {
@@ -264,7 +320,7 @@ namespace // anonymous namespace — the standard way to make function "static"
 
 
 
-
+    //--------------------------------------------------------------------
 
     void nothingToDo(BaseObject& a, BaseObject& b)
     {
@@ -312,20 +368,28 @@ namespace // anonymous namespace — the standard way to make function "static"
         phm[Key(typeid(SmallFastEnemyObject), typeid(FreezeGiftObject))] = &nothingToDo;
         phm[Key(typeid(SmallFastEnemyObject), typeid(WeaponGiftObject))] = &nothingToDo;
         phm[Key(typeid(SmallFastEnemyObject), typeid(PoisonObject))] = &smallEnemyPoison;
-
+        phm[Key(typeid(SmallFastEnemyObject), typeid(BombObject))] = &bombsmallenemy;
+        phm[Key(typeid(BombObject), typeid(SmallFastEnemyObject))] = &smallenemybomb;
+        phm[Key(typeid(SmallFastEnemyObject), typeid(BallObject))] = &ballsmallenemy;
+        phm[Key(typeid(BallObject), typeid(SmallFastEnemyObject))] = &smallenemyball;
         phm[Key(typeid(BigSlowEnemyObject), typeid(BushObject))] = &nothingToDo;
         //phm[Key(typeid(BigSlowEnemyObject), typeid(WallObject))] = &bigEnemyWall;
         //phm[Key(typeid(BigSlowEnemyObject), typeid(TreeObject))] = &bigEnemyTree;
         //phm[Key(typeid(BigSlowEnemyObject), typeid(PortalObject))] = &bigEnemyPortal;
+        phm[Key(typeid(BigSlowEnemyObject), typeid(BombObject))] = &bombbigenemy;
+        phm[Key(typeid(BombObject), typeid(BigSlowEnemyObject))] = &bigenemyBomb;
+
         phm[Key(typeid(BigSlowEnemyObject), typeid(LifeGiftObject))] = &nothingToDo;
         phm[Key(typeid(BigSlowEnemyObject), typeid(FreezeGiftObject))] = &nothingToDo;
         phm[Key(typeid(BigSlowEnemyObject), typeid(WeaponGiftObject))] = &nothingToDo;
+        phm[Key(typeid(BigSlowEnemyObject), typeid(BallObject))] = &ballBigenemy;
+        phm[Key(typeid(BallObject), typeid(BigSlowEnemyObject))] = &Bigenemyball;
        // phm[Key(typeid(BigSlowEnemyObject), typeid(PoisonObject))] = &bigEnemyPoison;
        
         //...
         return phm;
     }
-
+    //--------------------------------------------------------------------
     HitFunctionPtr lookup(const std::type_index& class1, const std::type_index& class2)
     {
         static HitMap collisionMap = initializeCollisionMap();
@@ -338,7 +402,7 @@ namespace // anonymous namespace — the standard way to make function "static"
     }
 
 } // end namespace
-
+   //--------------------------------------------------------------------
 void processCollision(BaseObject& object1, BaseObject& object2)
 {
     auto phf = lookup(typeid(object1), typeid(object2));
@@ -348,3 +412,4 @@ void processCollision(BaseObject& object1, BaseObject& object2)
     }
     phf(object1, object2);
 }
+//--------------------------------------------------------------------
