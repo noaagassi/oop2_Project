@@ -17,7 +17,7 @@ CloudPoisonObject::CloudPoisonObject()
 	m_end.x = CLOUD_POISEN_WIDTH,
 		m_end.y = CLOUD_POISEN_HEIGHT;
 	sf::Vector2f start4Bounderies(0, 0);
-	BounderiesOfPoison[0] = m_start;
+	BounderiesOfPoison[0] = start4Bounderies;
 	BounderiesOfPoison[1] = m_end;
 
 	m_clock.restart();

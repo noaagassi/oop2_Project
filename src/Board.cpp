@@ -241,7 +241,7 @@ void Board::checkCollisions()
 		{
 			if (isPlayerInPoison(player->getPosition(), m_cloud.getBoundaries()))
 			{
-				player->setlife(-0.02);
+				player->setlife(-0.01);
 			}
 		}
 

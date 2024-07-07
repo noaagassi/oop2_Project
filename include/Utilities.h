@@ -62,4 +62,4 @@ const int SMALL_ENEMY_SPRITE_WIDTH = 63;
 const int SMALL_ENEMY_SPRITE_HEIGHT = 63;
 const int PLAYER_SPRITES_PER_ROW = 4;
 const int PLAYER_SPRITES_PER_COLUMN = 4;
-const float PLAYER_MOVE_SPEED = 0.7f;
+const float PLAYER_MOVE_SPEED = 0.1f;
