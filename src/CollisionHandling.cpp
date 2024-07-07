@@ -200,7 +200,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         BigSlowEnemyObject& real_enemy = dynamic_cast<BigSlowEnemyObject&>(enemy);
         SoundsHandler::getInstance().playSound(Sound_Id::BOMB_HIT);
         real_bomb.setObjTexture(Object_ID::EXPLOSION);
-        real_enemy.looseLive(2);
+        real_enemy.looseLive(3);
         real_bomb.toDelete(true);
 
     }
@@ -233,7 +233,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         SmallFastEnemyObject& real_enemy = dynamic_cast<SmallFastEnemyObject&>(enemy);
         SoundsHandler::getInstance().playSound(Sound_Id::BOMB_HIT);
         real_bomb.setObjTexture(Object_ID::EXPLOSION);
-        real_enemy.looseLive(2);
+        real_enemy.looseLive(3);
         real_bomb.toDelete(true);
 
     }
