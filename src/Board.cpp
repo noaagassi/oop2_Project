@@ -7,7 +7,7 @@
 
 //----------------------------------------
 Board::Board()
-	:m_levelNum(1), m_numberOfBushes(0), m_checkNumberOfBushes(0), m_isGameOver(false)
+	:m_levelNum(1), m_numberOfBushes(0), m_checkNumberOfBushes(0), m_isGameOver(false), m_winGame(false)
 {
 	readLevel();
 }
@@ -160,17 +160,36 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	auto playerBullets = player->retrieveBullets();        // get bullets from player and add to m_movingobject
 	addBullets(std::move(playerBullets));
 
-
-	for (auto& currentObj : m_movingObjects)                   //send to the enemy the player position and the poison position
+	bool no_enemys = true;
+	for (auto moving = m_movingObjects.begin(); moving != m_movingObjects.end();)         //send to the enemy the player position and the poison position
 	{
-		if (auto enemy = dynamic_cast <BaseEnemyObject*> (currentObj.get()))
+		if (auto enemy = dynamic_cast <BaseEnemyObject*> ((*moving).get()))
 		{
-			enemy->setPlayerPos(playerPos);
-			enemy->setPoisonBounds(m_cloud.getBoundaries());
-			enemy->freeze(wasAtFreezeGift);
-			auto enemyLaser= enemy->retrieveBullet();        // get bullets from enemy and add to m_movingobject
-			addSingleBullet(std::move(enemyLaser));
+			no_enemys = false;
+			if (enemy->IsDead())
+			{
+				moving = m_movingObjects.erase(moving);
+			}
+			else
+			{
+				enemy->setPlayerPos(playerPos);
+				enemy->setPoisonBounds(m_cloud.getBoundaries());
+				enemy->freeze(wasAtFreezeGift);
+				auto enemyLaser = enemy->retrieveBullet();        // get bullets from enemy and add to m_movingobject
+				addSingleBullet(std::move(enemyLaser));
+
+				moving++;
+			}
+
 		}
+		else
+		{
+			moving++; 
+		}
+	}
+	if (no_enemys)
+	{
+		m_winGame = true;
 	}
 
 	checkCollisions();

@@ -62,6 +62,6 @@ private:
 	int m_numberOfBushes;
 	int m_checkNumberOfBushes;
 
-
+	bool m_winGame;
 	bool m_isGameOver;
 };
