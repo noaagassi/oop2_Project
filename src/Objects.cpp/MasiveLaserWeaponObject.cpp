@@ -13,3 +13,4 @@
 //void MasiveLaserWeaponObject::shoot(FlashlightObject flashight)
 //{
 //}
+//
