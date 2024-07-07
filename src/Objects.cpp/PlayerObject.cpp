@@ -12,7 +12,8 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
 //------------------------------------------------
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y-10), m_eatLifeGift(false)
+    : MovingObject(initPosition), m_lives(initPosition.x - 12, initPosition.y - 5), m_eatLifeGift(false),
+    m_bombCharge(initPosition.x - 12, initPosition.y - 1), m_eatFreezegift(false)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
@@ -34,6 +35,7 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     m_currentWeapon = m_weapons[0].get();
 
 }
+
 //------------------------------------------------
 
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
@@ -44,10 +46,22 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     m_objectSprite.setPosition(m_position);
     m_lifeTexture.setPosition(m_position.x, m_position.y + 40);
     updateFlashlight(window);
-    sf::Vector2f pos4lives(m_position.x-20, m_position.y-10);
+    sf::Vector2f pos4lives(m_position.x - 12, m_position.y - 5);
+    sf::Vector2f pos4bomb(m_position.x - 12, m_position.y - 1);
     m_lives.update(pos4lives);
+    m_bombCharge.update(pos4bomb, deltaTime);
     m_currentWeapon->update(deltaTime);
+    if (m_eatFreezegift)
+    {
+        m_freezeTime += deltaTime;
+        if (m_freezeTime >= LIMIT_FREEZE_TIME)
+        {
+            m_eatFreezegift = false;
+            m_freezeTime = 0;
+        }
+    }
 }
+
 //------------------------------------------------
 
 void PlayerObject::draw(sf::RenderWindow* window) const
@@ -55,6 +69,8 @@ void PlayerObject::draw(sf::RenderWindow* window) const
     BaseObject::draw(window); 
     m_flashlight.draw(window);
     m_lives.draw(window);
+    m_bombCharge.draw(window);
+
 }
 
 //------------------------------------------------
@@ -70,6 +86,7 @@ void PlayerObject::changeHeart(bool updateLifes)
         m_lifeTexture.setFillColor(sf::Color::Blue);
     }
 }
+
 //------------------------------------------------
 void PlayerObject::isAteLiveGift()
 {
@@ -80,10 +97,16 @@ void PlayerObject::isAteLiveGift()
     }
 }
 //------------------------------------------------
+void PlayerObject::isAteFreezeGift()
+{
+    m_eatFreezegift = true;
+}
+//------------------------------------------------
 sf::IntRect PlayerObject::getFrame(int row, int col)
 {
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
 }
+
 //-------------------------------------------------
 void PlayerObject::handleInput(sf::RenderWindow* window)
 {
@@ -115,14 +138,14 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
         
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        if (m_bombAviable  && !m_bombFired) {
-            changeWeapon(2); // Cambia al bombWeaponObject
+        if (m_bombAviable && m_bombCharge.isCharge()) {
+            changeWeapon(2);
             shoot();
-            m_bombFired = true;
+            m_bombCharge.restartCharge();
         }
     }
     else {
-        m_bombFired = false; // Reinicia la bandera cuando se suelta la tecla Space
+        m_bombFired = false;
     }
     sf::Event event;
     while (window->pollEvent(event)) {
@@ -180,7 +203,6 @@ void PlayerObject::shoot()
 {
     m_currentWeapon->shoot(m_flashlight);
 }
-
 //------------------------------------------------
 void PlayerObject::changeWeapon(int index)
 {
@@ -193,6 +215,7 @@ std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
     return m_currentWeapon->retrieveBullets();
     
 }
+//------------------------------------------
 void PlayerObject::weaponGift()
 {
     m_currentWeapon->addBall();
@@ -206,6 +229,7 @@ bool PlayerObject::isdead()
     }
     return true;
 }
+
 //------------------------------------------
 void PlayerObject::setlife(float num)
 {
@@ -218,6 +242,7 @@ void PlayerObject::setlife(float num)
         m_lives.looseLive((-1*num));
     }
 }
+
 //------------------------------------------------
 void PlayerObject::ateLiveGift()
 {
@@ -233,4 +258,9 @@ sf::Vector2f PlayerObject::getPosForEnemy()
     return sf::Vector2f(0.0,0.0);
 
 }
+//------------------------------------------------
 
+bool PlayerObject::getFreezeGift()
+{
+    return m_eatFreezegift;
+}

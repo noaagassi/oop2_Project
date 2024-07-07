@@ -9,6 +9,9 @@
 #include "BallsWeaponObject.h"
 #include "BombWeaponObject.h"
 #include "SuperWeaponObject.h"
+#include"BombChargePlayerObject.h"
+
+const int LIMIT_FREEZE_TIME = 30;
 
 class PlayerObject : public MovingObject
 {
@@ -29,10 +32,12 @@ public:
     void weaponGift();
     bool isdead();
     void setlife(float num);
-    
-    void ateLiveGift();
 
+    void ateLiveGift();
     sf::Vector2f getPosForEnemy();
+    bool getFreezeGift();
+    void isAteFreezeGift();
+
 private:
     //member of the texture of the player
     int spriteIndex;
@@ -48,14 +53,18 @@ private:
     std::vector<std::unique_ptr<PlayerWeaponObject>> m_weapons;
     SuperWeaponObject m_superWeapon;
     
+    BombChargePlayerObject m_bombCharge;
 
     PlayerLives m_lives;
     //function for the hearts
-    void changeHeart(bool);
+    void changeHeart(bool);         //            ???????
     int m_numberForHeart;
     void isAteLiveGift();
     bool m_eatLifeGift;
 
+    //function for freeze gift
+    bool m_eatFreezegift;
+    float m_freezeTime;
 
     bool m_bombAviable = true;
     bool m_bombFired = false;
