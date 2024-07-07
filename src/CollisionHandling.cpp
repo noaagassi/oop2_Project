@@ -64,9 +64,6 @@ namespace // anonymous namespace — the standard way to make function "static"
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         BushObject&  real_bush  = dynamic_cast<BushObject&>(bush);
 
-
-        
-
         real_bush.makeTranslucent();
         real_player.setInBush(true);
     }
@@ -132,8 +129,7 @@ namespace // anonymous namespace — the standard way to make function "static"
         PlayerObject& real_player = dynamic_cast<PlayerObject&>(player);
         FreezeGiftObject& real_freeze = dynamic_cast<FreezeGiftObject&>(freeze);
 
-       
-
+        real_player.isAteFreezeGift();
         real_freeze.toDelete(true);
         SoundsHandler::getInstance().playSound(Sound_Id::FREEZE);
 

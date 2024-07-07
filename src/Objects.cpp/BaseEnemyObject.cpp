@@ -4,7 +4,7 @@
 
 //------------------------------------------------------------------------
 BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int small, float speed, Object_ID WeaponName, float weaponSpeed, float fireRate)
-	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed),m_lives(initPosition.x-13,initPosition.y -10)
+	:MovingObject(initPosition), m_bigRadius(big), m_smallRadius(small),m_speed(speed),m_lives(initPosition.x-13,initPosition.y -10), m_canMoving(true)
 {
 
 
@@ -61,16 +61,27 @@ void BaseEnemyObject::update(float deltatime, sf::RenderWindow* window)
     sf::Vector2f updateLivePos(m_position.x-13, m_position.y - 10);
     m_lives.update(updateLivePos);
 }
-
-
+//------------------------------------------------------------------------
 void BaseEnemyObject::setPoisonBounds(std::vector<sf::Vector2f> poisBounds)
 {
 	m_poisonBounds = poisBounds;
 }
 //------------------------------------------------------------------------
+void BaseEnemyObject::freeze(bool value)
+{
+    if (value)
+    {
+        m_canMoving = false;
+    }
+    else
+    {
+        m_canMoving = true;
+    }
+}
+//------------------------------------------------------------------------
 void BaseEnemyObject::moveAndShoot(float deltaTime)
 {
-	if (m_playerPos != sf::Vector2f(0.0, 0.0))      //if player not in bush (in bush- (0,0))
+	if (m_playerPos != sf::Vector2f(0.0, 0.0) && m_canMoving)      //if player not in bush (in bush- (0,0))
 	{   
         
         if (m_rangeForMove.getGlobalBounds().contains(m_playerPos))             //if player is near
@@ -85,7 +96,10 @@ void BaseEnemyObject::moveAndShoot(float deltaTime)
 	}
     else                                            //if in bush
     {
-        moveRandom(deltaTime);
+        if (m_canMoving)
+        {
+            moveRandom(deltaTime);
+        }
     }	
 }
 
@@ -103,7 +117,8 @@ void BaseEnemyObject::moveRandom(float deltaTime)
         direction = rand() % 4;
     }
 
-    switch (direction) {
+    switch (direction) 
+    {
     case 0:
         directionUp();
        

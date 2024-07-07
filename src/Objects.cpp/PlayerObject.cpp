@@ -13,7 +13,7 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
 //------------------------------------------------
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
     : MovingObject(initPosition), m_lives(initPosition.x - 12, initPosition.y - 5), m_eatLifeGift(false),
-    m_bombCharge(initPosition.x - 12, initPosition.y - 1)
+    m_bombCharge(initPosition.x - 12, initPosition.y - 1), m_eatFreezegift(false)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
@@ -36,7 +36,6 @@ PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
 
 }
 //------------------------------------------------
-
 void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
 {
     isAteLiveGift();
@@ -50,6 +49,15 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     m_lives.update(pos4lives);
     m_bombCharge.update(pos4bomb, deltaTime);
     m_currentWeapon->update(deltaTime);
+    if (m_eatFreezegift)
+    {
+        m_freezeTime += deltaTime;
+        if (m_freezeTime >= LIMIT_FREEZE_TIME)
+        {
+            m_eatFreezegift = false;
+            m_freezeTime = 0;
+        }
+    }
 }
 //------------------------------------------------
 
@@ -84,6 +92,11 @@ void PlayerObject::isAteLiveGift()
     }
 }
 //------------------------------------------------
+void PlayerObject::isAteFreezeGift()
+{
+    m_eatFreezegift = true;
+}
+//------------------------------------------------
 sf::IntRect PlayerObject::getFrame(int row, int col)
 {
     return sf::IntRect(col * PLAYER_SPRITE_WIDTH, row * PLAYER_SPRITE_HEIGHT, PLAYER_SPRITE_WIDTH, PLAYER_SPRITE_HEIGHT);
@@ -91,7 +104,6 @@ sf::IntRect PlayerObject::getFrame(int row, int col)
 //-------------------------------------------------
 void PlayerObject::handleInput(sf::RenderWindow* window)
 {
-
     isMoving = false;
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) {
@@ -197,6 +209,7 @@ std::vector<std::unique_ptr<MovingObject>> PlayerObject::retrieveBullets()
     return m_currentWeapon->retrieveBullets();
     
 }
+//------------------------------------------
 void PlayerObject::weaponGift()
 {
     m_currentWeapon->addBall();
@@ -227,7 +240,13 @@ void PlayerObject::ateLiveGift()
 {
     m_eatLifeGift = true;
 }
+//------------------------------------------------
 
+bool PlayerObject::getFreezeGift()
+{
+    return m_eatFreezegift;
+}
+//------------------------------------------------
 sf::Vector2f PlayerObject::getPosForEnemy()
 {
     if (!m_inBush)

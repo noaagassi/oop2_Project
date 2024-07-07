@@ -13,7 +13,7 @@ public:
     void moveAndShoot(float deltaTime);
     void setPlayerPos(sf::Vector2f playerPos);
     void setPoisonBounds(std::vector<sf::Vector2f> poisBounds);
-
+    void freeze(bool);
     void directionUp();
     void directionDown();
     void directionRight();
@@ -41,4 +41,5 @@ protected:
     sf::Clock m_randomMoveTimer;
     PlayerLives m_lives;
     std::vector<sf::Vector2f> m_poisonBounds;
+    bool m_canMoving;
 };

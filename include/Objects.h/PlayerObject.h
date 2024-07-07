@@ -11,6 +11,9 @@
 #include "SuperWeaponObject.h"
 #include"BombChargePlayerObject.h"
 
+
+const int LIMIT_FREEZE_TIME = 30;
+
 class PlayerObject : public MovingObject
 {
 public:
@@ -32,7 +35,8 @@ public:
     void setlife(float num);
     
     void ateLiveGift();
-
+    bool getFreezeGift();
+    void isAteFreezeGift();
     sf::Vector2f getPosForEnemy();
 private:
     //member of the texture of the player
@@ -51,11 +55,16 @@ private:
     
     BombChargePlayerObject m_bombCharge;
     PlayerLives m_lives;
+
     //function for the hearts
     void changeHeart(bool);
     int m_numberForHeart;
     void isAteLiveGift();
     bool m_eatLifeGift;
+
+    //function for freeze gift
+    bool m_eatFreezegift;
+    float m_freezeTime;
 
 
     bool m_bombAviable = true;
