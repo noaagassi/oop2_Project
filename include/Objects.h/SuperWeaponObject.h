@@ -6,7 +6,7 @@ class SuperWeaponObject : public PlayerWeaponObject
 {
 public:
     SuperWeaponObject();
-    void shoot(FlashlightObject flashight) override;
+    void shoot(FlashlightObject flashight) override ;
 
 private:
 };

@@ -11,6 +11,7 @@ class PlayerWeaponObject : public BaseWeaponObject
 public:
     PlayerWeaponObject();
     void addBall();
+    virtual void shoot(FlashlightObject flashlight)=0;
 protected:
     int m_numOfBalls;
 };

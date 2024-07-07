@@ -136,12 +136,16 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 	m_cloud.update(deltatime, window);
 	for (auto& currentObj : m_movingObjects)
 	{
-		currentObj->update(deltatime, window);
-
-		if (auto player = dynamic_cast <PlayerObject*> (currentObj.get()))
+		if (currentObj)
 		{
-			playerPos = player->getPosForEnemy();
+			currentObj->update(deltatime, window);
+
+			if (auto player = dynamic_cast <PlayerObject*> (currentObj.get()))
+			{
+				playerPos = player->getPosForEnemy();
+			}
 		}
+		
 	}
 	auto player = getPlayer();
 	
@@ -159,6 +163,8 @@ void Board::update(float deltatime, sf::RenderWindow* window)
 		{
 			enemy->setPlayerPos(playerPos);
 			enemy->setPoisonBounds(m_cloud.getBoundaries());
+			auto enemyLaser= enemy->retrieveBullet();        // get bullets from enemy and add to m_movingobject
+			addSingleBullet(std::move(enemyLaser));
 		}
 	}
 
@@ -333,4 +339,12 @@ void Board::addBullets(std::vector<std::unique_ptr<MovingObject>> bullets)
 	}
 }
 
+
+void Board::addSingleBullet(std::unique_ptr<MovingObject> bullet)
+{
+	
+	if (bullet) {
+		m_movingObjects.push_back(std::move(bullet));
+	}
+}
 

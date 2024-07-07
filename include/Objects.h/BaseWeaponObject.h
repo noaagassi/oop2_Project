@@ -7,7 +7,7 @@ class BaseWeaponObject
 public:
     BaseWeaponObject();
 
-    virtual void shoot(FlashlightObject flashlight) = 0;
+    
     void setFireRate(float rate);
     void update(float deltaTime);
     std::vector<std::unique_ptr<MovingObject>> retrieveBullets();

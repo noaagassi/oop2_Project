@@ -19,6 +19,8 @@ BaseEnemyObject::BaseEnemyObject(const sf::Vector2f& initPosition, int big, int 
     m_rangeForShoot.setOutlineColor(sf::Color::Blue);
     m_rangeForShoot.setOutlineThickness(3);
 
+    m_weapon = std::make_unique<EnemyWeaponObject>();
+
 }
 //------------------------------------------------------------------------
 BaseEnemyObject::BaseEnemyObject()
@@ -140,6 +142,13 @@ void BaseEnemyObject::moveSmartandShoot(float deltaTime)
     }
 
     m_position += m_direction * m_speed * deltaTime;
+
+    m_timeSinceLastShot += deltaTime;
+    if (m_rangeForShoot.getGlobalBounds().contains(m_playerPos) && m_timeSinceLastShot>=m_shootCoolDown)
+    {
+        m_weapon->shoot(m_position, m_playerPos);
+        m_timeSinceLastShot = 0.0;
+    }
 }
 
 void BaseEnemyObject:: directionUp()
@@ -167,4 +176,18 @@ void BaseEnemyObject::directionLeft()
     m_direction.x = -1;
     m_direction.y = 0;
     resetSprite(3);
+}
+
+
+
+std::vector<std::unique_ptr<MovingObject>> BaseEnemyObject::retrieveBullets()
+{
+    return m_weapon->retrieveBullets();
+
+}
+
+std::unique_ptr<MovingObject> BaseEnemyObject::retrieveBullet()
+{
+    return m_weapon->retrieveBullet();
+
 }

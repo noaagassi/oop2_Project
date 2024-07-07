@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "BulletObject.h"
 
-/*
+
 class LaserObject : public BulletObject
 {
 public:
@@ -10,4 +10,4 @@ public:
 	void update(float deltaTime, sf::RenderWindow* window);
 private:
 	static bool m_registerit;
-};*/
+};

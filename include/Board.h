@@ -39,6 +39,8 @@ public:
 
 	void addBullets(std::vector<std::unique_ptr<MovingObject>> bullets);
 
+	void addSingleBullet(std::unique_ptr<MovingObject> bullet);
+
 private:
 	
 	//member for reading levels

@@ -1,5 +1,6 @@
 #pragma once
 #include "MovingObject.h"
+#include "EnemyWeaponObject.h"
 //-------------------------------------------------------
 class BaseEnemyObject : public MovingObject
 {
@@ -15,6 +16,8 @@ public:
     void directionDown();
     void directionRight();
     void directionLeft();
+    std::vector<std::unique_ptr<MovingObject>> retrieveBullets();
+    std::unique_ptr<MovingObject> retrieveBullet();
     void moveRandom(float deltaTime);
     void moveSmartandShoot(float deltaTime);
 
@@ -34,5 +37,10 @@ protected:
     bool m_isRandomMoving;
     sf::Clock m_randomMoveTimer;
 
+    std::unique_ptr<EnemyWeaponObject> m_weapon;
+
     std::vector<sf::Vector2f> m_poisonBounds;
+
+    float m_timeSinceLastShot=0.0;
+    float m_shootCoolDown=2.0;
 };
