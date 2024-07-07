@@ -12,7 +12,8 @@ bool PlayerObject::m_registerit = FactoryObject::registerit(PLAYER_OBJ,
     [](const sf::Vector2f& pos) -> std::unique_ptr<BaseObject> {return std::make_unique<PlayerObject>(pos); });
 //------------------------------------------------
 PlayerObject::PlayerObject(const sf::Vector2f& initPosition)
-    : MovingObject(initPosition),m_lives(initPosition.x-20,initPosition.y-10), m_eatLifeGift(false)
+    : MovingObject(initPosition), m_lives(initPosition.x - 12, initPosition.y - 5), m_eatLifeGift(false),
+    m_bombCharge(initPosition.x - 12, initPosition.y - 1)
 {
     setObjTexture(PLAYER_OBJ);
     setTheScale(PLAYER_WIDTH , PLAYER_HEIGHT);
@@ -44,8 +45,10 @@ void PlayerObject::update(float deltaTime, sf::RenderWindow* window)
     m_objectSprite.setPosition(m_position);
     m_lifeTexture.setPosition(m_position.x, m_position.y + 40);
     updateFlashlight(window);
-    sf::Vector2f pos4lives(m_position.x-20, m_position.y-10);
+    sf::Vector2f pos4lives(m_position.x-12, m_position.y-5); 
+    sf::Vector2f pos4bomb(m_position.x - 12, m_position.y - 1);
     m_lives.update(pos4lives);
+    m_bombCharge.update(pos4bomb, deltaTime);
     m_currentWeapon->update(deltaTime);
 }
 //------------------------------------------------
@@ -55,6 +58,7 @@ void PlayerObject::draw(sf::RenderWindow* window) const
     BaseObject::draw(window); 
     m_flashlight.draw(window);
     m_lives.draw(window);
+    m_bombCharge.draw(window);
 }
 
 //------------------------------------------------
@@ -115,14 +119,14 @@ void PlayerObject::handleInput(sf::RenderWindow* window)
         
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
-        if (m_bombAviable  && !m_bombFired) {
-            changeWeapon(2); // Cambia al bombWeaponObject
+        if (m_bombAviable  && m_bombCharge.isCharge()) {
+            changeWeapon(2);
             shoot();
-            m_bombFired = true;
+            m_bombCharge.restartCharge();
         }
     }
     else {
-        m_bombFired = false; // Reinicia la bandera cuando se suelta la tecla Space
+        m_bombFired = false; 
     }
     sf::Event event;
     while (window->pollEvent(event)) {

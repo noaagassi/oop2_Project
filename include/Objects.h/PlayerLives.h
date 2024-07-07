@@ -4,6 +4,7 @@
 #include "TextureHandler.h"
 #include <iostream>
 
+
 const int LIVES_WIDTH = 0;
 const int LIVE_HEIGHT = 1;
 const sf::Vector2f BACKGROUND_RECTANGLE_SIZE(50.0f, 20.0f);

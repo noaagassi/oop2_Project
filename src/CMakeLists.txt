@@ -29,15 +29,12 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/EnemyWeaponObject.h"			"Objects.cpp/EnemyWeaponObject.cpp"
  "../include/Objects.h/PlayerWeaponObject.h"		"Objects.cpp/PlayerWeaponObject.cpp"
  "../include/Objects.h/BallsWeaponObject.h"			"Objects.cpp/BallsWeaponObject.cpp" 
- "../include/Objects.h/BombWeaponObject.h"        "Objects.cpp/BombWeaponObject.cpp"
- "../include/Objects.h/SpreadingLaserWeaponObject.h""Objects.cpp/SpreadingLaserWeaponObject.cpp" 
+ "../include/Objects.h/BombWeaponObject.h"          "Objects.cpp/BombWeaponObject.cpp"
  "../include/Objects.h/SuperWeaponObject.h"         "Objects.cpp/SuperWeaponObject.cpp"
  "../include/Objects.h/PoisonObject.h"				"Objects.cpp/PoisonObject.cpp"
  "../include/Objects.h/WallObject.h"                "Objects.cpp/WallObject.cpp"
  "../include/Objects.h/BushObject.h"                "Objects.cpp/BushObject.cpp" 
  "../include/Objects.h/PortalObject.h"				"Objects.cpp/PortalObject.cpp"
- "../include/Objects.h/MasiveLaserWeaponObject.h"	"Objects.cpp/MasiveLaserWeaponObject.cpp"
- "../include/Objects.h/RegularLaserWeaponObject.h"	"Objects.cpp/RegularLaserWeaponObject.cpp"
  "../include/Objects.h/MovingObject.h"				"Objects.cpp/MovingObject.cpp"
  "../include/Objects.h/StaticObject.h"              "Objects.cpp/StaticObject.cpp" 
  "../include/Objects.h/FactoryObject.h"				"Objects.cpp/FactoryObject.cpp" 
@@ -45,6 +42,6 @@ target_sources (${CMAKE_PROJECT_NAME} PRIVATE ${MY_SOURCE_FILES}
  "../include/Objects.h/TreeObject.h"				"Objects.cpp/TreeObject.cpp" 
  "../include/Buttons.h/Button.h"					"Buttons.cpp/Button.cpp" 
  "../include/Objects.h/CloudPoisonObject.h"			"Objects.cpp/CloudPoisonObject.cpp"   
- "../include/Objects.h/BombObject.h"	    "Objects.cpp/BombObject.cpp" 
- "../include/Objects.h/BallObject.h"				"Objects.cpp/BallObject.cpp")
+ "../include/Objects.h/BombObject.h"	            "Objects.cpp/BombObject.cpp" 
+ "../include/Objects.h/BallObject.h"				"Objects.cpp/BallObject.cpp" "../include/Objects.h/BombChargePlayerObject.h" "Objects.cpp/BombChargePlayerObject.cpp")
 

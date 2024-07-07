@@ -1,6 +1,7 @@
 #pragma once
 #include "BaseEnemyObject.h"
 
+
 class SmallFastEnemyObject : public BaseEnemyObject
 {
 public:
@@ -10,7 +11,6 @@ public:
     void animate(float deltaTime) override;
 
 private:
-    
     void resetSprite(int) override;
     sf::IntRect getFrame(int row, int col);
     

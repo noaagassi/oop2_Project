@@ -9,6 +9,7 @@
 #include "BallsWeaponObject.h"
 #include "BombWeaponObject.h"
 #include "SuperWeaponObject.h"
+#include"BombChargePlayerObject.h"
 
 class PlayerObject : public MovingObject
 {
@@ -48,7 +49,7 @@ private:
     std::vector<std::unique_ptr<PlayerWeaponObject>> m_weapons;
     SuperWeaponObject m_superWeapon;
     
-
+    BombChargePlayerObject m_bombCharge;
     PlayerLives m_lives;
     //function for the hearts
     void changeHeart(bool);

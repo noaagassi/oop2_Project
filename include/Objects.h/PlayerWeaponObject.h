@@ -10,6 +10,7 @@ class PlayerWeaponObject : public BaseWeaponObject
 {
 public:
     PlayerWeaponObject();
+    virtual void shoot(FlashlightObject flashight)=0;
     void addBall();
     virtual void shoot(FlashlightObject flashlight)=0;
 protected:
