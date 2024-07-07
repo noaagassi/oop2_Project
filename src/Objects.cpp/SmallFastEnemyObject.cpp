@@ -32,6 +32,7 @@ void SmallFastEnemyObject::draw(sf::RenderWindow* window) const
     BaseObject::draw(window);
     window->draw(m_rangeForMove);
     window->draw(m_rangeForShoot);
+    m_lives.draw(window);
 }
 
 void SmallFastEnemyObject::resetSprite(int num)
