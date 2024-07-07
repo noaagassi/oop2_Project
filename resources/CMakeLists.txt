@@ -5,7 +5,7 @@ configure_file ("menuBackGround.png" ${CMAKE_BINARY_DIR} COPYONLY)
 #configure_file ("instruction2.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("Player.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("level1.txt" ${CMAKE_BINARY_DIR} COPYONLY)
-
+configure_file ("resumeButton.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("weenBackGround.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("weaponGift.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("wall.png" ${CMAKE_BINARY_DIR} COPYONLY)
