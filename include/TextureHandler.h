@@ -64,7 +64,7 @@ private:
 
     std::string m_imgNames[NUMBER_OF_OBJECTS] = {
         "clock.png",              "instruction1.png",       "instruction2.png",
-        "looseBackGround.png",    "win_screen.png",         "pauseBackGround.png",
+        "game_over.png",    "win_screen.png",         "pauseBackGround.png",
         "menuBackGround.png",     "newGameButton.png",      "resumeButton.png",
         "exitButton.png",         "instructionButton.png",  "pauseButton.png",   
         "wall.png",               "bush.png",               "portal.png",        
